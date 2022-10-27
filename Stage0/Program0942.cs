@@ -15,7 +15,7 @@ namespace Stage0 // Note: actual namespace depends on the project name.
         {
             Console.Write("Enter your name: ");
             string name = Console.ReadLine();
-            Console.Write("{0}, welcome to my first console appliction", name);
+            Console.WriteLine("{0}, welcome to my first console appliction", name);
         }
     }
 }
