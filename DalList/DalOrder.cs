@@ -6,55 +6,43 @@ public class DalOrder
     // Create
     public void Add(Order order)
     {
-        int i = 0;
-        while(i != 100 && DataSource.Orders[i].ID != order.ID)
-            i++;
-        if (DataSource.Orders[i].ID == order.ID)
+        if (DataSource.Orders.Exists(it => it.ID == order.ID)) //Check if the order is already exist in the list.
             throw new Exception("The ID is already exist");
-        else
-            DataSource.Orders[i] = order;
+        else //if the order isn't exist in the list.
+            DataSource.Orders.Add(order); //Adding the order to the list.
     }
 
     // Request
-
     public Order GetById(int id)
     {
-        int i = 0;
-        while (i != 100 && DataSource.Orders[i].ID != id)
-            i++;
-        if (DataSource.Orders[i].ID == id)
-            return DataSource.Orders[i];
-        else
+        if (DataSource.Orders.Exists(it => it.ID == id)) //Check if the order is already exist in the list.
+            return DataSource.Orders.Find(it => it.Equals(id)); //Return the request order
+        else //if the order isn't exist in the list.
             throw new Exception("The ID is not exist");
     }
 
     // Update
-
     public void Update(Order order)
     {
-        int i = 0;
-        while (i != 100 && DataSource.Orders[i].ID != order.ID)
-            i++;
-        if (DataSource.Orders[i].ID == order.ID)
+        if (DataSource.Orders.Exists(it => it.ID == order.ID)) //Check if the order is already exist in the list.
         {
-            Delete(order.ID);
-            Add(order);
+           Order temp = DataSource.Orders.Find(it => it.ID == order.ID); //find the order in the list.
+            DataSource.Orders.Remove(temp); //remove the order.
+            DataSource.Orders.Add(order); //update the new order.
         }
-        else
+        else //if the order isn't exist in the list.
             throw new Exception("The ID is not exist");
     }
 
     // Delete
-
     public void Delete(int id)
     {
-        int i = 0;
-        while (i != 100 && DataSource.Orders[i].ID != id)
-            i++;
-        if (DataSource.Orders[i].ID == id)
-            while (i != 99)
-                DataSource.Orders[i] = DataSource.Orders[i + 1];
-        else
+        if (DataSource.Orders.Exists(it => it.ID == id)) //Check if the order is already exist in the list.
+        {
+            Order temp = DataSource.Orders.Find(it => it.ID == id); //find the order in the list.
+            DataSource.Orders.Remove(temp); //remove the order.
+        }
+        else //if the order isn't exist in the list.
             throw new Exception("The ID is not exist");
     }
 }
