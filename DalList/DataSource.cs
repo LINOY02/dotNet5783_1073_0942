@@ -1,4 +1,4 @@
-﻿using System;
+﻿
 using DO;
 namespace DAL;
 
@@ -48,9 +48,9 @@ internal class DataSource
     //An array for the names of products in the store by categories
     private static string[,] nameOfProducts = new string[5, 3] {/*Tables*/ { "Rimani Table", "Mai Table", "Jambo Table" },
                                                                 /*Chairs*/ {"Loas Chair","Tiran Chair","Mai Chair" } ,
-                                                                /*Closets*/{"s","s","s" },
-                                                                /*Sofas*/ { "a","a","a"},
-                                                                /*Beds*/{ "x","a","s"} };
+                                                                /*Closets*/{"Madrid Closet","Brazul Closet","Nikol Closet" },
+                                                                /*Sofas*/ { "Tom Sofa","Bar Sofa","Ben Sofa"},
+                                                                /*Beds*/{ "Diamond Bes","Gold Bed","Silver Bed"} };
     //Arrays for the price range by categories
     private static int[] priceFrom = new int[5] { 3000, 300, 2000, 4500, 4000 };
     private static int[] priceTo = new int[5] { 12000, 2000, 9000, 20000, 18000 };
@@ -78,7 +78,7 @@ internal class DataSource
     }
     #endregion
 
-    #region FILL ORDERS
+   #region FILL ORDERS
     //Arrays of first name and last name
     private static string [] firstNames = new string[8] {"Tamar","Linoy","Shira","Avi","Hadar","Rachel" ,"Moshe","Meni"};
     private static string [] lastNames = new string[8] {"Gefner","Yaday","Choen","Levi","Israeli","Revach","Biton", "Fridman"};
@@ -92,6 +92,8 @@ internal class DataSource
             //Creating a customer name by drawing a first name + drawing a last name
             string firstName = firstNames[s_rand.Next(7)]; 
             string lastName =  lastNames[s_rand.Next(7)];
+            //Grill the number of days that have passed since the order date
+            int days = s_rand.Next(91,600);
             Orders[i] =
                 new Order
                 {
@@ -99,10 +101,26 @@ internal class DataSource
                     CustomerName = firstName + " " + lastName,
                     CustomerAdress = customerAdress[s_rand.Next(9)],//Draw an address from the array
                     CustomerEmail = firstName + lastName + "@gmail.com",//Adding an email extension to the customer's name
-
-
-
+                    OrderDate = DateTime.Now.AddDays(-days),
+                    ShipDate = DateTime.MinValue,
+                    DeliveryDate =DateTime.MinValue,
                 };
+            if(i < 0.8*20)//Only 80 percent of the orders were shipped
+            {
+                //The time for sending an order is between a month and 3 months (30-90 days)
+                days = s_rand.Next(30,90);
+                TimeSpan shipTime = new TimeSpan(days, 0, 0, 0);
+                //Adding the number of days until the shipment leaves to the order date
+                Orders[i].ShipDate = Orders[i].OrderDate + shipTime; 
+            }
+            if (i < 0.8 *0.6* 20)//Only 60 percent of the orders that went out for delivery were delivered
+            {
+                //Delivery arrival time is up to a week from the date of ship (1-7 days)
+                days = s_rand.Next(1, 7);
+                TimeSpan deliverTime = new TimeSpan(days, 0, 0, 0);
+                //Adding the number of days until the shipment was delivered to the ship date
+                Orders[i].DeliveryDate = Orders[i].OrderDate + deliverTime;
+            }
             numOfOrders++;//Increasing the number of items in the array by 1
         }
     }

@@ -9,5 +9,5 @@ public struct Order
     public string CustomerAdress { get; set; }
     public DateTime OrderDate { get; set; }
     public DateTime ShipDate { get; set; }
-    public DateTime DeliveryrDate { get; set; }
+    public DateTime DeliveryDate { get; set; }
 }
