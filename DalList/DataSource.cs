@@ -26,13 +26,13 @@ internal class DataSource
     //A variable for drawing a random number
     private static readonly Random s_rand = new();//
     //Defining an array of products and a variable to save the amount of items in the array
-    internal static int numOfProducts = 0;
+    internal static int numOfP = 0;
     internal static Product[] Products { get; } = new Product[50];
     //Defining an array of ordersts and a variable to save the amount of items in the array
-    internal static int numOfOrders = 0;
+    internal static int numOfO = 0;
     internal static Order[] Orders { get; } = new Order[100];
     //Defining an array of orderitems and a variable to save the amount of items in the array
-    internal static int numOfOrderItems = 0;
+    internal static int numOfOI = 0;
     internal static OrderItem[] OrderItems { get; } = new OrderItem[200];
 
     //A function that initializes the three arrays by calling the appropriate functions
@@ -56,7 +56,7 @@ internal class DataSource
     private static int[] priceTo = new int[5] { 12000, 2000, 9000, 20000, 18000 };
     //Arrays to stock items by category
     private static int[] inStock = new int[5] { 15, 100, 30, 20, 35 };
-    
+
     //A function that fills in the first 10 items in products array
     private static void createAndInitProducts()
     {
@@ -73,7 +73,9 @@ internal class DataSource
                     Category = (Category)category,
                     InStock = s_rand.Next(inStock[category])//Selecting a quantity in stock randomly from the range of the category
                 };
-            numOfProducts++;//Increasing the number of items in the array by 1
+            numOfP++;//Increasing the number of items in the array by 1
+            if(i < 0.05*10)
+                Products[i].InStock = 0;
         }
     }
     #endregion
@@ -119,28 +121,32 @@ internal class DataSource
                 days = s_rand.Next(1, 7);
                 TimeSpan deliverTime = new TimeSpan(days, 0, 0, 0);
                 //Adding the number of days until the shipment was delivered to the ship date
-                Orders[i].DeliveryDate = Orders[i].OrderDate + deliverTime;
+                Orders[i].DeliveryDate = Orders[i].ShipDate + deliverTime;
             }
-            numOfOrders++;//Increasing the number of items in the array by 1
+            numOfO++;//Increasing the number of items in the array by 1
         }
     }
     #endregion
 
     #region FILL ORDERITEMS
-
+ 
     ////A function that fills in the first 40 items in orderitems array
     private static void createAndInitOrderItems()
     {
-        int orderNum = 1;//Position in the order array
-        for (int i = 0; i < 40; i++)
+        int orderNum = 0;//Position in the order array
+        int i = 0;
+        while(i < 40 && orderNum < 20)
         {
             int numOfProducts = s_rand.Next(1, 4);//Lottery for the amount of items in the order (1-4)
             for (int j = 0; j < numOfProducts; j++)
             {
                 //Selecting an item randomly from the array of products
-                Product p = Products[s_rand.Next(numOfProducts)];
+                int x = s_rand.Next(10);
+                Product p = Products[x];
+                while(p.InStock == 0)//Lottery product that is in stock
+                    p = Products[s_rand.Next(10)];
                 //Lottery of the amount of the item according to the range in the array
-                int amount = s_rand.Next(1, amounts[(int)p.Category]);
+                int amount = s_rand.Next(1, p.InStock);
                 OrderItems[i] =
                     new OrderItem
                     {
@@ -150,9 +156,11 @@ internal class DataSource
                         Amount = amount,
                         Price = p.Price*amount,//final price
                     };
-                numOfOrderItems++;//Increasing the number of items in the array by 1
+                numOfOI++;//Increasing the number of items in the array by 1
+                Products[x].InStock -= amount; //Updating the new quantity in stock
             }
             orderNum++; //Progress to the next order in the array
+            i++;
         }
     }
     #endregion

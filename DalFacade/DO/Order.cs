@@ -1,4 +1,7 @@
 ﻿
+using System.Diagnostics;
+using System.Xml.Linq;
+
 namespace DO;
 
 public struct Order
@@ -10,4 +13,14 @@ public struct Order
     public DateTime OrderDate { get; set; }
     public DateTime ShipDate { get; set; }
     public DateTime DeliveryDate { get; set; }
+
+    public override string ToString() => $@"
+    ID               = {ID},
+    CustomerName     = {CustomerName},
+    CustomerEmail    = {CustomerEmail},
+    CustomerAdress   = {CustomerAdress},
+    OrderDate        = {OrderDate},
+    ShipDate         = {ShipDate},
+    DeliveryDate     = {DeliveryDate}
+    ";
 }
