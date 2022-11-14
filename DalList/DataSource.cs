@@ -127,8 +127,6 @@ internal class DataSource
     #endregion
 
     #region FILL ORDERITEMS
-    //Array for quantity ordered by category
-    private static int [] amounts = new int[5] { 3, 25, 5, 3, 3 };
 
     ////A function that fills in the first 40 items in orderitems array
     private static void createAndInitOrderItems()
