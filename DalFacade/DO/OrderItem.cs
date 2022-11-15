@@ -1,4 +1,6 @@
 ﻿
+using System.Xml.Linq;
+
 namespace DO;
 
 public struct OrderItem
@@ -23,4 +25,11 @@ public struct OrderItem
     /// The amount of the product in the order
     /// </summary>
     public int Amount { get; set; }
+    public override string ToString() => $@"
+    ID          = {ID},
+    ProductId   = {ProductID},
+    OrderId     = {OrderID},
+    Price       = {Price},
+    Amount      = {Amount},
+    ";
 }

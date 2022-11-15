@@ -23,4 +23,13 @@ public struct Product
     /// The amount in Stock of the product
     /// </summary>
     public int InStock { get; set; }
+
+    public override string ToString() => $@"
+    ID          = {ID},
+    Name        = {Name}
+    Price       = {Price}
+    Category    = {Category},
+    InStock     = {InStock}
+    ";
+    
 }
