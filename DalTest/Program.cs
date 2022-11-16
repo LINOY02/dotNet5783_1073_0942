@@ -76,7 +76,7 @@ namespace DalTest
             product1.Price = price;
             product1.Name = name;
             product1.InStock = inStock;
-            product1.Category = Category;
+            product1.Category = Category; 
         }
         //The function performs CRUD operations according to the user's request
         void PRODUCT()
