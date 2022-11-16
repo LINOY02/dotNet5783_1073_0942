@@ -23,14 +23,16 @@ public struct Order
     /// </summary>
     public string CustomerAdress { get; set; }
     /// <summary>
-    /// The order's arrival date 
+    /// The dete of the order was ordered
     /// </summary>
     public DateTime OrderDate { get; set; }
     /// <summary>
     /// The date of shipment 
     /// </summary>
     public DateTime ShipDate { get; set; }
-
+    /// <summary>
+    /// The order's arrival date 
+    /// </summary>
     public DateTime DeliveryDate { get; set; }
 
     public override string ToString() => $@"

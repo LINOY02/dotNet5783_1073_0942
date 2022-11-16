@@ -2,38 +2,44 @@
 using DO;
 namespace DAL;
 
-internal class DataSource
-{
-    
-    //Class constructor
-    static DataSource()
-    {
-        s_Intialize();
-    }
+internal static class DataSource
+{ 
 
     // Inner class for a runner variable
-    internal static class Config
-    {
+   // internal static class Config
+    
         // A variable runs to class order 
         internal const int s_startOrderNumber = 1000;
         private static int s_nextOrderNumber = s_startOrderNumber;
         internal static int NextOrderNumber { get => s_nextOrderNumber++; }
         // A variable runs to class orderItems
         internal const int s_startOrderItemNumber = 1000;
-        private static int s_nextOrderItemNumber = s_startOrderNumber;
-        internal static int NextOrderItemNumber { get => s_nextOrderNumber++; }
+        private static int s_nextOrderItemNumber = s_startOrderItemNumber;
+        internal static int NextOrderItemNumber { get => s_nextOrderItemNumber++; }
+
+        internal static int numOfP = 0;
+        internal static int numOfO = 0;
+        internal static int numOfOI = 0;
+    
+
+
+    //Class constructor
+    static DataSource()
+    {
+        s_Intialize();
     }
+
     //A variable for drawing a random number
     private static readonly Random s_rand = new();//
     //Defining an array of products and a variable to save the amount of items in the array
-    internal static int numOfP = 0;
-    internal static Product[] Products { get; } = new Product[50];
+    
+    internal static Product[] _products = new Product[50];
     //Defining an array of ordersts and a variable to save the amount of items in the array
-    internal static int numOfO = 0;
-    internal static Order[] Orders { get; } = new Order[100];
+    
+    internal static Order[] _orders = new Order[100];
     //Defining an array of orderitems and a variable to save the amount of items in the array
-    internal static int numOfOI = 0;
-    internal static OrderItem[] OrderItems { get; } = new OrderItem[200];
+   
+    internal static OrderItem[] _orderItems = new OrderItem[200];
 
     //A function that initializes the three arrays by calling the appropriate functions
     private static void s_Intialize()
@@ -46,11 +52,11 @@ internal class DataSource
 
     #region FILL PRODUCTS
     //An array for the names of products in the store by categories
-    private static string[,] nameOfProducts = new string[5, 3] {/*Tables*/ { "Rimani Table", "Mai Table", "Jambo Table" },
-                                                                /*Chairs*/ {"Loas Chair","Tiran Chair","Mai Chair" } ,
-                                                                /*Closets*/{"Madrid Closet","Brazul Closet","Nikol Closet" },
-                                                                /*Sofas*/ { "Tom Sofa","Bar Sofa","Ben Sofa"},
-                                                                /*Beds*/{ "Diamond Bes","Gold Bed","Silver Bed"} };
+    private static string[,] nameOfProducts = new string[5, 5] {/*Tables*/ { "Rimani Table", "Mai Table", "Jambo Table", "Troian Table" , "Tai Table" },
+                                                                /*Chairs*/ {"Loas Chair","Tiran Chair","Mai Chair" , "Karamel Chair" , "Mango Chair" } ,
+                                                                /*Closets*/{"Madrid Closet","Brazil Closet","Nikol Closet" , "Pariz Closet" , "Miami Closet" },
+                                                                /*Sofas*/ { "Tom Sofa","Bar Sofa","Ben Sofa", "Guy Sofa" , "Gad Sofa"},
+                                                                /*Beds*/{ "Diamond Bes","Gold Bed","Silver Bed", "Cristal Bed", "King Bed"} };
     //Arrays for the price range by categories
     private static int[] priceFrom = new int[5] { 3000, 300, 2000, 4500, 4000 };
     private static int[] priceTo = new int[5] { 12000, 2000, 9000, 20000, 18000 };
@@ -63,8 +69,8 @@ internal class DataSource
         for (int i = 0; i < 10; i++)
         {
             int category = s_rand.Next(4);//Category selection by drawingy
-            int name = s_rand.Next(2);//Choosing a product name by drawing
-            Products[i] =
+            int name = s_rand.Next(4);//Choosing a product name by drawing
+            _products[i] =
                 new Product
                 {
                     ID = i + 100000,
@@ -75,7 +81,7 @@ internal class DataSource
                 };
             numOfP++;//Increasing the number of items in the array by 1
             if(i < 0.05*10)
-                Products[i].InStock = 0;
+                _products[i].InStock = 0;
         }
     }
     #endregion
@@ -95,15 +101,15 @@ internal class DataSource
             string firstName = firstNames[s_rand.Next(7)]; 
             string lastName =  lastNames[s_rand.Next(7)];
             //Grill the number of days that have passed since the order date
-            int days = s_rand.Next(91,600);
-            Orders[i] =
+            int days = s_rand.Next(100,600);
+            _orders[i] =
                 new Order
                 {
-                    ID = Config.NextOrderNumber,//Order number according to the serial number
+                    ID = NextOrderNumber,//Order number according to the serial number
                     CustomerName = firstName + " " + lastName,
                     CustomerAdress = customerAdress[s_rand.Next(9)],//Draw an address from the array
                     CustomerEmail = firstName + lastName + "@gmail.com",//Adding an email extension to the customer's name
-                    OrderDate = DateTime.Now.AddDays(-days),
+                    OrderDate = DateTime.Now - new TimeSpan(days, 0,0,0),
                     ShipDate = DateTime.MinValue,
                     DeliveryDate =DateTime.MinValue,
                 };
@@ -113,7 +119,7 @@ internal class DataSource
                 days = s_rand.Next(30,90);
                 TimeSpan shipTime = new TimeSpan(days, 0, 0, 0);
                 //Adding the number of days until the shipment leaves to the order date
-                Orders[i].ShipDate = Orders[i].OrderDate + shipTime; 
+                _orders[i].ShipDate = _orders[i].OrderDate + shipTime; 
             }
             if (i < 0.8 *0.6* 20)//Only 60 percent of the orders that went out for delivery were delivered
             {
@@ -121,7 +127,7 @@ internal class DataSource
                 days = s_rand.Next(1, 7);
                 TimeSpan deliverTime = new TimeSpan(days, 0, 0, 0);
                 //Adding the number of days until the shipment was delivered to the ship date
-                Orders[i].DeliveryDate = Orders[i].ShipDate + deliverTime;
+                _orders[i].DeliveryDate = _orders[i].ShipDate + deliverTime;
             }
             numOfO++;//Increasing the number of items in the array by 1
         }
@@ -129,38 +135,63 @@ internal class DataSource
     #endregion
 
     #region FILL ORDERITEMS
- 
+
+    private static int[] Amount = new int[5] { 15, 100, 30, 20, 35 };
+
+
     ////A function that fills in the first 40 items in orderitems array
     private static void createAndInitOrderItems()
     {
         int orderNum = 0;//Position in the order array
-        int i = 0;
-        while(i < 40 && orderNum < 20)
+        int i = 0;//Position in the orderItem array
+        while (i < 40 && orderNum < 20)
         {
             int numOfProducts = s_rand.Next(1, 4);//Lottery for the amount of items in the order (1-4)
             for (int j = 0; j < numOfProducts; j++)
             {
                 //Selecting an item randomly from the array of products
-                int x = s_rand.Next(10);
-                Product p = Products[x];
+                int x = s_rand.Next(9);
+                Product p = _products[x];
                 while(p.InStock == 0)//Lottery product that is in stock
-                    p = Products[s_rand.Next(10)];
+                    p = _products[s_rand.Next(10)];
                 //Lottery of the amount of the item according to the range in the array
-                int amount = s_rand.Next(1, p.InStock);
-                OrderItems[i] =
+                int amount;
+                switch (p.Category)
+                {
+                    case Category.TABLE:
+                        amount = s_rand.Next(1,3);
+                        break;
+                    case Category.CHAIR:
+                        amount = s_rand.Next(1,20);
+                        break;
+                    case Category.CLOSET:
+                        amount = s_rand.Next(1,5);
+                        break;
+                    case Category.SOFA:
+                        amount = s_rand.Next(1,3);
+                        break;
+                    case Category.BED:
+                        amount = s_rand.Next(1,4);
+                        break;
+                        default:    
+                        break;
+
+                } 
+                 amount = s_rand.Next(10);
+                _orderItems[i] =
                     new OrderItem
                     {
-                        ID = Config.NextOrderItemNumber,//OrderItem number according to the serial number
-                        OrderID = Orders[i].ID,//Order number according to the current order
+                        ID = NextOrderItemNumber,//OrderItem number according to the serial number
+                        OrderID = _orders[orderNum].ID,//Order number according to the current order
                         ProductID = p.ID,//Product number according to the item we selected
                         Amount = amount,
                         Price = p.Price*amount,//final price
                     };
                 numOfOI++;//Increasing the number of items in the array by 1
-                Products[x].InStock -= amount; //Updating the new quantity in stock
+                i++;
+                _products[x].InStock -= amount; //Updating the new quantity in stock
             }
             orderNum++; //Progress to the next order in the array
-            i++;
         }
     }
     #endregion
