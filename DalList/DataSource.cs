@@ -144,7 +144,7 @@ internal static class DataSource
     {
         int orderNum = 0;//Position in the order array
         int i = 0;//Position in the orderItem array
-        while (i < 40 && orderNum < 20)
+        while ( orderNum < 20)
         {
             int numOfProducts = s_rand.Next(1, 4);//Lottery for the amount of items in the order (1-4)
             for (int j = 0; j < numOfProducts; j++)
