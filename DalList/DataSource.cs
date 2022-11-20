@@ -5,6 +5,7 @@ namespace DAL;
 internal static class DataSource
 { 
 
+    
     // Inner class for a runner variable
    // internal static class Config
     
@@ -16,10 +17,11 @@ internal static class DataSource
         internal const int s_startOrderItemNumber = 1000;
         private static int s_nextOrderItemNumber = s_startOrderItemNumber;
         internal static int NextOrderItemNumber { get => s_nextOrderItemNumber++; }
-
+    /*
         internal static int numOfP = 0;
         internal static int numOfO = 0;
         internal static int numOfOI = 0;
+    */
     
 
 
@@ -30,16 +32,16 @@ internal static class DataSource
     }
 
     //A variable for drawing a random number
-    private static readonly Random s_rand = new();//
-    //Defining an array of products and a variable to save the amount of items in the array
+    private static readonly Random s_rand = new();
+    //Defining a list of products 
     
-    internal static Product[] _products = new Product[50];
-    //Defining an array of ordersts and a variable to save the amount of items in the array
-    
-    internal static Order[] _orders = new Order[100];
-    //Defining an array of orderitems and a variable to save the amount of items in the array
+    internal static List<Product> _products = new List<Product>();
+    //Defining a list of ordersts 
+
+    internal static List<Order> _orders = new List<Order>();
+    //Defining a list of orderitems 
    
-    internal static OrderItem[] _orderItems = new OrderItem[200];
+    internal static List<OrderItem> _orderItems = new List<OrderItem>();
 
     //A function that initializes the three arrays by calling the appropriate functions
     private static void s_Intialize()
@@ -70,18 +72,17 @@ internal static class DataSource
         {
             int category = s_rand.Next(4);//Category selection by drawingy
             int name = s_rand.Next(4);//Choosing a product name by drawing
-            _products[i] =
-                new Product
-                {
-                    ID = i + 100000,
-                    Name = nameOfProducts[category, name],//Choosing the name from the matrix according to the numbers drawn
-                    Price = s_rand.Next(priceFrom[category], priceTo[category]),//Random price selection from the range of the category
-                    Category = (Category)category,
-                    InStock = s_rand.Next(inStock[category])//Selecting a quantity in stock randomly from the range of the category
-                };
-            numOfP++;//Increasing the number of items in the array by 1
-            if(i < 0.05*10)
-                _products[i].InStock = 0;
+            Product newProdect = new Product
+            {
+                ID = i + 100000,
+                Name = nameOfProducts[category, name],//Choosing the name from the matrix according to the numbers drawn
+                Price = s_rand.Next(priceFrom[category], priceTo[category]),//Random price selection from the range of the category
+                Category = (Category)category,
+                InStock = s_rand.Next(inStock[category])//Selecting a quantity in stock randomly from the range of the category
+            };
+            if (i < 0.05 * 10)
+                newProdect.InStock = 0;
+            _products.Add(newProdect);
         }
     }
     #endregion
@@ -102,24 +103,24 @@ internal static class DataSource
             string lastName =  lastNames[s_rand.Next(7)];
             //Grill the number of days that have passed since the order date
             int days = s_rand.Next(100,600);
-            _orders[i] =
-                new Order
-                {
-                    ID = NextOrderNumber,//Order number according to the serial number
-                    CustomerName = firstName + " " + lastName,
-                    CustomerAdress = customerAdress[s_rand.Next(9)],//Draw an address from the array
-                    CustomerEmail = firstName + lastName + "@gmail.com",//Adding an email extension to the customer's name
-                    OrderDate = DateTime.Now - new TimeSpan(days, 0,0,0),
-                    ShipDate = DateTime.MinValue,
-                    DeliveryDate =DateTime.MinValue,
-                };
-            if(i < 0.8*20)//Only 80 percent of the orders were shipped
+            Order newOrder = new Order
+            {
+                ID = NextOrderNumber,//Order number according to the serial number
+                CustomerName = firstName + " " + lastName,
+                CustomerAdress = customerAdress[s_rand.Next(9)],//Draw an address from the array
+                CustomerEmail = firstName + lastName + "@gmail.com",//Adding an email extension to the customer's name
+                OrderDate = DateTime.Now - new TimeSpan(days, 0, 0, 0),
+                ShipDate = DateTime.MinValue,
+                DeliveryDate = DateTime.MinValue,
+            };
+
+            if (i < 0.8*20)//Only 80 percent of the orders were shipped
             {
                 //The time for sending an order is between a month and 3 months (30-90 days)
                 days = s_rand.Next(30,90);
                 TimeSpan shipTime = new TimeSpan(days, 0, 0, 0);
                 //Adding the number of days until the shipment leaves to the order date
-                _orders[i].ShipDate = _orders[i].OrderDate + shipTime; 
+                newOrder.ShipDate = _orders[i].OrderDate + shipTime; 
             }
             if (i < 0.8 *0.6* 20)//Only 60 percent of the orders that went out for delivery were delivered
             {
@@ -127,9 +128,9 @@ internal static class DataSource
                 days = s_rand.Next(1, 7);
                 TimeSpan deliverTime = new TimeSpan(days, 0, 0, 0);
                 //Adding the number of days until the shipment was delivered to the ship date
-                _orders[i].DeliveryDate = _orders[i].ShipDate + deliverTime;
+                newOrder.DeliveryDate = newOrder.ShipDate + deliverTime;
             }
-            numOfO++;//Increasing the number of items in the array by 1
+            _orders.Add(newOrder);
         }
     }
     #endregion
@@ -152,8 +153,11 @@ internal static class DataSource
                 //Selecting an item randomly from the array of products
                 int x = s_rand.Next(9);
                 Product p = _products[x];
-                while(p.InStock == 0)//Lottery product that is in stock
-                    p = _products[s_rand.Next(10)];
+                while (p.InStock == 0)//Lottery product that is in stock
+                {
+                    x = s_rand.Next(9);
+                    p = _products[x];
+                }
                 //Lottery of the amount of the item according to the range in the array
                 int amount;
                 switch (p.Category)
@@ -178,18 +182,19 @@ internal static class DataSource
 
                 } 
                  amount = s_rand.Next(10);
-                _orderItems[i] =
-                    new OrderItem
-                    {
-                        ID = NextOrderItemNumber,//OrderItem number according to the serial number
-                        OrderID = _orders[orderNum].ID,//Order number according to the current order
-                        ProductID = p.ID,//Product number according to the item we selected
-                        Amount = amount,
-                        Price = p.Price*amount,//final price
-                    };
-                numOfOI++;//Increasing the number of items in the array by 1
+                OrderItem newOrderItem = new OrderItem
+                {
+                    ID = NextOrderItemNumber,//OrderItem number according to the serial number
+                    OrderID = _orders[orderNum].ID,//Order number according to the current order
+                    ProductID = p.ID,//Product number according to the item we selected
+                    Amount = amount,
+                    Price = p.Price * amount,//final price
+                };
+               _orderItems.Add(newOrderItem);
                 i++;
-                _products[x].InStock -= amount; //Updating the new quantity in stock
+                //Updating the new quantity in stock
+                 p.InStock -= amount;
+                _products[x] = p; 
             }
             orderNum++; //Progress to the next order in the array
         }
