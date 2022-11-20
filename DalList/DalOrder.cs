@@ -1,10 +1,11 @@
 ﻿using DO;
 namespace DAL;
+using DalApi;
 
-public class DalOrder
+public class DalOrder : IOrder
 {
     // Create
-    public int Add(Order order)
+    internal int Add(Order order)
     {
        order.ID = DataSource.NextOrderNumber; //Initialize the ID number of the order
        DataSource._orders[DataSource.numOfO] = order;// adding the order to the list
