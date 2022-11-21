@@ -19,15 +19,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="BlApi\**" />
-    <EmbeddedResource Remove="BlApi\**" />
-    <None Remove="BlApi\**" />
+    <Compile Remove="BlTest\**" />
+    <EmbeddedResource Remove="BlTest\**" />
+    <None Remove="BlTest\**" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="BO\" />
-    <Folder Include="BlTest\" />
     <Folder Include="BlImplementation\" />
+    <Folder Include="BlApi\" />
   </ItemGroup>
 
 </Project>
