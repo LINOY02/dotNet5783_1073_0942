@@ -6,10 +6,9 @@ namespace DalTest
 {
     public class Program
     {
-
-        private static DalOrder order = new DalOrder();
-        private static DalOrderItem orderItem = new DalOrderItem();
-        private static DalProduct product = new DalProduct();
+        //private static DalOrder order = new DalOrder();
+        //private static DalOrderItem orderItem = new DalOrderItem();
+        //private static DalProduct product = new DalProduct();
 
         static void Main(string[] args)
         {

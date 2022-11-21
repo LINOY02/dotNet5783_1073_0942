@@ -1,39 +1,27 @@
 ﻿
+using DalApi;
 using DO;
 namespace DAL;
 
-public class DalProduct
+public class DalProduct : IProduct
 {
     // Create
     public int Add(Product product)
     {
-        int i = 0;
-        //Go through the entire list until it ends or we have found the item
-        while (i < DataSource.numOfP ) //&& product.ID != DataSource.Products[i].ID)
-              i++;
-        if (i == DataSource.numOfP)// the product is not exist in the list
-        {
-            DataSource._products[DataSource.numOfP] = product;// adding the product to the list
-            DataSource.numOfP++; //Increasing the number of items in the array by 1
-            return product.ID;
-        }
+        if (DataSource._products.Exists(x => x.ID == product.ID))// the product is not exist in the list
+            throw new ExistException();
         else// check if the product is already exist in the list
-            throw new Exception("The ID is already exist");
-
+            DataSource._products.Add(product);
+            return product.ID;
     }
 
     // Request
-
     public Product GetById(int id)
     {
-        int i = 0;
-        //Go through the entire list until it ends or we have found the item
-        while (i < DataSource.numOfP &&  DataSource._products[i].ID != id)
-            i++;
-        if (i == DataSource.numOfP)// check if the product is already exist in the list
-            throw new Exception("The ID is not exist");
+        if (!DataSource._products.Exists(x => x.ID == id))// check if the product is already exist in the list
+            throw new NotExistException();
         else // the product is not exist in the list
-            return DataSource._products[i]; // return the requested prodect
+            return DataSource._products.Find(x => x.ID == id); // return the requested prodect
         
     }
 
@@ -41,46 +29,36 @@ public class DalProduct
 
     public void Update(Product product)
     {
-        int i = 0;
-        //Go through the entire list until it ends or we have found the item
-        while (i <= DataSource.numOfP && DataSource._products[i].ID != product.ID)
-            i++;
-        if (i == DataSource.numOfP)// check if the product is already exist in the list
-           throw new Exception("The ID is not exist");
-        else// the product is not exist in the list
-            DataSource._products[i] = product; //Overrunning the old object with the new 
-        
+        if (!DataSource._products.Exists(x => x.ID == product.ID))// check if the product isn't exist in the list
+            throw new NotExistException();
+        else// the product is exist in the list
+        {
+            DataSource._products.Remove(GetById(product.ID));
+            DataSource._products.Add(product); //Overrunning the old object with the new 
+        }
     }
 
     // Delete
 
     public void Delete(int id)
     {
-        int i = 0;
-        //Go through the entire list until it ends or we have found the item
-        while (i <= DataSource.numOfP && DataSource._products[i].ID != id)
-            i++;
-        if (i == DataSource.numOfP)// check if the product is already exist in the list
-            throw new Exception("The ID is not exist");
-        else// the product is not exist in the list
-        {
-            DataSource.numOfP--; //Reducing the length of the array by 1
-            DataSource._products[i] = DataSource._products[DataSource.numOfP];//Deleting the member by overriding with the last member
-        }
+        if (!DataSource._products.Exists(x => x.ID == id))// check if the product isn't exist in the list
+            throw new NotExistException();
+        else //the product is exist in the list
+            DataSource._products.Remove(GetById(id)); 
         
     }
 
     //A function that returns the array
-    public Product[] GetAll()
+    public IEnumerable<Product> GetAll()
 
     {
-        //Creating a new array the size of the number of elements in the array
-        Product[] newArr = new Product[DataSource.numOfP];
+        //Creating a new list 
+        List<Product> NewProducts = new List<Product>();
         //Going over the whole array and copying it to the new array
-        for (int i = 0; i < DataSource.numOfP; i++)
-        {
-            newArr[i] = DataSource._products[i];
-        }
-        return newArr;//Returning the new array
+        for (int i = 0; i < DataSource._products.Count; i++)
+            NewProducts.Add(DataSource._products[i]);
+
+        return NewProducts;
     }
 }

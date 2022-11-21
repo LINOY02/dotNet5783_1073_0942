@@ -1,30 +1,26 @@
 ﻿
 using DO;
-using DAL;
+using DalApi;
+
 namespace DAL;
 
-public class DalOrderItem
+internal class DalOrderItem : IOrderItem
 {
     // Create
     public int Add(OrderItem orderItem)
     {
         orderItem.ID = DataSource.NextOrderItemNumber; //Initialize the ID number of the order
-        DataSource._orderItems[DataSource.numOfOI] = orderItem;// adding the product to the list
-        DataSource.numOfOI++; //Increasing the number of items in the array by 1
+        DataSource._orderItems.Add(orderItem);
         return orderItem.ID;
     }
 
     // Request
     public OrderItem GetById(int id)
     {
-        int i = 0;
-        //Go through the entire list until it ends or we have found the item
-        while (i < DataSource.numOfOI && DataSource._orderItems[i].ID != id)
-            i++;
-        if (i == DataSource.numOfOI)// check if the orderItem is already exist in the list
-            throw new Exception("The ID is not exist");
-        else // the orderItem is not exist in the list
-            return DataSource._orderItems[i]; // return the requested orderItem
+        if (!DataSource._orderItems.Exists(x => x.ID == id))
+            throw new NotExistException();
+        else
+            return DataSource._orderItems.Find(x => x.ID == id);
 
     }
 
@@ -32,65 +28,55 @@ public class DalOrderItem
     public OrderItem GetByOidAndPid(int orderId, int productId)
     {
  
-        for (int i = 0; i < DataSource.numOfOI; i++)
+        for (int i = 0; i < DataSource._orderItems.Count; i++)
         {
             if (DataSource._orderItems[i].OrderID == orderId)// Checking if the item is from the given order
                 if (DataSource._orderItems[i].ProductID == productId)//Checking if this is the given item from the order
                     return DataSource._orderItems[i]; // return the requested orderItem
         }
          // the orderItem is not exist in the list
-            throw new Exception("The ID is not exist");
+        throw new NotExistException();
     }
     
     // Update
     public void Update(OrderItem orderItem)
-    {
-        int i = 0;
-        //Go through the entire list until it ends or we have found the item
-        while (i < DataSource.numOfOI && orderItem.ID != DataSource._orderItems[i].ID)
-            i++;
-        if (i == DataSource.numOfOI)// check if the orderItem is already exist in the list
-            throw new Exception("The ID is not exist");
-        else //if the order isn't exist in the list.
-            DataSource._orderItems[i] = orderItem; //Overrunning the old object with the new 
-       
+    { 
+        if (!DataSource._orderItems.Exists(x => x.ID == orderItem.ID))// check if the orderItem isn't exist in the list
+            throw new NotExistException();
+        else //if the order isn exist in the list.
+            DataSource._orderItems.Remove(GetById(orderItem.ID));
+            DataSource._orderItems.Add(orderItem);
+
     }
 
     // Delete
     public void Delete(int id)
     {
-        int i = 0;
-        //Go through the entire list until it ends or we have found the item
-        while (i < DataSource.numOfOI && id != DataSource._orderItems[i].ID)
-            i++;
-        if (i == DataSource.numOfOI)// check if the orderItem is already exist in the list
-            throw new Exception("The ID is not exist");
-        else //if the order isn't exist in the list.
-        {
-            DataSource.numOfOI--;//Reducing the length of the array by 1
-            DataSource._orderItems[i] = DataSource._orderItems[DataSource.numOfOI];//Deleting the member by overriding with the last member
-        }
-        
+
+        if (!DataSource._orderItems.Exists(x => x.ID == id))// check if the orderItem isn't exist in the list
+            throw new NotExistException();
+        else
+            DataSource._orderItems.Remove(GetById(id));
+
     }
 
     //A function that returns the array
-    public OrderItem[] GetAll()
+    public IEnumerable<OrderItem> GetAll()
     {
         //Creating a new array the size of the number of elements in the array
-        OrderItem[] newArr = new OrderItem[DataSource.numOfOI];
+        List<OrderItem> newOrder = new List<OrderItem>();
         //Going over the whole array and copying it to the new array
-        for (int i = 0; i < DataSource.numOfOI; i++)
-        {
-            newArr[i] = DataSource._orderItems[i];
-        }
-        return newArr;//Returning the new array
+        for (int i = 0; i < DataSource._orderItems.Count; i++)
+            newOrder.Add(DataSource._orderItems[i]);
+
+        return newOrder;
     }
 
     //A function that returns all items of the requested order
-    public List<OrderItem> GetAllOrder(int orderId)
+    public IEnumerable<OrderItem> GetAllOrder(int orderId)
     {
         List<OrderItem> allOrder = new List<OrderItem>();
-       for (int i = 0; i < DataSource.numOfOI; i++)
+       for (int i = 0; i < DataSource._orderItems.Count; i++)
         {
             //If the ordered item belongs to the requested order
             if (DataSource._orderItems[i].OrderID == orderId)
