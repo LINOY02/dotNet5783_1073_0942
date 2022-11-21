@@ -19,8 +19,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="BlApi\**" />
+    <EmbeddedResource Remove="BlApi\**" />
+    <None Remove="BlApi\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="BO\" />
-    <Folder Include="BlApi\" />
+    <Folder Include="BlTest\" />
     <Folder Include="BlImplementation\" />
   </ItemGroup>
 
