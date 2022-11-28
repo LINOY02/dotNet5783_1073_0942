@@ -4,7 +4,7 @@ namespace BlApi;
 
 public interface IOrder
 {
-    //IEnumerable<OrderForList> ();
+    IEnumerable<OrderForList> GetListedOrders();
     /// <summary>
     /// Presenting all invitations to the manager
     /// </summary>
