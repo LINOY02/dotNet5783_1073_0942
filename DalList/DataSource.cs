@@ -188,7 +188,7 @@ internal static class DataSource
                     OrderID = _orders[orderNum].ID,//Order number according to the current order
                     ProductID = p.ID,//Product number according to the item we selected
                     Amount = amount,
-                    Price = p.Price * amount,//final price
+                    Price = p.Price 
                 };
                _orderItems.Add(newOrderItem);
                 i++;
