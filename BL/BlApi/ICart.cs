@@ -2,7 +2,7 @@
 using BO;
 namespace BlApi;
 
-internal interface ICart
+public interface ICart
 {
     public BO.Cart AddCart(BO.Cart cart, int id);
     /// <summary>
