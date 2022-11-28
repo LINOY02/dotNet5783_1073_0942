@@ -25,7 +25,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="BO\" />
     <Folder Include="BlImplementation\" />
     <Folder Include="BlApi\" />
   </ItemGroup>
