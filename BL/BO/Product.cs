@@ -1,17 +1,19 @@
 ﻿
 using System.ComponentModel;
 
-namespace BO;
-
-public class Product
+namespace BO
 {
-    public int ID { get; set; }
-    public string Name { get; set; }
-    public double Price { get; set; }
-    public Category Category { get; set; }
-    public int InStock { get; set; }
-    public override string ToString()
+
+    public class Product
     {
-        return this.ToStringProperty();
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public double Price { get; set; }
+        public Category Category { get; set; }
+        public int InStock { get; set; }
+        public override string ToString()
+        {
+            return this.ToStringProperty();
+        }
     }
 }

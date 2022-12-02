@@ -1,14 +1,16 @@
 ﻿
- 
-namespace BO;
 
-public class OrderTracking
+namespace BO
 {
-    public int ID { get; set; }
-    public OrderStatus status { get; set; }
-   public List <Tuple<DateTime, string>> Tracking { set; get; }
-    public override string ToString()
+
+    public class OrderTracking
     {
-        return this.ToStringProperty();
+        public int ID { get; set; }
+        public OrderStatus status { get; set; }
+        public List<Tuple<DateTime, string>> Tracking { set; get; }
+        public override string ToString()
+        {
+            return this.ToStringProperty();
+        }
     }
 }

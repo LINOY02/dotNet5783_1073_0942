@@ -1,14 +1,15 @@
-﻿
-
+﻿using System;
+using BlApi;
+using BO;
 namespace BlTest
 {
     public class Program
     {
-        public IBl bl = new BL();
+        private IBl Bl = new Bl();
         static void Main(string[] args)
-            {
-                
-             Console.WriteLine(@"
+        {
+                 
+        Console.WriteLine(@"
  enter a number between 0 to 3:
  0- exsit
  1- order
@@ -45,12 +46,12 @@ namespace BlTest
  3- product");
                     int.TryParse(Console.ReadLine(), out number);
                 }
-            }
+        }
 
 
             #region product
             //The function receives data for a new product
-            void createProduct(ref Product product1)
+            void createProduct(ref BO.Product product1)
             {
                 int id;
                 Console.WriteLine("enter the id of the product");
@@ -79,45 +80,56 @@ namespace BlTest
                 try
                 {
                     Console.WriteLine(@"
+Actions for the manager:
 enter 'a' for add a product
-enter 'b' for show a product
-enter 'c' for show the list
+enter 'b' for show a product by ID
+enter 'c' for show the list of products
 enter 'd' for update the product
-enter 'e' for delete the product");
-                    Product product1 = new Product();
+enter 'e' for delete the product
+
+Actions for the customer:
+enter 'f' for show a product by ID
+enter 'g' for show the product catalog") ;
+                    BO.Product product1 = new BO.Product();
                     string ch = Console.ReadLine();
                     switch (ch)
                     {
                         case "a":
                             createProduct(ref product1);
-                            Console.WriteLine(dalList.Product.Add(product1));
+                            Bl.Product.AddProduct(product1);
                             break;
                         case "b":
                             Console.WriteLine("Enter the id of the product");
                             int id;
                             int.TryParse(Console.ReadLine(), out id);
-                            Console.WriteLine(dalList.Product.GetById(id));
+                            Console.WriteLine(Bl.Product.GetProduc(id));
                             break;
                         case "c":
-                            foreach (var p in dalList.Product.GetAll())
+                            foreach (var p in Bl.Product.GetListedProducts())
                                 Console.WriteLine(p);
                             break;
                         case "d":
-                            Console.WriteLine("Enter the id of the product for updating");
-                            int id2;
-                            int.TryParse(Console.ReadLine(), out id2);
-                            Console.WriteLine(dalList.Product.GetById(id2));
+                            Console.WriteLine("Enter product for updating");
                             createProduct(ref product1);
-                            product1.ID = id2;
-                            dalList.Product.Update(product1);
+                            Bl.Product.UpdateProduct(product1);
                             break;
                         case "e":
                             Console.WriteLine("Enter the id of the product for delete");
                             int id1;
                             int.TryParse(Console.ReadLine(), out id1);
-                            dalList.Product.Delete(id1);
+                            Bl.Product.DeleteProduct(id1);
                             break;
-                        default:
+                        case "f":
+                            Console.WriteLine("Enter the id of the product");
+                            int id2;
+                            int.TryParse(Console.ReadLine(), out id2);
+                            Console.WriteLine(Bl.Product.GetItem(id2));
+                            break;
+                        case "g":
+                            foreach (var p in Bl.Product.GetProducts())
+                                Console.WriteLine(p);
+                            break;
+                    default:
                             return;
                     }
                 }
@@ -127,7 +139,7 @@ enter 'e' for delete the product");
                 }
             }
             #endregion
-            #region orderItem
+            #region Cart
             //The function receives data for a new order item
             void createOrderItem(ref OrderItem orderItem1)
             {
@@ -216,77 +228,50 @@ enter 'g' for show the list of order");
             }
             #endregion
             #region order
-            //The function receives data for a new order item
-            void createOrder(ref Order order1)
-            {
-                string customerName;
-                Console.WriteLine("enter your name");
-                customerName = Console.ReadLine();
-                string customerEmail;
-                Console.WriteLine("enter your Email");
-                customerEmail = Console.ReadLine();
-                string customerAdress;
-                Console.WriteLine("enter your adress");
-                customerAdress = Console.ReadLine();
-                DateTime orderDate;
-                Console.WriteLine("enter the date of the order");
-                DateTime.TryParse(Console.ReadLine(), out orderDate);
-                DateTime shipDate;
-                Console.WriteLine("enter the ship date");
-                DateTime.TryParse(Console.ReadLine(), out shipDate);
-                DateTime deliveryDate;
-                Console.WriteLine("enter the delivery date");
-                DateTime.TryParse(Console.ReadLine(), out deliveryDate);
-                order1.CustomerName = customerName;
-                order1.CustomerEmail = customerEmail;
-                order1.CustomerAdress = customerAdress;
-                order1.OrderDate = orderDate;
-                order1.ShipDate = shipDate;
-                order1.DeliveryDate = deliveryDate;
-            }
+
             void ORDER()
             {
                 try
                 {
                     Console.WriteLine(@"
- enter 'a' for add order
- enter 'b' for show a order
- enter 'c' for show the list
- enter 'd' for update the order
- enter 'e' for delete order");
+ enter 'a' for show a order
+ enter 'b' for show the list of ordrs
+ enter 'c' for Order ship date update
+ enter 'd' for Order tracking
+ enter 'e' for Order delivery date update");
                     Order order1 = new Order();
                     string ch = Console.ReadLine();
                     switch (ch)
                     {
                         case "a":
-                            createOrder(ref order1);
-                            Console.WriteLine(dalList.Order.Add(order1));
-                            break;
-                        case "b":
                             Console.WriteLine("Enter the id of the order");
                             int id;
                             int.TryParse(Console.ReadLine(), out id);
-                            Console.WriteLine(dalList.Order.GetById(id));
+                            Console.WriteLine(Bl.Order.GetOrder(id));
                             break;
-                        case "c":
-                            foreach (var o in dalList.Order.GetAll())
+                        case "b":
+                            foreach (var o in Bl.Order.GetListedOrders())
                                 Console.WriteLine(o);
                             break;
-                        case "d":
-                            Console.WriteLine("Enter the id of the order for updating");
+                        case "c":
+                            Console.WriteLine("Enter the id of the order for updating the ship date");
                             int id1;
                             int.TryParse(Console.ReadLine(), out id1);
-                            createOrder(ref order1);
-                            order1.ID = id1;
-                            dalList.Order.Update(order1);
+                           Console.WriteLine(Bl.Order.ShipOrder(id1));
                             break;
-                        case "e":
-                            Console.WriteLine("Enter the id of the order for delete:");
+                        case "d":
+                            Console.WriteLine("Enter the id of the order for trucking");
                             int id2;
                             int.TryParse(Console.ReadLine(), out id2);
-                            dalList.Order.Delete(id2);
+                            Console.WriteLine(Bl.Order.UpdateOrder(id2));
                             break;
-                        default:
+                        case "e":
+                            Console.WriteLine("Enter the id of the order for updating the delivery date");
+                            int id3;
+                            int.TryParse(Console.ReadLine(), out id3);
+                            Console.WriteLine(Bl.Order.DeliveredOrder(id3));
+                        break;
+                    default:
                             return;
                     }
                 }

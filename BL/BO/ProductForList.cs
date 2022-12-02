@@ -1,14 +1,16 @@
 ﻿
-namespace BO;
-
-public class ProductForList
+namespace BO
 {
-    public int ID { get; set; }
-    public string Name { get; set; }
-    public double Price { get; set; }
-    public Category Category { get; set; }
-    public override string ToString()
+
+    public class ProductForList
     {
-        return this.ToStringProperty();
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public double Price { get; set; }
+        public Category Category { get; set; }
+        public override string ToString()
+        {
+            return this.ToStringProperty();
+        }
     }
 }

@@ -1,16 +1,18 @@
 ﻿
 
-namespace BO;
-
-public class OrderForList
+namespace BO
 {
-    public int ID { get; set; } 
-    public string CustomerName { get; set; }    
-    public OrderStatus Status { get; set; }
-    public int AmountOfItems { get; set; }  
-    public double TotalPrice { get; set; }
-    public override string ToString()
+
+    public class OrderForList
     {
-        return this.ToStringProperty();
+        public int ID { get; set; }
+        public string CustomerName { get; set; }
+        public OrderStatus Status { get; set; }
+        public int AmountOfItems { get; set; }
+        public double TotalPrice { get; set; }
+        public override string ToString()
+        {
+            return this.ToStringProperty();
+        }
     }
 }
