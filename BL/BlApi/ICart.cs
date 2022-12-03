@@ -9,7 +9,7 @@ namespace BlApi
         /// </summary>
         /// <param name=Cart></param>
         /// <returns></the cart>
-        public BO.Cart AddCart(BO.Cart cart, int id);
+        public BO.Cart AddProductToCart(BO.Cart cart, int id);
 
         /// <summary>
         /// Updating the quantity of a product from the shopping cart
@@ -22,7 +22,7 @@ namespace BlApi
         /// make an order
         /// </summary>
         /// <param name=Cart></param>
-        public void GetCart(BO.Cart cart, string castumerName, string castumerEmail, string castumerAdress);
+        public void OrderCart(BO.Cart cart, string castumerName, string castumerEmail, string castumerAdress);
        
     }
 }

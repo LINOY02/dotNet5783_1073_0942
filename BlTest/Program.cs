@@ -29,14 +29,13 @@ namespace BlTest
                             program.ORDER();
                             break;
                         case 2:
-                            program.ORDERITEM();
+                            program.CART();
                             break;
                         case 3:
                             program.PRODUCT();
                             break;
                         default:
                             return;
-                            break;
                     }
                     Console.WriteLine(@"
  enter a number between 0 to 3:
@@ -141,7 +140,7 @@ enter 'g' for show the product catalog") ;
             #endregion
             #region Cart
             //The function receives data for a new order item
-            void createOrderItem(ref OrderItem orderItem1)
+            void createCart(ref Cart cart)
             {
                 int orderId;
                 Console.WriteLine("enter the ID of the order");
@@ -152,70 +151,45 @@ enter 'g' for show the product catalog") ;
                 int amount;
                 Console.WriteLine("enter the amount of the product");
                 int.TryParse(Console.ReadLine(), out amount);
-                orderItem1.OrderID = orderId;
-                orderItem1.ProductID = productId;
-                orderItem1.Amount = amount;
-                orderItem1.Price = amount * dalList.Product.GetById(productId).Price;
+                
             }
-            void ORDERITEM()
+            void CART()
             {
                 try
                 {
                     Console.WriteLine(@"
-enter 'a' for add
-enter 'b' for show a order item
-enter 'c' for show the list
-enter 'd' for update the order item
-enter 'e' for delete
-enter 'f' for show by order's & product's id
-enter 'g' for show the list of order");
-                    OrderItem orderItem1 = new OrderItem();
+enter 'a' for add product to the cart
+enter 'b' for update the cart
+enter 'c' for order the cart");
+                    Cart cart = new Cart();
                     string ch = Console.ReadLine();
                     switch (ch)
                     {
                         case "a":
-                            createOrderItem(ref orderItem1);
-                            Console.WriteLine(dalList.OrderItem.Add(orderItem1));
+                            createCart(ref cart);
+                            Console.WriteLine("Enter the id of the added product");
+                            int productID;
+                            int.TryParse(Console.ReadLine(), out productID);
+                            Console.WriteLine(Bl.Cart.AddProductToCart(cart, productID));
                             break;
                         case "b":
-                            Console.WriteLine("Enter the id of the ordr item");
-                            int id;
-                            int.TryParse(Console.ReadLine(), out id);
-                            Console.WriteLine(dalList.OrderItem.GetById(id));
+                            createCart(ref cart);
+                            Console.WriteLine("Enter the id of the added product");
+                            int productID1;
+                            int.TryParse(Console.ReadLine(), out productID1);
+                            Console.WriteLine("Enter the new amount");
+                            int amount;
+                            int.TryParse(Console.ReadLine(), out amount);
+                            Console.WriteLine(Bl.Cart.UpdateCart(cart, productID1, amount));
                             break;
                         case "c":
-                            foreach (var OIt in dalList.OrderItem.GetAll())
-                                Console.WriteLine(OIt);
-                            break;
-                        case "d":
-                            Console.WriteLine("Enter the id of the order item for updating");
-                            int id1;
-                            int.TryParse(Console.ReadLine(), out id1);
-                            createOrderItem(ref orderItem1);
-                            orderItem1.ID = id1;
-                            dalList.OrderItem.Update(orderItem1);
-                            break;
-                        case "e":
-                            Console.WriteLine("Enter the id of the order for delete");
-                            int id2;
-                            int.TryParse(Console.ReadLine(), out id2);
-                            dalList.OrderItem.Delete(id2);
-                            break;
-                        case "f":
-                            Console.WriteLine("Enter the id of the order");
-                            int idOrder;
-                            int.TryParse(Console.ReadLine(), out idOrder);
-                            Console.WriteLine("Enter the id of the product");
-                            int idProduct;
-                            int.TryParse(Console.ReadLine(), out idProduct);
-                            Console.WriteLine(dalList.OrderItem.GetByOidAndPid(idOrder, idProduct));
-                            break;
-                        case "g":
-                            Console.WriteLine("Enter the id of the order");
-                            int idOrder1;
-                            int.TryParse(Console.ReadLine(), out idOrder1);
-                            foreach (var orIt in dalList.OrderItem.GetAllOrder(idOrder1))
-                                Console.WriteLine(orIt);
+                            createCart(ref cart);
+                            Console.WriteLine("Enter the costumer details(name, email, adress)");
+                            string name, email, adress;
+                            name = Console.ReadLine();  
+                            email = Console.ReadLine();
+                            adress = Console.ReadLine();
+                           Bl.Cart.OrderCart(cart, name, email, adress);
                             break;
                         default:
                             return;
