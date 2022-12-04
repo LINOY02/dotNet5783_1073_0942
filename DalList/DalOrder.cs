@@ -18,7 +18,7 @@ internal class DalOrder : IOrder
         if (DataSource._orders.Exists(x => x.ID == id))// check if the order is already exist in the list
             return DataSource._orders.Find(x => x.ID == id); // return the requested order
         else // the order is exist in the list
-            throw new NotExistException();
+            throw new DalDoesNotExistException("Order num " + id + " not exist in the list");
     }
 
     // Update
@@ -26,7 +26,7 @@ internal class DalOrder : IOrder
     {
 
         if (!DataSource._products.Exists(x => x.ID == order.ID))// check if the order isn't exist in the list
-            throw new NotExistException();
+            throw new DalDoesNotExistException("Order num " + order.ID + " not exist in the list");
         else// the order is exist in the list
         {
             DataSource._orders.Remove(GetById(order.ID));
@@ -38,7 +38,7 @@ internal class DalOrder : IOrder
     public void Delete(int id)
     {
         if (!DataSource._orders.Exists(x => x.ID == id))// check if the order is already exist in the list
-            throw new NotExistException();
+            throw new DalDoesNotExistException("Order num " + id + " not exist in the list");
         else
             DataSource._orders.Remove(GetById(id));
 

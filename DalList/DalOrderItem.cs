@@ -18,7 +18,7 @@ internal class DalOrderItem : IOrderItem
     public OrderItem GetById(int id)
     {
         if (!DataSource._orderItems.Exists(x => x.ID == id))
-            throw new NotExistException();
+            throw new DalDoesNotExistException("OrderItem num " + id +" not exist in the list");
         else
             return DataSource._orderItems.Find(x => x.ID == id);
 
@@ -35,14 +35,14 @@ internal class DalOrderItem : IOrderItem
                     return DataSource._orderItems[i]; // return the requested orderItem
         }
          // the orderItem is not exist in the list
-        throw new NotExistException();
+        throw new DalDoesNotExistException("OrderItem with product ID: " + productId +"and ordrt ID: " + orderId +"not exist in the list");
     }
     
     // Update
     public void Update(OrderItem orderItem)
     { 
         if (!DataSource._orderItems.Exists(x => x.ID == orderItem.ID))// check if the orderItem isn't exist in the list
-            throw new NotExistException();
+            throw new DalDoesNotExistException("OrderItem num " + orderItem.ID + " not exist in the list");
         else //if the order isn exist in the list.
             DataSource._orderItems.Remove(GetById(orderItem.ID));
             DataSource._orderItems.Add(orderItem);
@@ -54,7 +54,7 @@ internal class DalOrderItem : IOrderItem
     {
 
         if (!DataSource._orderItems.Exists(x => x.ID == id))// check if the orderItem isn't exist in the list
-            throw new NotExistException();
+            throw new DalDoesNotExistException("OrderItem num " + id + " not exist in the list");
         else
             DataSource._orderItems.Remove(GetById(id));
 

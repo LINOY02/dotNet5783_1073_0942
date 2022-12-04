@@ -25,11 +25,6 @@ public struct OrderItem
     /// The amount of the product in the order
     /// </summary>
     public int Amount { get; set; }
-    public override string ToString() => $@"
-    ID          = {ID},
-    OrderId     = {OrderID},
-    ProductId   = {ProductID},
-    Amount      = {Amount},
-    Price       = {Price},
-    ";
+    public override string ToString() => this.ToStringProperty();
+
 }

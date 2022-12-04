@@ -24,12 +24,7 @@ public struct Product
     /// </summary>
     public int InStock { get; set; }
 
-    public override string ToString() => $@"
-    ID          = {ID},
-    Category    = {Category},
-    Name        = {Name}
-    Price       = {Price}
-    InStock     = {InStock}
-    ";
-    
+    public override string ToString() => this.ToStringProperty();
+
+
 }
