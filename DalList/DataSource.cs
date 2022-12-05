@@ -78,7 +78,7 @@ internal static class DataSource
                 Name = nameOfProducts[category, name],//Choosing the name from the matrix according to the numbers drawn
                 Price = s_rand.Next(priceFrom[category], priceTo[category]),//Random price selection from the range of the category
                 Category = (Category)category,
-                InStock = s_rand.Next(inStock[category])//Selecting a quantity in stock randomly from the range of the category
+                InStock = s_rand.Next(1,inStock[category])//Selecting a quantity in stock randomly from the range of the category
             };
             if (i < 0.05 * 10)
                 newProdect.InStock = 0;
@@ -159,29 +159,31 @@ internal static class DataSource
                     p = _products[x];
                 }
                 //Lottery of the amount of the item according to the range in the array
-                int amount;
-                switch (p.Category)
+                int amount = 0;
+                while (p.InStock - amount < 0)
                 {
-                    case Category.TABLE:
-                        amount = s_rand.Next(1,3);
-                        break;
-                    case Category.CHAIR:
-                        amount = s_rand.Next(1,20);
-                        break;
-                    case Category.CLOSET:
-                        amount = s_rand.Next(1,5);
-                        break;
-                    case Category.SOFA:
-                        amount = s_rand.Next(1,3);
-                        break;
-                    case Category.BED:
-                        amount = s_rand.Next(1,4);
-                        break;
-                        default:    
-                        break;
+                    switch (p.Category)
+                    {
+                        case Category.TABLE:
+                            amount = s_rand.Next(1, 3);
+                            break;
+                        case Category.CHAIR:
+                            amount = s_rand.Next(1, 20);
+                            break;
+                        case Category.CLOSET:
+                            amount = s_rand.Next(1, 5);
+                            break;
+                        case Category.SOFA:
+                            amount = s_rand.Next(1, 3);
+                            break;
+                        case Category.BED:
+                            amount = s_rand.Next(1, 4);
+                            break;
+                        default:
+                            break;
 
-                } 
-                 amount = s_rand.Next(10);
+                    }
+                }
                 OrderItem newOrderItem = new OrderItem
                 {
                     ID = NextOrderItemNumber,//OrderItem number according to the serial number
