@@ -37,15 +37,15 @@ namespace BlImplementation
             {
                 DO.Order dOrder = Dal.Order.GetById(id);
                 // Creating a collection of items of order item type
-                var items = Dal.OrderItem.GetAllOrder(dOrder.ID).Select(X =>
+                var items = Dal.OrderItem.GetAllOrder(dOrder.ID).Select(x =>
                      new BO.OrderItem
                      {
-                         ID = X.ID,
-                         ProductID = X.ProductID,
-                         Name = Dal.Product.GetById(X.ProductID).Name,
-                         Price = X.Price,
-                         Amount = X.Amount,
-                         TotalPrice = X.Price * X.Amount
+                         OrderID = id,
+                         ProductID = x.ProductID,
+                         Name = Dal.Product.GetById(x.ProductID).Name,
+                         Price = x.Price,
+                         Amount = x.Amount,
+                         TotalPrice = x.Price * x.Amount
                      });
 
                 //Creating and returning the order (in a more detailed form)

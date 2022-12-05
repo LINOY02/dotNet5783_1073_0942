@@ -7,7 +7,7 @@ namespace BO
         /// <summary>
         /// The id of the order item
         /// </summary>
-        public int ID { get; set; }
+        public int OrderID { get; set; }
         /// <summary>
         /// The id of the product
         /// </summary>
