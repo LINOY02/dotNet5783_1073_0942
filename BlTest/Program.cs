@@ -4,8 +4,16 @@ using BO;
 namespace BlTest
 {
     public class Program
-    { 
+    {
         private IBl Bl = new Bl();
+        static BO.Cart cart = new BO.Cart()
+        {
+            CustomerAddress = "lustig",
+            CustomerEmail = "shira@gmail.com",
+            CustomerName = "shira choen",
+            TotalPrice = 0,
+            Items = new List<OrderItem>()
+        };
         static void Main(string[] args)
         {
         Console.WriteLine(@"
@@ -96,7 +104,7 @@ enter 'g' for show the product catalog") ;
                             Console.WriteLine("Enter the id of the product");
                             int id;
                             int.TryParse(Console.ReadLine(), out id);
-                            Console.WriteLine(Bl.Product.GetProduc(id));
+                            Console.WriteLine(Bl.Product.GetDetailsItem(id, cart));
                             break;
                         case "c":
                             foreach (var p in Bl.Product.GetListedProducts())
@@ -117,7 +125,7 @@ enter 'g' for show the product catalog") ;
                             Console.WriteLine("Enter the id of the product");
                             int id2;
                             int.TryParse(Console.ReadLine(), out id2);
-                            Console.WriteLine(Bl.Product.GetItem(id2));
+                            Console.WriteLine(Bl.Product.GetDetailsItem(id2, cart));
                             break;
                         case "g":
                             foreach (var p in Bl.Product.GetProducts())
@@ -135,28 +143,12 @@ enter 'g' for show the product catalog") ;
             #endregion
             #region Cart
             //The function receives data for a new order item
-            void createCart(ref Cart cart)
-            {
-                string customerName;
-                Console.WriteLine("enter your name");
-                customerName = Console.ReadLine();
-                string customerEmail;
-                Console.WriteLine("enter your Email");
-                customerEmail = Console.ReadLine();
-                string customerAdress;
-                Console.WriteLine("enter your adress");
-                customerAdress = Console.ReadLine();
-                cart.CustomerName = customerName;
-                cart.CustomerEmail = customerName;
-                cart.CustomerAddress = customerAdress;
-               
-            }
+            
             void CART()
             {
                 try
                 {
-                Cart cart = new Cart();
-                createCart(ref cart);
+               
                 Console.WriteLine(@"
 enter 'a' for add product to the cart
 enter 'b' for update the cart

@@ -130,7 +130,7 @@ namespace BlImplementation
                 productItem.Price = product1.Price;
                 productItem.Category = (BO.Category)product1.Category;
             }
-            BO.OrderItem orderItem = cart.Items.FirstOrDefault(x => x.ID == id)!;
+            BO.OrderItem orderItem = cart.Items.FirstOrDefault(x => x.OrderID == id)!;
             if (orderItem is not null)
             {
                 productItem.Amount = orderItem.Amount;
