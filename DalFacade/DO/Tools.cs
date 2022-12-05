@@ -12,6 +12,6 @@ namespace DO
             return str += "\n";
 
         }
-        
+
     }
 }

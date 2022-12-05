@@ -1,6 +1,7 @@
 ﻿
 using DO;
 using DalApi;
+using System;
 
 namespace DAL;
 
@@ -18,7 +19,7 @@ internal class DalOrderItem : IOrderItem
     public OrderItem GetById(int id)
     {
         if (!DataSource._orderItems.Exists(x => x.ID == id))
-            throw new DalDoesNotExistException("OrderItem num " + id +" not exist in the list");
+            throw new DalDoesNotExistException("OrderItem num " + id + " not exist in the list");
         else
             return DataSource._orderItems.Find(x => x.ID == id);
 
@@ -27,25 +28,25 @@ internal class DalOrderItem : IOrderItem
     //request by order and product ID number
     public OrderItem GetByOidAndPid(int orderId, int productId)
     {
- 
+
         for (int i = 0; i < DataSource._orderItems.Count; i++)
         {
             if (DataSource._orderItems[i].OrderID == orderId)// Checking if the item is from the given order
                 if (DataSource._orderItems[i].ProductID == productId)//Checking if this is the given item from the order
                     return DataSource._orderItems[i]; // return the requested orderItem
         }
-         // the orderItem is not exist in the list
-        throw new DalDoesNotExistException("OrderItem with product ID: " + productId +"and ordrt ID: " + orderId +"not exist in the list");
+        // the orderItem is not exist in the list
+        throw new DalDoesNotExistException("OrderItem with product ID: " + productId + "and ordrt ID: " + orderId + "not exist in the list");
     }
-    
+
     // Update
     public void Update(OrderItem orderItem)
-    { 
+    {
         if (!DataSource._orderItems.Exists(x => x.ID == orderItem.ID))// check if the orderItem isn't exist in the list
             throw new DalDoesNotExistException("OrderItem num " + orderItem.ID + " not exist in the list");
         else //if the order isn exist in the list.
             DataSource._orderItems.Remove(GetById(orderItem.ID));
-            DataSource._orderItems.Add(orderItem);
+        DataSource._orderItems.Add(orderItem);
 
     }
 
@@ -76,7 +77,7 @@ internal class DalOrderItem : IOrderItem
     public IEnumerable<OrderItem> GetAllOrder(int orderId)
     {
         List<OrderItem> allOrder = new List<OrderItem>();
-       for (int i = 0; i < DataSource._orderItems.Count; i++)
+        for (int i = 0; i < DataSource._orderItems.Count; i++)
         {
             //If the ordered item belongs to the requested order
             if (DataSource._orderItems[i].OrderID == orderId)
@@ -86,4 +87,5 @@ internal class DalOrderItem : IOrderItem
         }
         return allOrder;//Returning the list
     }
+
 }

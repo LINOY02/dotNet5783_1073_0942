@@ -21,7 +21,7 @@ namespace BlApi
         /// </summary>
         /// <param name="id"></param>
         /// <returns></Product>
-        BO.Product GetProduc(int id);
+        BO.Product GetProduct(int id);
 
         /// <summary>
         /// The function receives product details from the user and adds to the data layer (for the manager)
@@ -57,7 +57,7 @@ namespace BlApi
         /// </summary>
         /// <param name="id"></param>
         /// <returns></ProductItem>
-        ProductItem GetItem(int id);
+        ProductItem GetDetailsItem(int id, BO.Cart cart);
         #endregion
 
 

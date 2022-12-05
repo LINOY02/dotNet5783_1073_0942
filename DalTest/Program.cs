@@ -7,7 +7,7 @@ namespace DalTest
     public class Program
     {
         public IDal dalList = new DalList();
-       
+
         static void Main(string[] args)
         {
             Console.WriteLine(@"
@@ -73,7 +73,7 @@ namespace DalTest
             product1.Price = price;
             product1.Name = name;
             product1.InStock = inStock;
-            product1.Category = Category; 
+            product1.Category = Category;
         }
         //The function performs CRUD operations according to the user's request
         void PRODUCT()
@@ -145,7 +145,7 @@ enter 'e' for delete the product");
             orderItem1.OrderID = orderId;
             orderItem1.ProductID = productId;
             orderItem1.Amount = amount;
-            orderItem1.Price = amount* dalList.Product.GetById(productId).Price;
+            orderItem1.Price = amount * dalList.Product.GetById(productId).Price;
         }
         void ORDERITEM()
         {
@@ -258,39 +258,39 @@ enter 'g' for show the list of order");
  enter 'e' for delete order");
                 Order order1 = new Order();
                 string ch = Console.ReadLine();
-                    switch (ch)
-                    {
-                        case "a":
-                            createOrder(ref order1);
-                            Console.WriteLine(dalList.Order.Add(order1));
-                            break;
-                        case "b":
-                            Console.WriteLine("Enter the id of the order");
-                            int id;
-                            int.TryParse(Console.ReadLine(), out id);
-                            Console.WriteLine(dalList.Order.GetById(id));
-                            break;
-                        case "c":
-                            foreach (var o in dalList.Order.GetAll())
-                                Console.WriteLine(o);
-                            break;
-                        case "d":
-                            Console.WriteLine("Enter the id of the order for updating");
-                            int id1;
-                            int.TryParse(Console.ReadLine(), out id1);
-                            createOrder(ref order1);
-                            order1.ID = id1;
+                switch (ch)
+                {
+                    case "a":
+                        createOrder(ref order1);
+                        Console.WriteLine(dalList.Order.Add(order1));
+                        break;
+                    case "b":
+                        Console.WriteLine("Enter the id of the order");
+                        int id;
+                        int.TryParse(Console.ReadLine(), out id);
+                        Console.WriteLine(dalList.Order.GetById(id));
+                        break;
+                    case "c":
+                        foreach (var o in dalList.Order.GetAll())
+                            Console.WriteLine(o);
+                        break;
+                    case "d":
+                        Console.WriteLine("Enter the id of the order for updating");
+                        int id1;
+                        int.TryParse(Console.ReadLine(), out id1);
+                        createOrder(ref order1);
+                        order1.ID = id1;
                         dalList.Order.Update(order1);
-                            break;
-                        case "e":
-                            Console.WriteLine("Enter the id of the order for delete:");
-                            int id2;
-                            int.TryParse(Console.ReadLine(), out id2);
+                        break;
+                    case "e":
+                        Console.WriteLine("Enter the id of the order for delete:");
+                        int id2;
+                        int.TryParse(Console.ReadLine(), out id2);
                         dalList.Order.Delete(id2);
-                            break;
-                        default:
-                            return;
-                    }       
+                        break;
+                    default:
+                        return;
+                }
             }
             catch (Exception str)
             {

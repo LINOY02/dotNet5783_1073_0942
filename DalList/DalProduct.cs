@@ -12,7 +12,7 @@ public class DalProduct : IProduct
             throw new DalAlreadyExistException("Product num " + product.ID + " already exist in the list");
         else// check if the product is already exist in the list
             DataSource._products.Add(product);
-            return product.ID;
+        return product.ID;
     }
 
     // Request
@@ -22,7 +22,7 @@ public class DalProduct : IProduct
             throw new DalDoesNotExistException("Product num " + id + " not exist in the list");
         else // the product is not exist in the list
             return DataSource._products.Find(x => x.ID == id); // return the requested prodect
-        
+
     }
 
     // Update
@@ -45,8 +45,8 @@ public class DalProduct : IProduct
         if (!DataSource._products.Exists(x => x.ID == id))// check if the product isn't exist in the list
             throw new DalDoesNotExistException("Product num " + id + " not exist in the list");
         else //the product is exist in the list
-            DataSource._products.Remove(GetById(id)); 
-        
+            DataSource._products.Remove(GetById(id));
+
     }
 
     //A function that returns the array

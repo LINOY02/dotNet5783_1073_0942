@@ -1,44 +1,187 @@
 ﻿using DalApi;
 using DAL;
+using System.Linq;
+using BO;
+using System.Collections.Immutable;
+using System.Diagnostics;
+using System.Xml.Linq;
+using DO;
+
 
 namespace BlImplementation
 {
     internal class Product : BlApi.IProduct
     {
         private IDal Dal = new DalList();
+        /// <summary>
+        /// the function add a product
+        /// </summary>
+        /// <param name="product"></param>
+        /// <exception cref="BO.DalAlreadyExistException"></exception>
+        /// <exception cref="BO.WrongValue"></exception>
         public void AddProduct(BO.Product product)
         {
-            throw new NotImplementedException();
+            DO.Product product1 = new DO.Product();
+            if (product.ID > 0 && product.Name != null && product.Name != "" && product.Price > 0 && product.InStock > 0)
+            {
+                product1.ID = product.ID;
+                product1.Name = product.Name;
+                product1.Price = product.Price;
+                product1.InStock = product.InStock;
+                try
+                {
+                    Dal.Product.Add(product1);
+                }
+                catch (DO.DalAlreadyExistException ex)
+                {
+                    throw new BO.DalAlreadyExistException(ex.Message);
+                }
+            }
+            else
+                throw new BO.WrongValue();
         }
-
+        /// <summary>
+        /// the function delete a product
+        /// </summary>
+        /// <param name="id"></param>
+        /// <exception cref="BO.DalDoesNotExistException"></exception>
         public void DeleteProduct(int id)
         {
-            throw new NotImplementedException();
+           /// if (Dal.OrderItem.GetAll())
+           /// {
+
+                ////orderItems.Where(OrderItem => check ? true : predicate(OrderItem));
+                try
+                {
+                    Dal.Product.Delete(id);
+                }
+                catch (DO.DalDoesNotExistException ex)
+                {
+                    throw new BO.DalDoesNotExistException(ex.Message);
+                }
+           /// }
         }
 
-        public BO.ProductItem GetItem(int id)
-        {
-            throw new NotImplementedException();
-        }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<BO.ProductForList> GetListedProducts()
         {
-            throw new NotImplementedException();
+            return from DO.Product product1 in Dal.Product.GetAll()
+                   select new BO.ProductForList
+                   {
+                       ID = product1.ID,
+                       Name = product1.Name,
+                       Price = product1.Price,
+                       Category = (BO.Category)product1.Category,
+                   };
         }
-
-        public BO.Product GetProduc(int id)
+        /// <summary>
+        /// The function receives a product ID number 
+        /// and returns its details (for the manager)
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public BO.Product GetProduct(int id)
         {
-            throw new NotImplementedException();
+            BO.Product product = new BO.Product();
+            DO.Product product1;
+            try
+            {
+                product1 = Dal.Product.GetById(id);
+            }
+            catch (DO.DalDoesNotExistException ex)
+            {
+                throw new BO.DalDoesNotExistException(ex.Message);
+            }
+            if (id > 0)
+            {
+                product.ID = product1.ID;
+                product.Name = product1.Name;
+                product.Price = product1.Price;
+                product.Category = (BO.Category)product1.Category;
+            }
+            else
+                throw new BO.WrongValue();
+            return product;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public BO.ProductItem GetDetailsItem(int id, BO.Cart cart)
+        {
+            BO.ProductItem productItem = new BO.ProductItem();
+            DO.Product product1;
+            try
+            {
+                product1 = Dal.Product.GetById(id);
+            }
+            catch (DO.DalDoesNotExistException ex)
+            {
+                throw new BO.DalDoesNotExistException(ex.Message);
+            }
+            if (id > 0)
+            {
+                productItem.ID = product1.ID;
+                productItem.Name = product1.Name;
+                productItem.Price = product1.Price;
+                productItem.Category = (BO.Category)product1.Category;
+            }
+            BO.OrderItem orderItem = cart.Items.FirstOrDefault(x => x.ID == id)!;
+            if (orderItem is not null)
+            {
+                productItem.Amount = orderItem.Amount;
+            }
+            if (product1.InStock > 0)
+            {
+                productItem.InStock = true;
+            }
+            else
+                throw new BO.WrongValue();
+            return productItem;
+        }
+        /// <summary>
+        /// show the buyer a list of all the products, 
+        /// for each product: number, name, price, category, whether in stock and how many in stock
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<BO.ProductItem> GetProducts()
         {
-            throw new NotImplementedException();
+            IEnumerable<DO.Product> products = Dal.Product.GetAll();
+            return (IEnumerable<ProductItem>)products.Select(p => new BO.ProductForList { ID = p.ID, Name = p.Name, Price = p.Price, });
         }
 
         public void UpdateProduct(BO.Product product)
         {
-            throw new NotImplementedException();
+            DO.Product product1;
+            try
+            {
+                product1 = Dal.Product.GetById(product.ID);
+            }
+            catch (DO.DalDoesNotExistException ex)
+            {
+                throw new BO.DalDoesNotExistException(ex.Message);
+            }
+            if (product.ID > 0 && product.Name != null && product.Price > 0 && product.InStock > 0)
+            {
+                product.ID = product1.ID;
+                product.Name = product1.Name;
+                product.Price = product1.Price;
+                product.Category = (BO.Category)product1.Category;
+                try
+                {
+                    Dal.Product.Update(product1);
+                }
+                catch (DO.DalDoesNotExistException ex)
+                {
+                    throw new BO.DalDoesNotExistException(ex.Message);
+                }
+            }
+            else
+                throw new BO.WrongValue();
         }
     }
 }

@@ -10,7 +10,7 @@ namespace BlApi
         /// </summary>
         /// <returns></returns>
         IEnumerable<OrderForList> GetListedOrders();
-        
+
         /// <summary>
         /// Displaying order details including customer receipts and details of all his products
         /// </summary>
@@ -43,7 +43,7 @@ namespace BlApi
         /// Presenting all invitations to the customer
         /// </summary>
         /// <returns></returns>
-        
+
         public BO.Order UpdateOrder(int orderId, int productId, int amount, Enum update);
     }
 }
