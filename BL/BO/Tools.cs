@@ -18,7 +18,7 @@ namespace BO
                 else
                     str += item.GetValue(t,null) + "\n";   
             }
-            return str;
+            return str += "\n";
         }
     }
 }

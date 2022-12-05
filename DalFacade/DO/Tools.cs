@@ -9,7 +9,7 @@ namespace DO
             string str = "";
             foreach (var item in t.GetType().GetProperties())
                 str += item.Name + ":  " + item.GetValue(t, null) + "\n";
-            return str;
+            return str += "\n";
 
         }
         

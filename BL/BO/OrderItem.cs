@@ -13,9 +13,9 @@ namespace BO
         /// </summary>
         public int ProductID { get; set; }
         /// <summary>
-        /// The id of the order 
+        /// The name of the profuct
         /// </summary>
-        public int OrderID { get; set; }
+        public string Name { get; set; }
         /// <summary>
         /// The price of each product
         /// </summary>

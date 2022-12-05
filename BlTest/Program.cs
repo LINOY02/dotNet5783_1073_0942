@@ -1,19 +1,19 @@
 ﻿using BlApi;
 using BO;
+
 namespace BlTest
 {
     public class Program
-    {
+    { 
         private IBl Bl = new Bl();
         static void Main(string[] args)
         {
-                 
         Console.WriteLine(@"
- enter a number between 0 to 3:
- 0- exsit
- 1- order
- 2- cart
- 3- product");
+enter a number between 0 to 3:
+0- exsit
+1- order
+2- cart
+3- product");
                 int number;
                 int.TryParse(Console.ReadLine(), out number);
                 while (number != 0)
@@ -37,11 +37,11 @@ namespace BlTest
                             return;
                     }
                     Console.WriteLine(@"
- enter a number between 0 to 3:
- 0- exsit
- 1- order
- 2- cart
- 3- product");
+enter a number between 0 to 3:
+0- exsit
+1- order
+2- cart
+3- product");
                     int.TryParse(Console.ReadLine(), out number);
                 }
         }
@@ -63,13 +63,9 @@ namespace BlTest
                 int price;
                 Console.WriteLine("enter the price of the product");
                 int.TryParse(Console.ReadLine(), out price);
-                int inStock;
-                Console.WriteLine("enter the amount of the product in stock");
-                int.TryParse(Console.ReadLine(), out inStock);
                 product1.ID = id;
                 product1.Price = price;
                 product1.Name = name;
-                product1.InStock = inStock;
                 product1.Category = Category;
             }
             //The function performs CRUD operations according to the user's request
@@ -141,38 +137,40 @@ enter 'g' for show the product catalog") ;
             //The function receives data for a new order item
             void createCart(ref Cart cart)
             {
-                int orderId;
-                Console.WriteLine("enter the ID of the order");
-                int.TryParse(Console.ReadLine(), out orderId);
-                int productId;
-                Console.WriteLine("enter the ID of the product");
-                int.TryParse(Console.ReadLine(), out productId);
-                int amount;
-                Console.WriteLine("enter the amount of the product");
-                int.TryParse(Console.ReadLine(), out amount);
-                
+                string customerName;
+                Console.WriteLine("enter your name");
+                customerName = Console.ReadLine();
+                string customerEmail;
+                Console.WriteLine("enter your Email");
+                customerEmail = Console.ReadLine();
+                string customerAdress;
+                Console.WriteLine("enter your adress");
+                customerAdress = Console.ReadLine();
+                cart.CustomerName = customerName;
+                cart.CustomerEmail = customerName;
+                cart.CustomerAddress = customerAdress;
+
             }
             void CART()
             {
                 try
                 {
-                    Console.WriteLine(@"
+                Cart cart = new Cart();
+                createCart(ref cart);
+                Console.WriteLine(@"
 enter 'a' for add product to the cart
 enter 'b' for update the cart
 enter 'c' for order the cart");
-                    Cart cart = new Cart();
                     string ch = Console.ReadLine();
                     switch (ch)
                     {
                         case "a":
-                            createCart(ref cart);
                             Console.WriteLine("Enter the id of the added product");
                             int productID;
                             int.TryParse(Console.ReadLine(), out productID);
                             Console.WriteLine(Bl.Cart.AddProductToCart(cart, productID));
                             break;
                         case "b":
-                            createCart(ref cart);
                             Console.WriteLine("Enter the id of the added product");
                             int productID1;
                             int.TryParse(Console.ReadLine(), out productID1);
@@ -182,7 +180,6 @@ enter 'c' for order the cart");
                             Console.WriteLine(Bl.Cart.UpdateCart(cart, productID1, amount));
                             break;
                         case "c":
-                            createCart(ref cart);
                             Console.WriteLine("Enter the costumer details(name, email, adress)");
                             string name, email, adress;
                             name = Console.ReadLine();  
@@ -207,11 +204,12 @@ enter 'c' for order the cart");
                 try
                 {
                     Console.WriteLine(@"
- enter 'a' for show a order
- enter 'b' for show the list of ordrs
- enter 'c' for Order ship date update
- enter 'd' for Order tracking
- enter 'e' for Order delivery date update");
+enter 'a' for show a order
+enter 'b' for show the list of ordrs
+enter 'c' for Order ship date update
+enter 'd' for Order tracking
+enter 'e' for Order delivery date update
+enter 'f' for updating the order");
                     Order order1 = new Order();
                     string ch = Console.ReadLine();
                     switch (ch)
@@ -236,13 +234,28 @@ enter 'c' for order the cart");
                             Console.WriteLine("Enter the id of the order for trucking");
                             int id2;
                             int.TryParse(Console.ReadLine(), out id2);
-                            Console.WriteLine(Bl.Order.UpdateOrder(id2));
+                            Console.WriteLine(Bl.Order.TruckingOrder(id2));
                             break;
                         case "e":
                             Console.WriteLine("Enter the id of the order for updating the delivery date");
                             int id3;
                             int.TryParse(Console.ReadLine(), out id3);
                             Console.WriteLine(Bl.Order.DeliveredOrder(id3));
+                        break;
+                        case "f":
+                            Console.WriteLine("Enter the id of the order which to updae");
+                            int orderId;
+                            int.TryParse(Console.ReadLine(), out orderId);
+                            Console.WriteLine("Enter the id of the product which to updae");
+                            int productId;
+                            int.TryParse(Console.ReadLine(), out productId);
+                            Console.WriteLine("Enter what action to do");
+                            UpdateAction update;
+                            Enum.TryParse<UpdateAction>(Console.ReadLine(), out update);
+                            Console.WriteLine("Enter the amount of the " + update);
+                            int amount;
+                            int.TryParse(Console.ReadLine(), out amount);
+                            Console.WriteLine(Bl.Order.UpdateOrder(orderId, productId , amount, update));
                         break;
                     default:
                             return;

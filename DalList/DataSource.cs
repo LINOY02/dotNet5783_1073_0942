@@ -120,7 +120,7 @@ internal static class DataSource
                 days = s_rand.Next(30,90);
                 TimeSpan shipTime = new TimeSpan(days, 0, 0, 0);
                 //Adding the number of days until the shipment leaves to the order date
-                newOrder.ShipDate = _orders[i].OrderDate + shipTime; 
+                newOrder.ShipDate = newOrder.OrderDate + shipTime; 
             }
             if (i < 0.8 *0.6* 20)//Only 60 percent of the orders that went out for delivery were delivered
             {

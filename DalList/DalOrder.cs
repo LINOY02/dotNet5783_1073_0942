@@ -25,7 +25,7 @@ internal class DalOrder : IOrder
     public void Update(Order order)
     {
 
-        if (!DataSource._products.Exists(x => x.ID == order.ID))// check if the order isn't exist in the list
+        if (!DataSource._orders.Exists(x => x.ID == order.ID))// check if the order isn't exist in the list
             throw new DalDoesNotExistException("Order num " + order.ID + " not exist in the list");
         else// the order is exist in the list
         {
