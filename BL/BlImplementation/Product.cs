@@ -1,11 +1,6 @@
 ﻿using DalApi;
 using DAL;
-using System.Linq;
-using BO;
-using System.Collections.Immutable;
-using System.Diagnostics;
-using System.Xml.Linq;
-using DO;
+
 
 
 namespace BlImplementation
@@ -63,9 +58,10 @@ namespace BlImplementation
         }
 
         /// <summary>
-        /// 
+        /// The function shows the manager the list of products,
+        /// for each product: number, name, price and category
         /// </summary>
-        /// <returns></returns>
+        /// <returns></List of ProductsForList>
         public IEnumerable<BO.ProductForList> GetListedProducts()
         {
             return from DO.Product product1 in Dal.Product.GetAll()
@@ -107,10 +103,11 @@ namespace BlImplementation
             return product;
         }
         /// <summary>
-        /// 
+        /// The buyer enters a product code and receives the 
+        /// product details: number, name, price, category and how much in stock
         /// </summary>
         /// <param name="id"></param>
-        /// <returns></returns>
+        /// <returns></ProductItem>
         public BO.ProductItem GetDetailsItem(int id, BO.Cart cart)
         {
             BO.ProductItem productItem = new BO.ProductItem();
@@ -151,9 +148,12 @@ namespace BlImplementation
         public IEnumerable<BO.ProductItem> GetProducts()
         {
             IEnumerable<DO.Product> products = Dal.Product.GetAll();
-            return (IEnumerable<ProductItem>)products.Select(p => new BO.ProductForList { ID = p.ID, Name = p.Name, Price = p.Price, });
+            return (IEnumerable<BO.ProductItem>)products.Select(p => new BO.ProductForList { ID = p.ID, Name = p.Name, Price = p.Price, });
         }
-
+        /// <summary>
+        /// The function receives product details from the user and updates the product in the data layer (for the manager)
+        /// </summary>
+        /// <param name="product"></param>
         public void UpdateProduct(BO.Product product)
         {
             DO.Product product1;
