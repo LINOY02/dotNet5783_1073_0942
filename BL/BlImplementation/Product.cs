@@ -9,40 +9,49 @@ namespace BlImplementation
     {
         private IDal Dal = new DalList();
         /// <summary>
-        /// the function add a product
+        /// the function add a bProduct
         /// </summary>
-        /// <param name="product"></param>
+        /// <param name="bProduct"></param>
         /// <exception cref="BO.DalAlreadyExistException"></exception>
         /// <exception cref="BO.WrongValue"></exception>
-        public void AddProduct(BO.Product product)
+        public void AddProduct(BO.Product bProduct)
         {
-            DO.Product product1 = new DO.Product();
-            if (product.ID > 0 && product.Name != null && product.Name != "" && product.Price > 0 && product.InStock > 0)
+            if (bProduct.ID < 100000)
+                throw new BO.BlInvalidInputException("The id is invalid");
+            if (bProduct.Name.Length == 0)
+                throw new BO.BlInvalidInputException("The name is invalid");
+            if (bProduct.Price <= 0)
+                throw new BO.BlInvalidInputException("The price is invalid");
+            if (bProduct.InStock < 0)
+                throw new BO.BlInvalidInputException("The amount in stock is invalid");
+            if ((int)bProduct.Category < 0 || (int)bProduct.Category > 5)
+                throw new BO.BlInvalidInputException("The Category is invalid");
+            try
             {
-                product1.ID = product.ID;
-                product1.Name = product.Name;
-                product1.Price = product.Price;
-                product1.InStock = product.InStock;
-                try
+                Dal.Product.Add(new DO.Product
                 {
-                    Dal.Product.Add(product1);
-                }
-                catch (DO.DalAlreadyExistException ex)
-                {
-                    throw new BO.DalAlreadyExistException(ex.Message);
-                }
+                    ID = bProduct.ID,
+                    Name = bProduct.Name,
+                    Price = bProduct.Price,
+                    InStock = bProduct.InStock,
+                    Category = (DO.Category)bProduct.Category,
+                });
             }
-            else
-                throw new BO.WrongValue();
+            catch (DO.DalAlreadyExistException ex)
+            {
+                throw new BO.BlAlreadyExistException(ex.Message);
+            }
         }
+
         /// <summary>
-        /// the function delete a product
+        /// the function delete a bProduct
         /// </summary>
         /// <param name="id"></param>
-        /// <exception cref="BO.DalDoesNotExistException"></exception>
+        /// <exception cref="BO.BlDoesNotExistException"></exception>
         public void DeleteProduct(int id)
         {
-            if (Dal.OrderItem.GetAll().Where(X => X.ProductID == id).Any())
+
+            if (!Dal.OrderItem.GetAll().Where(X => X.ProductID == id).Any())
             {
                 try
                 {
@@ -50,16 +59,16 @@ namespace BlImplementation
                 }
                 catch (DO.DalDoesNotExistException ex)
                 {
-                    throw new BO.DalDoesNotExistException(ex.Message);
+                    throw new BO.BlDoesNotExistException(ex.Message);
                 }
             }
             else
-                throw new BO.DalAlreadyExistException();
+                throw new BO.BlProductIsOrderedException("the product is ordered");
         }
 
         /// <summary>
         /// The function shows the manager the list of products,
-        /// for each product: number, name, price and category
+        /// for each bProduct: number, name, price and category
         /// </summary>
         /// <returns></List of ProductsForList>
         public IEnumerable<BO.ProductForList> GetListedProducts()
@@ -71,117 +80,146 @@ namespace BlImplementation
                        Name = product1.Name,
                        Price = product1.Price,
                        Category = (BO.Category)product1.Category,
+
                    };
         }
         /// <summary>
-        /// The function receives a product ID number 
+        /// The function receives a bProduct ID number 
         /// and returns its details (for the manager)
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         public BO.Product GetProduct(int id)
         {
-            BO.Product product = new BO.Product();
-            DO.Product product1;
+            DO.Product dProduct;
+            if (id < 100000)
+                throw new BO.BlInvalidInputException("The id is invalid");
             try
             {
-                product1 = Dal.Product.GetById(id);
+                dProduct = Dal.Product.GetById(id);
             }
             catch (DO.DalDoesNotExistException ex)
             {
-                throw new BO.DalDoesNotExistException(ex.Message);
+                throw new BO.BlDoesNotExistException(ex.Message);
             }
-            if (id > 0)
+
+            return new BO.Product
             {
-                product.ID = product1.ID;
-                product.Name = product1.Name;
-                product.Price = product1.Price;
-                product.Category = (BO.Category)product1.Category;
-            }
-            else
-                throw new BO.WrongValue();
-            return product;
+                ID = dProduct.ID,
+                Name = dProduct.Name,
+                Price = dProduct.Price,
+                Category = (BO.Category)dProduct.Category,
+                InStock = dProduct.InStock,
+            };
         }
+
+
+
+
+
         /// <summary>
-        /// The buyer enters a product code and receives the 
-        /// product details: number, name, price, category and how much in stock
+        /// The buyer enters a bProduct code and receives the 
+        /// bProduct details: number, name, price, category and how much in stock
         /// </summary>
         /// <param name="id"></param>
         /// <returns></ProductItem>
         public BO.ProductItem GetDetailsItem(int id, BO.Cart cart)
         {
-            BO.ProductItem productItem = new BO.ProductItem();
             DO.Product product1;
+            if (id < 100000)
+                throw new BO.BlInvalidInputException("The id is invalid");
             try
             {
                 product1 = Dal.Product.GetById(id);
             }
             catch (DO.DalDoesNotExistException ex)
             {
-                throw new BO.DalDoesNotExistException(ex.Message);
+                throw new BO.BlDoesNotExistException(ex.Message);
             }
-            if (id > 0)
+            BO.OrderItem OrderItem = cart.Items.FirstOrDefault(x => x.ProductID == id);
+            if (OrderItem == null)
+                throw new BO.BlProductIsNotOrderedException("the product is not in the cart");
+            BO.ProductItem productItem = new BO.ProductItem
             {
-                productItem.ID = product1.ID;
-                productItem.Name = product1.Name;
-                productItem.Price = product1.Price;
-                productItem.Category = (BO.Category)product1.Category;
-            }
-            BO.OrderItem orderItem = cart.Items.FirstOrDefault(x => x.OrderID == id)!;
-            if (orderItem is not null)
-            {
-                productItem.Amount = orderItem.Amount;
-            }
-            if (product1.InStock > 0)
-            {
-                productItem.InStock = true;
-            }
-            else
-                throw new BO.WrongValue();
+                ID = id,
+                Name = product1.Name,
+                Amount = OrderItem.Amount,
+                Category = (BO.Category)product1.Category,
+                Price = product1.Price,
+                InStock = true
+            };
+            if (product1.InStock == 0)
+                productItem.InStock = false;
             return productItem;
         }
+    
+          
+            
+            
+    
         /// <summary>
         /// show the buyer a list of all the products, 
-        /// for each product: number, name, price, category, whether in stock and how many in stock
+        /// for each bProduct: number, name, price, category, whether in stock and how many in stock
         /// </summary>
         /// <returns></returns>
         public IEnumerable<BO.ProductItem> GetProducts()
         {
-            IEnumerable<DO.Product> products = Dal.Product.GetAll();
-            return (IEnumerable<BO.ProductItem>)products.Select(p => new BO.ProductForList { ID = p.ID, Name = p.Name, Price = p.Price, });
+
+            var inStockProduct = from DO.Product product1 in Dal.Product.GetAll()
+                   where product1.InStock != 0
+                   select new BO.ProductItem
+                   {
+                       ID = product1.ID,
+                       Name = product1.Name,
+                       Price = product1.Price,
+                       Category = (BO.Category)product1.Category,
+                       InStock = true,
+                   };
+
+            var outStockProduct = from DO.Product product1 in Dal.Product.GetAll()
+                    where product1.InStock == 0
+                    select new BO.ProductItem
+                    {
+                        ID = product1.ID,
+                        Name = product1.Name,
+                        Price = product1.Price,
+                        Category = (BO.Category)product1.Category,
+                        InStock = false,
+                    };
+
+            return inStockProduct.Union(outStockProduct);
         }
         /// <summary>
-        /// The function receives product details from the user and updates the product in the data layer (for the manager)
+        /// The function receives bProduct details from the user and updates the bProduct in the data layer (for the manager)
         /// </summary>
-        /// <param name="product"></param>
-        public void UpdateProduct(BO.Product product)
+        /// <param name="bProduct"></param>
+        public void UpdateProduct(BO.Product bProduct)
         {
-            DO.Product product1;
+            if (bProduct.ID < 100000)
+                throw new BO.BlInvalidInputException("The id is invalid");
+            if (bProduct.Name.Length == 0)
+                throw new BO.BlInvalidInputException("The name is invalid");
+            if (bProduct.Price <= 0)
+                throw new BO.BlInvalidInputException("The price is invalid");
+            if (bProduct.InStock < 0)
+                throw new BO.BlInvalidInputException("The amount in stock is invalid");
+            if ((int)bProduct.Category < 0 && (int)bProduct.Category > 5)
+                throw new BO.BlInvalidInputException("The Category is invalid");
             try
-            {
-                product1 = Dal.Product.GetById(product.ID);
-            }
-            catch (DO.DalDoesNotExistException ex)
-            {
-                throw new BO.DalDoesNotExistException(ex.Message);
-            }
-            if (product.ID > 0 && product.Name != null && product.Price > 0 && product.InStock > 0)
-            {
-                product.ID = product1.ID;
-                product.Name = product1.Name;
-                product.Price = product1.Price;
-                product.Category = (BO.Category)product1.Category;
-                try
                 {
-                    Dal.Product.Update(product1);
+                    Dal.Product.Update(new DO.Product
+                    {
+                        ID = bProduct.ID,
+                        Name = bProduct.Name,
+                        Price = bProduct.Price,
+                        InStock = bProduct.InStock,
+                        Category = (DO.Category)bProduct.Category,
+                    });
                 }
                 catch (DO.DalDoesNotExistException ex)
                 {
-                    throw new BO.DalDoesNotExistException(ex.Message);
+                    throw new BO.BlDoesNotExistException(ex.Message);
                 }
-            }
-            else
-                throw new BO.WrongValue();
-        }
+         }
     }
 }

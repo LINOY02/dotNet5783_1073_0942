@@ -30,7 +30,7 @@ namespace BlImplementation
         public BO.Order GetOrder(int id)
         {
             if(id <= 0)
-                throw new ArgumentOutOfRangeException("id");//לשנות לחריגות שלנו
+                throw new BO.BlInvalidInputException("The id is invalid");
             try
             {
                 DO.Order dOrder = Dal.Order.GetById(id);
@@ -38,7 +38,7 @@ namespace BlImplementation
                 var items = Dal.OrderItem.GetAllOrder(dOrder.ID).Select(x =>
                      new BO.OrderItem
                      {
-                         OrderID = id,
+                         ID = x.ID,
                          ProductID = x.ProductID,
                          Name = Dal.Product.GetById(x.ProductID).Name,
                          Price = x.Price,
@@ -63,7 +63,7 @@ namespace BlImplementation
             }
             catch (DO.DalDoesNotExistException exc)
             {
-                throw new BO.DalDoesNotExistException(exc.Message);
+                throw new BO.BlDoesNotExistException(exc.Message);
             }
         }
 
@@ -75,11 +75,11 @@ namespace BlImplementation
         public BO.Order ShipOrder(int id)
         {
             if (id <= 0)
-                throw new ArgumentOutOfRangeException("id");//לשנות לחריגות שלנו
+                throw new BO.BlInvalidInputException("The id is invalid");
             try
             {
                 DO.Order dOrder = Dal.Order.GetById(id);
-                if(dOrder.ShipDate == DateTime.MinValue)
+                if (dOrder.ShipDate == DateTime.MinValue)
                 {
                     Dal.Order.Update(new DO.Order
                     {
@@ -91,12 +91,15 @@ namespace BlImplementation
                         ShipDate = DateTime.Now,
                         DeliveryDate = dOrder.DeliveryDate,
                     });
+                    return this.GetOrder(id);
                 }
-                return this.GetOrder(id);
+                else
+                    throw new BO.BlStatusAlreadyUpdateException("The order is already shipped");
+                
             }
             catch (DO.DalDoesNotExistException exc)
             {
-                throw new BO.DalDoesNotExistException(exc.Message);
+                throw new BO.BlDoesNotExistException(exc.Message);
             }
         }
 
@@ -108,7 +111,7 @@ namespace BlImplementation
         public BO.Order DeliveredOrder(int id)
         {
             if (id <= 0)
-                throw new ArgumentOutOfRangeException("id");//לשנות לחריגות שלנו
+                throw new BO.BlInvalidInputException("The id is invalid");
             try
             {
                 DO.Order dOrder = Dal.Order.GetById(id);
@@ -124,19 +127,21 @@ namespace BlImplementation
                         ShipDate = dOrder.ShipDate,
                         DeliveryDate = DateTime.Now,
                     });
+                    return this.GetOrder(id);
                 }
-                return this.GetOrder(id);
+                else
+                    throw new BO.BlStatusAlreadyUpdateException("The order is already deliverd");
             }
             catch (DO.DalDoesNotExistException exc)
             {
-                throw new BO.DalDoesNotExistException(exc.Message);
+                throw new BO.BlDoesNotExistException(exc.Message);
             }
         }
 
         public BO.OrderTracking TruckingOrder(int id)
         {
             if (id <= 0)
-                throw new ArgumentOutOfRangeException("id");//לשנות לחריגות שלנו
+                throw new BO.BlInvalidInputException("The id is invalid");
             try
             {
                 DO.Order dOrder = Dal.Order.GetById(id); 
@@ -167,7 +172,7 @@ namespace BlImplementation
             }
             catch (DO.DalDoesNotExistException exc)
             {
-                throw new BO.DalDoesNotExistException(exc.Message);
+                throw new BO.BlDoesNotExistException(exc.Message);
             }
         }
         

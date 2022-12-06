@@ -71,10 +71,14 @@ enter a number between 0 to 3:
                 int price;
                 Console.WriteLine("enter the price of the product");
                 int.TryParse(Console.ReadLine(), out price);
+                int inStock;
+                Console.WriteLine("enter the amount of the stock");
+                int.TryParse(Console.ReadLine(), out inStock);
                 product1.ID = id;
                 product1.Price = price;
                 product1.Name = name;
                 product1.Category = Category;
+                product1.InStock = inStock;
             }
             //The function performs CRUD operations according to the user's request
             void PRODUCT()
@@ -104,7 +108,7 @@ enter 'g' for show the product catalog") ;
                             Console.WriteLine("Enter the id of the product");
                             int id;
                             int.TryParse(Console.ReadLine(), out id);
-                            Console.WriteLine(Bl.Product.GetDetailsItem(id, cart));
+                            Console.WriteLine(Bl.Product.GetProduct(id));
                             break;
                         case "c":
                             foreach (var p in Bl.Product.GetListedProducts())
