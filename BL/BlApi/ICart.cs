@@ -22,7 +22,7 @@ namespace BlApi
         /// make an order
         /// </summary>
         /// <param name=Cart></param>
-        public void OrderCart(BO.Cart cart, string castumerName, string castumerEmail, string castumerAdress);
+        public void OrderCart(BO.Cart cart);
        
     }
 }

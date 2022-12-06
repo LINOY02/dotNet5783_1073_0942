@@ -63,7 +63,7 @@ internal static class DataSource
     private static int[] priceFrom = new int[5] { 3000, 300, 2000, 4500, 4000 };
     private static int[] priceTo = new int[5] { 12000, 2000, 9000, 20000, 18000 };
     //Arrays to stock items by category
-    private static int[] inStock = new int[5] { 15, 100, 30, 20, 35 };
+    private static int[] inStock = new int[5] { 30, 200, 60, 40, 70 };
 
     //A function that fills in the first 10 items in products array
     private static void createAndInitProducts()
@@ -159,7 +159,7 @@ internal static class DataSource
                     p = _products[x];
                 }
                 //Lottery of the amount of the item according to the range in the array
-                int amount = 0;
+                int amount = 100000;
                 while (p.InStock - amount < 0)
                 {
                     switch (p.Category)
