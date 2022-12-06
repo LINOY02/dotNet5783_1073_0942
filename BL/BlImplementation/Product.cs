@@ -47,10 +47,8 @@ namespace BlImplementation
         /// <exception cref="BO.DalDoesNotExistException"></exception>
         public void DeleteProduct(int id)
         {
-           /// if (Dal.OrderItem.GetAll())
-           /// {
-
-                ////orderItems.Where(OrderItem => check ? true : predicate(OrderItem));
+            if (Dal.OrderItem.GetAll().Where(X => X.ProductID == id).Any())
+            {
                 try
                 {
                     Dal.Product.Delete(id);
@@ -59,7 +57,9 @@ namespace BlImplementation
                 {
                     throw new BO.DalDoesNotExistException(ex.Message);
                 }
-           /// }
+            }
+            else
+                throw new BO.DalAlreadyExistException();
         }
 
         /// <summary>
