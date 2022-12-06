@@ -1,6 +1,4 @@
-﻿using System.Buffers.Text;
-using BO;
-using DAL;
+﻿using DAL;
 using DalApi;
 
 namespace BlImplementation
@@ -14,7 +12,7 @@ namespace BlImplementation
         /// <returns></returns>
         public IEnumerable<BO.OrderForList> GetListedOrders()
         {
-            return Dal.Order.GetAll().Select(order => new OrderForList
+            return Dal.Order.GetAll().Select(order => new BO.OrderForList
             {
                 ID = order.ID,
                 CustomerName = order.CustomerName,
@@ -46,7 +44,7 @@ namespace BlImplementation
                          Price = x.Price,
                          Amount = x.Amount,
                          TotalPrice = x.Price * x.Amount
-                     });
+                     }).ToList();
 
                 //Creating and returning the order (in a more detailed form)
                 return new BO.Order
@@ -172,55 +170,21 @@ namespace BlImplementation
                 throw new BO.DalDoesNotExistException(exc.Message);
             }
         }
-        public BO.Order UpdateOrder(int orderId, int productId, int amount , Enum update)
-        {
-            if (orderId <= 0)
-                throw new ArgumentOutOfRangeException("id");//לשנות לחריגות שלנו
-            try
-            {
-                DO.Order dOrder = Dal.Order.GetById(orderId);
-                if (CheckStatus(dOrder) != OrderStatus.Ordered)
-                    throw new Exception("cant update");
-                DO.OrderItem orderItem = Dal.OrderItem.GetByOidAndPid(orderId, productId);
-                if(amount < 0)
-                    throw new Exception("amount is illigal");
-                if(update.Equals(UpdateAction.increase))
-                {
-                    orderItem.Amount += amount;
-                }
-                if (update.Equals(UpdateAction.reduction))
-                {
-                    orderItem.Amount -= amount;
-                }
-                if (update.Equals(UpdateAction.changing))
-                {
-                    orderItem.Amount = amount;
-                }
-
-                Dal.OrderItem.Update(orderItem);    
-                return this.GetOrder(orderId);    
-            }
-            catch (DO.DalDoesNotExistException exc)
-            {
-                throw new BO.DalDoesNotExistException(exc.Message);
-            }
-        }
-
         
-
+       
         //A private helper function that accepts an order and returns its order status
-        private OrderStatus CheckStatus(DO.Order item)
+        private BO.OrderStatus CheckStatus(DO.Order item)
         {
             if (item.OrderDate == DateTime.MinValue)
-                    return OrderStatus.Initiated;
+                    return BO.OrderStatus.Initiated;
                 else
                     if (item.ShipDate == DateTime.MinValue)
-                    return OrderStatus.Ordered;
+                    return BO.OrderStatus.Ordered;
                 else
                     if (item.DeliveryDate == DateTime.MinValue)
-                    return OrderStatus.Shipped;
+                    return BO.OrderStatus.Shipped;
                 else
-                    return OrderStatus.Delivered;
+                    return BO.OrderStatus.Delivered;
         }
     }
 }

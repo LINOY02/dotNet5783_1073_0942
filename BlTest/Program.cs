@@ -163,7 +163,7 @@ enter 'c' for order the cart");
                             Console.WriteLine(Bl.Cart.AddProductToCart(cart, productID));
                             break;
                         case "b":
-                            Console.WriteLine("Enter the id of the added product");
+                            Console.WriteLine("Enter the id of the updated product");
                             int productID1;
                             int.TryParse(Console.ReadLine(), out productID1);
                             Console.WriteLine("Enter the new amount");
@@ -172,12 +172,7 @@ enter 'c' for order the cart");
                             Console.WriteLine(Bl.Cart.UpdateCart(cart, productID1, amount));
                             break;
                         case "c":
-                            Console.WriteLine("Enter the costumer details(name, email, adress)");
-                            string name, email, adress;
-                            name = Console.ReadLine();  
-                            email = Console.ReadLine();
-                            adress = Console.ReadLine();
-                           Bl.Cart.OrderCart(cart, name, email, adress);
+                            Bl.Cart.OrderCart(cart);
                             break;
                         default:
                             return;
@@ -200,8 +195,7 @@ enter 'a' for show a order
 enter 'b' for show the list of ordrs
 enter 'c' for Order ship date update
 enter 'd' for Order tracking
-enter 'e' for Order delivery date update
-enter 'f' for updating the order");
+enter 'e' for Order delivery date update");
                     Order order1 = new Order();
                     string ch = Console.ReadLine();
                     switch (ch)
@@ -234,22 +228,7 @@ enter 'f' for updating the order");
                             int.TryParse(Console.ReadLine(), out id3);
                             Console.WriteLine(Bl.Order.DeliveredOrder(id3));
                         break;
-                        case "f":
-                            Console.WriteLine("Enter the id of the order which to updae");
-                            int orderId;
-                            int.TryParse(Console.ReadLine(), out orderId);
-                            Console.WriteLine("Enter the id of the product which to updae");
-                            int productId;
-                            int.TryParse(Console.ReadLine(), out productId);
-                            Console.WriteLine("Enter what action to do");
-                            UpdateAction update;
-                            Enum.TryParse<UpdateAction>(Console.ReadLine(), out update);
-                            Console.WriteLine("Enter the amount of the " + update);
-                            int amount;
-                            int.TryParse(Console.ReadLine(), out amount);
-                            Console.WriteLine(Bl.Order.UpdateOrder(orderId, productId , amount, update));
-                        break;
-                    default:
+                     default:
                             return;
                     }
                 }

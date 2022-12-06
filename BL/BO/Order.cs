@@ -40,7 +40,7 @@ namespace BO
         /// <summary>
         /// The items of the order
         /// </summary>
-        public IEnumerable<BO.OrderItem> Items { get; set; }
+        public List<BO.OrderItem> Items { get; set; }
         /// <summary>
         /// The total price of the order
         /// </summary>

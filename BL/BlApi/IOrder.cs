@@ -43,7 +43,5 @@ namespace BlApi
         /// Presenting all invitations to the customer
         /// </summary>
         /// <returns></returns>
-
-        public BO.Order UpdateOrder(int orderId, int productId, int amount, Enum update);
     }
 }
