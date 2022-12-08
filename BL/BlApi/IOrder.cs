@@ -39,9 +39,6 @@ namespace BlApi
         /// <returns></returns>
         public BO.OrderTracking TruckingOrder(int id);
 
-        /// <summary>
-        /// Presenting all invitations to the customer
-        /// </summary>
-        /// <returns></returns>
+        
     }
 }

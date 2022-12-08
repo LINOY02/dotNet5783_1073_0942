@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Security.Cryptography;
 using BlApi;
 using DAL;
 using DalApi;
@@ -60,6 +61,7 @@ namespace BlImplementation
         /// <param name=Cart></param>
         public void OrderCart(BO.Cart cart)
         {
+            //Checking the correctness of the values
             if (cart.CustomerName == null)
                 throw new BO.BlInvalidInputException("Missing customer name");
             if (cart.CustomerAddress == null)
@@ -68,6 +70,7 @@ namespace BlImplementation
                 throw new BO.BlInvalidInputException("Missing customer Email");
             if (cart.Items.Count == 0)
                 throw new BO.BlProductIsNotOrderedException("There are no products in the cart");
+            //Create a new order
             DO.Order newOrder = new DO.Order
             {
                 CustomerName = cart.CustomerAddress,
@@ -79,22 +82,33 @@ namespace BlImplementation
             };
             try
             {
+                //Adding the order to the list and receiving an ID number
                 int orderID = Dal.Order.Add(newOrder);
 
-                foreach (var item in cart.Items)
+                //Adding the products in the cart to the order item list
+                cart.Items.ForEach(item =>
+                Dal.OrderItem.Add(new DO.OrderItem
                 {
-                    Dal.OrderItem.Add(new DO.OrderItem
-                    {
-                        OrderID = orderID,
-                        ProductID = item.ProductID,
-                        Amount = item.Amount,
-                        Price = item.Price,
-                    });
+                    OrderID = orderID,
+                    ProductID = item.ProductID,
+                    Amount = item.Amount,
+                    Price = item.Price,
+                }));
 
-                    DO.Product updateProduct = Dal.Product.GetById(item.ProductID);
-                    updateProduct.InStock -= item.Amount;
-                    Dal.Product.Update(updateProduct);
-                }
+                //Temporary list of products after the new stock update
+                var products = from BO.OrderItem item in cart.Items
+                               let updateProduct = Dal.Product.GetById(item.ProductID)
+                               select new DO.Product
+                               {
+                                   ID = updateProduct.ID,
+                                   Name = updateProduct.Name,
+                                   Category = updateProduct.Category,
+                                   Price = updateProduct.Price,
+                                   InStock = updateProduct.InStock - item.Amount,
+                               };
+
+                //Updating the products in the product list
+                products.ToList().ForEach(item => Dal.Product.Update(item));
             }
             catch (DO.DalDoesNotExistException ex)
             {
@@ -112,23 +126,31 @@ namespace BlImplementation
             try
             {
                 DO.Product product = Dal.Product.GetById(productId);
+                // check if the product in the cart
                 var cartP = cart.Items.FirstOrDefault(x => x.ProductID == productId);
                 if (cartP == null)
                     throw new BO.BlProductIsNotOrderedException("product not in the cart");
-                if(amount > cartP.Amount)
+                // In case the customer wants to increase the quantity 
+                if (amount > cartP.Amount)
                 {
-                    if (amount - cartP.Amount < 0)
+                    if (amount - cartP.Amount < 0)//Check if in stock
                         throw new BO.BlOutOfStockException("There is not enough in the stock");
+                    //adding the difference
                     cartP.TotalPrice += (amount-cartP.Amount)*cartP.Price;
                     cart.TotalPrice += (amount - cartP.Amount) * cartP.Price;
+                    //Update the new quantity
                     cartP.Amount = amount;
                 }
-                if(amount < cartP.Amount)
+                // In case the customer wants to reduce the quantity
+                if (amount < cartP.Amount)
                 {
+                    //lowering the difference
                     cartP.TotalPrice -= (cartP.Amount - amount) * cartP.Price;
                     cart.TotalPrice -= (cartP.Amount - amount) * cartP.Price;
+                    //Update the new quantity
                     cartP.Amount = amount;
                 }
+                //In case the customer wants to remove the product from the cart
                 if (amount == 0)
                     cart.Items.Remove(cartP);
                 return cart;

@@ -138,6 +138,12 @@ namespace BlImplementation
             }
         }
 
+
+        /// <summary>
+        /// Possibility for the manager to follow the order
+        /// </summary>
+        /// <param name="order"></param>
+        /// <returns></returns>
         public BO.OrderTracking TruckingOrder(int id)
         {
             if (id <= 0)

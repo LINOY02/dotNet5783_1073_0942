@@ -1,5 +1,6 @@
 ﻿using DalApi;
 using DAL;
+using DO;
 
 namespace BlImplementation
 {
@@ -22,7 +23,7 @@ namespace BlImplementation
                 throw new BO.BlInvalidInputException("The price is invalid");
             if (bProduct.InStock < 0) //check that the amount is valid
                 throw new BO.BlInvalidInputException("The amount in stock is invalid");
-            if ((int)bProduct.Category < 0 || (int)bProduct.Category > 5) //check that the Category is valid
+           if ((int)bProduct.Category < 0 || (int)bProduct.Category > 5) //check that the Category is valid
                 throw new BO.BlInvalidInputException("The Category is invalid");
             try
             {   //add the product to the list in the DO
@@ -143,52 +144,24 @@ namespace BlImplementation
             if (OrderItem == null) //check if there are any items in the cart
                 throw new BO.BlProductIsNotOrderedException("the product is not in the cart");
 
-            BO.ProductItem productItem = new BO.ProductItem
+            return new BO.ProductItem
             {
                 ID = id,
                 Name = product1.Name,
                 Amount = OrderItem.Amount,
                 Category = (BO.Category)product1.Category,
                 Price = product1.Price,
-                InStock = true
+                InStock = checkInStock(product1)
             };
-            if (product1.InStock == 0) //check if the stock is empty
-                productItem.InStock = false;
-            return productItem;
         }
 
-        /// <summary>
-        /// show the buyer a list of all the products, 
-        /// for each bProduct: number, name, price, category, whether in stock and how many in stock
-        /// </summary>
-        /// <returns></returns>
-        public IEnumerable<BO.ProductItem> GetProducts()
+        
+        //A private function that checks if the product is in stock
+        private bool checkInStock(DO.Product product1)
         {
-
-            //In case there are in stock
-            var inStockProduct = from DO.Product product1 in Dal.Product.GetAll()
-                   where product1.InStock != 0
-                   select new BO.ProductItem
-                   {
-                       ID = product1.ID,
-                       Name = product1.Name,
-                       Price = product1.Price,
-                       Category = (BO.Category)product1.Category,
-                       InStock = true,
-                   };
-            //In case there are out of stock
-            var outStockProduct = from DO.Product product1 in Dal.Product.GetAll()
-                    where product1.InStock == 0
-                    select new BO.ProductItem
-                    {
-                        ID = product1.ID,
-                        Name = product1.Name,
-                        Price = product1.Price,
-                        Category = (BO.Category)product1.Category,
-                        InStock = false,
-                    };
-
-            return inStockProduct.Union(outStockProduct);
+            if(product1.InStock == 0)
+                return false;
+            return true;
         }
 
         /// <summary>
@@ -211,7 +184,7 @@ namespace BlImplementation
                 throw new BO.BlInvalidInputException("The Category is invalid");
             try
             {
-                //get the product from the Dal
+                //update the product in the list
                 Dal.Product.Update(new DO.Product
                 {
                     ID = bProduct.ID,

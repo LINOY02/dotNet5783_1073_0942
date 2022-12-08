@@ -94,8 +94,7 @@ enter 'd' for update the product
 enter 'e' for delete the product
 
 Actions for the customer:
-enter 'f' for show a product by ID
-enter 'g' for show the product catalog") ;
+enter 'f' for show a product by ID") ;
                     BO.Product product1 = new BO.Product();
                     string ch = Console.ReadLine();
                     switch (ch)
@@ -131,11 +130,7 @@ enter 'g' for show the product catalog") ;
                             int.TryParse(Console.ReadLine(), out id2);
                             Console.WriteLine(Bl.Product.GetDetailsItem(id2, cart));
                             break;
-                        case "g":
-                            foreach (var p in Bl.Product.GetProducts())
-                                Console.WriteLine(p);
-                            break;
-                    default:
+                     default:
                             return;
                     }
                 }

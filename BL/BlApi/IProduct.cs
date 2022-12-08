@@ -44,13 +44,7 @@ namespace BlApi
         #endregion
 
         #region METHODS FOR CUSTOMER
-        /// <summary>
-        /// show the buyer a list of all the products, 
-        /// for each product: number, name, price, category, whether in stock and how many in stock
-        /// </summary>
-        /// <returns></List of ProductItem>
-        IEnumerable<ProductItem> GetProducts();
-
+        
         /// <summary>
         /// The buyer enters a product code and receives the 
         /// product details: number, name, price, category and how much in stock
