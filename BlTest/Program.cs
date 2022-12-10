@@ -9,7 +9,7 @@ namespace BlTest
         static BO.Cart cart = new BO.Cart()
         {
             CustomerAddress = "lustig",
-            CustomerEmail = "shira@gmail.com",
+            CustomerEmail = "shira@gmail.com", 
             CustomerName = "shira choen",
             TotalPrice = 0,
             Items = new List<OrderItem>()
