@@ -15,17 +15,15 @@ internal class DalOrder : IOrder
     // Request 
     public Order GetById(int id)
     {
-        if (DataSource._orders.Exists(x => x.ID == id))// check if the order is already exist in the list
-            return DataSource._orders.Find(x => x.ID == id); // return the requested order
-        else // the order is exist in the list
-            throw new DalDoesNotExistException("Order num " + id + " not exist in the list");
+      
+            return DataSource._orders.Find(x => x?.ID == id) ?? throw new DalDoesNotExistException("Order num " + id + " not exist in the list");
     }
 
     // Update
     public void Update(Order order)
     {
 
-        if (!DataSource._orders.Exists(x => x.ID == order.ID))// check if the order isn't exist in the list
+        if (!DataSource._orders.Exists(x => x?.ID == order.ID))// check if the order isn't exist in the list
             throw new DalDoesNotExistException("Order num " + order.ID + " not exist in the list");
         else// the order is exist in the list
         {
@@ -37,7 +35,7 @@ internal class DalOrder : IOrder
     // Delete
     public void Delete(int id)
     {
-        if (!DataSource._orders.Exists(x => x.ID == id))// check if the order is already exist in the list
+        if (!DataSource._orders.Exists(x => x?.ID == id))// check if the order is already exist in the list
             throw new DalDoesNotExistException("Order num " + id + " not exist in the list");
         else
             DataSource._orders.Remove(GetById(id));
@@ -45,13 +43,10 @@ internal class DalOrder : IOrder
     }
 
     //A function that returns the array
-    public IEnumerable<Order> GetAll()
+    public IEnumerable<Order?> GetAll(Func<Order?, bool>? func = null)
     {
-        List<Order> newOrder = new List<Order>();
-        for (int i = 0; i < DataSource._orders.Count; i++)
-        {
-            newOrder.Add(DataSource._orders[i]);
-        }
-        return newOrder;
+        if (func == null)
+            return DataSource._orders.Select(x=> x);
+        return DataSource._orders.Where(x => func(x)).Select(x => x);
     }
 }

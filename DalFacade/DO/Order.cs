@@ -13,27 +13,27 @@ public struct Order
     /// <summary>
     /// The customer's name
     /// </summary>
-    public string CustomerName { get; set; }
+    public string? CustomerName { get; set; }
     /// <summary>
     /// The customer's email
     /// </summary>
-    public string CustomerEmail { get; set; }
+    public string? CustomerEmail { get; set; }
     /// <summary>
     /// The customer's adress
     /// </summary>
-    public string CustomerAdress { get; set; }
+    public string? CustomerAdress { get; set; }
     /// <summary>
     /// The dete of the order was ordered
     /// </summary>
-    public DateTime OrderDate { get; set; }
+    public DateTime? OrderDate { get; set; }
     /// <summary>
     /// The date of shipment 
     /// </summary>
-    public DateTime ShipDate { get; set; }
+    public DateTime? ShipDate { get; set; }
     /// <summary>
     /// The order's arrival date 
     /// </summary>
-    public DateTime DeliveryDate { get; set; }
+    public DateTime? DeliveryDate { get; set; }
 
     public override string ToString() => this.ToStringProperty();
 }
