@@ -12,7 +12,7 @@ namespace BlApi
         /// for each product: number, name, price and category
         /// </summary>
         /// <returns></List of ProductsForList>
-        IEnumerable<ProductForList> GetListedProducts();
+        IEnumerable<ProductForList?> GetListedProducts();
 
 
         /// <summary>

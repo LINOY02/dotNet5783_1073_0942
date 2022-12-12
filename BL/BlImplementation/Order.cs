@@ -153,18 +153,18 @@ namespace BlImplementation
                 DO.Order dOrder = Dal.Order.GetById(id); 
                 
                 //Creating an order tracking list based on order status
-                List<Tuple<DateTime, string>> tracking = new List<Tuple<DateTime, string>>();
+                List<Tuple<DateTime?, string?>> tracking = new List<Tuple<DateTime?, string?>>();
                 if(dOrder.OrderDate != DateTime.MinValue)//Order date check
                 {
-                    tracking.Add(new Tuple<DateTime, string>(dOrder.OrderDate, "The order has been created"));
+                    tracking.Add(new Tuple<DateTime?, string?>(dOrder.OrderDate, "The order has been created"));
                 }
                 if (dOrder.ShipDate != DateTime.MinValue)//Checking the date of sending
                 {
-                    tracking.Add(new Tuple<DateTime, string>(dOrder.ShipDate, "The order has been sent"));
+                    tracking.Add(new Tuple<DateTime?, string?>(dOrder.ShipDate, "The order has been sent"));
                 }
                 if(dOrder.DeliveryDate != DateTime.MinValue)//Check delivery date
                 {
-                    tracking.Add(new Tuple<DateTime, string>(dOrder.DeliveryDate, "The order has been delivered"));
+                    tracking.Add(new Tuple<DateTime?, string?>(dOrder.DeliveryDate, "The order has been delivered"));
                 }
 
                 //Order tracking return with details
@@ -173,8 +173,7 @@ namespace BlImplementation
                     ID = id,
                     status = CheckStatus(dOrder),
                     Tracking = tracking
-                };
-                
+                }; 
             }
             catch (DO.DalDoesNotExistException exc)
             {

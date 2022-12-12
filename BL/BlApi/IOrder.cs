@@ -9,7 +9,7 @@ namespace BlApi
         /// Presenting all invitations to the manager
         /// </summary>
         /// <returns></returns>
-        IEnumerable<OrderForList> GetListedOrders();
+        IEnumerable<OrderForList?> GetListedOrders();
 
         /// <summary>
         /// Displaying order details including customer receipts and details of all his products

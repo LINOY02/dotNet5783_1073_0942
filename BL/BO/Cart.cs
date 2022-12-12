@@ -11,19 +11,19 @@ namespace BO
         /// <summary>
         /// The customer's name
         /// </summary>
-        public string CustomerName { get; set; }
+        public string? CustomerName { get; set; }
         /// <summary>
         /// The customer's email
         /// </summary>
-        public string CustomerEmail { get; set; }
+        public string? CustomerEmail { get; set; }
         /// <summary>
         /// The customer's adress
         /// </summary>
-        public string CustomerAddress { get; set; }
+        public string? CustomerAddress { get; set; }
         /// <summary>
         /// The items of the order
         /// </summary>
-        public List<BO.OrderItem> Items { get; set; }
+        public List<BO.OrderItem?>? Items { get; set; }
         /// <summary>
         /// The total price of the cart
         /// </summary>

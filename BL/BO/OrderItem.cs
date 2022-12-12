@@ -15,7 +15,7 @@ namespace BO
         /// <summary>
         /// The name of the profuct
         /// </summary>
-        public string Name { get; set; }
+        public string? Name { get; set; }
         /// <summary>
         /// The price of each product
         /// </summary>
