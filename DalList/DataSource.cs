@@ -35,13 +35,13 @@ internal static class DataSource
     private static readonly Random s_rand = new();
     //Defining a list of products 
     
-    internal static List<Product> _products = new List<Product>();
+    internal static List<Product?> _products = new List<Product?>();
     //Defining a list of ordersts 
 
-    internal static List<Order> _orders = new List<Order>();
+    internal static List<Order?> _orders = new List<Order?>();
     //Defining a list of orderitems 
    
-    internal static List<OrderItem> _orderItems = new List<OrderItem>();
+    internal static List<OrderItem?> _orderItems = new List<OrderItem?>();
 
     //A function that initializes the three arrays by calling the appropriate functions
     private static void s_Intialize()
@@ -110,8 +110,8 @@ internal static class DataSource
                 CustomerAdress = customerAdress[s_rand.Next(9)],//Draw an address from the array
                 CustomerEmail = firstName + lastName + "@gmail.com",//Adding an email extension to the customer's name
                 OrderDate = DateTime.Now - new TimeSpan(days, 0, 0, 0),
-                ShipDate = DateTime.MinValue,
-                DeliveryDate = DateTime.MinValue,
+                ShipDate = null,
+                DeliveryDate = null,
             };
 
             if (i < 0.8*20)//Only 80 percent of the orders were shipped
@@ -152,17 +152,17 @@ internal static class DataSource
             {
                 //Selecting an item randomly from the array of products
                 int x = s_rand.Next(9);
-                Product p = _products[x];
-                while (p.InStock == 0)//Lottery product that is in stock
+                Product? p = _products[x];
+                while (p?.InStock == 0)//Lottery product that is in stock
                 {
                     x = s_rand.Next(9);
                     p = _products[x];
                 }
                 //Lottery of the amount of the item according to the range in the array
                 int amount = 100000;
-                while (p.InStock - amount < 0)
+                while (p?.InStock - amount < 0)
                 {
-                    switch (p.Category)
+                    switch (p?.Category)
                     {
                         case Category.TABLE:
                             amount = s_rand.Next(1, 3);
@@ -187,17 +187,14 @@ internal static class DataSource
                 OrderItem newOrderItem = new OrderItem
                 {
                     ID = NextOrderItemNumber,//OrderItem number according to the serial number
-                    OrderID = _orders[orderNum].ID,//Order number according to the current order
-                    ProductID = p.ID,//Product number according to the item we selected
+                    OrderID = (int)_orders[orderNum]?.ID! ,//Order number according to the current order
+                    ProductID =(int) p?.ID!,//Product number according to the item we selected
                     Amount = amount,
-                    Price = p.Price 
+                    Price =(double) p?.Price!
                 };
                _orderItems.Add(newOrderItem);
                 i++;
-                //Updating the new quantity in stock
-                 p.InStock -= amount;
-                _products[x] = p; 
-            }
+             }
             orderNum++; //Progress to the next order in the array
         }
     }

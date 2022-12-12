@@ -18,31 +18,21 @@ internal class DalOrderItem : IOrderItem
     // Request
     public OrderItem GetById(int id)
     {
-        if (!DataSource._orderItems.Exists(x => x.ID == id))
-            throw new DalDoesNotExistException("OrderItem num " + id + " not exist in the list");
-        else
-            return DataSource._orderItems.Find(x => x.ID == id);
-
+      return DataSource._orderItems.Find(x => x?.ID == id) ?? throw new DalDoesNotExistException("OrderItem num " + id + " not exist in the list");
     }
 
     //request by order and product ID number
     public OrderItem GetByOidAndPid(int orderId, int productId)
     {
 
-        for (int i = 0; i < DataSource._orderItems.Count; i++)
-        {
-            if (DataSource._orderItems[i].OrderID == orderId)// Checking if the item is from the given order
-                if (DataSource._orderItems[i].ProductID == productId)//Checking if this is the given item from the order
-                    return DataSource._orderItems[i]; // return the requested orderItem
-        }
-        // the orderItem is not exist in the list
+        return DataSource._orderItems.Find(x=> x?.OrderID == orderId && x?.ProductID == productId) ??
         throw new DalDoesNotExistException("OrderItem with product ID: " + productId + "and ordrt ID: " + orderId + "not exist in the list");
     }
 
     // Update
     public void Update(OrderItem orderItem)
     {
-        if (!DataSource._orderItems.Exists(x => x.ID == orderItem.ID))// check if the orderItem isn't exist in the list
+        if (!DataSource._orderItems.Exists(x => x?.ID == orderItem.ID))// check if the orderItem isn't exist in the list
             throw new DalDoesNotExistException("OrderItem num " + orderItem.ID + " not exist in the list");
         else //if the order isn exist in the list.
             DataSource._orderItems.Remove(GetById(orderItem.ID));
@@ -54,7 +44,7 @@ internal class DalOrderItem : IOrderItem
     public void Delete(int id)
     {
 
-        if (!DataSource._orderItems.Exists(x => x.ID == id))// check if the orderItem isn't exist in the list
+        if (!DataSource._orderItems.Exists(x => x?.ID == id))// check if the orderItem isn't exist in the list
             throw new DalDoesNotExistException("OrderItem num " + id + " not exist in the list");
         else
             DataSource._orderItems.Remove(GetById(id));
@@ -62,25 +52,21 @@ internal class DalOrderItem : IOrderItem
     }
 
     //A function that returns the array
-    public IEnumerable<OrderItem> GetAll()
+    public IEnumerable<OrderItem?> GetAll(Func<OrderItem?, bool>? func = null)
     {
-        //Creating a new array the size of the number of elements in the array
-        List<OrderItem> newOrder = new List<OrderItem>();
-        //Going over the whole array and copying it to the new array
-        for (int i = 0; i < DataSource._orderItems.Count; i++)
-            newOrder.Add(DataSource._orderItems[i]);
-
-        return newOrder;
+        if (func == null)
+            return DataSource._orderItems.Select(x => x);
+        return DataSource._orderItems.Where(x => func(x)).Select(x => x);
     }
 
     //A function that returns all items of the requested order
-    public IEnumerable<OrderItem> GetAllOrder(int orderId)
+    public IEnumerable<OrderItem?> GetAllOrder(int orderId)
     {
-        List<OrderItem> allOrder = new List<OrderItem>();
+        List<OrderItem?> allOrder = new List<OrderItem?>();
         for (int i = 0; i < DataSource._orderItems.Count; i++)
         {
             //If the ordered item belongs to the requested order
-            if (DataSource._orderItems[i].OrderID == orderId)
+            if (DataSource._orderItems[i]?.OrderID == orderId)
             {
                 allOrder.Add(DataSource._orderItems[i]);//Adding the item to the list if it is the requested item
             }
