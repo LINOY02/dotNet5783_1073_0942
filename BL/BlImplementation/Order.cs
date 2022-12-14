@@ -14,11 +14,11 @@ namespace BlImplementation
         {
             return Dal.Order.GetAll().Select(order => new BO.OrderForList
             {
-                ID = order.ID,
-                CustomerName = order.CustomerName,
+                ID = (int)order?.ID!,
+                CustomerName = (string)order?.CustomerName!,
                 Status = CheckStatus(order),
-                AmountOfItems = Dal.OrderItem.GetAllOrder(order.ID).Count(),
-                TotalPrice = Dal.OrderItem.GetAllOrder(order.ID).Sum(x => x.Price * x.Amount)
+                AmountOfItems = Dal.OrderItem.GetAll((DO.OrderItem? x) => { return x?.OrderID == order?.ID; }).Count(),
+                TotalPrice = Dal.OrderItem.GetAll((DO.OrderItem? x) => { return x?.OrderID == order?.ID; }).Sum(y => (double)y?.Price!* (int)y?.Amount!)
             }); 
         }
 
@@ -35,15 +35,15 @@ namespace BlImplementation
             {
                 DO.Order dOrder = Dal.Order.GetById(id);
                 // Creating a collection of items of order item type
-                var items = Dal.OrderItem.GetAllOrder(dOrder.ID).Select(x =>
+                var items = Dal.OrderItem.GetAll((DO.OrderItem? x) => { return x?.OrderID == dOrder.ID; }).Select(x =>
                      new BO.OrderItem
                      {
-                         ID = x.ID,
-                         ProductID = x.ProductID,
-                         Name = Dal.Product.GetById(x.ProductID).Name,
-                         Price = x.Price,
-                         Amount = x.Amount,
-                         TotalPrice = x.Price * x.Amount
+                         ID = (int)x?.ID!,
+                         ProductID = (int)x?.ProductID!,
+                         Name = Dal.Product.GetById((int)x?.ProductID!).Name,
+                         Price =(double) x?.Price!,
+                         Amount = (int)x?.Amount!,
+                         TotalPrice =(double) x?.Price! * (int)x?.Amount!
                      }).ToList();
 
                 //Creating and returning the order (in a more detailed form)
@@ -154,15 +154,15 @@ namespace BlImplementation
                 
                 //Creating an order tracking list based on order status
                 List<Tuple<DateTime?, string?>> tracking = new List<Tuple<DateTime?, string?>>();
-                if(dOrder.OrderDate != DateTime.MinValue)//Order date check
+                if(dOrder.OrderDate != null)//Order date check
                 {
                     tracking.Add(new Tuple<DateTime?, string?>(dOrder.OrderDate, "The order has been created"));
                 }
-                if (dOrder.ShipDate != DateTime.MinValue)//Checking the date of sending
+                if (dOrder.ShipDate != null)//Checking the date of sending
                 {
                     tracking.Add(new Tuple<DateTime?, string?>(dOrder.ShipDate, "The order has been sent"));
                 }
-                if(dOrder.DeliveryDate != DateTime.MinValue)//Check delivery date
+                if(dOrder.DeliveryDate != null)//Check delivery date
                 {
                     tracking.Add(new Tuple<DateTime?, string?>(dOrder.DeliveryDate, "The order has been delivered"));
                 }
@@ -183,15 +183,15 @@ namespace BlImplementation
         
        
         //A private helper function that accepts an order and returns its order status
-        private BO.OrderStatus CheckStatus(DO.Order item)
+        private BO.OrderStatus CheckStatus(DO.Order? item)
         {
-            if (item.OrderDate == DateTime.MinValue)
+            if (item?.OrderDate == null)
                     return BO.OrderStatus.Initiated;
                 else
-                    if (item.ShipDate == DateTime.MinValue)
+                    if (item?.ShipDate == null)
                     return BO.OrderStatus.Ordered;
                 else
-                    if (item.DeliveryDate == DateTime.MinValue)
+                    if (item?.DeliveryDate == null)
                     return BO.OrderStatus.Shipped;
                 else
                     return BO.OrderStatus.Delivered;

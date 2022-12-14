@@ -198,14 +198,15 @@ enter 'g' for show the list of order");
                         Console.WriteLine("Enter the id of the product");
                         int idProduct;
                         int.TryParse(Console.ReadLine(), out idProduct);
-                        Console.WriteLine(dalList.OrderItem.GetByOidAndPid(idOrder, idProduct));
+                        Console.WriteLine(dalList.OrderItem.GetItem((OrderItem? x) => { return (x?.ProductID == idProduct && x?.OrderID == idOrder); }));
                         break;
                     case "g":
                         Console.WriteLine("Enter the id of the order");
                         int idOrder1;
                         int.TryParse(Console.ReadLine(), out idOrder1);
-                        foreach (var orIt in dalList.OrderItem.GetAllOrder(idOrder1))
-                            Console.WriteLine(orIt);
+
+                        foreach (var item in dalList.OrderItem.GetAll((OrderItem? x) => { return x?.OrderID == idOrder1; }))
+                            Console.WriteLine(item);
                         break;
                     default:
                         return;

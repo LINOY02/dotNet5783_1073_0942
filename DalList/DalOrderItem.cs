@@ -21,13 +21,13 @@ internal class DalOrderItem : IOrderItem
       return DataSource._orderItems.Find(x => x?.ID == id) ?? throw new DalDoesNotExistException("OrderItem num " + id + " not exist in the list");
     }
 
-    //request by order and product ID number
-    public OrderItem GetByOidAndPid(int orderId, int productId)
-    {
+    ////request by order and product ID number
+    //public OrderItem GetByOidAndPid(int orderId, int productId)
+    //{
 
-        return DataSource._orderItems.Find(x=> x?.OrderID == orderId && x?.ProductID == productId) ??
-        throw new DalDoesNotExistException("OrderItem with product ID: " + productId + "and ordrt ID: " + orderId + "not exist in the list");
-    }
+    //    return DataSource._orderItems.Find(x=> x?.OrderID == orderId && x?.ProductID == productId) ??
+    //    throw new DalDoesNotExistException("OrderItem with product ID: " + productId + "and ordrt ID: " + orderId + "not exist in the list");
+    //}
 
     // Update
     public void Update(OrderItem orderItem)
@@ -59,19 +59,23 @@ internal class DalOrderItem : IOrderItem
         return DataSource._orderItems.Where(x => func(x)).Select(x => x);
     }
 
-    //A function that returns all items of the requested order
-    public IEnumerable<OrderItem?> GetAllOrder(int orderId)
-    {
-        List<OrderItem?> allOrder = new List<OrderItem?>();
-        for (int i = 0; i < DataSource._orderItems.Count; i++)
-        {
-            //If the ordered item belongs to the requested order
-            if (DataSource._orderItems[i]?.OrderID == orderId)
-            {
-                allOrder.Add(DataSource._orderItems[i]);//Adding the item to the list if it is the requested item
-            }
-        }
-        return allOrder;//Returning the list
-    }
+    ////A function that returns all items of the requested order
+    //public IEnumerable<OrderItem?> GetAllOrder(int orderId)
+    //{
+    //    List<OrderItem?> allOrder = new List<OrderItem?>();
+    //    for (int i = 0; i < DataSource._orderItems.Count; i++)
+    //    {
+    //        //If the ordered item belongs to the requested order
+    //        if (DataSource._orderItems[i]?.OrderID == orderId)
+    //        {
+    //            allOrder.Add(DataSource._orderItems[i]);//Adding the item to the list if it is the requested item
+    //        }
+    //    }
+    //    return allOrder;//Returning the list
+    //}
 
+    public OrderItem GetItem(Func<OrderItem?, bool>? filter)
+    {
+        return DataSource._orderItems.Find(x => filter(x)) ?? throw new DO.DalDoesNotExistException("order item under this condition is not exist");
+    }
 }

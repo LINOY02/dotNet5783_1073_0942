@@ -17,9 +17,7 @@ namespace BlImplementation
         {
             if (bProduct.ID < 100000) //check that the ID is valid
                 throw new BO.BlInvalidInputException("The id is invalid");
-            if (bProduct.Name.Length == 0) //check that the Name is valid
-                throw new BO.BlInvalidInputException("The name is invalid");
-            if (bProduct.Price <= 0) //check that the Price is valid
+                if (bProduct.Price <= 0) //check that the Price is valid
                 throw new BO.BlInvalidInputException("The price is invalid");
             if (bProduct.InStock < 0) //check that the amount is valid
                 throw new BO.BlInvalidInputException("The amount in stock is invalid");
@@ -30,7 +28,7 @@ namespace BlImplementation
                 Dal.Product.Add(new DO.Product
                 {
                     ID = bProduct.ID,
-                    Name = bProduct.Name,
+                    Name = bProduct.Name ?? throw new BO.BlInvalidInputException("The name is invalid"),
                     Price = bProduct.Price,
                     InStock = bProduct.InStock,
                     Category = (DO.Category)bProduct.Category,
@@ -51,7 +49,7 @@ namespace BlImplementation
         public void DeleteProduct(int id)
         {
 
-            if (!Dal.OrderItem.GetAll().Where(X => X.ProductID == id).Any()) //check if there are any orders that contains this product
+            if (!Dal.OrderItem.GetAll().Where(X => X?.ProductID == id).Any()) //check if there are any orders that contains this product
             {
                 try
                 {   //delete the product from the DO
@@ -174,8 +172,6 @@ namespace BlImplementation
         {
             if (bProduct.ID < 100000) //check that the ID is valid
                 throw new BO.BlInvalidInputException("The id is invalid");
-            if (bProduct.Name.Length == 0) //check that the Name is valid
-                throw new BO.BlInvalidInputException("The name is invalid");
             if (bProduct.Price <= 0) //check that the Price is valid
                 throw new BO.BlInvalidInputException("The price is invalid");
             if (bProduct.InStock < 0) //check that the Amount is valid
@@ -188,7 +184,7 @@ namespace BlImplementation
                 Dal.Product.Update(new DO.Product
                 {
                     ID = bProduct.ID,
-                    Name = bProduct.Name,
+                    Name = bProduct.Name ?? throw new BO.BlInvalidInputException("The name is invalid"),
                     Price = bProduct.Price,
                     InStock = bProduct.InStock,
                     Category = (DO.Category)bProduct.Category,
