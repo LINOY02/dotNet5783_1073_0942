@@ -12,8 +12,7 @@ namespace BlApi
         /// for each product: number, name, price and category
         /// </summary>
         /// <returns></List of ProductsForList>
-        IEnumerable<ProductForList?> GetListedProducts();
-
+        IEnumerable<ProductForList?> GetListedProducts(Func<BO.ProductForList?, bool>? filter = null);
 
         /// <summary>
         /// The function receives a product ID number 

@@ -7,13 +7,14 @@
         mc:Ignorable="d"
         Title="ProductListWindow" Height="640" Width="800">
     <Grid>
-        <Grid Name="MainGrid">
+        <Grid Name="MainGrid" Margin="0,0,0,52">
             <Grid.RowDefinitions>
                 <RowDefinition Height="40*"/>
                 <RowDefinition Height="500*"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <ListView x:Name="StudentListview" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,46,0,-45" Grid.RowSpan="2" Grid.Row="1">
+
+            <ListView x:Name="ProductListView" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,1,0,56" Grid.Row="1" MouseDoubleClick="ProductListView_MouseDoubleClick">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn/>
@@ -21,13 +22,15 @@
                 </ListView.View>
             </ListView>
         </Grid>
-        <Grid Name="UpGrid" Height="auto" Grid.Row="0" Width="auto" Margin="10,10,-10,216">
+        <Grid Name="UpGrid" Height="auto" Grid.Row="0" Width="auto" Margin="0,10,0,216" RenderTransformOrigin="0.46,0.493">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions >
-            <ComboBox x:Name="IDSelector" Grid.Column="1" Margin="85,26,128,329" SelectionChanged="IDSelector_SelectionChanged"/>
-            <Label Content="Category" Grid.Column="0" HorizontalAlignment="left" Margin="105,30,0,0" VerticalAlignment="Top" Height="30" Width="80" FontSize="14" FontWeight="Bold" FontFamily="Arial Nova Cond"/>
+            <Label Content="Category" Grid.Column="0" HorizontalAlignment="Left" Margin="37,7,0,0" VerticalAlignment="Top" Height="30" Width="80" FontSize="14" FontWeight="Bold" FontFamily="Arial Nova Cond"/>
+            <ComboBox x:Name="CategorySelector" Grid.Column="1" HorizontalAlignment="Left" Margin="160,0,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="CategorySelector_SelectionChanged_1"/>
         </Grid>
+        <Button x:Name="AddProduct" Content="Add new Product" HorizontalAlignment="Right" Margin="0,533,21,23" Padding="5" Click="AddProduct_Click"/>
     </Grid>
+
 </Window>

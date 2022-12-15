@@ -1,6 +1,7 @@
 ﻿using DalApi;
 using DAL;
 using DO;
+using System.Security.Cryptography.X509Certificates;
 
 namespace BlImplementation
 {
@@ -69,17 +70,18 @@ namespace BlImplementation
         /// for each bProduct: number, name, price and category
         /// </summary>
         /// <returns></List of ProductsForList>
-        public IEnumerable<BO.ProductForList> GetListedProducts()
+        public IEnumerable<BO.ProductForList> GetListedProducts(Func <BO.ProductForList?,bool>? filter)
         {
-            return from DO.Product product1 in Dal.Product.GetAll()
-                   select new BO.ProductForList
-                   {
+           var list = from DO.Product product1 in Dal.Product.GetAll()
+                      select new BO.ProductForList
+                      {
                        ID = product1.ID,
                        Name = product1.Name,
                        Price = product1.Price,
-                       Category = (BO.Category)product1.Category,
+                       Category = (BO.Category)product1.Category!,
+                      };
 
-                   };
+            return filter is null ? list : list.Where(filter); 
         }
 
         /// <summary>
