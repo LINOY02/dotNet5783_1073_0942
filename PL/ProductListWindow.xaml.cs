@@ -39,9 +39,22 @@ namespace PL
 
         private void ProductListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            int productId = ((ProductForList)(ProductListView.SelectedItem)).ID;
-            new ProductWindow(productId).ShowDialog();
-            ProductListView.ItemsSource = bl.Product.GetListedProducts().OrderBy(x => x.ID);
+            if(ProductListView.SelectedItem as ProductForList != null)
+            {
+                ProductForList productId = (ProductForList)(ProductListView.SelectedItem);
+                try
+                {
+                    ProductWindow productWindoe = new ProductWindow(productId?.ID ?? throw new NullReferenceException("Choose product to update"));
+                    productWindoe.ShowDialog();
+                    ProductListView.ItemsSource = bl.Product.GetListedProducts().OrderBy(x => x.ID);
+                }
+                catch (NullReferenceException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            
+            
         }
 
         private void CategorySelector_SelectionChanged_1(object sender, SelectionChangedEventArgs e)

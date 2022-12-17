@@ -52,29 +52,36 @@ namespace PL
             if ((!int.TryParse(IDTextBox.Text, out id)) || id < 100000)
             {
                 IDTextBox.BorderBrush = Brushes.Red;
-                IDLebel.Content = "failed";
-                IDLebel.Visibility = Visibility.Visible;
+                IDLabel.Content = "failed";
+                IDLabel.Visibility = Visibility.Visible;
                 flag = true;
             }
             if (NameTextBox.Text == "")
             {
                 NameTextBox.BorderBrush = Brushes.Red;
-                NameLebel.Content = "failed";
-                NameLebel.Visibility = Visibility.Visible;
+                NameLabel.Content = "failed";
+                NameLabel.Visibility = Visibility.Visible;
+                flag = true;
+            }
+            if (CategorySelector.Text == "")
+            {
+                CategorySelector.BorderBrush = Brushes.Red;
+                CategoryLabel.Content = "failed";
+                CategoryLabel.Visibility = Visibility.Visible;
                 flag = true;
             }
             if ((!double.TryParse(PriceTextBox.Text, out p)) || p <= 0)
             {
                 PriceTextBox.BorderBrush = Brushes.Red;
-                PriceLebel.Content = "failed";
-                PriceLebel.Visibility = Visibility.Visible;
+                PriceLabel.Content = "failed";
+                PriceLabel.Visibility = Visibility.Visible;
                 flag = true;
             }
             if ((!int.TryParse(InStockTextBox.Text, out amount)) || amount < 0)
             {
                 InStockTextBox.BorderBrush = Brushes.Red;
-                InStockLebel.Content = "failed";
-                InStockLebel.Visibility = Visibility.Visible;   
+                InStockLabel.Content = "failed";
+                InStockLabel.Visibility = Visibility.Visible;   
                 flag = true;
             }
             if (flag)
@@ -135,26 +142,32 @@ namespace PL
         }
         private void PriceTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            PriceLebel.Visibility = Visibility.Hidden;
+            PriceLabel.Visibility = Visibility.Hidden;
             PriceTextBox.BorderBrush = Brushes.DimGray;
         }
 
         private void InStockTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            InStockLebel.Visibility = Visibility.Hidden;    
+            InStockLabel.Visibility = Visibility.Hidden;    
             InStockTextBox.BorderBrush = Brushes.DimGray;
         }
 
         private void NameTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            NameLebel.Visibility= Visibility.Hidden;
+            NameLabel.Visibility= Visibility.Hidden;
             NameTextBox.BorderBrush = Brushes.DimGray;
         }
 
         private void IDTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            IDLebel.Visibility=Visibility.Hidden;
+            IDLabel.Visibility=Visibility.Hidden;
             IDTextBox.BorderBrush= Brushes.DimGray;
+        }
+
+        private void CategorySelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            CategoryLabel.Visibility =Visibility.Hidden;
+            CategorySelector.BorderBrush= Brushes.DimGray;
         }
     }
 }

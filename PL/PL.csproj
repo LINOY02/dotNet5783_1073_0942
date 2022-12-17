@@ -18,7 +18,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="logo.png" />
+    <None Remove="לוגו חנות.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\BL\BL.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="logo.png" />
+    <Resource Include="לוגו חנות.png" />
   </ItemGroup>
 
 </Project>
