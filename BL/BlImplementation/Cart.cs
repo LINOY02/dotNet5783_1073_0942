@@ -23,13 +23,13 @@ namespace BlImplementation
                 DO.Product product = Dal.Product.GetById(productId);
                 if (product.InStock < 1) //Check if the product is out of stock
                     throw new BO.BlOutOfStockException("There is not enough in the stock");
-                    var bOrderItem = cart.Items.FirstOrDefault(x => x.ProductID == productId);
+                    var bOrderItem = cart.Items?.FirstOrDefault(x => x?.ProductID == productId);
                 if (bOrderItem != null) //Checking if the product is in the cart
                 {
-                    cart.Items.Remove(bOrderItem);
+                    cart.Items?.Remove(bOrderItem);
                     bOrderItem.Amount++;
                     bOrderItem.TotalPrice += product.Price;
-                    cart.Items.Add(bOrderItem);
+                    cart.Items?.Add(bOrderItem);
                     cart.TotalPrice += product.Price;
                 }
                 else// the product is not in the cart
@@ -43,7 +43,7 @@ namespace BlImplementation
                         Amount = 1,
                         TotalPrice = product.Price,
                     };
-                    cart.Items.Add(newItem);
+                    cart.Items?.Add(newItem);
                     cart.TotalPrice += product.Price;
                 }
                return cart;
@@ -68,7 +68,7 @@ namespace BlImplementation
                 throw new BO.BlInvalidInputException("Missing customer address");
             if (! new EmailAddressAttribute().IsValid(cart.CustomerEmail))
                 throw new BO.BlInvalidInputException("Missing customer Email");
-            if (cart.Items.Count == 0)
+            if (cart.Items?.Count == 0)
                 throw new BO.BlProductIsNotOrderedException("There are no products in the cart");
             //Create a new order
             DO.Order newOrder = new DO.Order
@@ -86,7 +86,7 @@ namespace BlImplementation
                 int orderID = Dal.Order.Add(newOrder);
 
                 //Adding the products in the cart to the order item list
-                cart.Items.ForEach(item =>
+                cart.Items?.ForEach(item =>
                 Dal.OrderItem.Add(new DO.OrderItem
                 {
                     OrderID = orderID,
@@ -127,7 +127,7 @@ namespace BlImplementation
             {
                 DO.Product product = Dal.Product.GetById(productId);
                 // check if the product in the cart
-                var cartP = cart.Items.FirstOrDefault(x => x.ProductID == productId);
+                var cartP = cart.Items?.FirstOrDefault(x => x?.ProductID == productId);
                 if (cartP == null)
                     throw new BO.BlProductIsNotOrderedException("product not in the cart");
                 // In case the customer wants to increase the quantity 
@@ -152,7 +152,7 @@ namespace BlImplementation
                 }
                 //In case the customer wants to remove the product from the cart
                 if (amount == 0)
-                    cart.Items.Remove(cartP);
+                    cart.Items?.Remove(cartP);
                 return cart;
             }
             catch (DO.DalDoesNotExistException exc)

@@ -18,20 +18,22 @@ namespace BlImplementation
         {
             if (bProduct.ID < 100000) //check that the ID is valid
                 throw new BO.BlInvalidInputException("The id is invalid");
-                if (bProduct.Price <= 0) //check that the Price is valid
+            if (bProduct.Name == "") //check if the name is valid
+                throw new BO.BlInvalidInputException("The name is invalid");
+            if (bProduct.Price <= 0) //check that the Price is valid
                 throw new BO.BlInvalidInputException("The price is invalid");
             if (bProduct.InStock < 0) //check that the amount is valid
                 throw new BO.BlInvalidInputException("The amount in stock is invalid");
-           if ((int)bProduct.Category < 0 || (int)bProduct.Category > 5) //check that the Category is valid
+           if ((int)bProduct.Category! < 0 || (int)bProduct.Category > 5) //check that the Category is valid
                 throw new BO.BlInvalidInputException("The Category is invalid");
             try
             {   //add the product to the list in the DO
                 Dal.Product.Add(new DO.Product
                 {
-                    ID = bProduct.ID,
-                    Name = bProduct.Name ?? throw new BO.BlInvalidInputException("The name is invalid"),
-                    Price = bProduct.Price,
-                    InStock = bProduct.InStock,
+                    ID = bProduct?.ID ?? throw new BO.BlMissingInputException("The id is missing"),
+                    Name = bProduct.Name ?? throw new BO.BlMissingInputException("The name is missing"),
+                    Price = bProduct?.Price ?? throw new BO.BlMissingInputException("The price is missing"),
+                    InStock = bProduct?.InStock ?? throw new BO.BlMissingInputException("The amount is missing"),
                     Category = (DO.Category)bProduct.Category,
                 });
             }
@@ -110,7 +112,7 @@ namespace BlImplementation
                 ID = dProduct.ID,
                 Name = dProduct.Name,
                 Price = dProduct.Price,
-                Category = (BO.Category)dProduct.Category,
+                Category = (BO.Category)dProduct.Category!,
                 InStock = dProduct.InStock,
             };
         }
@@ -139,7 +141,7 @@ namespace BlImplementation
             {
                 throw new BO.BlDoesNotExistException(ex.Message);
             }
-            BO.OrderItem OrderItem = cart.Items.FirstOrDefault(x => x.ProductID == id);
+            BO.OrderItem? OrderItem = cart.Items?.FirstOrDefault(x => x?.ProductID == id);
 
             if (OrderItem == null) //check if there are any items in the cart
                 throw new BO.BlProductIsNotOrderedException("the product is not in the cart");
@@ -149,7 +151,7 @@ namespace BlImplementation
                 ID = id,
                 Name = product1.Name,
                 Amount = OrderItem.Amount,
-                Category = (BO.Category)product1.Category,
+                Category = (BO.Category)product1.Category!,
                 Price = product1.Price,
                 InStock = checkInStock(product1)
             };
@@ -174,21 +176,23 @@ namespace BlImplementation
         {
             if (bProduct.ID < 100000) //check that the ID is valid
                 throw new BO.BlInvalidInputException("The id is invalid");
+            if (bProduct.Name == "") //check if the name is valid
+                throw new BO.BlInvalidInputException("The name is invalid");
             if (bProduct.Price <= 0) //check that the Price is valid
                 throw new BO.BlInvalidInputException("The price is invalid");
             if (bProduct.InStock < 0) //check that the Amount is valid
                 throw new BO.BlInvalidInputException("The amount in stock is invalid");
-            if ((int)bProduct.Category < 0 && (int)bProduct.Category > 5) //check that the Category is valid
+            if ((int)bProduct.Category! < 0 && (int)bProduct.Category > 5) //check that the Category is valid
                 throw new BO.BlInvalidInputException("The Category is invalid");
             try
             {
                 //update the product in the list
                 Dal.Product.Update(new DO.Product
                 {
-                    ID = bProduct.ID,
-                    Name = bProduct.Name ?? throw new BO.BlInvalidInputException("The name is invalid"),
-                    Price = bProduct.Price,
-                    InStock = bProduct.InStock,
+                    ID = bProduct?.ID ?? throw new BO.BlMissingInputException("The id is missing"),
+                    Name = bProduct.Name ?? throw new BO.BlMissingInputException("The name is missing"),
+                    Price = bProduct?.Price ?? throw new BO.BlMissingInputException("The price is missing"),
+                    InStock = bProduct?.InStock ?? throw new BO.BlMissingInputException("The amount is missing"),
                     Category = (DO.Category)bProduct.Category,
                 });
             }

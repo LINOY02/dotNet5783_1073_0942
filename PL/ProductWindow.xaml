@@ -6,19 +6,23 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="ProductWindow" Height="450" Width="800">
-    <Grid>
+    <Grid Margin="0,-20,0,20">
 
         <ComboBox x:Name="CategorySelector" HorizontalAlignment="Left" Height="20" Margin="274,135,0,0" VerticalAlignment="Top" Width="113"/>
         <Button x:Name="Button" Content="" HorizontalAlignment="Left" Height="23" Margin="117,317,0,0" VerticalAlignment="Top" Width="47" Click="Button_Click"/>
-        <Label Content="ID:" HorizontalAlignment="Left" Height="25" Margin="130,84,0,0" VerticalAlignment="Top" Width="50"/>
-        <Label Content="Category:" HorizontalAlignment="Left" Height="30" Margin="130,130,0,0" VerticalAlignment="Top" Width="80"/>
+        <Label Content="ID:" HorizontalAlignment="Left" Height="25" Margin="135,84,0,0" VerticalAlignment="Top" Width="50"/>
+        <Label Content="Category:" HorizontalAlignment="Left" Height="30" Margin="135,130,0,0" VerticalAlignment="Top" Width="80"/>
         <Label Content="Name:" HorizontalAlignment="Left" Height="25" Margin="135,174,0,0" VerticalAlignment="Top" Width="70"/>
-        <Label Content="Price:" HorizontalAlignment="Left" Height="30" Margin="140,224,0,0" VerticalAlignment="Top" Width="70"/>
-        <Label Content="In Stock:" HorizontalAlignment="Left" Height="30" Margin="140,269,0,0" VerticalAlignment="Top" Width="70"/>
-        <TextBox x:Name="IDTextBox" HorizontalAlignment="Left" Height="25" Margin="274,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="113"/>
-        <TextBox x:Name="NameTextBox" HorizontalAlignment="Left" Height="31" Margin="274,174,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="113"/>
-        <TextBox x:Name="PriceTextBox" HorizontalAlignment="Left" Height="30" Margin="274,224,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="113"/>
-        <TextBox x:Name="InStockTextBox" HorizontalAlignment="Left" Height="30" Margin="274,269,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="113"/>
+        <Label Content="Price:" HorizontalAlignment="Left" Height="30" Margin="135,224,0,0" VerticalAlignment="Top" Width="70"/>
+        <Label Content="In Stock:" HorizontalAlignment="Left" Height="30" Margin="135,276,0,0" VerticalAlignment="Top" Width="70"/>
+        <TextBox x:Name="IDTextBox" HorizontalAlignment="Left" Height="25" Margin="274,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="113" TextChanged="IDTextBox_TextChanged"/>
+        <TextBox x:Name="NameTextBox" HorizontalAlignment="Left" Height="25" Margin="274,174,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="113" TextChanged="NameTextBox_TextChanged"/>
+        <TextBox x:Name="PriceTextBox" HorizontalAlignment="Left" Height="25" Margin="274,226,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="113" TextChanged="PriceTextBox_TextChanged"/>
+        <TextBox x:Name="InStockTextBox" HorizontalAlignment="Left" Height="25" Margin="274,278,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="113" TextChanged="InStockTextBox_TextChanged"/>
+        <Label x:Name="IDLebel" Content="" HorizontalAlignment="Left" Margin="274,109,0,0" VerticalAlignment="Top" Width="111" Height="25"/>
+        <Label x:Name="NameLebel" Content="" HorizontalAlignment="Left" Margin="274,199,0,0" VerticalAlignment="Top" Width="111" Height="25"/>
+        <Label x:Name="PriceLebel" Content="" HorizontalAlignment="Left" Margin="274,251,0,0" VerticalAlignment="Top" Width="111" Height="25"/>
+        <Label x:Name="InStockLebel" Content="" HorizontalAlignment="Left" Margin="274,303,0,0" VerticalAlignment="Top" Width="111" Height="25"/>
 
     </Grid>
 </Window>

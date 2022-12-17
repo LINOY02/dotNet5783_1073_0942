@@ -57,7 +57,7 @@ namespace BlImplementation
                     ShipDate = dOrder.ShipDate,
                     DeliveryDate = dOrder.DeliveryDate,
                     Status = CheckStatus(dOrder),
-                    Items = items,
+                    Items = items!,
                     TotalPrice = items.Sum(x => x.TotalPrice)
                 };
             }

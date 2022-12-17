@@ -14,7 +14,6 @@ using System.Windows.Shapes;
 using BlApi;
 using BO;
 
-
 namespace PL
 {
     /// <summary>
@@ -26,19 +25,10 @@ namespace PL
         {
             InitializeComponent();
             ProductListView.ItemsSource = bl.Product.GetListedProducts();
-            CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Category));
+            CategorySelector.ItemsSource = Enum.GetValues(typeof(Category));
         }
 
         private IBl bl = new Bl();
-        
-        private void CategorySelector_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
-        {
-           var choise = CategorySelector.SelectedItem;
-            if(CategorySelector.SelectedIndex == 5)
-                ProductListView.ItemsSource = bl.Product.GetListedProducts();
-            else
-                ProductListView.ItemsSource = bl.Product.GetListedProducts(p => p?.Category ==(BO.Category) choise);
-        }
 
         private void AddProduct_Click(object sender, RoutedEventArgs e)
         {
@@ -46,11 +36,21 @@ namespace PL
             ProductListView.ItemsSource = bl.Product.GetListedProducts().OrderBy(x => x.ID);
         }
 
+
         private void ProductListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             int productId = ((ProductForList)(ProductListView.SelectedItem)).ID;
             new ProductWindow(productId).ShowDialog();
-            ProductListView.ItemsSource = bl.Product.GetListedProducts().OrderBy(x=> x.ID);
+            ProductListView.ItemsSource = bl.Product.GetListedProducts().OrderBy(x => x.ID);
+        }
+
+        private void CategorySelector_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+            var choise = CategorySelector.SelectedItem;
+            if (CategorySelector.SelectedIndex == 5)
+                ProductListView.ItemsSource = bl.Product.GetListedProducts();
+            else
+                ProductListView.ItemsSource = bl.Product.GetListedProducts(p => p?.Category == (Category)choise);
         }
     }
 }
