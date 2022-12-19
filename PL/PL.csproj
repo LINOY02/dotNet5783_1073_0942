@@ -19,7 +19,6 @@
 
   <ItemGroup>
     <None Remove="logo.png" />
-    <None Remove="לוגו חנות.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -28,7 +27,6 @@
 
   <ItemGroup>
     <Resource Include="logo.png" />
-    <Resource Include="לוגו חנות.png" />
   </ItemGroup>
 
 </Project>

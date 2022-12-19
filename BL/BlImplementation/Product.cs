@@ -2,6 +2,7 @@
 using DAL;
 using DO;
 using System.Security.Cryptography.X509Certificates;
+using BO;
 
 namespace BlImplementation
 {
@@ -24,7 +25,7 @@ namespace BlImplementation
                 throw new BO.BlInvalidInputException("The price is invalid");
             if (bProduct.InStock < 0) //check that the amount is valid
                 throw new BO.BlInvalidInputException("The amount in stock is invalid");
-           if ((int)bProduct.Category! < 0 || (int)bProduct.Category > 5) //check that the Category is valid
+            if ((int)bProduct.Category! < 0 || (int)bProduct.Category > 5) //check that the Category is valid
                 throw new BO.BlInvalidInputException("The Category is invalid");
             try
             {   //add the product to the list in the DO
@@ -72,18 +73,18 @@ namespace BlImplementation
         /// for each bProduct: number, name, price and category
         /// </summary>
         /// <returns></List of ProductsForList>
-        public IEnumerable<BO.ProductForList> GetListedProducts(Func <BO.ProductForList?,bool>? filter)
+        public IEnumerable<BO.ProductForList?> GetListedProducts(Func<BO.ProductForList?, bool>? filter)
         {
-           var list = from DO.Product product1 in Dal.Product.GetAll()
-                      select new BO.ProductForList
-                      {
-                       ID = product1.ID,
-                       Name = product1.Name,
-                       Price = product1.Price,
-                       Category = (BO.Category)product1.Category!,
-                      };
+            var list = from DO.Product product1 in Dal.Product.GetAll()
+                       select new BO.ProductForList
+                       {
+                           ID = product1.ID,
+                           Name = product1.Name,
+                           Price = product1.Price,
+                           Category = (BO.Category)product1.Category!,
+                       };
 
-            return filter is null ? list : list.Where(filter); 
+            return filter is null ? list : list.Where(filter);
         }
 
         /// <summary>
@@ -97,7 +98,7 @@ namespace BlImplementation
         {
             DO.Product dProduct;
             if (id < 100000) //check that the ID is valid
-                throw new BO.BlInvalidInputException("The id is invalid");    
+                throw new BO.BlInvalidInputException("The id is invalid");
             try
             {
                 //get the product from the Dal
@@ -157,11 +158,11 @@ namespace BlImplementation
             };
         }
 
-        
+
         //A private function that checks if the product is in stock
         private bool checkInStock(DO.Product product1)
         {
-            if(product1.InStock == 0)
+            if (product1.InStock == 0)
                 return false;
             return true;
         }
@@ -200,6 +201,11 @@ namespace BlImplementation
             {
                 throw new BO.BlDoesNotExistException(ex.Message);
             }
-         }
+        }
+      
+        IEnumerable<ProductForList?> BlApi.IProduct.GetListedProductsByCategory(BO.Category category)
+        {
+            return GetListedProducts(p => p?.Category == category);
+        }
     }
 }

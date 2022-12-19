@@ -15,6 +15,13 @@ namespace BlApi
         IEnumerable<ProductForList?> GetListedProducts(Func<BO.ProductForList?, bool>? filter = null);
 
         /// <summary>
+        /// All products are shown according to the selected category
+        /// </summary>
+        /// <param name="category"></param>
+        /// <returns></returns>
+        IEnumerable<ProductForList?> GetListedProductsByCategory(BO.Category category);
+
+        /// <summary>
         /// The function receives a product ID number 
         /// and returns its details (for the manager)
         /// </summary>
@@ -41,6 +48,7 @@ namespace BlApi
         /// <param name="product"></param>
         void UpdateProduct(BO.Product product);
         #endregion
+
 
         #region METHODS FOR CUSTOMER
         
