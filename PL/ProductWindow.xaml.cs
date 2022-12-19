@@ -23,12 +23,19 @@ namespace PL
     /// </summary>
     public partial class ProductWindow : Window
     {
+        /// <summary>
+        /// constructor for the "add" option
+        /// </summary>
         public ProductWindow()
         {
             InitializeComponent();
             CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Category));
             Button.Content = "Add"; 
         }
+        /// <summary>
+        /// constructor for the "update" option
+        /// </summary>
+        /// <param name="ProductId"></param>
         public ProductWindow(int ProductId)
         {
             InitializeComponent();
@@ -43,52 +50,62 @@ namespace PL
             CategorySelector.Text = p.Category.ToString();
         }
         private IBl bl = new Bl();
+        /// <summary>
+        /// A function that checks the correctness of the input and adds or updates a product accordingly
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
             int id, amount;
             double p;
             bool flag = false;
-            if ((!int.TryParse(IDTextBox.Text, out id)) || id < 100000)
+            if ((!int.TryParse(IDTextBox.Text, out id)) || id < 100000) //Checking if there is an input and if the ID is right
             {
+                //Error message
                 IDTextBox.BorderBrush = Brushes.Red;
                 IDLabel.Content = "failed";
                 IDLabel.Visibility = Visibility.Visible;
                 flag = true;
             }
-            if (NameTextBox.Text == "")
+            if (NameTextBox.Text == "") //Checking if there is an input
             {
+                //Error message
                 NameTextBox.BorderBrush = Brushes.Red;
                 NameLabel.Content = "failed";
                 NameLabel.Visibility = Visibility.Visible;
                 flag = true;
             }
-            if (CategorySelector.Text == "")
+            if (CategorySelector.Text == "") //Checking if there is an input
             {
+                //Error message
                 CategorySelector.BorderBrush = Brushes.Red;
                 CategoryLabel.Content = "failed";
                 CategoryLabel.Visibility = Visibility.Visible;
                 flag = true;
             }
-            if ((!double.TryParse(PriceTextBox.Text, out p)) || p <= 0)
+            if ((!double.TryParse(PriceTextBox.Text, out p)) || p <= 0) //Checking if there is an input and if the price is right
             {
+                //Error message
                 PriceTextBox.BorderBrush = Brushes.Red;
                 PriceLabel.Content = "failed";
                 PriceLabel.Visibility = Visibility.Visible;
                 flag = true;
             }
-            if ((!int.TryParse(InStockTextBox.Text, out amount)) || amount < 0)
+            if ((!int.TryParse(InStockTextBox.Text, out amount)) || amount < 0) //Checking if there is an input and if the num of the amount is right
             {
+                //Error message
                 InStockTextBox.BorderBrush = Brushes.Red;
                 InStockLabel.Content = "failed";
                 InStockLabel.Visibility = Visibility.Visible;   
                 flag = true;
             }
-            if (flag)
+            if (flag) //As long as there is an error, do not continue
             {
                 return;
             }
-            if (Button.Content.Equals("Add"))
+            if (Button.Content.Equals("Add")) //when we choose to add a new product
             {
                 try
                 {
@@ -115,7 +132,7 @@ namespace PL
                     MessageBox.Show(ex.Message);
                 }
             }
-            else
+            else //when we chose to update a product
             {
                 try
                 {
@@ -140,34 +157,56 @@ namespace PL
             }
            
         }
+        /// <summary>
+        /// Hiding an error message after correcting the input
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void IDTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            IDLabel.Visibility = Visibility.Hidden;
+            IDTextBox.BorderBrush = Brushes.DimGray;
+        }
+        /// <summary>
+        /// Hiding an error message after correcting the input
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CategorySelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            CategoryLabel.Visibility = Visibility.Hidden;
+            CategorySelector.BorderBrush = Brushes.DimGray;
+        }
+        /// <summary>
+        /// Hiding an error message after correcting the input
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void NameTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            NameLabel.Visibility = Visibility.Hidden;
+            NameTextBox.BorderBrush = Brushes.DimGray;
+        }
+        /// <summary>
+        /// Hiding an error message after correcting the input
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void PriceTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             PriceLabel.Visibility = Visibility.Hidden;
             PriceTextBox.BorderBrush = Brushes.DimGray;
         }
-
+        /// <summary>
+        /// Hiding an error message after correcting the input
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void InStockTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             InStockLabel.Visibility = Visibility.Hidden;    
             InStockTextBox.BorderBrush = Brushes.DimGray;
         }
-
-        private void NameTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            NameLabel.Visibility= Visibility.Hidden;
-            NameTextBox.BorderBrush = Brushes.DimGray;
-        }
-
-        private void IDTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            IDLabel.Visibility=Visibility.Hidden;
-            IDTextBox.BorderBrush= Brushes.DimGray;
-        }
-
-        private void CategorySelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            CategoryLabel.Visibility =Visibility.Hidden;
-            CategorySelector.BorderBrush= Brushes.DimGray;
-        }
+     
     }
 }
