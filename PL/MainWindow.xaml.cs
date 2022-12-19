@@ -24,7 +24,11 @@ namespace PL
         {
             InitializeComponent();
         }
-
+        /// <summary>
+        /// show the list of the products
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Products_Click(object sender, RoutedEventArgs e)
         {
             new ProductListWindow().Show();
