@@ -77,7 +77,7 @@ namespace PL
                 NameLabel.Visibility = Visibility.Visible;
                 flag = true;
             }
-            if (CategorySelector.Text == "") //Checking if there is an input
+            if (CategorySelector.Text == "" || CategorySelector.Text == "NONE") //Checking if there is an input
             {
                 //Error message
                 CategorySelector.BorderBrush = Brushes.Red;

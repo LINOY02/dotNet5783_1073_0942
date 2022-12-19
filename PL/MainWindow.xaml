@@ -6,11 +6,11 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid Margin="-185,-60,-180,0">
+    <Grid Margin="-235,-60,-235,0">
         <Grid.Background>
             <ImageBrush ImageSource="/לוגו חנות.png"/>
         </Grid.Background>
-        <Button x:Name="Products" Content="Catalog" HorizontalAlignment="Center" Margin="0,419,0,0" VerticalAlignment="Top" Height="35" Width="166" Click="Products_Click" FontWeight="Bold" FontFamily="Arial Black" FontSize="20" Foreground="#FFB390F7" BorderBrush="Black" Background="#FFE1F4FA"/>
+        <Button x:Name="Products" Content="Catalog" HorizontalAlignment="Left" Margin="535,419,0,0" VerticalAlignment="Top" Height="35" Width="166" Click="Products_Click" FontWeight="Bold" FontFamily="Arial Black" FontSize="20" Foreground="#FFB390F7" BorderBrush="Black" Background="#FFE1F4FA"/>
 
     </Grid>
 </Window>
