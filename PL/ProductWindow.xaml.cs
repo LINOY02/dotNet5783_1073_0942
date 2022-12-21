@@ -49,7 +49,7 @@ namespace PL
             InStockTextBox.Text = p.InStock.ToString();
             CategorySelector.Text = p.Category.ToString();
         }
-        private IBl bl = new Bl();
+        private IBl? bl = BlApi.Factory.Get();
         /// <summary>
         /// A function that checks the correctness of the input and adds or updates a product accordingly
         /// </summary>

@@ -1,6 +1,6 @@
 ﻿
 using DO;
-namespace DAL;
+namespace Dal;
 
 internal static class DataSource
 { 

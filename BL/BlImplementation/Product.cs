@@ -1,5 +1,4 @@
 ﻿using DalApi;
-using DAL;
 using DO;
 using System.Security.Cryptography.X509Certificates;
 using BO;
@@ -8,7 +7,7 @@ namespace BlImplementation
 {
     internal class Product : BlApi.IProduct
     {
-        private IDal Dal = new DalList();
+        private static readonly IDal Dal = DalApi.Factory.Get();
         /// <summary>
         /// the function add a bProduct
         /// </summary>

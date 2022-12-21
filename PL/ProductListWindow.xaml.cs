@@ -30,7 +30,7 @@ namespace PL
             CategorySelector.ItemsSource = Enum.GetValues(typeof(Category));
         }
 
-        private IBl bl = new Bl();
+        private IBl? bl = BlApi.Factory.Get();
 
         /// <summary>
         /// Event to add a product

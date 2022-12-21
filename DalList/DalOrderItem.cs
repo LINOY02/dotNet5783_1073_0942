@@ -3,7 +3,7 @@ using DO;
 using DalApi;
 using System;
 
-namespace DAL;
+namespace Dal;
 
 internal class DalOrderItem : IOrderItem
 {

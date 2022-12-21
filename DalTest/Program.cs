@@ -1,4 +1,4 @@
-﻿using DAL;
+﻿
 using DO;
 using DalApi;
 
@@ -6,7 +6,7 @@ namespace DalTest
 {
     public class Program
     {
-        public IDal dalList = new DalList();
+        public IDal? dalList = DalApi.Factory.Get();
 
         static void Main(string[] args)
         {
@@ -92,32 +92,32 @@ enter 'e' for delete the product");
                 {
                     case "a":
                         createProduct(ref product1);
-                        Console.WriteLine(dalList.Product.Add(product1));
+                        Console.WriteLine(dalList?.Product.Add(product1));
                         break;
                     case "b":
                         Console.WriteLine("Enter the id of the product");
                         int id;
                         int.TryParse(Console.ReadLine(), out id);
-                        Console.WriteLine(dalList.Product.GetById(id));
+                        Console.WriteLine(dalList?.Product.GetById(id));
                         break;
                     case "c":
-                        foreach (var p in dalList.Product.GetAll())
+                        foreach (var p in dalList?.Product.GetAll())
                             Console.WriteLine(p);
                         break;
                     case "d":
                         Console.WriteLine("Enter the id of the product for updating");
                         int id2;
                         int.TryParse(Console.ReadLine(), out id2);
-                        Console.WriteLine(dalList.Product.GetById(id2));
+                        Console.WriteLine(dalList?.Product.GetById(id2));
                         createProduct(ref product1);
                         product1.ID = id2;
-                        dalList.Product.Update(product1);
+                        dalList?.Product.Update(product1);
                         break;
                     case "e":
                         Console.WriteLine("Enter the id of the product for delete");
                         int id1;
                         int.TryParse(Console.ReadLine(), out id1);
-                        dalList.Product.Delete(id1);
+                        dalList?.Product.Delete(id1);
                         break;
                     default:
                         return;
@@ -165,16 +165,16 @@ enter 'g' for show the list of order");
                 {
                     case "a":
                         createOrderItem(ref orderItem1);
-                        Console.WriteLine(dalList.OrderItem.Add(orderItem1));
+                        Console.WriteLine(dalList?.OrderItem.Add(orderItem1));
                         break;
                     case "b":
                         Console.WriteLine("Enter the id of the ordr item");
                         int id;
                         int.TryParse(Console.ReadLine(), out id);
-                        Console.WriteLine(dalList.OrderItem.GetById(id));
+                        Console.WriteLine(dalList?.OrderItem.GetById(id));
                         break;
                     case "c":
-                        foreach (var OIt in dalList.OrderItem.GetAll())
+                        foreach (var OIt in dalList?.OrderItem.GetAll())
                             Console.WriteLine(OIt);
                         break;
                     case "d":
@@ -183,13 +183,13 @@ enter 'g' for show the list of order");
                         int.TryParse(Console.ReadLine(), out id1);
                         createOrderItem(ref orderItem1);
                         orderItem1.ID = id1;
-                        dalList.OrderItem.Update(orderItem1);
+                        dalList?.OrderItem.Update(orderItem1);
                         break;
                     case "e":
                         Console.WriteLine("Enter the id of the order for delete");
                         int id2;
                         int.TryParse(Console.ReadLine(), out id2);
-                        dalList.OrderItem.Delete(id2);
+                        dalList?.OrderItem.Delete(id2);
                         break;
                     case "f":
                         Console.WriteLine("Enter the id of the order");
@@ -198,7 +198,7 @@ enter 'g' for show the list of order");
                         Console.WriteLine("Enter the id of the product");
                         int idProduct;
                         int.TryParse(Console.ReadLine(), out idProduct);
-                        Console.WriteLine(dalList.OrderItem.GetItem((OrderItem? x) => { return (x?.ProductID == idProduct && x?.OrderID == idOrder); }));
+                        Console.WriteLine(dalList?.OrderItem.GetItem((OrderItem? x) => { return (x?.ProductID == idProduct && x?.OrderID == idOrder); }));
                         break;
                     case "g":
                         Console.WriteLine("Enter the id of the order");
@@ -263,13 +263,13 @@ enter 'g' for show the list of order");
                 {
                     case "a":
                         createOrder(ref order1);
-                        Console.WriteLine(dalList.Order.Add(order1));
+                        Console.WriteLine(dalList?.Order.Add(order1));
                         break;
                     case "b":
                         Console.WriteLine("Enter the id of the order");
                         int id;
                         int.TryParse(Console.ReadLine(), out id);
-                        Console.WriteLine(dalList.Order.GetById(id));
+                        Console.WriteLine(dalList?.Order.GetById(id));
                         break;
                     case "c":
                         foreach (var o in dalList.Order.GetAll())
@@ -281,13 +281,13 @@ enter 'g' for show the list of order");
                         int.TryParse(Console.ReadLine(), out id1);
                         createOrder(ref order1);
                         order1.ID = id1;
-                        dalList.Order.Update(order1);
+                        dalList?.Order.Update(order1);
                         break;
                     case "e":
                         Console.WriteLine("Enter the id of the order for delete:");
                         int id2;
                         int.TryParse(Console.ReadLine(), out id2);
-                        dalList.Order.Delete(id2);
+                        dalList?.Order.Delete(id2);
                         break;
                     default:
                         return;

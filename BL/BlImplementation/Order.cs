@@ -1,11 +1,11 @@
-﻿using DAL;
+﻿
 using DalApi;
 
 namespace BlImplementation
 {
     internal class Order : BlApi.IOrder
     {
-        private IDal Dal = new DalList();
+       private static readonly IDal Dal = DalApi.Factory.Get();
         /// <summary>
         /// Presenting all invitations to the manager
         /// </summary>
@@ -81,7 +81,7 @@ namespace BlImplementation
                 DO.Order dOrder = Dal.Order.GetById(id);
                 if (dOrder.ShipDate == DateTime.MinValue)
                 {
-                    Dal.Order.Update(new DO.Order
+                    Dal?.Order.Update(new DO.Order
                     {
                         ID = id,
                         CustomerName = dOrder.CustomerName,
@@ -117,7 +117,7 @@ namespace BlImplementation
                 DO.Order dOrder = Dal.Order.GetById(id);
                 if (dOrder.ShipDate != DateTime.MinValue && dOrder.DeliveryDate == DateTime.MinValue)
                 {
-                    Dal.Order.Update(new DO.Order
+                    Dal?.Order.Update(new DO.Order
                     {
                         ID = id,
                         CustomerName = dOrder.CustomerName,

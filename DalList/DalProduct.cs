@@ -3,7 +3,7 @@ using System;
 using System.Reflection.Metadata.Ecma335;
 using DalApi;
 using DO;
-namespace DAL;
+namespace Dal;
 
 public class DalProduct : IProduct
 {

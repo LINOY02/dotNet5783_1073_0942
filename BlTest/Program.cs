@@ -5,14 +5,14 @@ namespace BlTest
 {
     public class Program
     {
-        private IBl Bl = new Bl();
+        private IBl? Bl = BlApi.Factory.Get();
         static BO.Cart cart = new BO.Cart()
         {
             CustomerAddress = "lustig",
             CustomerEmail = "shira@gmail.com", 
             CustomerName = "shira choen",
             TotalPrice = 0,
-            Items = new List<OrderItem>()
+            Items = new List<OrderItem?>()
         };
         static void Main(string[] args)
         {
@@ -96,39 +96,39 @@ enter 'e' for delete the product
 Actions for the customer:
 enter 'f' for show a product by ID") ;
                     BO.Product product1 = new BO.Product();
-                    string ch = Console.ReadLine();
+                    string? ch = Console.ReadLine();
                     switch (ch)
                     {
                         case "a":
                             createProduct(ref product1);
-                            Bl.Product.AddProduct(product1);
+                            Bl?.Product.AddProduct(product1);
                             break;
                         case "b":
                             Console.WriteLine("Enter the id of the product");
                             int id;
                             int.TryParse(Console.ReadLine(), out id);
-                            Console.WriteLine(Bl.Product.GetProduct(id));
+                            Console.WriteLine(Bl?.Product.GetProduct(id));
                             break;
                         case "c":
-                            foreach (var p in Bl.Product.GetListedProducts())
+                            foreach (var p in Bl?.Product.GetListedProducts())
                                 Console.WriteLine(p);
                             break;
                         case "d":
                             Console.WriteLine("Enter product for updating");
                             createProduct(ref product1);
-                            Bl.Product.UpdateProduct(product1);
+                            Bl?.Product.UpdateProduct(product1);
                             break;
                         case "e":
                             Console.WriteLine("Enter the id of the product for delete");
                             int id1;
                             int.TryParse(Console.ReadLine(), out id1);
-                            Bl.Product.DeleteProduct(id1);
+                            Bl?.Product.DeleteProduct(id1);
                             break;
                         case "f":
                             Console.WriteLine("Enter the id of the product");
                             int id2;
                             int.TryParse(Console.ReadLine(), out id2);
-                            Console.WriteLine(Bl.Product.GetDetailsItem(id2, cart));
+                            Console.WriteLine(Bl?.Product.GetDetailsItem(id2, cart));
                             break;
                      default:
                             return;
@@ -159,7 +159,7 @@ enter 'c' for order the cart");
                             Console.WriteLine("Enter the id of the added product");
                             int productID;
                             int.TryParse(Console.ReadLine(), out productID);
-                            Console.WriteLine(Bl.Cart.AddProductToCart(cart, productID));
+                            Console.WriteLine(Bl?.Cart.AddProductToCart(cart, productID));
                             break;
                         case "b":
                             Console.WriteLine("Enter the id of the updated product");
@@ -168,10 +168,10 @@ enter 'c' for order the cart");
                             Console.WriteLine("Enter the new amount");
                             int amount;
                             int.TryParse(Console.ReadLine(), out amount);
-                            Console.WriteLine(Bl.Cart.UpdateCart(cart, productID1, amount));
+                            Console.WriteLine(Bl?.Cart.UpdateCart(cart, productID1, amount));
                             break;
                         case "c":
-                            Bl.Cart.OrderCart(cart);
+                            Bl?.Cart.OrderCart(cart);
                             break;
                         default:
                             return;
@@ -196,36 +196,36 @@ enter 'c' for Order ship date update
 enter 'd' for Order tracking
 enter 'e' for Order delivery date update");
                     Order order1 = new Order();
-                    string ch = Console.ReadLine();
+                    string? ch = Console.ReadLine();
                     switch (ch)
                     {
                         case "a":
                             Console.WriteLine("Enter the id of the order");
                             int id;
                             int.TryParse(Console.ReadLine(), out id);
-                            Console.WriteLine(Bl.Order.GetOrder(id));
+                            Console.WriteLine(Bl?.Order.GetOrder(id));
                             break;
                         case "b":
-                            foreach (var o in Bl.Order.GetListedOrders())
+                            foreach (var o in Bl?.Order.GetListedOrders())
                                 Console.WriteLine(o);
                             break;
                         case "c":
                             Console.WriteLine("Enter the id of the order for updating the ship date");
                             int id1;
                             int.TryParse(Console.ReadLine(), out id1);
-                           Console.WriteLine(Bl.Order.ShipOrder(id1));
+                           Console.WriteLine(Bl?.Order.ShipOrder(id1));
                             break;
                         case "d":
                             Console.WriteLine("Enter the id of the order for trucking");
                             int id2;
                             int.TryParse(Console.ReadLine(), out id2);
-                            Console.WriteLine(Bl.Order.TruckingOrder(id2));
+                            Console.WriteLine(Bl?.Order.TruckingOrder(id2));
                             break;
                         case "e":
                             Console.WriteLine("Enter the id of the order for updating the delivery date");
                             int id3;
                             int.TryParse(Console.ReadLine(), out id3);
-                            Console.WriteLine(Bl.Order.DeliveredOrder(id3));
+                            Console.WriteLine(Bl?.Order.DeliveredOrder(id3));
                         break;
                      default:
                             return;

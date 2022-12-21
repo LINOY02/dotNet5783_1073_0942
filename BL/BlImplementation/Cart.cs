@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Security.Cryptography;
 using BlApi;
-using DAL;
 using DalApi;
 
 
@@ -9,7 +8,7 @@ namespace BlImplementation
 {
     internal class Cart : ICart
     {
-        private IDal Dal = new DalList();
+        private static readonly IDal Dal = DalApi.Factory.Get();
 
         /// <summary>
         /// Adding a product to the shopping cart by the customer
@@ -87,7 +86,7 @@ namespace BlImplementation
 
                 //Adding the products in the cart to the order item list
                 cart.Items?.ForEach(item =>
-                Dal.OrderItem.Add(new DO.OrderItem
+                Dal?.OrderItem.Add(new DO.OrderItem
                 {
                     OrderID = orderID,
                     ProductID = item.ProductID,
@@ -125,7 +124,7 @@ namespace BlImplementation
         {
             try
             {
-                DO.Product product = Dal.Product.GetById(productId);
+                DO.Product? product = Dal?.Product.GetById(productId);
                 // check if the product in the cart
                 var cartP = cart.Items?.FirstOrDefault(x => x?.ProductID == productId);
                 if (cartP == null)

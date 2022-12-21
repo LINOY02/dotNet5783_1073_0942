@@ -1,5 +1,5 @@
 ﻿using DO;
-namespace DAL;
+namespace Dal;
 using DalApi;
 
 internal class DalOrder : IOrder
