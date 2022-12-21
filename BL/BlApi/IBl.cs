@@ -3,7 +3,7 @@
 /// </summary>
 namespace BlApi
 {
-    public interface IBl
+    internal interface IBl
     {
         /// <summary>
         /// A variable to represent a product's interface
