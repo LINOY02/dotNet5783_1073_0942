@@ -5,7 +5,7 @@ namespace BlImplementation
 {
     internal class Order : BlApi.IOrder
     {
-       private static readonly IDal Dal = DalApi.Factory.Get();
+       private static readonly IDal Dal = DalApi.Factory.Get()!;
         /// <summary>
         /// Presenting all invitations to the manager
         /// </summary>

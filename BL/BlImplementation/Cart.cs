@@ -8,7 +8,7 @@ namespace BlImplementation
 {
     internal class Cart : ICart
     {
-        private static readonly IDal Dal = DalApi.Factory.Get();
+        private static readonly IDal Dal = DalApi.Factory.Get()!;
 
         /// <summary>
         /// Adding a product to the shopping cart by the customer

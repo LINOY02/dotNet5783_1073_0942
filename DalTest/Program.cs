@@ -6,7 +6,7 @@ namespace DalTest
 {
     public class Program
     {
-        public IDal? dalList = DalApi.Factory.Get();
+        public static readonly IDal dalList = DalApi.Factory.Get()!;
 
         static void Main(string[] args)
         {
@@ -37,7 +37,6 @@ namespace DalTest
                         break;
                     default:
                         return;
-                        break;
                 }
                 Console.WriteLine(@"
  enter a number between 0 to 3:
@@ -62,7 +61,7 @@ namespace DalTest
             Enum.TryParse(Console.ReadLine(), out Category);
             string name;
             Console.WriteLine("enter the name of the product");
-            name = Console.ReadLine();
+            name = Console.ReadLine()!;
             int price;
             Console.WriteLine("enter the price of the product");
             int.TryParse(Console.ReadLine(), out price);
@@ -87,7 +86,7 @@ enter 'c' for show the list
 enter 'd' for update the product
 enter 'e' for delete the product");
                 Product product1 = new Product();
-                string ch = Console.ReadLine();
+                string ch = Console.ReadLine()!;
                 switch (ch)
                 {
                     case "a":
@@ -101,7 +100,7 @@ enter 'e' for delete the product");
                         Console.WriteLine(dalList?.Product.GetById(id));
                         break;
                     case "c":
-                        foreach (var p in dalList?.Product.GetAll())
+                        foreach (var p in dalList.Product.GetAll())
                             Console.WriteLine(p);
                         break;
                     case "d":
@@ -160,7 +159,7 @@ enter 'e' for delete
 enter 'f' for show by order's & product's id
 enter 'g' for show the list of order");
                 OrderItem orderItem1 = new OrderItem();
-                string ch = Console.ReadLine();
+                string ch = Console.ReadLine()!;
                 switch (ch)
                 {
                     case "a":
@@ -174,7 +173,7 @@ enter 'g' for show the list of order");
                         Console.WriteLine(dalList?.OrderItem.GetById(id));
                         break;
                     case "c":
-                        foreach (var OIt in dalList?.OrderItem.GetAll())
+                        foreach (var OIt in dalList.OrderItem.GetAll())
                             Console.WriteLine(OIt);
                         break;
                     case "d":
@@ -224,13 +223,13 @@ enter 'g' for show the list of order");
         {
             string customerName;
             Console.WriteLine("enter your name");
-            customerName = Console.ReadLine();
+            customerName = Console.ReadLine()!;
             string customerEmail;
             Console.WriteLine("enter your Email");
-            customerEmail = Console.ReadLine();
+            customerEmail = Console.ReadLine()!;
             string customerAdress;
             Console.WriteLine("enter your adress");
-            customerAdress = Console.ReadLine();
+            customerAdress = Console.ReadLine()!;
             DateTime orderDate;
             Console.WriteLine("enter the date of the order");
             DateTime.TryParse(Console.ReadLine(), out orderDate);
@@ -258,7 +257,7 @@ enter 'g' for show the list of order");
  enter 'd' for update the order
  enter 'e' for delete order");
                 Order order1 = new Order();
-                string ch = Console.ReadLine();
+                string ch = Console.ReadLine()!;
                 switch (ch)
                 {
                     case "a":

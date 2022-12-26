@@ -7,7 +7,7 @@ namespace BlImplementation
 {
     internal class Product : BlApi.IProduct
     {
-        private static readonly IDal Dal = DalApi.Factory.Get();
+        private static readonly IDal Dal = DalApi.Factory.Get()!;
         /// <summary>
         /// the function add a bProduct
         /// </summary>
