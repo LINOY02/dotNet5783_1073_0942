@@ -28,6 +28,7 @@ namespace PL
             ProductListView.ItemsSource = bl.Product.GetListedProducts();
             //The options of the combobox are the categories of the product
             CategorySelector.ItemsSource = Enum.GetValues(typeof(Category));
+            CategorySelector.SelectedIndex = 5;
         }
 
         private IBl? bl = BlApi.Factory.Get();
@@ -82,6 +83,6 @@ namespace PL
                 ProductListView.ItemsSource = bl.Product.GetListedProducts();//Show the entire catalog
             else//If a category is selected
                 ProductListView.ItemsSource = bl.Product.GetListedProductsByCategory( (Category)choise);//Show all products of the selected category
-        }
+        } 
     }
 }
