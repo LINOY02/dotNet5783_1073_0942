@@ -2,6 +2,7 @@
 using DO;
 using System.Security.Cryptography.X509Certificates;
 using BO;
+using System.Linq;
 
 namespace BlImplementation
 {
@@ -205,6 +206,21 @@ namespace BlImplementation
         IEnumerable<ProductForList?> BlApi.IProduct.GetListedProductsByCategory(BO.Category category)
         {
             return GetListedProducts(p => p?.Category == category);
+        }
+
+        public IEnumerable<ProductItem?> GetProductItems(Func<ProductItem?, bool>? filter )
+        {
+            var list = from DO.Product product1 in Dal.Product.GetAll()
+                       select new BO.ProductItem
+                       {
+                           ID = product1.ID,
+                           Name = product1.Name,
+                           Price = product1.Price,
+                           Category = (BO.Category)product1.Category!,
+                           InStock = checkInStock(product1)
+                       };
+
+            return filter is null ? list : list.Where(filter);
         }
     }
 }

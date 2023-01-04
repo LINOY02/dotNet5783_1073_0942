@@ -61,6 +61,12 @@ namespace BlApi
         ProductItem GetDetailsItem(int id, BO.Cart cart);
         #endregion
 
+        /// <summary>
+        /// The function shows the customerr the list of products,
+        /// for each product: number, name, price and category
+        /// </summary>
+        /// <returns></List of ProductsForList>
+        IEnumerable<ProductItem?> GetProductItems(Func<BO.ProductItem?, bool>? filter = null);
 
     }
 }

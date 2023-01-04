@@ -39,17 +39,25 @@ namespace PL
         public ProductWindow(int ProductId)
         {
             InitializeComponent();
-            CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Category));
             Button.Content = "Update";
-            BO.Product p = bl.Product.GetProduct(ProductId);
-            IDTextBox.Text = p.ID.ToString();
-            IDTextBox.IsReadOnly = true;
-            NameTextBox.Text = p.Name;
-            PriceTextBox.Text = p.Price.ToString();
-            InStockTextBox.Text = p.InStock.ToString();
-            CategorySelector.Text = p.Category.ToString();
+            Product = bl.Product.GetProduct(ProductId);
+            CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Category));
         }
-        private IBl? bl = BlApi.Factory.Get();
+        private static readonly IBl bl = BlApi.Factory.Get();
+
+
+
+        public BO.Product Product
+        {
+            get { return (BO.Product)GetValue(ProductProperty); }
+            set { SetValue(ProductProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for Product.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ProductProperty =
+            DependencyProperty.Register("Product", typeof(BO.Product), typeof(Window), new PropertyMetadata(null));
+
+
         /// <summary>
         /// A function that checks the correctness of the input and adds or updates a product accordingly
         /// </summary>

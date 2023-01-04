@@ -31,7 +31,7 @@ namespace PL
             CategorySelector.SelectedIndex = 5;
         }
 
-        private IBl? bl = BlApi.Factory.Get();
+        private  static readonly IBl bl = BlApi.Factory.Get();
 
         /// <summary>
         /// Event to add a product
