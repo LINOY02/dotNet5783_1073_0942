@@ -52,6 +52,6 @@ internal class DalOrder : IOrder
 
     public Order GetItem(Func<Order?, bool>? filter)
     {
-        return DataSource._orders.Find(x => filter(x)) ?? throw new DalDoesNotExistException("order under this condition is not exist");
+        return DataSource._orders.Find(x => filter!(x)) ?? throw new DalDoesNotExistException("order under this condition is not exist");
     }
 }

@@ -21,11 +21,17 @@ namespace PL
     /// </summary>
     public partial class OrderWindow : Window
     {
-        public OrderWindow(int OrderId) 
+        public OrderWindow(int OrderId , bool isManager) 
         {
             InitializeComponent();
             Order = bl.Order.GetOrder(OrderId);
-           
+            if(!isManager)
+            {
+                ShipUpdBtn.Visibility = Visibility.Hidden;
+                DeliverUpdBtn.Visibility = Visibility.Hidden;
+                shipDateDatePicker.Visibility = Visibility.Hidden;
+                deliveryDateDatePicker.Visibility= Visibility.Hidden;
+            }
         }
 
         private static readonly IBl bl = BlApi.Factory.Get();
@@ -44,7 +50,28 @@ namespace PL
 
         private void ShipUpdBtn_Click(object sender, RoutedEventArgs e)
         {
-            bl.Order.ShipOrder(Order.ID);
+            try
+            {
+               bl.Order.ShipOrder(Order.ID);
+            }
+            catch(BO.BlStatusAlreadyUpdateException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            Close();
+        }
+
+        private void DeliverUpdBtn_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                bl.Order.DeliveredOrder(Order.ID);
+            }
+            catch (BO.BlStatusAlreadyUpdateException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            Close();
         }
     }
 }
