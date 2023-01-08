@@ -82,7 +82,9 @@ namespace BlImplementation
                            ID = product1.ID,
                            Name = product1.Name,
                            Price = product1.Price,
+                           pictures = product1.pictures ?? throw new BO.BlMissingInputException("the picture is missing"),
                            Category = (BO.Category)product1.Category!
+             
                        };
 
             return filter is null ? list : list.Where(filter);
@@ -157,7 +159,7 @@ namespace BlImplementation
                 Category = (BO.Category)product1.Category!,
                 Price = product1.Price,
                 InStock = checkInStock(product1),
-                
+                pictures = product1.pictures,
             };
         }
 
@@ -222,7 +224,7 @@ namespace BlImplementation
                            Price = product1.Price,
                            Category = (BO.Category)product1.Category!,
                            InStock = checkInStock(product1),
-                           
+                           pictures  = product1.pictures ?? throw new BO.BlMissingInputException("the picture is missing"),
                        };
 
             return filter is null ? list : list.Where(filter);

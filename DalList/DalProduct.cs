@@ -57,7 +57,7 @@ public class DalProduct : IProduct
         return DataSource._products.Where(x => func(x)).Select(x => x);
     }
 
-    public Product GetItem(Func<Product?, bool>? filter)
+    public Product GetItem(Func<Product?, bool> filter)
     {
         
         return DataSource._products.FirstOrDefault(x => filter(x)) ?? throw new DalDoesNotExistException("product under this condition is not exit"); 

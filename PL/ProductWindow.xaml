@@ -7,9 +7,9 @@
         DataContext="{Binding Product, RelativeSource={RelativeSource self}}"
         mc:Ignorable="d"
         Title="ProductWindow" Height="450" Width="800">
-    <Grid Margin="0,-20,0,20">
+    <Grid Margin="0,-20,457,20">
 
-        <Grid x:Name="grid1"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="105,104,0,0" Height="200" Width="280">
+        <Grid x:Name="grid1"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="53,104,0,0" Height="200" Width="280">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
@@ -39,9 +39,8 @@
             <TextBox x:Name="PriceTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="3" Text="{Binding Price, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
         </Grid>
 
-        <Button x:Name="Button" Content="" HorizontalAlignment="Center" Height="33" Margin="0,326,0,0" VerticalAlignment="Top" Width="72" Click="Button_Click" Background="#FFE1F4FA" Foreground="#FFB390F7" FontWeight="Bold"/>
-
-        <Image Margin="419,54,34,75" Source="/logo.png"/>
+        <Button x:Name="Button" Content="" HorizontalAlignment="Left" Height="33" Margin="235,357,0,0" VerticalAlignment="Top" Width="72" Click="Button_Click" FontWeight="Bold"/>
+        <Image HorizontalAlignment="Left" Height="100" Margin="53,309,0,0" VerticalAlignment="Top" Width="100"/>
 
     </Grid>
 

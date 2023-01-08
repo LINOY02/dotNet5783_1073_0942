@@ -20,6 +20,10 @@ namespace BO
         /// The Category of the product
         /// </summary>
         public Category? Category { get; set; }
+        /// <summary>
+        /// pics
+        /// </summary>
+        public string? pictures { get; set; }
         public override string ToString()
         {
             return this.ToStringProperty();

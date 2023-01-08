@@ -28,6 +28,10 @@ namespace BO
         /// If the product is in stock or not
         /// </summary>
         public bool InStock { get; set; }
+        /// <summary>
+        /// pictures
+        /// </summary>
+        public string? pictures { get; set; }    
         public override string ToString()
         {
             return this.ToStringProperty();
