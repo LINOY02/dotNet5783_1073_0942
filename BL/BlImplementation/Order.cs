@@ -79,7 +79,7 @@ namespace BlImplementation
             try
             {
                 DO.Order dOrder = Dal.Order.GetById(id);
-                if (dOrder.ShipDate == DateTime.MinValue)
+                if (dOrder.ShipDate == null)
                 {
                     Dal?.Order.Update(new DO.Order
                     {
@@ -115,7 +115,7 @@ namespace BlImplementation
             try
             {
                 DO.Order dOrder = Dal.Order.GetById(id);
-                if (dOrder.ShipDate != DateTime.MinValue && dOrder.DeliveryDate == DateTime.MinValue)
+                if (dOrder.ShipDate != null && dOrder.DeliveryDate == null)
                 {
                     Dal?.Order.Update(new DO.Order
                     {

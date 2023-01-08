@@ -34,7 +34,7 @@ namespace PL
             try
             {
                 //Opening a new window to update a order (constractor with an item ID parameter)
-               OrderWindow orderWindow = new OrderWindow(orderId?.ID ?? throw new NullReferenceException("Choose order to update"));
+               OrderWindow orderWindow = new OrderWindow(orderId?.ID ?? throw new NullReferenceException("Choose order to update"), true);
                 orderWindow.ShowDialog();
                 OrderListView.ItemsSource = bl.Order.GetListedOrders();//Reopening the catalog after updating the product
             }

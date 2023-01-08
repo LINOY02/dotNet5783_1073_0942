@@ -32,7 +32,7 @@
             <Label Grid.Column="0" Content="Customer Name:" HorizontalAlignment="Left" Margin="1" Grid.Row="1" VerticalAlignment="Center"/>
             <TextBlock x:Name="customerNameTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="1" Text="{Binding CustomerName}" VerticalAlignment="Center"/>
             <Label Grid.Column="0" Content="Delivery Date:" HorizontalAlignment="Left" Margin="3" Grid.Row="7" VerticalAlignment="Center"/>
-            <DatePicker x:Name="deliveryDateDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="7" Grid.Row="7" SelectedDate="{Binding DeliveryDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"/>
+            <DatePicker x:Name="deliveryDateDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="7" Grid.Row="7" SelectedDate="{Binding DeliveryDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" />
             <Label Grid.Column="0" Content="ID:" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
             <TextBlock x:Name="iDTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="0" Text="{Binding ID}" VerticalAlignment="Center"/>
             <Label Grid.Column="0" Content="Order Date:" HorizontalAlignment="Left" Margin="3" Grid.Row="5" VerticalAlignment="Center"/>
@@ -99,7 +99,8 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button x:Name="ShipUpdBtn" Content="Updae" HorizontalAlignment="Left" Height="20" Margin="290,259,0,0" VerticalAlignment="Top" Width="60" Click="ShipUpdBtn_Click"/>
+        <Button x:Name="ShipUpdBtn" Content="Updae" HorizontalAlignment="Left" Height="20" Margin="305,264,0,0" VerticalAlignment="Top" Width="60" Click="ShipUpdBtn_Click"/>
+        <Button x:Name="DeliverUpdBtn" Content="Update" HorizontalAlignment="Left" Margin="305,304,0,0" VerticalAlignment="Top" Width="60" Click="DeliverUpdBtn_Click"/>
     </Grid>
 
 </Window>

@@ -22,7 +22,7 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Label x:Name="CategoryLabel" Grid.Column="0" Content="Category:" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
-            <ComboBox x:Name="CategorySelector" Grid.Column="1" DisplayMemberPath="Category" HorizontalAlignment="Left" Height="NaN" ItemsSource="{Binding}" Margin="3" Grid.Row="2" VerticalAlignment="Center" Width="120">
+            <ComboBox x:Name="CategorySelector" Grid.Column="1" DisplayMemberPath="Category" HorizontalAlignment="Left" Height="NaN" ItemsSource="{Binding Category}" Margin="3" Grid.Row="2" VerticalAlignment="Center" Width="120">
                 <ComboBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel/>
