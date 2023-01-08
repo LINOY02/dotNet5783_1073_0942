@@ -40,7 +40,13 @@
             <Label Name ="BedLabel" Content="Beds" Grid.Column="4" HorizontalAlignment="Center"/>
         </Grid>
         <ScrollViewer Grid.Row ="1">
-            <ListView ItemsSource="{Binding}" ItemTemplate="{StaticResource CatalogDataTemplate}" HorizontalContentAlignment="Stretch"/>
+            <ListView x:Name="catalogListView"  ItemsSource="{Binding}" ItemTemplate="{StaticResource CatalogDataTemplate}" HorizontalContentAlignment="Stretch">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+                </ListView>
         </ScrollViewer>
 
     </Grid>

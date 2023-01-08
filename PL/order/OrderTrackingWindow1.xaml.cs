@@ -20,9 +20,10 @@ namespace PL
     /// </summary>
     public partial class OrderTrackingWindow1 : Window
     {
-        public OrderTrackingWindow1()
+        public OrderTrackingWindow1(int id)
         {
             InitializeComponent();
+            OrderT = bl.Order.TruckingOrder(id);
         }
 
         private static readonly IBl bl = BlApi.Factory.Get();
@@ -35,13 +36,12 @@ namespace PL
         public static readonly DependencyProperty OrderTrackingProperty =
             DependencyProperty.Register("OrderT", typeof(BO.OrderTracking), typeof(Window), new PropertyMetadata(null));
 
-        public OrderTrackingWindow1(int id)
-        {
-            InitializeComponent();
-            OrderT = bl.Order.TruckingOrder(id);
-            IdTextBox.Text = id.ToString();
-            StatusTextBox.Text = OrderT.status.ToString();
+       
 
+        private void showOrderBtn_Click(object sender, RoutedEventArgs e)
+        {
+            int id = OrderT.ID;
+            new OrderWindow(id, false).ShowDialog();
         }
     }
 }

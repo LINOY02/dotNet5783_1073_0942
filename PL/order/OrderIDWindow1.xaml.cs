@@ -24,6 +24,7 @@ namespace PL
     public partial class OrderIDWindow1 : Window
     {
         public OrderIDWindow1()
+
         {
             InitializeComponent();
         }

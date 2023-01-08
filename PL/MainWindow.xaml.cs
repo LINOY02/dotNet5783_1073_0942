@@ -39,7 +39,17 @@ namespace PL
             new OrderIDWindow1().ShowDialog();
         }
 
-        BO.Cart cart;
+        List<BO.OrderItem?> items = new List<BO.OrderItem?>();
+
+        BO.Cart cart = new BO.Cart
+        {
+            TotalPrice = 0,
+            CustomerAddress = null, 
+            CustomerEmail = null,
+            CustomerName = null,
+            Items = null,
+        };
+
         private void catalogBtn_Click(object sender, RoutedEventArgs e)
         {
             new CatalogWindow(cart).ShowDialog();

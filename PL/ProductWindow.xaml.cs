@@ -30,18 +30,20 @@ namespace PL
         {
             InitializeComponent();
             CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Category));
+            CategorySelector.SelectedIndex = 5;
             Button.Content = "Add"; 
         }
         /// <summary>
         /// constructor for the "update" option
         /// </summary>
         /// <param name="ProductId"></param>
-        public ProductWindow(int ProductId)
+        public ProductWindow(int ProductId )
         {
             InitializeComponent();
             Button.Content = "Update";
             Product = bl.Product.GetProduct(ProductId);
             CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Category));
+            CategorySelector.SelectedIndex = 5;
         }
         private static readonly IBl bl = BlApi.Factory.Get();
 
@@ -66,14 +68,13 @@ namespace PL
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
-            int id, amount;
+            int id , inStock ;
             double p;
             bool flag = false;
             if ((!int.TryParse(IDTextBox.Text, out id)) || id < 100000) //Checking if there is an input and if the ID is right
             {
                 //Error message
                 IDTextBox.BorderBrush = Brushes.Red;
-                IDLabel.Content = "failed";
                 IDLabel.Visibility = Visibility.Visible;
                 flag = true;
             }
@@ -81,32 +82,28 @@ namespace PL
             {
                 //Error message
                 NameTextBox.BorderBrush = Brushes.Red;
-                NameLabel.Content = "failed";
                 NameLabel.Visibility = Visibility.Visible;
                 flag = true;
             }
-            if (CategorySelector.Text == "" || CategorySelector.Text == "NONE") //Checking if there is an input
+            if (CategorySelector.SelectedIndex == 5) //Checking if there is an input
             {
                 //Error message
-                CategorySelector.BorderBrush = Brushes.Red;
-                CategoryLabel.Content = "failed";
+                CategorySelector.BorderBrush = new SolidColorBrush(Colors.Red);
                 CategoryLabel.Visibility = Visibility.Visible;
                 flag = true;
             }
-            if ((!double.TryParse(PriceTextBox.Text, out p)) || p <= 0) //Checking if there is an input and if the price is right
+            if ((!double.TryParse(PriceTextBox.Text, out p))) //Checking if there is an input and if the price is right
             {
                 //Error message
                 PriceTextBox.BorderBrush = Brushes.Red;
-                PriceLabel.Content = "failed";
                 PriceLabel.Visibility = Visibility.Visible;
                 flag = true;
             }
-            if ((!int.TryParse(InStockTextBox.Text, out amount)) || amount < 0) //Checking if there is an input and if the num of the amount is right
+            if ((!int.TryParse(InStockTextBox.Text, out inStock))) //Checking if there is an input and if the num of the amount is right
             {
                 //Error message
                 InStockTextBox.BorderBrush = Brushes.Red;
-                InStockLabel.Content = "failed";
-                InStockLabel.Visibility = Visibility.Visible;   
+                InStockLabel.Visibility = Visibility.Visible;
                 flag = true;
             }
             if (flag) //As long as there is an error, do not continue
@@ -117,13 +114,15 @@ namespace PL
             {
                 try
                 {
+                    if(CategorySelector.SelectedIndex == 5)
+
                     bl.Product.AddProduct(new Product
                     {
                         ID = id,
                         Name = NameTextBox.Text,
                         Category = (Category)CategorySelector.SelectedItem,
                         Price = p,
-                        InStock = amount
+                        InStock = inStock,
                     });
                     Close();
                 }
@@ -144,14 +143,7 @@ namespace PL
             {
                 try
                 {
-                    bl.Product.UpdateProduct(new Product
-                    {
-                        ID = int.Parse(IDTextBox.Text),
-                        Name = NameTextBox.Text,
-                        Category = (Category)CategorySelector.SelectedItem,
-                        Price = Double.Parse(PriceTextBox.Text),
-                        InStock = int.Parse(InStockTextBox.Text),
-                    });
+                    bl.Product.UpdateProduct(Product);
                     Close();
                 }
                 catch (BlInvalidInputException ex)
@@ -164,6 +156,98 @@ namespace PL
                 }
             }
            
+        }
+
+        private void IDTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            TextBox text = sender as TextBox;
+
+            if (text == null) return;
+
+            if (e == null) return;
+
+            char c = (char)KeyInterop.VirtualKeyFromKey(e.Key);
+
+
+
+            if (Char.IsControl(c)) return;
+
+
+
+            if (Char.IsDigit(c))
+
+                if (!(Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightAlt)))
+
+                    return;
+
+            e.Handled = true;
+
+
+
+            return;
+
+        }
+
+        private void InStockTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            TextBox text = sender as TextBox;
+
+            if (text == null) return;
+
+            if (e == null) return;
+
+            char c = (char)KeyInterop.VirtualKeyFromKey(e.Key);
+
+
+
+            if (Char.IsControl(c)) return;
+
+
+
+            if (Char.IsDigit(c))
+
+                if (!(Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightAlt)))
+
+                    return;
+
+            e.Handled = true;
+
+
+
+            return;
+
+        }
+
+        
+
+        private void PriceTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            TextBox text = sender as TextBox;
+
+            if (text == null) return;
+
+            if (e == null) return;
+
+            char c = (char)KeyInterop.VirtualKeyFromKey(e.Key);
+
+
+
+            if (Char.IsControl(c)) return;
+
+
+
+            if (Char.IsDigit(c))
+
+                if (!(Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightAlt)))
+
+                    return;
+
+            e.Handled = true;
+
+
+
+            return;
+
         }
         /// <summary>
         /// Hiding an error message after correcting the input
@@ -212,9 +296,9 @@ namespace PL
         /// <param name="e"></param>
         private void InStockTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            InStockLabel.Visibility = Visibility.Hidden;    
+            InStockLabel.Visibility = Visibility.Hidden;
             InStockTextBox.BorderBrush = Brushes.DimGray;
         }
-     
+
     }
 }

@@ -36,7 +36,7 @@ namespace BlImplementation
                     Price = bProduct?.Price ?? throw new BO.BlMissingInputException("The price is missing"),
                     InStock = bProduct?.InStock ?? throw new BO.BlMissingInputException("The amount is missing"),
                     Category = (DO.Category)bProduct.Category,
-                    pictures = bProduct.pictures ?? throw new BO.BlMissingInputException("the picture is missing"),
+                    picture = bProduct.picture ?? throw new BO.BlMissingInputException("the picture is missing"),
                 });
             }
             catch (DO.DalAlreadyExistException ex)
@@ -82,7 +82,7 @@ namespace BlImplementation
                            ID = product1.ID,
                            Name = product1.Name,
                            Price = product1.Price,
-                           pictures = product1.pictures ?? throw new BO.BlMissingInputException("the picture is missing"),
+                           picture = product1.picture ?? throw new BO.BlMissingInputException("the picture is missing"),
                            Category = (BO.Category)product1.Category!
              
                        };
@@ -118,7 +118,7 @@ namespace BlImplementation
                 Price = dProduct.Price,
                 Category = (BO.Category)dProduct.Category!,
                 InStock = dProduct.InStock,
-                pictures = dProduct.pictures,
+                picture = dProduct.picture,
             };
         }
 
@@ -159,7 +159,7 @@ namespace BlImplementation
                 Category = (BO.Category)product1.Category!,
                 Price = product1.Price,
                 InStock = checkInStock(product1),
-                pictures = product1.pictures,
+                picture = product1.picture,
             };
         }
 
@@ -200,7 +200,7 @@ namespace BlImplementation
                     Price = bProduct?.Price ?? throw new BO.BlMissingInputException("The price is missing"),
                     InStock = bProduct?.InStock ?? throw new BO.BlMissingInputException("The amount is missing"),
                     Category = (DO.Category)bProduct.Category,
-                    pictures = bProduct?.pictures ?? throw new BO.BlMissingInputException("the picture is missing"),
+                    picture = bProduct?.picture ?? throw new BO.BlMissingInputException("the picture is missing"),
                 });
             }
             catch (DO.DalDoesNotExistException ex)
@@ -225,16 +225,13 @@ namespace BlImplementation
                            Price = product1.Price,
                            Category = (BO.Category)product1.Category!,
                            InStock = checkInStock(product1),
-                           pictures  = product1.pictures ?? throw new BO.BlMissingInputException("the picture is missing"),
+                           picture  = product1.picture ?? throw new BO.BlMissingInputException("the picture is missing"),
                            Amount = productItem.Amount,
                        };
 
             return filter is null ? list : list.Where(filter);
         }
 
-        public IEnumerable<ProductItem?> GetProductItems(Func<ProductItem?, bool>? filter = null)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }

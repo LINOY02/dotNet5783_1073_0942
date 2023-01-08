@@ -72,84 +72,85 @@ internal static class DataSource
         for (int i = 0; i < 5; i++)
         {
             int id = 100000 + i;
-            Produc.Add(new Product()
+            Product newProduct =(new Product()
             {
                 ID = id,
                 Name = table[i],
                 Category = Category.TABLE,
                 InStock = s_rand.Next(1, 30),
-                Price = s_rand.Next(priceFrom[3000], priceTo[12000]),
-                pictures = @"IMG" + id + ".jpg"
+                Price = s_rand.Next(priceFrom[0], priceTo[0]),
+                picture = @"IMG" + id + ".jpg"
             });
+            if (i == 4)
+                newProduct.InStock = 0;
+            _products.Add(newProduct);  
         }
         for (int i = 0; i < 5; i++)
         {
             int id = 100005 + i;
-            Produc.Add(new Product()
+            Product newProduct =(new Product()
             {
                 ID = id,
                 Name = chair[i],
                 Category = Category.CHAIR,
                 InStock = s_rand.Next(1, 200),
-                Price = s_rand.Next(priceFrom[300], priceTo[2000]),
-                pictures = @"IMG" + id + ".jpeg"
+                Price = s_rand.Next(priceFrom[1], priceTo[1]),
+                picture = @"IMG" + id + ".jpeg"
             });
+            if (i == 4)
+                newProduct.InStock = 0;
+            _products.Add(newProduct);
         }
         for (int i = 0; i < 5; i++)
         {
             int id = 100010 + i;
-            Produc.Add(new Product()
+            Product newProduct =(new Product()
             {
                 ID = id,
                 Name = closet[i],
                 Category = Category.CLOSET,
                 InStock = s_rand.Next(1, 60),
-                Price = s_rand.Next(priceFrom[2000], priceTo[9000]),
-                pictures = @"IMG" + id + ".jpeg"
+                Price = s_rand.Next(priceFrom[2], priceTo[2]),
+                picture = @"IMG" + id + ".jpeg"
             });
+            if (i == 4)
+                newProduct.InStock = 0;
+            _products.Add(newProduct);
         }
         for (int i = 0; i < 5; i++)
         {
             int id = 100015 + i;
-            Produc.Add(new Product()
+            Product newProduct =(new Product()
             {
                 ID = id,
                 Name = sofa[i],
                 Category = Category.SOFA,
                 InStock = s_rand.Next(1, 40),
-                Price = s_rand.Next(priceFrom[4500], priceTo[20000]),
-                pictures = @"IMG" + id + ".jpg"
+                Price = s_rand.Next(priceFrom[3], priceTo[3]),
+                picture = @"IMG" + id + ".jpg"
             });
+            if (i == 4)
+                newProduct.InStock = 0;
+            _products.Add(newProduct);
         }
         for (int i = 0; i < 5; i++)
         {
             int id = 100020 + i;
-            Produc.Add(new Product()
+            Product newProduct =(new Product()
             {
                 ID = id,
                 Name = bed[i],
                 Category = Category.BED,
                 InStock = s_rand.Next(1, 70),
-                Price = s_rand.Next(priceFrom[4000], priceTo[18000]),
-                pictures = @"IMG" + id + ".jpg"
+                Price = s_rand.Next(priceFrom[4], priceTo[4]),
+                picture = @"IMG" + id + ".jpg"
             });
+            if (i == 4)
+                newProduct.InStock = 0;
+            _products.Add(newProduct);
         }
-        //for (int i = 0; i < 10; i++)
-        //{
-        //    int category = s_rand.Next(4);//Category selection by drawingy
-        //    int name = s_rand.Next(4);//Choosing a product name by drawing
-        //    Product newProdect = new Product
-        //    {
-        //        ID = i + 100000,
-        //        Name = table[category,name],//Choosing the name from the matrix according to the numbers drawn
-        //        Price = s_rand.Next(priceFrom[category], priceTo[category]),//Random price selection from the range of the category
-        //        Category = (Category)category,
-        //        InStock = s_rand.Next(1, inStock[category])//Selecting a quantity in stock randomly from the range of the category
-        //    };
-        //    if (i < 0.05 * 10)
-        //        newProdect.InStock = 0;
-        //    _products.Add(newProdect);
-        //}
+        
+    
     }
     #endregion
 
@@ -217,7 +218,7 @@ internal static class DataSource
             for (int j = 0; j < numOfProducts; j++)
             {
                 //Selecting an item randomly from the array of products
-                int x = s_rand.Next(9);
+                int x = s_rand.Next(25);
                 Product? p = _products[x];
                 while (p?.InStock == 0)//Lottery product that is in stock
                 {

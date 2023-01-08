@@ -28,7 +28,7 @@ namespace PL
         public CatalogWindow(BO.Cart cart)
         {
             InitializeComponent();
-            catalog.ItemsSource = bl.Product.GetProductItems(cart);
+            catalogListView.ItemsSource = bl.Product.GetProductItems(cart);
         }
            
       

@@ -26,7 +26,7 @@ public struct Product
     /// <summary>
     /// pictures according to the products
     /// </summary>
-    public string pictures { get; set; }
+    public string picture { get; set; }
 
     public override string ToString() => this.ToStringProperty();
 
