@@ -16,6 +16,6 @@
         <Button x:Name="OrderTraking" Content="Order Traking" HorizontalAlignment="Left" Margin="760,176,0,0" VerticalAlignment="Top" Click="OrderTraking_Click"/>
         <Image HorizontalAlignment="Center" Height="324" Margin="0,249,0,0" VerticalAlignment="Top" Width="798" Source="/תמונה1.png"/>
         <Button Content="log in" HorizontalAlignment="Left" Margin="236,72,0,0" VerticalAlignment="Top" Width="66" BorderBrush="White"/>
-
+        <Button x:Name="catalogBtn" Content="catalog" Margin="315,159,789,300" Click="catalogBtn_Click"></Button>
     </Grid>
 </Window>

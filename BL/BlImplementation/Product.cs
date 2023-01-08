@@ -212,9 +212,10 @@ namespace BlImplementation
             return GetListedProducts(p => p?.Category == category);
         }
 
-        public IEnumerable<ProductItem?> GetProductItems(Func<ProductItem?, bool>? filter )
+        public IEnumerable<ProductItem?> GetProductItems( BO.Cart cart, Func<ProductItem?, bool>? filter )
         {
             var list = from DO.Product product1 in Dal.Product.GetAll()
+                       let productItem = GetDetailsItem(product1.ID, cart)
                        select new BO.ProductItem
                        {
                            ID = product1.ID,
@@ -222,7 +223,7 @@ namespace BlImplementation
                            Price = product1.Price,
                            Category = (BO.Category)product1.Category!,
                            InStock = checkInStock(product1),
-                           
+                           Amount = productItem.Amount,
                        };
 
             return filter is null ? list : list.Where(filter);

@@ -38,5 +38,10 @@ namespace PL
         {
             new OrderIDWindow1().ShowDialog();
         }
+
+        private void catalogBtn_Click(object sender, RoutedEventArgs e)
+        {
+            new CatalogWindow().ShowDialog();
+        }
     }
 }

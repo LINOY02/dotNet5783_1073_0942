@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BlApi;
 using BO;
 
 namespace PL
@@ -21,11 +22,13 @@ namespace PL
     /// </summary>
     public partial class CatalogWindow : Window
     {
-         ObservableCollection<ProductItem> catalog = new ObservableCollection<ProductItem>();
-        public CatalogWindow()
+        private static readonly IBl bl = BlApi.Factory.Get();
+       
+
+        public CatalogWindow()//./..
         {
             InitializeComponent();
-            DataContext = catalog;
+            catalog.ItemsSource = bl.Product.GetProductItems(cart);
         }
            
       

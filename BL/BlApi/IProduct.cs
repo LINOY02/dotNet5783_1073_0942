@@ -66,7 +66,7 @@ namespace BlApi
         /// for each product: number, name, price and category
         /// </summary>
         /// <returns></List of ProductsForList>
-        IEnumerable<ProductItem?> GetProductItems(Func<BO.ProductItem?, bool>? filter = null);
+        IEnumerable<ProductItem?> GetProductItems(BO.Cart cart ,Func<BO.ProductItem?, bool>? filter = null);
 
     }
 }

@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
+        DataContext="{Binding }"
         mc:Ignorable="d"
         Title="CatalogWindow" Height="450" Width="800">
     <Window.Resources>
@@ -40,7 +41,13 @@
             <Label Name ="BedLabel" Content="Beds" Grid.Column="4" HorizontalAlignment="Center"/>
         </Grid>
         <ScrollViewer Grid.Row ="1">
-            <ListView ItemsSource="{Binding}" ItemTemplate="{StaticResource CatalogDataTemplate}" HorizontalContentAlignment="Stretch"/>
+            <ListView x:Name="catalog" ItemsSource="{Binding}" ItemTemplate="{StaticResource CatalogDataTemplate}" HorizontalContentAlignment="Stretch">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ListView>
         </ScrollViewer>
 
     </Grid>
