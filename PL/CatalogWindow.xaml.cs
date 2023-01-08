@@ -25,7 +25,7 @@ namespace PL
         private static readonly IBl bl = BlApi.Factory.Get();
        
 
-        public CatalogWindow()//./..
+        public CatalogWindow(BO.Cart cart)
         {
             InitializeComponent();
             catalog.ItemsSource = bl.Product.GetProductItems(cart);

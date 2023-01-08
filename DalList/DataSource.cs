@@ -51,7 +51,7 @@ internal static class DataSource
         createAndInitOrderItems();// fill the list with orderItems
     }
 
-    internal static List<Product> Produc { get; }  = new List<Product> { new Product() };
+    
     #region FILL PRODUCTS
     //An array for the names of products in the store by categories
     private static string[] table = new string[5] /*Tables*/ { "Rimani Table", "Mai Table", "Jambo Table", "Troian Table", "Tai Table" };
@@ -68,93 +68,92 @@ internal static class DataSource
     //A function that fills in the first 10 items in products array
     private static void createAndInitProducts()
     {
-        
+
         for (int i = 0; i < 5; i++)
         {
             int id = 100000 + i;
-            Produc.Add(new Product()
+            Product newProduct = (new Product
             {
                 ID = id,
                 Name = table[i],
                 Category = Category.TABLE,
                 InStock = s_rand.Next(1, 30),
-                Price = s_rand.Next(priceFrom[3000], priceTo[12000]),
+                Price = s_rand.Next(priceFrom[0], priceTo[0]),
                 pictures = @"IMG" + id + ".jpg"
             });
+            if (i == 4)
+                newProduct.InStock = 0;
+            _products.Add(newProduct);
         }
         for (int i = 0; i < 5; i++)
         {
             int id = 100005 + i;
-            Produc.Add(new Product()
+            Product newProduct = (new Product()
             {
                 ID = id,
                 Name = chair[i],
                 Category = Category.CHAIR,
                 InStock = s_rand.Next(1, 200),
-                Price = s_rand.Next(priceFrom[300], priceTo[2000]),
+                Price = s_rand.Next(priceFrom[1], priceTo[1]),
                 pictures = @"IMG" + id + ".jpeg"
             });
+            if (i == 4)
+                newProduct.InStock = 0;
+            _products.Add(newProduct);
         }
         for (int i = 0; i < 5; i++)
         {
             int id = 100010 + i;
-            Produc.Add(new Product()
+            Product newProduct = (new Product
             {
                 ID = id,
                 Name = closet[i],
                 Category = Category.CLOSET,
                 InStock = s_rand.Next(1, 60),
-                Price = s_rand.Next(priceFrom[2000], priceTo[9000]),
+                Price = s_rand.Next(priceFrom[2], priceTo[2]),
                 pictures = @"IMG" + id + ".jpeg"
             });
+            if (i == 4)
+                newProduct.InStock = 0;
+            _products.Add(newProduct);
         }
         for (int i = 0; i < 5; i++)
         {
             int id = 100015 + i;
-            Produc.Add(new Product()
+            Product newProduct = (new Product()
             {
                 ID = id,
                 Name = sofa[i],
                 Category = Category.SOFA,
                 InStock = s_rand.Next(1, 40),
-                Price = s_rand.Next(priceFrom[4500], priceTo[20000]),
+                Price = s_rand.Next(priceFrom[3], priceTo[3]),
                 pictures = @"IMG" + id + ".jpg"
             });
+            if (i == 4)
+                newProduct.InStock = 0;
+            _products.Add(newProduct);
         }
         for (int i = 0; i < 5; i++)
         {
             int id = 100020 + i;
-            Produc.Add(new Product()
+            Product newProduct = (new Product()
             {
                 ID = id,
                 Name = bed[i],
                 Category = Category.BED,
                 InStock = s_rand.Next(1, 70),
-                Price = s_rand.Next(priceFrom[4000], priceTo[18000]),
+                Price = s_rand.Next(priceFrom[4], priceTo[4]),
                 pictures = @"IMG" + id + ".jpg"
             });
+            if (i == 4)
+                newProduct.InStock = 0;
+            _products.Add(newProduct);
         }
-        //for (int i = 0; i < 10; i++)
-        //{
-        //    int category = s_rand.Next(4);//Category selection by drawingy
-        //    int name = s_rand.Next(4);//Choosing a product name by drawing
-        //    Product newProdect = new Product
-        //    {
-        //        ID = i + 100000,
-        //        Name = table[category,name],//Choosing the name from the matrix according to the numbers drawn
-        //        Price = s_rand.Next(priceFrom[category], priceTo[category]),//Random price selection from the range of the category
-        //        Category = (Category)category,
-        //        InStock = s_rand.Next(1, inStock[category])//Selecting a quantity in stock randomly from the range of the category
-        //    };
-        //    if (i < 0.05 * 10)
-        //        newProdect.InStock = 0;
-        //    _products.Add(newProdect);
-        //}
     }
     #endregion
 
-   #region FILL ORDERS
-    //Arrays of first name and last name
+        #region FILL ORDERS
+        //Arrays of first name and last name
     private static string [] firstNames = new string[8] {"Tamar","Linoy","Shira","Avi","Hadar","Rachel" ,"Moshe","Meni"};
     private static string [] lastNames = new string[8] {"Gefner","Yaday","Choen","Levi","Israeli","Revach","Biton", "Fridman"};
     //Arrays of addresses

@@ -60,6 +60,6 @@ public class DalProduct : IProduct
     public Product GetItem(Func<Product?, bool>? filter)
     {
         
-        return DataSource._products.FirstOrDefault(x => filter(x)) ?? throw new DalDoesNotExistException("product under this condition is not exit"); 
+        return DataSource._products.FirstOrDefault(x => filter!(x)) ?? throw new DalDoesNotExistException("product under this condition is not exit"); 
     }
 }

@@ -39,9 +39,10 @@ namespace PL
             new OrderIDWindow1().ShowDialog();
         }
 
+        BO.Cart cart;
         private void catalogBtn_Click(object sender, RoutedEventArgs e)
         {
-            new CatalogWindow().ShowDialog();
+            new CatalogWindow(cart).ShowDialog();
         }
     }
 }
