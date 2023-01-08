@@ -36,6 +36,7 @@ namespace BlImplementation
                     Price = bProduct?.Price ?? throw new BO.BlMissingInputException("The price is missing"),
                     InStock = bProduct?.InStock ?? throw new BO.BlMissingInputException("The amount is missing"),
                     Category = (DO.Category)bProduct.Category,
+                    pictures = bProduct.pictures ?? throw new BO.BlMissingInputException("the picture is missing"),
                 });
             }
             catch (DO.DalAlreadyExistException ex)
@@ -81,7 +82,7 @@ namespace BlImplementation
                            ID = product1.ID,
                            Name = product1.Name,
                            Price = product1.Price,
-                           Category = (BO.Category)product1.Category!,
+                           Category = (BO.Category)product1.Category!
                        };
 
             return filter is null ? list : list.Where(filter);
@@ -115,6 +116,7 @@ namespace BlImplementation
                 Price = dProduct.Price,
                 Category = (BO.Category)dProduct.Category!,
                 InStock = dProduct.InStock,
+                pictures = dProduct.pictures,
             };
         }
 
@@ -154,7 +156,8 @@ namespace BlImplementation
                 Amount = OrderItem.Amount,
                 Category = (BO.Category)product1.Category!,
                 Price = product1.Price,
-                InStock = checkInStock(product1)
+                InStock = checkInStock(product1),
+                
             };
         }
 
@@ -195,6 +198,7 @@ namespace BlImplementation
                     Price = bProduct?.Price ?? throw new BO.BlMissingInputException("The price is missing"),
                     InStock = bProduct?.InStock ?? throw new BO.BlMissingInputException("The amount is missing"),
                     Category = (DO.Category)bProduct.Category,
+                    pictures = bProduct?.pictures ?? throw new BO.BlMissingInputException("the picture is missing"),
                 });
             }
             catch (DO.DalDoesNotExistException ex)
@@ -217,7 +221,8 @@ namespace BlImplementation
                            Name = product1.Name,
                            Price = product1.Price,
                            Category = (BO.Category)product1.Category!,
-                           InStock = checkInStock(product1)
+                           InStock = checkInStock(product1),
+                           
                        };
 
             return filter is null ? list : list.Where(filter);

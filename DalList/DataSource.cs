@@ -51,14 +51,14 @@ internal static class DataSource
         createAndInitOrderItems();// fill the list with orderItems
     }
 
-
+    internal static List<Product> Produc { get; }  = new List<Product> { new Product() };
     #region FILL PRODUCTS
     //An array for the names of products in the store by categories
-    private static string[,] nameOfProducts = new string[5, 5] {/*Tables*/ { "Rimani Table", "Mai Table", "Jambo Table", "Troian Table" , "Tai Table" },
-                                                                /*Chairs*/ {"Loas Chair","Tiran Chair","Mai Chair" , "Karamel Chair" , "Mango Chair" } ,
-                                                                /*Closets*/{"Madrid Closet","Brazil Closet","Nikol Closet" , "Pariz Closet" , "Miami Closet" },
-                                                                /*Sofas*/ { "Tom Sofa","Bar Sofa","Ben Sofa", "Guy Sofa" , "Gad Sofa"},
-                                                                /*Beds*/{ "Diamond Bes","Gold Bed","Silver Bed", "Cristal Bed", "King Bed"} };
+    private static string[] table = new string[5] /*Tables*/ { "Rimani Table", "Mai Table", "Jambo Table", "Troian Table", "Tai Table" };
+    private static string[] chair = new string[5] /*Chairs*/ { "Loas Chair", "Tiran Chair", "Mai Chair", "Karamel Chair", "Mango Chair" };
+    private static string[] closet = new string[5] /*Closets*/{ "Madrid Closet", "Brazil Closet", "Nikol Closet", "Pariz Closet", "Miami Closet" };
+    private static string[] sofa = new string[5] /*Sofas*/ { "Tom Sofa", "Bar Sofa", "Ben Sofa", "Guy Sofa", "Gad Sofa" };
+    private static string[] bed = new string[5] /*Beds*/{ "Diamond Bed","Gold Bed","Silver Bed", "Cristal Bed", "King Bed"};
     //Arrays for the price range by categories
     private static int[] priceFrom = new int[5] { 3000, 300, 2000, 4500, 4000 };
     private static int[] priceTo = new int[5] { 12000, 2000, 9000, 20000, 18000 };
@@ -68,22 +68,88 @@ internal static class DataSource
     //A function that fills in the first 10 items in products array
     private static void createAndInitProducts()
     {
-        for (int i = 0; i < 10; i++)
+        
+        for (int i = 0; i < 5; i++)
         {
-            int category = s_rand.Next(4);//Category selection by drawingy
-            int name = s_rand.Next(4);//Choosing a product name by drawing
-            Product newProdect = new Product
+            int id = 100000 + i;
+            Produc.Add(new Product()
             {
-                ID = i + 100000,
-                Name = nameOfProducts[category, name],//Choosing the name from the matrix according to the numbers drawn
-                Price = s_rand.Next(priceFrom[category], priceTo[category]),//Random price selection from the range of the category
-                Category = (Category)category,
-                InStock = s_rand.Next(1,inStock[category])//Selecting a quantity in stock randomly from the range of the category
-            };
-            if (i < 0.05 * 10)
-                newProdect.InStock = 0;
-            _products.Add(newProdect);
+                ID = id,
+                Name = table[i],
+                Category = Category.TABLE,
+                InStock = s_rand.Next(1, 30),
+                Price = s_rand.Next(priceFrom[3000], priceTo[12000]),
+                pictures = @"IMG" + id + ".jpg"
+            });
         }
+        for (int i = 0; i < 5; i++)
+        {
+            int id = 100005 + i;
+            Produc.Add(new Product()
+            {
+                ID = id,
+                Name = chair[i],
+                Category = Category.CHAIR,
+                InStock = s_rand.Next(1, 200),
+                Price = s_rand.Next(priceFrom[300], priceTo[2000]),
+                pictures = @"IMG" + id + ".jpeg"
+            });
+        }
+        for (int i = 0; i < 5; i++)
+        {
+            int id = 100010 + i;
+            Produc.Add(new Product()
+            {
+                ID = id,
+                Name = closet[i],
+                Category = Category.CLOSET,
+                InStock = s_rand.Next(1, 60),
+                Price = s_rand.Next(priceFrom[2000], priceTo[9000]),
+                pictures = @"IMG" + id + ".jpeg"
+            });
+        }
+        for (int i = 0; i < 5; i++)
+        {
+            int id = 100015 + i;
+            Produc.Add(new Product()
+            {
+                ID = id,
+                Name = sofa[i],
+                Category = Category.SOFA,
+                InStock = s_rand.Next(1, 40),
+                Price = s_rand.Next(priceFrom[4500], priceTo[20000]),
+                pictures = @"IMG" + id + ".jpg"
+            });
+        }
+        for (int i = 0; i < 5; i++)
+        {
+            int id = 100020 + i;
+            Produc.Add(new Product()
+            {
+                ID = id,
+                Name = bed[i],
+                Category = Category.BED,
+                InStock = s_rand.Next(1, 70),
+                Price = s_rand.Next(priceFrom[4000], priceTo[18000]),
+                pictures = @"IMG" + id + ".jpg"
+            });
+        }
+        //for (int i = 0; i < 10; i++)
+        //{
+        //    int category = s_rand.Next(4);//Category selection by drawingy
+        //    int name = s_rand.Next(4);//Choosing a product name by drawing
+        //    Product newProdect = new Product
+        //    {
+        //        ID = i + 100000,
+        //        Name = table[category,name],//Choosing the name from the matrix according to the numbers drawn
+        //        Price = s_rand.Next(priceFrom[category], priceTo[category]),//Random price selection from the range of the category
+        //        Category = (Category)category,
+        //        InStock = s_rand.Next(1, inStock[category])//Selecting a quantity in stock randomly from the range of the category
+        //    };
+        //    if (i < 0.05 * 10)
+        //        newProdect.InStock = 0;
+        //    _products.Add(newProdect);
+        //}
     }
     #endregion
 

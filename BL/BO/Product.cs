@@ -26,6 +26,10 @@ namespace BO
         /// The amount in Stock of the product
         /// </summary>
         public int InStock { get; set; }
+        /// <summary>
+        /// pictures
+        /// </summary>
+        public string? pictures { get; set; }    
         public override string ToString()
         {
             return this.ToStringProperty();

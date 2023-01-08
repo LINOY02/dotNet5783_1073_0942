@@ -30,7 +30,7 @@
             <Label Content="Category" Grid.Column="0" HorizontalAlignment="Left" Margin="45,0,0,0" VerticalAlignment="Top" Height="30" Width="80" FontSize="14" FontWeight="Bold" FontFamily="Arial Nova Cond"/>
             <ComboBox x:Name="CategorySelector" Grid.Column="1" HorizontalAlignment="Left" Margin="110,3,0,0" VerticalAlignment="Top" Width="270" SelectionChanged="CategorySelector_SelectionChanged_1"/>
         </Grid>
-        <Button x:Name="AddProduct" Content="Add new Product" HorizontalAlignment="Right" Margin="0,529,21,40" Padding="5" Click="AddProduct_Click" BorderBrush="#FF010506" Background="#FFE1F4FA" Foreground="#FF7137E3" FontWeight="Bold" Width="124"/>
+        <Button x:Name="AddProduct" Content="Add new Product" FontSize ="10" HorizontalAlignment="Right" Margin="0,529,31,60" Padding="5" Click="AddProduct_Click" BorderBrush="#FF010506" Background="#FFE1F4FA" Foreground="#FF7137E3" FontWeight="Bold" Width="124"/>
     </Grid>
 
 </Window>

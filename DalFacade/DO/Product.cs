@@ -23,6 +23,10 @@ public struct Product
     /// The amount in Stock of the product
     /// </summary>
     public int InStock { get; set; }
+    /// <summary>
+    /// pictures according to the products
+    /// </summary>
+    public string pictures { get; set; }
 
     public override string ToString() => this.ToStringProperty();
 

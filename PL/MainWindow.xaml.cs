@@ -33,5 +33,10 @@ namespace PL
         {
             new ManagerWindow().ShowDialog();
         }
+
+        private void OrderTraking_Click(object sender, RoutedEventArgs e)
+        {
+            new OrderIDWindow1().ShowDialog();
+        }
     }
 }
