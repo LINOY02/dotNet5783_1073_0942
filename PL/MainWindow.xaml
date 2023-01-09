@@ -6,17 +6,22 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid Margin="-235,-60,-235,0">
+    <Grid Margin="-233,-60,-237,0">
         <Grid.Background>
             <ImageBrush/>
 
         </Grid.Background>
 
-        <Button x:Name="ManagerBtn" Content="Manager" HorizontalAlignment="Center" Margin="0,183,0,0" VerticalAlignment="Top" Height="35" Width="166" Click="ManagerBtn_Click" FontWeight="Bold" FontFamily="Arial Black" FontSize="20" BorderBrush="Black"/>
-        <Button x:Name="OrderTraking" Content="Order Traking" HorizontalAlignment="Left" Margin="760,176,0,0" VerticalAlignment="Top" Click="OrderTraking_Click"/>
+        <Button x:Name="ManagerBtn" Content="Manager" HorizontalAlignment="Left" Margin="399,216,0,0" VerticalAlignment="Top" Height="34" Width="80" Click="ManagerBtn_Click" BorderBrush="White" FontWeight="Bold" FontFamily="Arial Black" FontSize="10"/>
+        <Button x:Name="OrderTraking" Content="Order Traking" BorderBrush="White" HorizontalAlignment="Left" Margin="479,210,0,0" VerticalAlignment="Top" Click="OrderTraking_Click" Width="117"/>
         <Image HorizontalAlignment="Center" Height="324" Margin="0,249,0,0" VerticalAlignment="Top" Width="798" Source="/תמונה1.png"/>
-        <Button Content="log in" HorizontalAlignment="Left" Margin="236,72,0,0" VerticalAlignment="Top" Width="66" BorderBrush="White"/>
-        <Button x:Name="catalogBtn" Content="catalog" HorizontalAlignment="Left" Height="37" Margin="360,107,0,0" VerticalAlignment="Top" Width="125" Click="catalogBtn_Click"/>
+        <Button Content="log in" HorizontalAlignment="Left" Margin="252,224,0,0" VerticalAlignment="Top" Width="53" BorderBrush="White" Height="22" FontSize="10"/>
+        <Button x:Name="catalogBtn" Content="catalog" HorizontalAlignment="Left" BorderBrush="White" Height="21" Margin="318,225,0,0" VerticalAlignment="Top" Width="63" Click="catalogBtn_Click" FontSize="10"/>
+        <Label Content="MUABLES" HorizontalAlignment="Left" Margin="865,180,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" Height="37" Width="117" FontFamily="Broadway"/>
+        <Label Content="Make You Feel At Home" HorizontalAlignment="Left" Margin="843,209,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <Image HorizontalAlignment="Left" Height="100" Margin="693,61,0,0" VerticalAlignment="Top" Width="100" Source="/IMG.100005.jpg"/>
+        <Image HorizontalAlignment="Left" Height="100" Margin="590,61,0,0" VerticalAlignment="Top" Width="100" Source="/IMG.100015.jpg"/>
+        <Image HorizontalAlignment="Left" Height="100" Margin="463,61,0,0" VerticalAlignment="Top" Width="100" Source="/IMG.100001.jpeg"/>
 
     </Grid>
 </Window>
