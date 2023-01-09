@@ -36,7 +36,7 @@ namespace BlImplementation
                     Price = bProduct?.Price ?? throw new BO.BlMissingInputException("The price is missing"),
                     InStock = bProduct?.InStock ?? throw new BO.BlMissingInputException("The amount is missing"),
                     Category = (DO.Category)bProduct.Category,
-                    picture = bProduct.picture ?? throw new BO.BlMissingInputException("the picture is missing"),
+                    picture = bProduct.picture ?? @"\Pics\IMG.FAILS.jpg",
                 });
             }
             catch (DO.DalAlreadyExistException ex)
@@ -82,9 +82,7 @@ namespace BlImplementation
                            ID = product1.ID,
                            Name = product1.Name,
                            Price = product1.Price,
-                           picture = product1.picture ?? throw new BO.BlMissingInputException("the picture is missing"),
                            Category = (BO.Category)product1.Category!
-             
                        };
 
             return filter is null ? list : list.Where(filter);
@@ -200,8 +198,8 @@ namespace BlImplementation
                     Price = bProduct?.Price ?? throw new BO.BlMissingInputException("The price is missing"),
                     InStock = bProduct?.InStock ?? throw new BO.BlMissingInputException("The amount is missing"),
                     Category = (DO.Category)bProduct.Category,
-                    picture = bProduct?.picture ?? throw new BO.BlMissingInputException("the picture is missing"),
-                });
+                    picture = bProduct?.picture ?? @"\Pics\IMG.FAILS.jpg",
+                }) ;
             }
             catch (DO.DalDoesNotExistException ex)
             {
@@ -224,7 +222,7 @@ namespace BlImplementation
                            Price = product1.Price,
                            Category = (BO.Category)product1.Category!,
                            InStock = checkInStock(product1),
-                           picture  = product1.picture ?? throw new BO.BlMissingInputException("the picture is missing"),
+                           picture  = product1.picture ?? @"\Pics\IMG.FAILS.jpg",
                            Amount = 0,
                        };
 

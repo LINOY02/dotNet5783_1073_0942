@@ -14,8 +14,8 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Label Content="MUABLES" HorizontalAlignment="Left" Margin="507,163,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold" FontFamily="Broadway"/>
-        <Label Content="Make You Feel At Home" HorizontalAlignment="Left" Margin="480,178,0,0" VerticalAlignment="Top"/>
+        <Label Content="MUABLES" HorizontalAlignment="Left" Margin="480,148,0,0" VerticalAlignment="Top" FontSize="30" FontWeight="Bold" FontFamily="Broadway" Height="41" Width="171"/>
+        <Label Content="Make You Feel At Home" HorizontalAlignment="Left" Margin="470,176,0,0" VerticalAlignment="Top" FontSize="17"/>
 
     </Grid>
 </Window>

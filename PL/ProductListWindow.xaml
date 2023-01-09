@@ -28,11 +28,11 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions >
             <Label Content="Category" Grid.Column="0" HorizontalAlignment="Left" Margin="45,0,0,0" VerticalAlignment="Top" Height="30" Width="80" FontSize="14" FontWeight="Bold" FontFamily="Arial Nova Cond"/>
-            <ComboBox x:Name="CategorySelector" HorizontalAlignment="Left" Margin="156,5,0,0" VerticalAlignment="Top" Width="200" SelectionChanged="CategorySelector_SelectionChanged_1" Height="20" Grid.ColumnSpan="2"/>
+            <ComboBox x:Name="CategorySelector" HorizontalAlignment="Left" Margin="156,3,0,0" VerticalAlignment="Top" Width="200" SelectionChanged="CategorySelector_SelectionChanged_1" Height="20" Grid.ColumnSpan="2"/>
         </Grid>
-        <Button x:Name="AddProduct" Content="Add new Product" HorizontalAlignment="Right" BorderBrush="White" Margin="0,526,70,0" VerticalAlignment="Top" Click="AddProduct_Click" Height="85"/>
-        <Label Content="MUABLES" HorizontalAlignment="Left" Margin="594,160,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold" FontFamily="Broadway"/>
-        <Label Content="Make You Feel At Home" HorizontalAlignment="Left" Margin="564,177,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="AddProduct" Content="Add new Product" HorizontalAlignment="Right" BorderBrush="White" Margin="0,526,70,0" VerticalAlignment="Top" Click="AddProduct_Click" Height="85" FontSize="14"/>
+        <Label Content="MUABLES" HorizontalAlignment="Left" Margin="548,174,0,0" VerticalAlignment="Top" FontSize="30" FontWeight="Bold" FontFamily="Broadway" Height="52" Width="186"/>
+        <Label Content="Make You Feel At Home" HorizontalAlignment="Left" Margin="540,209,0,0" VerticalAlignment="Top" FontSize="17"/>
     </Grid>
 
 </Window>

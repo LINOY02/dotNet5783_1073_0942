@@ -18,11 +18,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="IMG.100001.jpeg" />
     <None Remove="IMG.100005.jpg" />
+    <None Remove="IMG.100014.jpg" />
     <None Remove="IMG.100015.jpg" />
+    <None Remove="IMG.100024.jpg" />
     <None Remove="logo.png" />
+    <None Remove="הורדה.jpeg" />
     <None Remove="תמונה1.png" />
+    <None Remove="תמונה2.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,11 +33,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="IMG.100001.jpeg" />
     <Resource Include="IMG.100005.jpg" />
+    <Resource Include="IMG.100014.jpg" />
     <Resource Include="IMG.100015.jpg" />
+    <Resource Include="IMG.100024.jpg" />
     <Resource Include="logo.png" />
+    <Resource Include="הורדה.jpeg" />
     <Resource Include="תמונה1.png" />
+    <Resource Include="תמונה2.png" />
   </ItemGroup>
 
 </Project>

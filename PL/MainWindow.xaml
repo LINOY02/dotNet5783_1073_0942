@@ -12,16 +12,18 @@
 
         </Grid.Background>
 
-        <Button x:Name="ManagerBtn" Content="Manager" HorizontalAlignment="Left" Margin="399,216,0,0" VerticalAlignment="Top" Height="34" Width="80" Click="ManagerBtn_Click" BorderBrush="White" FontWeight="Bold" FontFamily="Arial Black" FontSize="10"/>
-        <Button x:Name="OrderTraking" Content="Order Traking" BorderBrush="White" HorizontalAlignment="Left" Margin="479,210,0,0" VerticalAlignment="Top" Click="OrderTraking_Click" Width="117"/>
+        <Button x:Name="ManagerBtn" Content="Manager" HorizontalAlignment="Left" Margin="515,220,0,0" VerticalAlignment="Top" Height="34" Width="80" Click="ManagerBtn_Click" BorderBrush="White" FontWeight="Bold" FontFamily="Arial Black" FontSize="10"/>
+        <Button x:Name="OrderTraking" Content="Order Traking" BorderBrush="White" HorizontalAlignment="Left" Margin="387,220,0,0" VerticalAlignment="Top" Click="OrderTraking_Click" Width="117"/>
         <Image HorizontalAlignment="Center" Height="324" Margin="0,249,0,0" VerticalAlignment="Top" Width="798" Source="/תמונה1.png"/>
         <Button Content="log in" HorizontalAlignment="Left" Margin="252,224,0,0" VerticalAlignment="Top" Width="53" BorderBrush="White" Height="22" FontSize="10"/>
         <Button x:Name="catalogBtn" Content="catalog" HorizontalAlignment="Left" BorderBrush="White" Height="21" Margin="318,225,0,0" VerticalAlignment="Top" Width="63" Click="catalogBtn_Click" FontSize="10"/>
-        <Label Content="MUABLES" HorizontalAlignment="Left" Margin="865,180,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" Height="37" Width="117" FontFamily="Broadway"/>
-        <Label Content="Make You Feel At Home" HorizontalAlignment="Left" Margin="843,209,0,0" VerticalAlignment="Top" FontSize="14"/>
-        <Image HorizontalAlignment="Left" Height="100" Margin="693,61,0,0" VerticalAlignment="Top" Width="100" Source="/IMG.100005.jpg"/>
-        <Image HorizontalAlignment="Left" Height="100" Margin="590,61,0,0" VerticalAlignment="Top" Width="100" Source="/IMG.100015.jpg"/>
-        <Image HorizontalAlignment="Left" Height="100" Margin="463,61,0,0" VerticalAlignment="Top" Width="100" Source="/IMG.100001.jpeg"/>
+        <Label Content="MUABLES" HorizontalAlignment="Left" Margin="836,184,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="30" Height="47" Width="182" FontFamily="Broadway"/>
+        <Label Content="Make You Feel At Home" HorizontalAlignment="Left" Margin="828,212,0,0" VerticalAlignment="Top" FontSize="17" Height="41" Width="194"/>
+        <Image HorizontalAlignment="Left" Height="78" Margin="898,88,0,0" VerticalAlignment="Top" Width="78" Source="/IMG.100005.jpg"/>
+        <Image HorizontalAlignment="Left" Height="154" Margin="545,61,0,0" VerticalAlignment="Top" Width="157" Source="/IMG.100015.jpg"/>
+        <Image HorizontalAlignment="Left" Height="120" Margin="233,71,0,0" VerticalAlignment="Top" Width="119" Source="/IMG.100014.jpg"/>
+        <Image HorizontalAlignment="Left" Height="141" Margin="374,88,0,0" VerticalAlignment="Top" Width="142" Source="/תמונה2.png"/>
+        <Image HorizontalAlignment="Left" Height="125" Margin="733,71,0,0" VerticalAlignment="Top" Width="148" Source="/הורדה.jpeg"/>
 
     </Grid>
 </Window>

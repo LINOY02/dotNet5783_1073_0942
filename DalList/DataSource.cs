@@ -277,21 +277,21 @@ internal static class DataSource
         {
             userName = "tamar",
             password ="1234",
-            status = status.MANAGER
+            status = userStatus.MANAGER
         });
         
         _users.Add(new User
         {
             userName = "linoy",
             password = "4321",
-            status = status.MANAGER
+            status = userStatus.MANAGER
         });
 
         _users.Add(new User
         {
             userName = "customer",
             password = "1111",
-            status = status.MANAGER
+            status = userStatus.CUSTOMER
         });
 
 

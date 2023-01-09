@@ -42,6 +42,7 @@ namespace PL
         {
             new ProductWindow().ShowDialog();//Opening a new window to add a product (empty constractor)
             ProductListView.ItemsSource = bl.Product.GetListedProducts();//Reopening the catalog after adding the product
+
         }
 
         /// <summary>
@@ -58,16 +59,15 @@ namespace PL
                 try
                 {
                     //Opening a new window to update a product (constractor with an item ID parameter)
-                    ProductWindow productWindoe = new ProductWindow(productId?.ID ?? throw new NullReferenceException("Choose product to update"));
-                    productWindoe.ShowDialog();
+                    ProductWindow productW = new ProductWindow(productId?.ID ?? throw new NullReferenceException("Choose product to update"));
+                    productW.ShowDialog();
                     ProductListView.ItemsSource = bl.Product.GetListedProducts();//Reopening the catalog after updating the product
                 }
                 catch (NullReferenceException ex)//In case no parameter was received
                 {
                     MessageBox.Show(ex.Message);
                 }
-            }
-            
+            }      
             
         }
 

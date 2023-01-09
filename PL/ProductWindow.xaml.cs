@@ -88,7 +88,7 @@ namespace PL
             if (CategorySelector.SelectedIndex == 5) //Checking if there is an input
             {
                 //Error message
-                CategorySelector.BorderBrush = new SolidColorBrush(Colors.Red);
+                MessageBox.Show("Choose a Category");
                 CategoryLabel.Visibility = Visibility.Visible;
                 flag = true;
             }
@@ -114,8 +114,6 @@ namespace PL
             {
                 try
                 {
-                    if(CategorySelector.SelectedIndex == 5)
-
                     bl.Product.AddProduct(new Product
                     {
                         ID = id,
@@ -155,7 +153,6 @@ namespace PL
                     MessageBox.Show(ex.Message);
                 }
             }
-           
         }
 
         private void IDTextBox_PreviewKeyDown(object sender, KeyEventArgs e)

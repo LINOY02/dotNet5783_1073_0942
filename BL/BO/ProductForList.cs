@@ -23,7 +23,7 @@ namespace BO
         /// <summary>
         /// pics
         /// </summary>
-        public string? picture { get; set; }
+       // public string? picture { get; set; }
         public override string ToString()
         {
             return this.ToStringProperty();
