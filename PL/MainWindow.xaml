@@ -17,8 +17,8 @@
         <Image HorizontalAlignment="Center" Height="324" Margin="0,249,0,0" VerticalAlignment="Top" Width="798" Source="/תמונה1.png"/>
         <Button Content="log in" HorizontalAlignment="Left" Margin="252,224,0,0" VerticalAlignment="Top" Width="53" BorderBrush="White" Height="22" FontSize="10" Click="Button_Click"/>
         <Button x:Name="catalogBtn" Content="catalog" HorizontalAlignment="Left" BorderBrush="White" Height="21" Margin="318,225,0,0" VerticalAlignment="Top" Width="63" Click="catalogBtn_Click" FontSize="10"/>
-        <Label Content="MUABLES" HorizontalAlignment="Left" Margin="836,184,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="30" Height="47" Width="182" FontFamily="Broadway"/>
-        <Label Content="Make You Feel At Home" HorizontalAlignment="Left" Margin="828,212,0,0" VerticalAlignment="Top" FontSize="17" Height="41" Width="194"/>
+        <Label Content="MUABLES" HorizontalAlignment="Left" Margin="826,184,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="30" Height="47" Width="182" FontFamily="Broadway"/>
+        <Label Content="Make You Feel At Home" HorizontalAlignment="Left" Margin="814,212,0,0" VerticalAlignment="Top" FontSize="17" Height="41" Width="194"/>
         <Image HorizontalAlignment="Left" Height="78" Margin="898,88,0,0" VerticalAlignment="Top" Width="78" Source="/IMG.100005.jpg"/>
         <Image HorizontalAlignment="Left" Height="154" Margin="545,61,0,0" VerticalAlignment="Top" Width="157" Source="/IMG.100015.jpg"/>
         <Image HorizontalAlignment="Left" Height="120" Margin="233,71,0,0" VerticalAlignment="Top" Width="119" Source="/IMG.100014.jpg"/>

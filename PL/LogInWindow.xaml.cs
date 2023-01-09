@@ -44,6 +44,7 @@ namespace PL
             {
                 User = bl.User.LogIn(userNameTextBox.Text, passwordTextBox.Text);
                 
+                
             }
             catch (BlDoesNotExistException ex)
             {
