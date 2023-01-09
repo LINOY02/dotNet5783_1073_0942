@@ -79,7 +79,7 @@ internal static class DataSource
                 Category = Category.TABLE,
                 InStock = s_rand.Next(1, 30),
                 Price = s_rand.Next(priceFrom[0], priceTo[0]),
-                picture = @"IMG" + id + ".jpg"
+                picture = @"\Pics\IMG." + id + ".jpg"
             });
             if (i == 4)
                 newProduct.InStock = 0;
@@ -95,7 +95,7 @@ internal static class DataSource
                 Category = Category.CHAIR,
                 InStock = s_rand.Next(1, 200),
                 Price = s_rand.Next(priceFrom[1], priceTo[1]),
-                picture = @"IMG" + id + ".jpeg"
+                picture = @"\Pics\IMG." + id + ".jpg"
             });
             if (i == 4)
                 newProduct.InStock = 0;
@@ -111,7 +111,7 @@ internal static class DataSource
                 Category = Category.CLOSET,
                 InStock = s_rand.Next(1, 60),
                 Price = s_rand.Next(priceFrom[2], priceTo[2]),
-                picture = @"IMG" + id + ".jpeg"
+                picture = @"\Pics\IMG." + id + ".jpg"
             });
             if (i == 4)
                 newProduct.InStock = 0;
@@ -127,7 +127,7 @@ internal static class DataSource
                 Category = Category.SOFA,
                 InStock = s_rand.Next(1, 40),
                 Price = s_rand.Next(priceFrom[3], priceTo[3]),
-                picture = @"IMG" + id + ".jpg"
+                picture = @"\Pics\IMG." + id + ".jpg"
             });
             if (i == 4)
                 newProduct.InStock = 0;
@@ -143,7 +143,7 @@ internal static class DataSource
                 Category = Category.BED,
                 InStock = s_rand.Next(1, 70),
                 Price = s_rand.Next(priceFrom[4], priceTo[4]),
-                picture = @"IMG" + id + ".jpg"
+                picture = @"\Pics\IMG." + id + ".jpg"
             });
             if (i == 4)
                 newProduct.InStock = 0;

@@ -33,12 +33,11 @@ namespace PL
             }
             catch (Exception ex)
             {
-                string pictures = @"IMG.100015.jpg";
+                string pictures = @"IMG.100010.jpg";
                 string currentDir = Environment.CurrentDirectory[..^4];
                 string imageFullName = currentDir + pictures;
                 BitmapImage bitmapImage = new BitmapImage(new Uri(imageFullName));
                 return bitmapImage;
-
             }
         }
 
