@@ -1,4 +1,5 @@
 ﻿using BlApi;
+using BO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,20 +29,13 @@ namespace PL
 
         private static readonly IBl bl = BlApi.Factory.Get();
 
-        public BO.OrderTracking? OrderT
+        public BO.OrderTracking OrderT
         {
-            get { return (BO.OrderTracking?)GetValue(OrderTrackingProperty); }
-            set { SetValue(OrderTrackingProperty, value); }
+            get { return (BO.OrderTracking)GetValue(OrderTTrackingProperty); }
+            set { SetValue(OrderTTrackingProperty, value); }
         }
-        public static readonly DependencyProperty OrderTrackingProperty =
+
+        public static readonly DependencyProperty OrderTTrackingProperty =
             DependencyProperty.Register("OrderT", typeof(BO.OrderTracking), typeof(Window), new PropertyMetadata(null));
-
-       
-
-        private void showOrderBtn_Click(object sender, RoutedEventArgs e)
-        {
-            int id = OrderT.ID;
-            new OrderWindow(id, false).ShowDialog();
-        }
     }
 }

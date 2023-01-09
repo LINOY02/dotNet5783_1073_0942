@@ -37,31 +37,31 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pics", "Pics", "{8FFFD992-0E6A-4840-98D9-5814786C908C}"
 	ProjectSection(SolutionItems) = preProject
 		Pics\IMG.100000.jpg = Pics\IMG.100000.jpg
-		IMG\IMG.100002.jpg = IMG\IMG.100002.jpg
 		Pictures\IMG.100001.jpg = Pictures\IMG.100001.jpg
+		IMG\IMG.100002.jpg = IMG\IMG.100002.jpg
+		Pics\IMG.100003.jpg = Pics\IMG.100003.jpg
 		Pics\IMG.100004.jpg = Pics\IMG.100004.jpg
 		Pics\IMG.100005.jpg = Pics\IMG.100005.jpg
-		Pics\IMG.100003.jpg = Pics\IMG.100003.jpg
 		Pics\IMG.100006.jpg = Pics\IMG.100006.jpg
-		Pics\IMG.100010.jpg = Pics\IMG.100010.jpg
 		Pics\IMG.100008.jpg = Pics\IMG.100008.jpg
 		Pics\IMG.100009.jpg = Pics\IMG.100009.jpg
+		Pics\IMG.100010.jpg = Pics\IMG.100010.jpg
 		Pics\IMG.100012.jpg = Pics\IMG.100012.jpg
 		Pics\IMG.100013.jpg = Pics\IMG.100013.jpg
-		Pics\IMG.100015.jpg = Pics\IMG.100015.jpg
 		Pics\IMG.100014.jpg = Pics\IMG.100014.jpg
+		Pics\IMG.100015.jpg = Pics\IMG.100015.jpg
+		Pics\IMG.100016.jpg = Pics\IMG.100016.jpg
 		Pics\IMG.100017.jpg = Pics\IMG.100017.jpg
 		Pics\IMG.100018.jpg = Pics\IMG.100018.jpg
-		Pics\IMG.100020.jpg = Pics\IMG.100020.jpg
 		Pics\IMG.100019.jpg = Pics\IMG.100019.jpg
-		Pics\IMG.100016.jpg = Pics\IMG.100016.jpg
+		Pics\IMG.100020.jpg = Pics\IMG.100020.jpg
 		Pics\IMG.100021.jpg = Pics\IMG.100021.jpg
 		Pics\IMG.100022.jpg = Pics\IMG.100022.jpg
 		Pics\IMG.100023.jpg = Pics\IMG.100023.jpg
-		Pics\ING.100011.jpg = Pics\ING.100011.jpg
-		Pics\IMG.FAILS.jpg = Pics\IMG.FAILS.jpg
 		Pics\IMG.100024.jpg = Pics\IMG.100024.jpg
+		Pics\IMG.FAILS.jpg = Pics\IMG.FAILS.jpg
 		Pics\ING.100007.jpg = Pics\ING.100007.jpg
+		Pics\ING.100011.jpg = Pics\ING.100011.jpg
 	EndProjectSection
 EndProject
 Global
