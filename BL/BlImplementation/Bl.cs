@@ -9,5 +9,7 @@ namespace BlImplementation
         public IOrder Order => new Order();
 
         public ICart Cart => new Cart();
+        
+        public IUser User => new User();
     }
 }
