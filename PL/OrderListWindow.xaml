@@ -7,13 +7,15 @@
         mc:Ignorable="d"
         Title="OrderListWindow" Height="450" Width="800">
     <Grid>
-        <ListView x:Name="OrderListView" d:ItemsSource="{d:SampleData ItemCount=5}" MouseDoubleClick="OrderListView_MouseDoubleClick">
+        <ListView x:Name="OrderListView" d:ItemsSource="{d:SampleData ItemCount=5}" MouseDoubleClick="OrderListView_MouseDoubleClick" Margin="0,0,497,0">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
                 </GridView>
             </ListView.View>
         </ListView>
+        <Label Content="MUABLES" HorizontalAlignment="Left" Margin="507,163,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold" FontFamily="Broadway"/>
+        <Label Content="Make You Feel At Home" HorizontalAlignment="Left" Margin="480,178,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

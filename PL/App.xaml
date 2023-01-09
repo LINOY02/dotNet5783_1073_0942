@@ -4,14 +4,15 @@
              xmlns:local="clr-namespace:PL"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+        <local:ConvertImagePathToBitmap x:Key="ImagePathToBitmap"/>
         <Style TargetType="Button">
             <Setter Property="Height" Value="35"/>
             <Setter Property="Width" Value="166"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="FontFamily" Value="Arial Black"/>
-            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontSize" Value="10"/>
             <Setter Property="Foreground" Value="Gray"/>
-            <Setter Property="BorderBrush" Value="Black"/>
+            <!--<Setter Property="BorderBrush" Value="Black"/>-->
             <Setter Property="Background" Value="White"/>
         </Style>
     </Application.Resources>

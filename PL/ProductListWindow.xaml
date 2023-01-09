@@ -14,7 +14,7 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <ListView x:Name="ProductListView" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,1,0,56" Grid.Row="1" MouseDoubleClick="ProductListView_MouseDoubleClick"  >
+            <ListView x:Name="ProductListView" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,1,297,-41" Grid.Row="1" MouseDoubleClick="ProductListView_MouseDoubleClick" Grid.RowSpan="2"  >
                 <ListView.View>
                     <GridView>
                         <GridViewColumn/>
@@ -22,15 +22,17 @@
                 </ListView.View>
             </ListView>
         </Grid>
-        <Grid Name="UpGrid" Height="auto" Grid.Row="0" Width="auto" Margin="-10,10,10,216" RenderTransformOrigin="0.46,0.493">
+        <Grid Name="UpGrid" Height="auto" Grid.Row="0" Width="auto" Margin="-30,40,319,241" RenderTransformOrigin="0.46,0.493">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions >
             <Label Content="Category" Grid.Column="0" HorizontalAlignment="Left" Margin="45,0,0,0" VerticalAlignment="Top" Height="30" Width="80" FontSize="14" FontWeight="Bold" FontFamily="Arial Nova Cond"/>
-            <ComboBox x:Name="CategorySelector" Grid.Column="1" HorizontalAlignment="Left" Margin="110,3,0,0" VerticalAlignment="Top" Width="270" SelectionChanged="CategorySelector_SelectionChanged_1"/>
+            <ComboBox x:Name="CategorySelector" HorizontalAlignment="Left" Margin="156,5,0,0" VerticalAlignment="Top" Width="200" SelectionChanged="CategorySelector_SelectionChanged_1" Height="20" Grid.ColumnSpan="2"/>
         </Grid>
-        <Button x:Name="AddProduct" Content="Add new Product" FontSize ="10" HorizontalAlignment="Right" Margin="0,529,31,60" Padding="5" Click="AddProduct_Click" BorderBrush="#FF010506" Background="#FFE1F4FA" Foreground="#FF7137E3" FontWeight="Bold" Width="124"/>
+        <Button x:Name="AddProduct" Content="Add new Product" HorizontalAlignment="Right" BorderBrush="White" Margin="0,526,70,0" VerticalAlignment="Top" Click="AddProduct_Click" Height="85"/>
+        <Label Content="MUABLES" HorizontalAlignment="Left" Margin="594,160,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold" FontFamily="Broadway"/>
+        <Label Content="Make You Feel At Home" HorizontalAlignment="Left" Margin="564,177,0,0" VerticalAlignment="Top"/>
     </Grid>
 
 </Window>
