@@ -43,12 +43,16 @@ internal static class DataSource
    
     internal static List<OrderItem?> _orderItems = new List<OrderItem?>();
 
+    //Defining a list of products 
+
+    internal static List<User?> _users = new List<User?>();
     //A function that initializes the three arrays by calling the appropriate functions
     private static void s_Intialize()
     {
         createAndInitProducts();// fill the list with products
         createAndInitOrders();// fill the list with orders
         createAndInitOrderItems();// fill the list with orderItems
+        createAndInitUsers();// fill the list with users
     }
 
     internal static List<Product> Produc { get; }  = new List<Product> { new Product() };
@@ -266,4 +270,30 @@ internal static class DataSource
         }
     }
     #endregion
+
+    private static void createAndInitUsers()
+    {
+        _users.Add(new User
+        {
+            userName = "tamar",
+            password ="1234",
+            status = status.MANAGER
+        });
+        
+        _users.Add(new User
+        {
+            userName = "linoy",
+            password = "4321",
+            status = status.MANAGER
+        });
+
+        _users.Add(new User
+        {
+            userName = "customer",
+            password = "1111",
+            status = status.MANAGER
+        });
+
+
+    }
 }
