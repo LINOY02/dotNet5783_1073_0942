@@ -1,12 +1,13 @@
-﻿using System;
+﻿using DO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DO
+namespace BO
 {
-    public struct User
+    public class User
     {
         /// <summary>
         /// The uSerName of the person who use the program
@@ -17,11 +18,10 @@ namespace DO
         /// </summary>
         public string? password { get; set; }
         /// <summary>
-        /// The status of the user
+        /// The statu of the user
         /// </summary>
         public userStatus status { get; set; }
 
         public override string ToString() => this.ToStringProperty();
     }
-
 }

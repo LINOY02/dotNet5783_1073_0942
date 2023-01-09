@@ -19,5 +19,10 @@ namespace BlApi
         /// A variable to represent a cart's interface
         /// </summary>
         public ICart Cart { get; }
+
+        /// <summary>
+        /// A variable to represent a user's interface
+        /// </summary>
+        public IUser User { get; }
     }
 }
