@@ -1,4 +1,5 @@
-﻿using BO;
+﻿using BlApi;
+using BO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,26 @@ namespace PL
         {
             InitializeComponent();
             statusComboBox.ItemsSource = Enum.GetValues(typeof(userStatus));
+        }
+
+        private static readonly IBl bl = BlApi.Factory.Get();
+        private void SignInBtn_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                bl.User.SignIn(new BO.User
+                {
+                    userName = userNameTextBox.Text,
+                    password = passwordTextBox.Text,
+                    status = (BO.userStatus)statusComboBox.SelectedItem,
+                });
+
+            }
+            catch(BlAlreadyExistException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            Close();
         }
     }
 }

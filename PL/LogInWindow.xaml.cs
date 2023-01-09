@@ -43,7 +43,8 @@ namespace PL
             try
             {
                 User = bl.User.LogIn(userNameTextBox.Text, passwordTextBox.Text);
-                
+                if(User.status == userStatus.MANAGER)
+                   new ManagerWindow().ShowDialog();
             }
             catch (BlDoesNotExistException ex)
             {
@@ -60,7 +61,6 @@ namespace PL
         private void signInBtn_Click(object sender, RoutedEventArgs e)
         {
             new SignInWindow().ShowDialog();
-            Close();
         }
     }
 }

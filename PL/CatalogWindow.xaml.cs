@@ -23,7 +23,19 @@ namespace PL
     public partial class CatalogWindow : Window
     {
         private static readonly IBl bl = BlApi.Factory.Get();
-        BO.Cart myCart;
+
+
+        public BO.Cart cart
+        {
+            get { return (BO.Cart)GetValue(cartProperty); }
+            set { SetValue(cartProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for cart.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty cartProperty =
+            DependencyProperty.Register("cart", typeof(BO.Cart), typeof(Window), new PropertyMetadata(null));
+
+
 
 
         public ObservableCollection<ProductItem?> productItems
@@ -38,11 +50,11 @@ namespace PL
 
 
 
-        public CatalogWindow(BO.Cart cart)
+        public CatalogWindow()
         {
             InitializeComponent();
-            productItems = new ObservableCollection<ProductItem?>( bl.Product.GetProductItems(cart));
-            myCart = cart;
+            //productItems = new ObservableCollection<ProductItem?>( bl.Product.GetProductItems(cart));
+            CatalogListView.ItemsSource = bl.Product.GetProductItems(cart);
         }
            
       

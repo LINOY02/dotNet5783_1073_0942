@@ -23,37 +23,23 @@ namespace PL
         public MainWindow()
         {
             InitializeComponent();
-            ManagerBtn.Visibility = Visibility.Hidden;
+            
         }
         /// <summary>
         /// show the list of the products
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ManagerBtn_Click(object sender, RoutedEventArgs e)
-        {
-            new ManagerWindow().ShowDialog();
-        }
+       
 
         private void OrderTraking_Click(object sender, RoutedEventArgs e)
         {
             new OrderIDWindow1().ShowDialog();
         }
 
-        List<BO.OrderItem?> items = new List<BO.OrderItem?>();
-
-        BO.Cart cart = new BO.Cart
-        {
-            TotalPrice = 0,
-            CustomerAddress = null, 
-            CustomerEmail = null,
-            CustomerName = null,
-            Items = null,
-        };
-
         private void catalogBtn_Click(object sender, RoutedEventArgs e)
         {
-            new CatalogWindow(cart).ShowDialog();
+            new CatalogWindow().ShowDialog();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

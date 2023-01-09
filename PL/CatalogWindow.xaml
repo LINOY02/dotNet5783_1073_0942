@@ -4,19 +4,68 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
+        DataContext="{RelativeSource self}"
         mc:Ignorable="d"
         Title="CatalogWindow" Height="450" Width="800">
     <Window.Resources>
         <DataTemplate x:Key ="CatalogDataTemplate" DataType="local:ProductItem">
-            <Border Background ="#FFE1F4FA" BorderThickness=" 3,3,3,3">
-                <StackPanel>
-                    <TextBlock Text="{Binding Name}" />
-                    <TextBlock Text="{Binding Price}"/>
-                    <TextBlock Text="{Binding inStock}"/>
+            <Border
+                Background="{Binding InStock, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true, Converter={StaticResource}}">
+                <Border.Effect>
+                    <DropShadowEffect
+                            ShadowDepth="1" />
+                </Border.Effect>
+               <StackPanel Width="210" Height="250">
+                    <Image x:Name="prodImage"
+                    Source="{Binding Path=picture, Converter={StaticResource ImagePathToBitmap}}"
+                    HorizontalAlignment="Center"
+                    Height="130"
+                    Margin="15,15,15,15"
+                    VerticalAlignment="Center"
+                    Width="130" />
+                    <TextBlock
+                    Margin="5,5,5,5"
+                    Text="{Binding Name}"
+                    FontSize="15" />
+                    <TextBlock
+                    Margin="5"
+                    Text="{Binding InStock, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"
+                   FontSize="15" />
+                    <TextBlock
+                    Margin="5"
+                    Text="{Binding Price,StringFormat={}{0:c}}"
+                    FontSize="15" />
+                    <TextBlock
+                    Margin="5"
+                    Text="{Binding Category}"
+                    FontSize="15">
+                        <TextBlock.Style>
+                            <Style
+                            TargetType="TextBlock">
+                                <Setter
+                                Property="Foreground"
+                                Value="Blue"></Setter>
+                                <Style.Triggers>
+                                    <Trigger
+                                    Property="IsMouseOver"
+                                    Value="True">
+                                        <Setter
+                                        Property="Foreground"
+                                        Value="Red" />
+                                        <Setter
+                                        Property="TextDecorations"
+                                        Value="Underline" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
                 </StackPanel>
-            </Border>
+                </Border>
         </DataTemplate>
     </Window.Resources>
+    
+        
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height ="40"/>
@@ -40,8 +89,14 @@
             <Label Name ="BedLabel" Content="Beds" Grid.Column="4" HorizontalAlignment="Center"/>
         </Grid>
         <ScrollViewer Grid.Row ="1">
-            <ListView x:Name="catalogListView"  ItemsSource="{Binding}" ItemTemplate="{StaticResource CatalogDataTemplate}" HorizontalContentAlignment="Stretch">
-            <ItemsControl.ItemsPanel>
+            <ListView x:Name="CatalogListView"
+                ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                RenderTransformOrigin="0.5,0.5"
+                ItemsSource="{Binding ProductItems}"
+                ItemTemplate="{StaticResource CatalogDataTemplate}"
+                Height="312"
+                Width="716">
+                <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel/>
                 </ItemsPanelTemplate>

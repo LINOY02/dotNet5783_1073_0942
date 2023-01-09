@@ -40,5 +40,6 @@
                 <TextBox x:Name="userNameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="0" Text="{Binding userName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
             </Grid>
         </Grid>
+        <Button x:Name="SignInBtn"  Content="Sign In" HorizontalAlignment="Left" Height="20" Margin="180,209,0,0" VerticalAlignment="Top" Width="60" Click="SignInBtn_Click"/>
     </Grid>
 </Window>
