@@ -100,7 +100,7 @@
             </ListView.View>
         </ListView>
         <Button x:Name="ShipUpdBtn" Content="Updae" HorizontalAlignment="Left" Height="20" Margin="305,269,0,0" VerticalAlignment="Top" Width="60" Click="ShipUpdBtn_Click"/>
-        <Button x:Name="DeliverUpdBtn" Content="Update" HorizontalAlignment="Left" Margin="305,317,0,0" VerticalAlignment="Top" Width="60" Click="DeliverUpdBtn_Click" Height="24"/>
+        <Button x:Name="DeliverUpdBtn" Content="Update" HorizontalAlignment="Left" Margin="305,317,0,0" VerticalAlignment="Top" Width="60" Click="DeliverUpdBtn_Click" Height="20"/>
     </Grid>
 
 </Window>
