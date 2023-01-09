@@ -23,6 +23,7 @@ namespace PL
         public MainWindow()
         {
             InitializeComponent();
+            ManagerBtn.Visibility = Visibility.Hidden;
         }
         /// <summary>
         /// show the list of the products
@@ -53,6 +54,11 @@ namespace PL
         private void catalogBtn_Click(object sender, RoutedEventArgs e)
         {
             new CatalogWindow(cart).ShowDialog();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            new LogInWindow().ShowDialog();
         }
     }
 }

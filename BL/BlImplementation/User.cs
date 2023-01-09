@@ -12,20 +12,25 @@ namespace BlImplementation
     {
         private static readonly IDal Dal = DalApi.Factory.Get()!;
 
-        public void LogIn(BO.User bUser)
+        public BO.User LogIn(string userName, string password)
         {
             DO.User user;
             try
             {
-                user = Dal.User.GetByUserName(bUser.userName);
-                if (user.password != bUser.password)
+                user = Dal.User.GetByUserName(userName);
+                if (user.password != password)
                     throw new BO.BlInvalidInputException("Worng Password");
             }
             catch (DO.DalDoesNotExistException ex)
             {
                 throw new BO.BlDoesNotExistException(ex.Message);
             }
-            
+            return new BO.User
+            {
+                userName = userName,
+                password = password,
+                status =(BO.userStatus) user.status
+            };
         }
 
         public void SignIn(BO.User bUser)

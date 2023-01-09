@@ -16,7 +16,7 @@ namespace BlApi
         /// <param name="username"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        void LogIn(BO.User user);
+        BO.User LogIn(string userName, string pasword);
 
         /// <summary>
         /// the func is sign in the 

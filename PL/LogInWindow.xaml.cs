@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BlApi;
+using BO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +24,43 @@ namespace PL
         public LogInWindow()
         {
             InitializeComponent();
+        }
+
+        private static readonly IBl bl = BlApi.Factory.Get();
+
+        public BO.User User
+        {
+            get { return (BO.User)GetValue(UserProperty); }
+            set { SetValue(UserProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for User.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty UserProperty =
+            DependencyProperty.Register("User", typeof(BO.User), typeof(Window), new PropertyMetadata(null));
+
+        private void logInBtn_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                User = bl.User.LogIn(userNameTextBox.Text, passwordTextBox.Text);
+                
+            }
+            catch (BlDoesNotExistException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch(BlInvalidInputException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            Close();
+
+        }
+
+        private void signInBtn_Click(object sender, RoutedEventArgs e)
+        {
+            new SignInWindow().ShowDialog();
+            Close();
         }
     }
 }
