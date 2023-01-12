@@ -37,7 +37,6 @@ namespace PL
 
 
 
-
         public ObservableCollection<ProductItem?> productItems
         {
             get { return (ObservableCollection<ProductItem>)GetValue(productItemsProperty); }
@@ -50,18 +49,37 @@ namespace PL
 
 
 
-        public CatalogWindow()
+        public CatalogWindow(BO.Cart cart1)
         {
             InitializeComponent();
             //productItems = new ObservableCollection<ProductItem?>( bl.Product.GetProductItems(cart));
             CatalogListView.ItemsSource = bl.Product.GetProductItems(cart);
+            cart = cart1;
         }
-           
-      
-        
 
-        
 
-        
+
+        private void addToCartBtn_Click_1(object sender, RoutedEventArgs e)
+        {
+            BO.ProductItem productItem = (BO.ProductItem)((Button)sender).DataContext;
+            try
+            {
+                bl.Cart.AddProductToCart(cart, productItem.ID);
+            }
+            catch (BO.BlDoesNotExistException exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+            catch (BO.BlOutOfStockException exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+        }
+
+        private void MyCart_Click(object sender, RoutedEventArgs e)
+        {
+            new CartWindow(cart).ShowDialog();
+        }
     }
+    
 }

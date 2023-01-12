@@ -41,6 +41,7 @@ namespace BlImplementation
                         Price = product.Price,
                         Amount = 1,
                         TotalPrice = product.Price,
+                        picture = product.picture,
                     };
                     cart.Items?.Add(newItem);
                     cart.TotalPrice += product.Price;
@@ -61,9 +62,9 @@ namespace BlImplementation
         public void OrderCart(BO.Cart cart)
         {
             //Checking the correctness of the values
-            if (cart.CustomerName == null)
+            if (cart.CustomerName == " ")
                 throw new BO.BlInvalidInputException("Missing customer name");
-            if (cart.CustomerAddress == null)
+            if (cart.CustomerAddress == " ")
                 throw new BO.BlInvalidInputException("Missing customer address");
             if (! new EmailAddressAttribute().IsValid(cart.CustomerEmail))
                 throw new BO.BlInvalidInputException("Missing customer Email");
@@ -104,6 +105,7 @@ namespace BlImplementation
                                    Category = updateProduct.Category,
                                    Price = updateProduct.Price,
                                    InStock = updateProduct.InStock - item.Amount,
+                                   picture = updateProduct.picture,
                                };
 
                 //Updating the products in the product list

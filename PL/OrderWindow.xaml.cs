@@ -21,17 +21,10 @@ namespace PL
     /// </summary>
     public partial class OrderWindow : Window
     {
-        public OrderWindow(int OrderID , bool isManager) 
+        public OrderWindow(int OrderID) 
         {
             InitializeComponent();
             Order = bl.Order.GetOrder(OrderID);
-            if(!isManager)
-            {
-                ShipUpdBtn.Visibility = Visibility.Hidden;
-                DeliverUpdBtn.Visibility = Visibility.Hidden;
-                shipDateDatePicker.Visibility = Visibility.Hidden;
-                deliveryDateDatePicker.Visibility= Visibility.Hidden;
-            }
         }
 
         private static readonly IBl bl = BlApi.Factory.Get();

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BO;
 
 namespace PL
 {
@@ -39,12 +40,21 @@ namespace PL
 
         private void catalogBtn_Click(object sender, RoutedEventArgs e)
         {
-            new CatalogWindow().ShowDialog();
+            BO.Cart cart1 = new BO.Cart
+            {
+                CustomerAddress = " ",
+                CustomerEmail = " ",
+                CustomerName = " ",
+                TotalPrice = 0,
+                Items = new List<OrderItem?>()
+            };
+            new CatalogWindow(cart1).ShowDialog();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             new LogInWindow().ShowDialog();
         }
+
     }
 }

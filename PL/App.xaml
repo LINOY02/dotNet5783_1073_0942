@@ -5,6 +5,9 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <local:ConvertImagePathToBitmap x:Key="ImagePathToBitmap"/>
+        <local:ConvertBooleanToText x:Key="BooleanToText"/>
+        <local:ConvertBooleanToColors x:Key="BooleanToColor"/>
+        <local:NotBooleanToVisibilityConverter  x:Key="NotBooleanToVisibility"/>
         <Style TargetType="Button">
             <Setter Property="Height" Value="35"/>
             <Setter Property="Width" Value="166"/>
@@ -12,7 +15,6 @@
             <Setter Property="FontFamily" Value="Arial Black"/>
             <Setter Property="FontSize" Value="10"/>
             <Setter Property="Foreground" Value="Gray"/>
-            <!--<Setter Property="BorderBrush" Value="Black"/>-->
             <Setter Property="Background" Value="White"/>
         </Style>
     </Application.Resources>

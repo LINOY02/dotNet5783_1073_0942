@@ -22,9 +22,12 @@
     <None Remove="IMG.100014.jpg" />
     <None Remove="IMG.100015.jpg" />
     <None Remove="IMG.100024.jpg" />
+    <None Remove="איש.png" />
     <None Remove="הורדה.jpeg" />
+    <None Remove="סל קניות.png" />
     <None Remove="תמונה1.png" />
     <None Remove="תמונה2.png" />
+    <None Remove="תשלום.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -36,9 +39,12 @@
     <Resource Include="IMG.100014.jpg" />
     <Resource Include="IMG.100015.jpg" />
     <Resource Include="IMG.100024.jpg" />
+    <Resource Include="איש.png" />
     <Resource Include="הורדה.jpeg" />
+    <Resource Include="סל קניות.png" />
     <Resource Include="תמונה1.png" />
     <Resource Include="תמונה2.png" />
+    <Resource Include="תשלום.png" />
   </ItemGroup>
 
 </Project>

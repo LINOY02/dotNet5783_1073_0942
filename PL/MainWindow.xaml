@@ -11,12 +11,13 @@
             <ImageBrush/>
 
         </Grid.Background>
-        <Button x:Name="OrderTraking" Content="Order Traking" BorderBrush="White" HorizontalAlignment="Left" Margin="387,66,0,0" VerticalAlignment="Top" Click="OrderTraking_Click" Width="117"/>
+        <Button x:Name="OrderTraking" Content="Order Traking" BorderBrush="White" HorizontalAlignment="Left" Margin="389,74,0,0" VerticalAlignment="Top" Click="OrderTraking_Click" Width="117" Height="20"/>
         <Image HorizontalAlignment="Center" Height="324" Margin="0,97,0,0" VerticalAlignment="Top" Width="798" Source="/תמונה1.png"/>
         <Button Content="log in" HorizontalAlignment="Left" Margin="252,72,0,0" VerticalAlignment="Top" Width="53" BorderBrush="White" Height="22" FontSize="10" Click="Button_Click"/>
-        <Button x:Name="catalogBtn" Content="catalog" HorizontalAlignment="Left" BorderBrush="White" Height="21" Margin="318,73,0,0" VerticalAlignment="Top" Width="63" Click="catalogBtn_Click" FontSize="10"/>
-        <Label Content="MUABLES" HorizontalAlignment="Left" Margin="826,70,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="30" Height="47" Width="182" FontFamily="Broadway" Background="White"/>
-        <Label Content="Make You Feel At Home" HorizontalAlignment="Left" Margin="818,108,0,0" VerticalAlignment="Top" FontSize="17" Height="41" Width="194" Background="White"/>
+        <Button x:Name="catalogBtn" Content="catalog" HorizontalAlignment="Left" BorderBrush="White" Height="21" Margin="316,73,0,0" VerticalAlignment="Top" Width="63" Click="catalogBtn_Click" FontSize="10"/>
+        <Label Content="MUABLES" HorizontalAlignment="Left" Margin="821,71,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="30" Height="47" Width="167" FontFamily="Broadway" Background="White"/>
+        <Label Content="Make You Feel At Home" HorizontalAlignment="Left" Margin="809,114,0,0" VerticalAlignment="Top" FontSize="17" Height="40" Width="190" Background="White"/>
+
         <Image HorizontalAlignment="Left" Height="78" Margin="898,374,0,0" VerticalAlignment="Top" Width="78" Source="/IMG.100005.jpg"/>
         <Image HorizontalAlignment="Left" Height="154" Margin="545,342,0,0" VerticalAlignment="Top" Width="157" Source="/IMG.100015.jpg"/>
         <Image HorizontalAlignment="Left" Height="120" Margin="233,353,0,0" VerticalAlignment="Top" Width="119" Source="/IMG.100014.jpg"/>

@@ -30,6 +30,10 @@ namespace BO
         /// The total price of the order
         /// </summary>
         public double TotalPrice { get; set; }
+        /// <summary>
+        /// pictures
+        /// </summary>
+        public string? picture  { get; set; }   
         public override string ToString()
         {
             return this.ToStringProperty();

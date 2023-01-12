@@ -10,12 +10,12 @@
     <Window.Resources>
         <DataTemplate x:Key ="CatalogDataTemplate" DataType="local:ProductItem">
             <Border
-                Background="{Binding InStock, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true, Converter={StaticResource}}">
+                Background="{Binding InStock, Mode=TwoWay, NotifyOnValidationError=false, ValidatesOnExceptions=true, Converter={StaticResource BooleanToColor}}">
                 <Border.Effect>
                     <DropShadowEffect
                             ShadowDepth="1" />
                 </Border.Effect>
-               <StackPanel Width="210" Height="250">
+                <StackPanel Width="210" Height="250">
                     <Image x:Name="prodImage"
                     Source="{Binding Path=picture, Converter={StaticResource ImagePathToBitmap}}"
                     HorizontalAlignment="Center"
@@ -23,49 +23,43 @@
                     Margin="15,15,15,15"
                     VerticalAlignment="Center"
                     Width="130" />
-                    <TextBlock
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock
                     Margin="5,5,5,5"
                     Text="{Binding Name}"
-                    FontSize="15" />
-                    <TextBlock
-                    Margin="5"
-                    Text="{Binding InStock, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"
-                   FontSize="15" />
-                    <TextBlock
+                    FontSize="15" Grid.Column="0" />
+                        <TextBlock
+                    Text="{Binding Category}"
+                    FontSize="10" Grid.Column="1"
+                    Foreground="Gray" HorizontalAlignment="Stretch" Margin="35,0,15,15" />
+                    </Grid>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock
+                    Grid.Column="0"
                     Margin="5"
                     Text="{Binding Price,StringFormat={}{0:c}}"
                     FontSize="15" />
+                        <Button x:Name="addToCartBtn" Content="+" Width="18" Height="18" Grid.Column="1" BorderBrush="WhiteSmoke" Background="WhiteSmoke" Click="addToCartBtn_Click_1" FontWeight="Black" FontSize="16"
+                        Visibility="{Binding InStock, NotifyOnValidationError=false, ValidatesOnExceptions=true, Converter={StaticResource NotBooleanToVisibility}}" />
+                    </Grid>
                     <TextBlock
                     Margin="5"
-                    Text="{Binding Category}"
-                    FontSize="15">
-                        <TextBlock.Style>
-                            <Style
-                            TargetType="TextBlock">
-                                <Setter
-                                Property="Foreground"
-                                Value="Blue"></Setter>
-                                <Style.Triggers>
-                                    <Trigger
-                                    Property="IsMouseOver"
-                                    Value="True">
-                                        <Setter
-                                        Property="Foreground"
-                                        Value="Red" />
-                                        <Setter
-                                        Property="TextDecorations"
-                                        Value="Underline" />
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </TextBlock.Style>
-                    </TextBlock>
+                    Text="{Binding InStock, Mode=TwoWay, NotifyOnValidationError=false, ValidatesOnExceptions=true, Converter={StaticResource BooleanToText}}"
+                   FontSize="15" />
                 </StackPanel>
-                </Border>
+            </Border>
         </DataTemplate>
     </Window.Resources>
-    
-        
+
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height ="40"/>
@@ -81,8 +75,8 @@
                 <ColumnDefinition Width="100"/>
                 <ColumnDefinition Width="100"/>
                 <ColumnDefinition Width="100"/>
-             </Grid.ColumnDefinitions>
-            <Label Name ="TabelLabel" Content="Tabels" Grid.Column="0" HorizontalAlignment="Center" />
+            </Grid.ColumnDefinitions>
+            <Label Name ="TabelLabel" Content="Tabels" HorizontalAlignment="Center" Height="40" VerticalAlignment="Bottom" />
             <Label Name ="ChairLabel" Content="Chairs" Grid.Column="1" HorizontalAlignment="Center"/>
             <Label Name ="SofaLabel" Content="Sofas" Grid.Column="2" HorizontalAlignment="Center"/>
             <Label Name ="ClosetLabel" Content="Closetss" Grid.Column="3" HorizontalAlignment="Center"/>
@@ -97,12 +91,12 @@
                 Height="312"
                 Width="716">
                 <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel/>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-                </ListView>
+                    <ItemsPanelTemplate>
+                        <WrapPanel/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ListView>
         </ScrollViewer>
-
+        <Button Content="My Cart" x:Name="MyCart" Height="30" Width="NaN" Margin="10,2,722,8" BorderBrush="White" Click="MyCart_Click"/>
     </Grid>
 </Window>

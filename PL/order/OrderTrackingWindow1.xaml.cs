@@ -32,10 +32,15 @@ namespace PL
         public BO.OrderTracking OrderT
         {
             get { return (BO.OrderTracking)GetValue(OrderTTrackingProperty); }
-            set { SetValue(OrderTTrackingProperty, value); }
+            set { SetValue(OrderTTrackingProperty, value);}
         }
 
         public static readonly DependencyProperty OrderTTrackingProperty =
             DependencyProperty.Register("OrderT", typeof(BO.OrderTracking), typeof(Window), new PropertyMetadata(null));
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            new ShowOrderWindow(OrderT.ID).ShowDialog();
+        }
     }
 }
