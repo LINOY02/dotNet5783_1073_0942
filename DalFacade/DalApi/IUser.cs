@@ -23,5 +23,6 @@ namespace DalApi
         /// <param name="username"></param>
         /// <returns></returns>
         public User GetByUserName(string username);
+
     }
 }

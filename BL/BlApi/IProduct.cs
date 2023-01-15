@@ -68,5 +68,12 @@ namespace BlApi
         /// <returns></List of ProductsForList>
         IEnumerable<ProductItem?> GetProductItems(BO.Cart cart, Func<BO.ProductItem?, bool>? filter = null);
 
+        /// <summary>
+        /// All productItems are shown according to the selected category
+        /// </summary>
+        /// <param name="category"></param>
+        /// <returns></returns>
+        IEnumerable<ProductItem?> GetProductItemsByCategory(BO.Cart cart, BO.Category category);
+
     }
 }

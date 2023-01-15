@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,10 +22,23 @@ namespace PL
     /// </summary>
     public partial class OrderListWindow : Window
     {
+
+
+        private ObservableCollection<BO.OrderForList> orderForLists
+        {
+            get { return (ObservableCollection<BO.OrderForList>)GetValue(orderForListsProperty); }
+            set { SetValue(orderForListsProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for productForLists.  This enables animation, styling, binding, etc...
+        private static readonly DependencyProperty orderForListsProperty =
+            DependencyProperty.Register("orderForLists", typeof(ObservableCollection<BO.OrderForList>), typeof(OrderListWindow));
+
+
         public OrderListWindow()
         {
             InitializeComponent();
-            OrderListView.ItemsSource = bl.Order.GetListedOrders();
+            orderForLists = new ObservableCollection<OrderForList>( bl.Order.GetListedOrders()!);
         }
         private static readonly IBl bl = BlApi.Factory.Get();
 
@@ -36,7 +50,7 @@ namespace PL
                 //Opening a new window to update a order (constractor with an item ID parameter)
                OrderWindow orderWindow = new OrderWindow(orderId?.ID ?? throw new NullReferenceException("Choose order to update"));
                 orderWindow.ShowDialog();
-                OrderListView.ItemsSource = bl.Order.GetListedOrders();//Reopening the catalog after updating the product
+                orderForLists = new ObservableCollection<OrderForList>(bl.Order.GetListedOrders()!); ;//Reopening the catalog after updating the product
             }
             catch (NullReferenceException ex)//In case no parameter was received
             {

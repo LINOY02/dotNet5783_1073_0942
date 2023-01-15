@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
+        DataContext="{Binding RelativeSource={RelativeSource self}}"
         Title="ProductListWindow" Height="640" Width="800">
     <Grid>
         <Grid Name="MainGrid" Margin="0,0,0,52">
@@ -14,12 +15,36 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <ListView x:Name="ProductListView" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,1,297,-41" Grid.Row="1" MouseDoubleClick="ProductListView_MouseDoubleClick" Grid.RowSpan="2"  >
+            <ListView x:Name="ProductListView" ItemsSource="{Binding productForLists}" Margin="0,1,297,-41" Grid.Row="1" MouseDoubleClick="ProductListView_MouseDoubleClick" Grid.RowSpan="2"  >
                 <ListView.View>
                     <GridView>
                         <GridViewColumn/>
                     </GridView>
                 </ListView.View>
+                <ListView.GroupStyle>
+                    <GroupStyle>
+                        <GroupStyle.ContainerStyle>
+                            <Style TargetType="{x:Type GroupItem}">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate>
+                                            <Expander IsExpanded="True">
+                                                <Expander.Header>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Text="{Binding Name}" FontWeight="Bold" Foreground="{DynamicResource PrimaryHueMidBrush}" FontSize="18" VerticalAlignment="Bottom" />
+                                                        <TextBlock Text="{Binding ItemCount}" FontSize="16" Foreground="{DynamicResource PrimaryHueLightBrush}" FontWeight="Bold" FontStyle="Italic" Margin="10,0,0,0" VerticalAlignment="Bottom" />
+                                                        <TextBlock Text=" item(s)" FontSize="12" Foreground="{DynamicResource PrimaryHueLightBrush}" FontStyle="Italic" VerticalAlignment="Bottom"  />
+                                                    </StackPanel>
+                                                </Expander.Header>
+                                                <ItemsPresenter />
+                                            </Expander>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </GroupStyle.ContainerStyle>
+                    </GroupStyle>
+                </ListView.GroupStyle>
             </ListView>
         </Grid>
         <Grid Name="UpGrid" Height="auto" Grid.Row="0" Width="auto" Margin="-30,40,319,241" RenderTransformOrigin="0.46,0.493">

@@ -30,9 +30,10 @@ namespace PL
             Cart = cart1;
             itemsListView.ItemsSource = cart1.Items;
             itemsListView.Items.Refresh();
-
-        }
+         }
         BlApi.IBl bl = BlApi.Factory.Get();
+
+        
 
         public BO.Cart Cart
         {
@@ -44,13 +45,13 @@ namespace PL
         public static readonly DependencyProperty CartProperty =
             DependencyProperty.Register("Cart", typeof(BO.Cart), typeof(Window), new PropertyMetadata(null));
 
-        private void AmountSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void amountSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             BO.OrderItem orderItem = (BO.OrderItem)((ComboBox)sender).DataContext;
             //var choise = 
             try
             {
-
+               
             }
             catch (BO.BlProductIsNotOrderedException ex)
             {
@@ -142,6 +143,23 @@ namespace PL
         private void BackBtn_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void deleteBtn_Click(object sender, RoutedEventArgs e)
+        {
+            BO.OrderItem OrderItem = (BO.OrderItem)((Button)sender).DataContext;
+            try
+            {
+                Cart = bl.Cart.DeleteProductFromCart(Cart, OrderItem.ProductID);
+                itemsListView.ItemsSource = Cart.Items;
+                itemsListView.Items.Refresh();
+                totalPriceTextBox.Text = Cart.TotalPrice.ToString();
+            }
+            catch (BO.BlAlreadyExistException exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+            
         }
     }
 }

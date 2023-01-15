@@ -25,5 +25,7 @@ namespace BlApi
         /// <param name="password"></param>
         /// <param name="status"></param>
         void SignIn(BO.User user);
+
+        BO.Cart GetCart(BO.User user);
     }
 }

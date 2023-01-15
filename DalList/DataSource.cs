@@ -273,6 +273,22 @@ internal static class DataSource
 
     private static void createAndInitUsers()
     {
+        for (int i = 0; i < _orders.Count(); i++)
+        {
+
+            string userName;
+
+            _users.Add(new User
+            {
+                Name = _orders[i]?.CustomerName,
+                Address = _orders[i]?.CustomerAdress,
+                Email = _orders[i]?.CustomerEmail,
+                userName = _orders[i]?.CustomerName + i,
+                password = _orders[i]?.CustomerName + i,
+                status = userStatus.CUSTOMER,
+
+            });
+        }
         _users.Add(new User
         {
             userName = "tamar",
@@ -287,12 +303,7 @@ internal static class DataSource
             status = userStatus.MANAGER
         });
 
-        _users.Add(new User
-        {
-            userName = "customer",
-            password = "1111",
-            status = userStatus.CUSTOMER
-        });
+        
 
 
     }

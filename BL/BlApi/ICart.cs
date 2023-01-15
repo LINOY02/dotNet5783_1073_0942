@@ -12,6 +12,13 @@ namespace BlApi
         public BO.Cart AddProductToCart(BO.Cart cart, int producId);
 
         /// <summary>
+        /// Delet a product from the shopping cart by the customer
+        /// </summary>
+        /// <param name=Cart></param>
+        /// <returns></the cart>
+        public BO.Cart DeleteProductFromCart(BO.Cart cart, int producId);
+
+        /// <summary>
         /// Updating the quantity of a product from the shopping cart
         /// </summary>
         /// <param name=Cart></param>

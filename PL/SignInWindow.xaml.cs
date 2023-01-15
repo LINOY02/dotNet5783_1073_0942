@@ -34,6 +34,7 @@ namespace PL
             {
                 bl.User.SignIn(new BO.User
                 {
+                    
                     userName = userNameTextBox.Text,
                     password = passwordTextBox.Text,
                     status = (BO.userStatus)statusComboBox.SelectedItem,

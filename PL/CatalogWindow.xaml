@@ -8,6 +8,36 @@
         mc:Ignorable="d"
         Title="CatalogWindow" Height="450" Width="800">
     <Window.Resources>
+        <Style TargetType="Label">
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="MouseEnter">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Duration="0:0:0.300" Storyboard.TargetProperty="FontSize" To="15" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="MouseLeave">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Duration="0:0:0.600" Storyboard.TargetProperty="FontSize" To="10" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>            </Style.Triggers>
+            <Style.Setters>
+                <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="FontFamily" Value="Arial Black"/>
+                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="Foreground" Value="Gray"/>
+                <Setter Property="BorderBrush" Value="Gray"/>
+                <Setter Property="Background" Value="White"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+            </Style.Setters>
+        </Style>
         <DataTemplate x:Key ="CatalogDataTemplate" DataType="local:ProductItem">
             <Border
                 Background="{Binding InStock, Mode=TwoWay, NotifyOnValidationError=false, ValidatesOnExceptions=true, Converter={StaticResource BooleanToColor}}">
@@ -40,19 +70,24 @@
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="25"/>
+                            <ColumnDefinition Width="25"/>
+                            <ColumnDefinition Width="25"/>
                         </Grid.ColumnDefinitions>
                         <TextBlock
                     Grid.Column="0"
                     Margin="5"
-                    Text="{Binding Price,StringFormat={}{0:c}}"
+                    Text="{Binding Price,StringFormat=C, ConverterCulture=he-IL}"
                     FontSize="15" />
-                        <Button x:Name="addToCartBtn" Content="+" Width="18" Height="18" Grid.Column="1" BorderBrush="WhiteSmoke" Background="WhiteSmoke" Click="addToCartBtn_Click_1" FontWeight="Black" FontSize="16"
+                        <Button x:Name="addToCartBtn" Content="+" Grid.Column="3" BorderBrush="WhiteSmoke" Background="WhiteSmoke" Click="addToCartBtn_Click_1" FontWeight="Black" FontSize="16" HorizontalAlignment="Center"
                         Visibility="{Binding InStock, NotifyOnValidationError=false, ValidatesOnExceptions=true, Converter={StaticResource NotBooleanToVisibility}}" />
+                        <TextBlock Text="{Binding Amount}" FontSize="15" Grid.Column="2" Visibility="{Binding InStock, NotifyOnValidationError=false, ValidatesOnExceptions=true, Converter={StaticResource NotBooleanToVisibility}}" HorizontalAlignment="Center" />
+                        <Button x:Name="delFromCartBtn" Content="-" Grid.Column="1" BorderBrush="WhiteSmoke" Background="WhiteSmoke" Click="delFromCartBtn_Click" FontWeight="Black" FontSize="16" HorizontalAlignment="Center"
+                                Visibility="{Binding InStock, NotifyOnValidationError=false, ValidatesOnExceptions=true, Converter={StaticResource NotBooleanToVisibility}}" />
                     </Grid>
                     <TextBlock
                     Margin="5"
-                    Text="{Binding InStock, Mode=TwoWay, NotifyOnValidationError=false, ValidatesOnExceptions=true, Converter={StaticResource BooleanToText}}"
+                    Text="{Binding InStock, Mode=TwoWay, NotifyOnValidationError=false, ValidatesOnExceptions=true, Converter={StaticResource BooleanToText} }"
                    FontSize="15" />
                 </StackPanel>
             </Border>
@@ -65,7 +100,7 @@
             <RowDefinition Height ="40"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row ="0" HorizontalAlignment="Center">
+        <Grid Grid.Row ="0" HorizontalAlignment="Center" Margin="0,5,0,389" Grid.RowSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="40"/>
             </Grid.RowDefinitions>
@@ -76,17 +111,17 @@
                 <ColumnDefinition Width="100"/>
                 <ColumnDefinition Width="100"/>
             </Grid.ColumnDefinitions>
-            <Label Name ="TabelLabel" Content="Tabels" HorizontalAlignment="Center" Height="40" VerticalAlignment="Bottom" />
-            <Label Name ="ChairLabel" Content="Chairs" Grid.Column="1" HorizontalAlignment="Center"/>
-            <Label Name ="SofaLabel" Content="Sofas" Grid.Column="2" HorizontalAlignment="Center"/>
-            <Label Name ="ClosetLabel" Content="Closetss" Grid.Column="3" HorizontalAlignment="Center"/>
-            <Label Name ="BedLabel" Content="Beds" Grid.Column="4" HorizontalAlignment="Center"/>
+            <Label Name ="TabelLabel" Content="Tabels" HorizontalAlignment="Center" Height="40" VerticalAlignment="Bottom" MouseEnter="TabelLabel_MouseEnter"/>
+            <Label Name ="ChairLabel" Content="Chairs" Grid.Column="1" HorizontalAlignment="Center" MouseEnter="ChairLabel_MouseEnter"/>
+            <Label Name ="SofaLabel" Content="Sofas" Grid.Column="2" HorizontalAlignment="Center" MouseEnter="SofaLabel_MouseEnter"/>
+            <Label Name ="ClosetLabel" Content="Closetss" Grid.Column="3" HorizontalAlignment="Center" MouseEnter="ClosetLabel_MouseEnter"/>
+            <Label Name ="BedLabel" Content="Beds" Grid.Column="4" HorizontalAlignment="Center" MouseEnter="BedLabel_MouseEnter"/>
+            
         </Grid>
-        <ScrollViewer Grid.Row ="1">
+        <ScrollViewer Grid.Row ="1" Margin="0,10,0,0" BorderBrush="Gray">
             <ListView x:Name="CatalogListView"
                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                 RenderTransformOrigin="0.5,0.5"
-                ItemsSource="{Binding ProductItems}"
                 ItemTemplate="{StaticResource CatalogDataTemplate}"
                 Height="312"
                 Width="716">
@@ -97,6 +132,10 @@
                 </ItemsControl.ItemsPanel>
             </ListView>
         </ScrollViewer>
-        <Button Content="My Cart" x:Name="MyCart" Height="30" Width="NaN" Margin="10,2,722,8" BorderBrush="White" Click="MyCart_Click"/>
+        <Button x:Name="MyCart" Height="NaN" Width="NaN" Margin="10,2,735,0" BorderBrush="White" Click="MyCart_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="/סל קניות.png"/>
+            </Button.Background>
+        </Button>
     </Grid>
 </Window>

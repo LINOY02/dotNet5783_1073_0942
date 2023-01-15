@@ -37,22 +37,25 @@ namespace PL
 
 
 
-        public ObservableCollection<ProductItem?> productItems
+
+
+
+        public BO.ProductItem productItem
         {
-            get { return (ObservableCollection<ProductItem>)GetValue(productItemsProperty); }
-            set { SetValue(productItemsProperty, value); }
+            get { return (BO.ProductItem)GetValue(productItemProperty); }
+            set { SetValue(productItemProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for productItems.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty productItemsProperty =
-            DependencyProperty.Register("productItems", typeof(ObservableCollection<ProductItem>), typeof(Window), new PropertyMetadata(null));
+        // Using a DependencyProperty as the backing store for productItem.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty productItemProperty =
+            DependencyProperty.Register("productItem", typeof(BO.ProductItem), typeof(Window), new PropertyMetadata(null));
 
+        private ObservableCollection <BO.ProductItem> productItems = new ObservableCollection<BO.ProductItem>();    
 
 
         public CatalogWindow(BO.Cart cart1)
         {
             InitializeComponent();
-            //productItems = new ObservableCollection<ProductItem?>( bl.Product.GetProductItems(cart));
             CatalogListView.ItemsSource = bl.Product.GetProductItems(cart);
             cart = cart1;
         }
@@ -61,10 +64,12 @@ namespace PL
 
         private void addToCartBtn_Click_1(object sender, RoutedEventArgs e)
         {
-            BO.ProductItem productItem = (BO.ProductItem)((Button)sender).DataContext;
+            productItem = (BO.ProductItem)((Button)sender).DataContext;
             try
             {
-                bl.Cart.AddProductToCart(cart, productItem.ID);
+                cart = bl.Cart.AddProductToCart(cart, productItem.ID);
+               // productItem.Amount++;
+                CatalogListView.ItemsSource = bl.Product.GetProductItems(cart);
             }
             catch (BO.BlDoesNotExistException exc)
             {
@@ -79,6 +84,50 @@ namespace PL
         private void MyCart_Click(object sender, RoutedEventArgs e)
         {
             new CartWindow(cart).ShowDialog();
+            CatalogListView.ItemsSource = bl.Product.GetProductItems(cart);
+        }
+
+        private void delFromCartBtn_Click(object sender, RoutedEventArgs e)
+        {
+            productItem = (BO.ProductItem)((Button)sender).DataContext;
+            try
+            {
+                cart = bl.Cart.UpdateCart(cart, productItem.ID, productItem.Amount-1);
+                CatalogListView.ItemsSource = bl.Product.GetProductItems(cart);
+            }
+            catch (BO.BlDoesNotExistException exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+            catch (BO.BlProductIsNotOrderedException exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+        }
+
+        private void TabelLabel_MouseEnter(object sender, MouseEventArgs e)
+        {
+            CatalogListView.ItemsSource = bl.Product.GetProductItemsByCategory(cart, Category.TABLE);
+        }
+
+        private void ChairLabel_MouseEnter(object sender, MouseEventArgs e)
+        {
+            CatalogListView.ItemsSource = bl.Product.GetProductItemsByCategory(cart, Category.CHAIR);
+        }
+
+        private void SofaLabel_MouseEnter(object sender, MouseEventArgs e)
+        {
+            CatalogListView.ItemsSource = bl.Product.GetProductItemsByCategory(cart, Category.SOFA);
+        }
+
+        private void ClosetLabel_MouseEnter(object sender, MouseEventArgs e)
+        {
+            CatalogListView.ItemsSource = bl.Product.GetProductItemsByCategory(cart, Category.CLOSET);
+        }
+
+        private void BedLabel_MouseEnter(object sender, MouseEventArgs e)
+        {
+            CatalogListView.ItemsSource = bl.Product.GetProductItemsByCategory(cart, Category.BED);
         }
     }
     

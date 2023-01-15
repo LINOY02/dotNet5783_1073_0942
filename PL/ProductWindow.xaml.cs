@@ -41,9 +41,8 @@ namespace PL
         {
             InitializeComponent();
             Button.Content = "Update";
-            Product = bl.Product.GetProduct(ProductId);
             CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Category));
-            CategorySelector.SelectedIndex = 5;
+            Product = bl.Product.GetProduct(ProductId);
             IDTextBox.IsReadOnly = true;
         }
         private static readonly IBl bl = BlApi.Factory.Get();

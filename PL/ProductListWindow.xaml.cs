@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,14 +23,33 @@ namespace PL
     /// </summary>
     public partial class ProductListWindow : Window
     {
+        private string groupName = "Category";
+        PropertyGroupDescription propertyGroupDescription;
+        public ICollectionView CollectionViewProductForList { set; get; }
+        
+        private ObservableCollection<BO.ProductForList> productForLists
+        {
+            get { return (ObservableCollection<BO.ProductForList>)GetValue(productForListsProperty); }
+            set { SetValue(productForListsProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for productForLists.  This enables animation, styling, binding, etc...
+        private static readonly DependencyProperty productForListsProperty =
+            DependencyProperty.Register("productForLists", typeof(ObservableCollection<BO.ProductForList>), typeof(ProductListWindow));
+
         public ProductListWindow()
         {
             InitializeComponent();
             //When the page opens, the product catalog will appear
-            ProductListView.ItemsSource = bl.Product.GetListedProducts();
+            productForLists = new ObservableCollection<ProductForList>( bl.Product.GetListedProducts()!);
             //The options of the combobox are the categories of the product
             CategorySelector.ItemsSource = Enum.GetValues(typeof(Category));
             CategorySelector.SelectedIndex = 5;
+            CollectionViewProductForList = CollectionViewSource.GetDefaultView(productForLists);
+
+            propertyGroupDescription = new PropertyGroupDescription(groupName);
+            CollectionViewProductForList.GroupDescriptions.Add(propertyGroupDescription);
+            CollectionViewProductForList.GroupDescriptions.Clear();
         }
 
         private  static readonly IBl bl = BlApi.Factory.Get();
@@ -41,9 +62,11 @@ namespace PL
         private void AddProduct_Click(object sender, RoutedEventArgs e)
         {
             new ProductWindow().ShowDialog();//Opening a new window to add a product (empty constractor)
-            ProductListView.ItemsSource = bl.Product.GetListedProducts();//Reopening the catalog after adding the product
+            productForLists = new ObservableCollection<ProductForList>(bl.Product.GetListedProducts()!);//Reopening the catalog after adding the product
 
         }
+
+        
 
         /// <summary>
         /// Product update event
@@ -61,7 +84,7 @@ namespace PL
                     //Opening a new window to update a product (constractor with an item ID parameter)
                     ProductWindow productW = new ProductWindow(productId?.ID ?? throw new NullReferenceException("Choose product to update"));
                     productW.ShowDialog();
-                    ProductListView.ItemsSource = bl.Product.GetListedProducts();//Reopening the catalog after updating the product
+                    productForLists = new ObservableCollection<ProductForList>(bl.Product.GetListedProducts()!);//Reopening the catalog after updating the product
                 }
                 catch (NullReferenceException ex)//In case no parameter was received
                 {
@@ -80,9 +103,9 @@ namespace PL
         {
             var choise = CategorySelector.SelectedItem;//the selected category
             if (choise.Equals(BO.Category.NONE))//If no category is selected
-                ProductListView.ItemsSource = bl.Product.GetListedProducts();//Show the entire catalog
+                productForLists = new ObservableCollection<ProductForList>( bl.Product.GetListedProducts());//Show the entire catalog
             else//If a category is selected
-                ProductListView.ItemsSource = bl.Product.GetListedProductsByCategory( (Category)choise);//Show all products of the selected category
+                productForLists = new ObservableCollection<ProductForList>( bl.Product.GetListedProductsByCategory( (Category)choise));//Show all products of the selected category
         } 
     }
 }

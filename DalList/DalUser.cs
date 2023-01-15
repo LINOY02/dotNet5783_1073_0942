@@ -17,6 +17,9 @@ namespace DAL
                 throw new DalAlreadyExistException($"The user name {user.userName} already exist in the list");
             DataSource._users.Add(new User
             {
+                Name = user.userName,
+                Address = user.Address,
+                Email = user.Email,
                 userName = user.userName,
                 password = user.password,
                 status = user.status

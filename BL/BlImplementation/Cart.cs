@@ -55,6 +55,23 @@ namespace BlImplementation
             }
         }
 
+        public BO.Cart DeleteProductFromCart(BO.Cart cart, int productId)
+        {
+            DO.Product product = Dal.Product.GetById(productId);
+             var bOrderItem = cart.Items?.FirstOrDefault(x => x?.ProductID == productId);
+            if (bOrderItem != null) //Checking if the product is in the cart
+            {
+                cart.Items?.Remove(bOrderItem);
+                cart.TotalPrice -= product.Price*bOrderItem.Amount;
+                product.InStock -= bOrderItem.Amount;
+            }
+            else// the product is not in the cart
+            {
+                throw new BO.BlAlreadyExistException("product is not exist in the cart");
+            }
+            return cart;
+        }
+
         /// <summary>
         /// make an order
         /// </summary>
@@ -131,6 +148,8 @@ namespace BlImplementation
                 var cartP = cart.Items?.FirstOrDefault(x => x?.ProductID == productId);
                 if (cartP == null)
                     throw new BO.BlProductIsNotOrderedException("product not in the cart");
+                else
+                    cart.Items?.Remove(cartP);
                 // In case the customer wants to increase the quantity 
                 if (amount > cartP.Amount)
                 {
@@ -141,6 +160,7 @@ namespace BlImplementation
                     cart.TotalPrice += (amount - cartP.Amount) * cartP.Price;
                     //Update the new quantity
                     cartP.Amount = amount;
+                    cart.Items?.Add(cartP);
                 }
                 // In case the customer wants to reduce the quantity
                 if (amount < cartP.Amount)
@@ -150,6 +170,7 @@ namespace BlImplementation
                     cart.TotalPrice -= (cartP.Amount - amount) * cartP.Price;
                     //Update the new quantity
                     cartP.Amount = amount;
+                    cart.Items?.Add(cartP);
                 }
                 //In case the customer wants to remove the product from the cart
                 if (amount == 0)

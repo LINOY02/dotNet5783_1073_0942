@@ -206,12 +206,32 @@ namespace BlImplementation
                 throw new BO.BlDoesNotExistException(ex.Message);
             }
         }
-      
+
+        /// <summary>
+        /// All products are shown according to the selected category
+        /// </summary>
+        /// <param name="category"></param>
+        /// <returns></returns>
         IEnumerable<ProductForList?> BlApi.IProduct.GetListedProductsByCategory(BO.Category category)
         {
             return GetListedProducts(p => p?.Category == category);
         }
 
+        /// <summary>
+        /// All productItems are shown according to the selected category
+        /// </summary>
+        /// <param name="category"></param>
+        /// <returns></returns>
+        IEnumerable<ProductItem?> BlApi.IProduct.GetProductItemsByCategory(BO.Cart cart, BO.Category category)
+        {
+            return GetProductItems(cart, p => p?.Category == category);
+        }
+
+        /// <summary>
+        /// The function shows the customerr the list of products,
+        /// for each product: number, name, price and category
+        /// </summary>
+        /// <returns></List of ProductsForList>
         public IEnumerable<ProductItem?> GetProductItems( BO.Cart cart, Func<ProductItem?, bool>? filter )
         {
             var list = from DO.Product product1 in Dal.Product.GetAll()
@@ -223,12 +243,18 @@ namespace BlImplementation
                            Category = (BO.Category)product1.Category!,
                            InStock = checkInStock(product1),
                            picture  = product1.picture ?? @"\Pics\IMG.FAILS.jpg",
-                           Amount = 0,
+                           Amount = AmountInCart(cart, product1.ID),
                        };
 
             return filter is null ? list : list.Where(filter);
         }
 
-        
+        private int AmountInCart(BO.Cart cart, int id)
+        {
+            if (cart == null)
+                return 0;
+            var productItem = cart.Items?.FirstOrDefault(x => x?.ProductID == id);
+            return productItem != null ? productItem.Amount : 0;
+        }
     }
 }

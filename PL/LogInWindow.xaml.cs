@@ -21,9 +21,12 @@ namespace PL
     /// </summary>
     public partial class LogInWindow : Window
     {
-        public LogInWindow()
+        
+
+        public LogInWindow(BO.Cart cart)
         {
             InitializeComponent();
+            cart = bl.User.GetCart(User);
         }
 
         private static readonly IBl bl = BlApi.Factory.Get();
@@ -33,6 +36,7 @@ namespace PL
             get { return (BO.User)GetValue(UserProperty); }
             set { SetValue(UserProperty, value); }
         }
+        
 
         // Using a DependencyProperty as the backing store for User.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty UserProperty =
@@ -60,7 +64,7 @@ namespace PL
 
         private void signInBtn_Click(object sender, RoutedEventArgs e)
         {
-            new SignInWindow().ShowDialog();
+            new SignInWindow(User).ShowDialog();
         }
     }
 }
