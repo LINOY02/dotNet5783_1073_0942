@@ -21,12 +21,12 @@ namespace PL
     /// </summary>
     public partial class LogInWindow : Window
     {
-        
+        BO.Cart myCart;
 
         public LogInWindow(BO.Cart cart)
         {
             InitializeComponent();
-            cart = bl.User.GetCart(User);
+            myCart = cart;
         }
 
         private static readonly IBl bl = BlApi.Factory.Get();
@@ -47,6 +47,7 @@ namespace PL
             try
             {
                 User = bl.User.LogIn(userNameTextBox.Text, passwordTextBox.Text);
+                myCart = bl.User.GetCart(User);
                 if(User.status == userStatus.MANAGER)
                    new ManagerWindow().ShowDialog();
             }

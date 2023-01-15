@@ -51,7 +51,7 @@ namespace PL
         private void catalogBtn_Click(object sender, RoutedEventArgs e)
         {
             
-            new CatalogWindow(cart1).ShowDialog();
+            new CatalogWindow(cart).ShowDialog();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

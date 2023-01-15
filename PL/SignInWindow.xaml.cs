@@ -21,24 +21,32 @@ namespace PL
     /// </summary>
     public partial class SignInWindow : Window
     {
-        public SignInWindow()
+        public SignInWindow(BO.User user)
         {
             InitializeComponent();
             statusComboBox.ItemsSource = Enum.GetValues(typeof(userStatus));
+            user = User;
         }
+
+
+
+        public BO.User User
+        {
+            get { return (BO.User)GetValue(UserProperty); }
+            set { SetValue(UserProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for User.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty UserProperty =
+            DependencyProperty.Register("User", typeof(BO.User), typeof(SignInWindow), new PropertyMetadata(null));
+
 
         private static readonly IBl bl = BlApi.Factory.Get();
         private void SignInBtn_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                bl.User.SignIn(new BO.User
-                {
-                    
-                    userName = userNameTextBox.Text,
-                    password = passwordTextBox.Text,
-                    status = (BO.userStatus)statusComboBox.SelectedItem,
-                });
+                bl.User.SignIn(User);
 
             }
             catch(BlAlreadyExistException ex)
