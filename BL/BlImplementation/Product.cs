@@ -249,12 +249,74 @@ namespace BlImplementation
             return filter is null ? list : list.Where(filter);
         }
 
+        /// <summary>
+        /// func the return the amount of the product in the cart
+        /// </summary>
+        /// <param name="cart"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
         private int AmountInCart(BO.Cart cart, int id)
         {
             if (cart == null)
                 return 0;
             var productItem = cart.Items?.FirstOrDefault(x => x?.ProductID == id);
             return productItem != null ? productItem.Amount : 0;
+        }
+
+        public IEnumerable<ProductItem?> MostPopular(BO.Cart cart)
+        {
+            var productList = from item in Dal.OrderItem.GetAll()
+                              group item by item?.ProductID into groupPopular
+                              select new {id = groupPopular.Key, Items = groupPopular};
+
+            productList = productList.OrderByDescending(x => x.Items.Count()).Take(10);
+
+            return from item in productList
+                   let p= Dal.Product.GetById(item?.id ?? throw new BlDoesNotExistException("product doe not exist"))
+                   select new BO.ProductItem
+                   {
+                       ID = p.ID,
+                       Name = p.Name,
+                       Price =p.Price,
+                       Category= (BO.Category)p.Category!,
+                       picture = p.picture,
+                       Amount = AmountInCart(cart, p.ID),
+                       InStock = checkInStock(p)
+                   };
+        }
+
+        public IEnumerable<ProductItem?> MostExpensive(BO.Cart cart)
+        {
+            var productList = Dal.Product.GetAll().OrderByDescending(x => x?.Price).Take(10);
+
+            return from DO.Product item in productList
+                   select new BO.ProductItem
+                   {
+                       ID = item.ID,
+                       Name = item.Name,
+                       Price = item.Price,
+                       Category = (BO.Category)item.Category!,
+                       picture = item.picture,
+                       Amount = AmountInCart(cart, item.ID),
+                       InStock=checkInStock(item)
+                   };
+        }
+
+        public IEnumerable<ProductItem?> MostCheap(BO.Cart cart)
+        {
+            var productList = Dal.Product.GetAll().OrderByDescending(x => x?.Price).TakeLast(10);
+
+            return from DO.Product item in productList
+                   select new BO.ProductItem
+                   {
+                       ID = item.ID,
+                       Name = item.Name,
+                       Price = item.Price,
+                       Category = (BO.Category)item.Category!,
+                       picture = item.picture,
+                       Amount = AmountInCart(cart, item.ID),
+                       InStock = checkInStock(item) 
+                   };
         }
     }
 }

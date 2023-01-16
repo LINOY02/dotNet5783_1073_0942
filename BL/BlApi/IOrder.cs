@@ -23,14 +23,14 @@ namespace BlApi
         /// </summary>
         /// <param name="order"></param>
         /// <returns></returns>
-        public BO.Order ShipOrder(int id);
+        public BO.Order ShipOrder(int id, DateTime? date);
 
         /// <summary>
         /// Update by the manager that the order has been delivered to the customer
         /// </summary>
         /// <param name="order"></param>
         /// <returns></returns>
-        public BO.Order DeliveredOrder(int id);
+        public BO.Order DeliveredOrder(int id, DateTime? date);
 
         /// <summary>
         /// Possibility for the manager to follow the order

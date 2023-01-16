@@ -43,7 +43,8 @@ namespace PL
         {
             try
             {
-               bl.Order.ShipOrder(Order.ID);
+                DateTime? date = shipDateDatePicker.SelectedDate;
+               bl.Order.ShipOrder(Order.ID, date);
             }
             catch(BO.BlStatusAlreadyUpdateException ex)
             {
@@ -56,7 +57,8 @@ namespace PL
         {
             try
             {
-                bl.Order.DeliveredOrder(Order.ID);
+                DateTime? date = deliveryDateDatePicker.SelectedDate;
+                bl.Order.DeliveredOrder(Order.ID, date);
             }
             catch (BO.BlStatusAlreadyUpdateException ex)
             {

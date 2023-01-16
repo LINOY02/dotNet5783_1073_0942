@@ -76,7 +76,7 @@ namespace BlImplementation
         /// make an order
         /// </summary>
         /// <param name=Cart></param>
-        public void OrderCart(BO.Cart cart)
+        public int OrderCart(BO.Cart cart)
         {
             //Checking the correctness of the values
             if (cart.CustomerName == " ")
@@ -94,8 +94,8 @@ namespace BlImplementation
                 CustomerAdress = cart.CustomerAddress,
                 CustomerEmail = cart.CustomerEmail,
                 OrderDate = DateTime.Now,
-                ShipDate = DateTime.MinValue,
-                DeliveryDate = DateTime.MinValue,
+                ShipDate = null,
+                DeliveryDate = null,
             };
             try
             {
@@ -127,11 +127,13 @@ namespace BlImplementation
 
                 //Updating the products in the product list
                 products.ToList().ForEach(item => Dal.Product.Update(item));
+                return orderID;
             }
             catch (DO.DalDoesNotExistException ex)
             {
                 throw new BO.BlDoesNotExistException(ex.Message);
             }
+           
         }
 
         /// <summary>

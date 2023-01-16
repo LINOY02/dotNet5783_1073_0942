@@ -21,12 +21,9 @@ namespace PL
     /// </summary>
     public partial class LogInWindow : Window
     {
-        BO.Cart myCart;
-
-        public LogInWindow(BO.Cart cart)
+        public LogInWindow()
         {
             InitializeComponent();
-            myCart = cart;
         }
 
         private static readonly IBl bl = BlApi.Factory.Get();
@@ -47,9 +44,13 @@ namespace PL
             try
             {
                 User = bl.User.LogIn(userNameTextBox.Text, passwordTextBox.Text);
-                myCart = bl.User.GetCart(User);
-                if(User.status == userStatus.MANAGER)
+                BO.Cart myCart = bl.User.GetCart(User);
+                Close();
+                if (User.status == userStatus.MANAGER)
                    new ManagerWindow().ShowDialog();
+                else
+                    new CatalogWindow(myCart).ShowDialog();
+
             }
             catch (BlDoesNotExistException ex)
             {
@@ -59,7 +60,7 @@ namespace PL
             {
                 MessageBox.Show(ex.Message);
             }
-            Close();
+          
 
         }
 

@@ -75,5 +75,11 @@ namespace BlApi
         /// <returns></returns>
         IEnumerable<ProductItem?> GetProductItemsByCategory(BO.Cart cart, BO.Category category);
 
+        IEnumerable<ProductItem?> MostPopular(BO.Cart cart);
+
+        IEnumerable<ProductItem?> MostExpensive(BO.Cart cart);
+
+        IEnumerable<ProductItem?> MostCheap(BO.Cart cart);
+
     }
 }

@@ -25,7 +25,6 @@ namespace PL
         {
             InitializeComponent();
             statusComboBox.ItemsSource = Enum.GetValues(typeof(userStatus));
-            user = User;
         }
 
 
@@ -44,8 +43,22 @@ namespace PL
         private static readonly IBl bl = BlApi.Factory.Get();
         private void SignInBtn_Click(object sender, RoutedEventArgs e)
         {
+            string name = nameTextBox.Text;
+            string address = addressTextBox.Text;
+            string email = emailTextBox.Text;
+            string userName = userNameTextBox.Text;
+            string password = passwordTextBox.Text;
             try
             {
+                User = new BO.User
+                {
+                    Name = name,
+                    Address = address,
+                    Email = email,
+                    userName = userName,
+                    password = password,
+                    status = (BO.userStatus)statusComboBox.SelectedItem
+                };
                 bl.User.SignIn(User);
 
             }

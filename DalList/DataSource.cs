@@ -275,9 +275,6 @@ internal static class DataSource
     {
         for (int i = 0; i < _orders.Count(); i++)
         {
-
-            string userName;
-
             _users.Add(new User
             {
                 Name = _orders[i]?.CustomerName,
@@ -303,7 +300,15 @@ internal static class DataSource
             status = userStatus.MANAGER
         });
 
-        
+        _users.Add(new User
+        {
+            Name = "Tamar Gefner",
+            Address = "israel",
+            Email = "Tamar@gmail.com",
+            userName = "tg",
+            password = "tg12",
+            status = userStatus.CUSTOMER
+        });
 
 
     }

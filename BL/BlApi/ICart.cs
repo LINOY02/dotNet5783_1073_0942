@@ -29,7 +29,7 @@ namespace BlApi
         /// make an order
         /// </summary>
         /// <param name=Cart></param>
-        public void OrderCart(BO.Cart cart);
+        public int OrderCart(BO.Cart cart);
        
     }
 }

@@ -129,6 +129,31 @@ namespace PL
         {
             CatalogListView.ItemsSource = bl.Product.GetProductItemsByCategory(cart, Category.BED);
         }
+
+        private void popularGroup_Click(object sender, RoutedEventArgs e)
+        {
+            CatalogListView.ItemsSource = bl.Product.MostPopular(cart);
+        }
+
+        private void expensiveGroup_Click(object sender, RoutedEventArgs e)
+        {
+            CatalogListView.ItemsSource = bl.Product.MostExpensive(cart);
+        }
+
+        private void cheapGroup_Click(object sender, RoutedEventArgs e)
+        {
+            CatalogListView.ItemsSource=bl.Product.MostCheap(cart); 
+        }
+
+        private void clearBtn_Click(object sender, RoutedEventArgs e)
+        {
+            CatalogListView.ItemsSource = bl.Product.GetProductItems(cart);
+        }
+
+        private void backBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
     
 }

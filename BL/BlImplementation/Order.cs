@@ -72,7 +72,7 @@ namespace BlImplementation
         /// </summary>
         /// <param name="order"></param>
         /// <returns></returns>
-        public BO.Order ShipOrder(int id)
+        public BO.Order ShipOrder(int id , DateTime? date)
         {
             if (id <= 0)
                 throw new BO.BlInvalidInputException("The id is invalid");
@@ -88,7 +88,7 @@ namespace BlImplementation
                         CustomerAdress = dOrder.CustomerAdress,
                         CustomerEmail = dOrder.CustomerEmail,
                         OrderDate = dOrder.OrderDate,
-                        ShipDate = DateTime.Now,
+                        ShipDate = date,
                         DeliveryDate = dOrder.DeliveryDate,
                     });
                     return this.GetOrder(id);
@@ -108,7 +108,7 @@ namespace BlImplementation
         /// </summary>
         /// <param name="order"></param>
         /// <returns></returns>
-        public BO.Order DeliveredOrder(int id)
+        public BO.Order DeliveredOrder(int id, DateTime? date)
         {
             if (id <= 0)
                 throw new BO.BlInvalidInputException("The id is invalid");
@@ -125,7 +125,7 @@ namespace BlImplementation
                         CustomerEmail = dOrder.CustomerEmail,
                         OrderDate = dOrder.OrderDate,
                         ShipDate = dOrder.ShipDate,
-                        DeliveryDate = DateTime.Now,
+                        DeliveryDate = date,
                     });
                     return this.GetOrder(id);
                 }

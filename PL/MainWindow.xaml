@@ -11,10 +11,9 @@
             <ImageBrush/>
 
         </Grid.Background>
-        <Button x:Name="OrderTraking" Content="Order Traking" BorderBrush="White" HorizontalAlignment="Left" Margin="389,74,0,0" VerticalAlignment="Top" Click="OrderTraking_Click" Width="117" Height="20"/>
+        <Button x:Name="OrderTraking" Content="Order Traking" BorderBrush="White" HorizontalAlignment="Left" Margin="310,74,0,0" VerticalAlignment="Top" Click="OrderTraking_Click" Width="117" Height="20"/>
         <Image HorizontalAlignment="Center" Height="324" Margin="0,97,0,0" VerticalAlignment="Top" Width="798" Source="/תמונה1.png"/>
-        <Button Content="log in" HorizontalAlignment="Left" Margin="252,72,0,0" VerticalAlignment="Top" Width="53" BorderBrush="White" Height="22" FontSize="10" Click="Button_Click"/>
-        <Button x:Name="catalogBtn" Content="catalog" HorizontalAlignment="Left" BorderBrush="White" Height="21" Margin="316,73,0,0" VerticalAlignment="Top" Width="63" Click="catalogBtn_Click" FontSize="10"/>
+        <Button x:Name="LogInBtn" Content="log in" HorizontalAlignment="Left" Margin="252,72,0,0" VerticalAlignment="Top" Width="53" BorderBrush="White" Height="22" FontSize="10" Click="LogInBtn_Click"/>
         <Label Content="MUABLES" HorizontalAlignment="Left" Margin="821,71,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="30" Height="47" Width="167" FontFamily="Broadway" Background="White"/>
         <Label Content="Make You Feel At Home" HorizontalAlignment="Left" Margin="809,114,0,0" VerticalAlignment="Top" FontSize="17" Height="40" Width="190" Background="White"/>
 

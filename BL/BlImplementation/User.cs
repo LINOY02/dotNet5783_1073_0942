@@ -1,7 +1,9 @@
-﻿using DalApi;
+﻿using BO;
+using DalApi;
 using DO;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,6 +41,9 @@ namespace BlImplementation
             }
             return new BO.User
             {
+                Name = user.Name,
+                Address = user.Address,
+                Email = user.Email,
                 userName = userName,
                 password = password,
                 status =(BO.userStatus) user.status
@@ -47,15 +52,17 @@ namespace BlImplementation
 
         public void SignIn(BO.User bUser)
         {
+            if (!new EmailAddressAttribute().IsValid(bUser.Email))
+                throw new BO.BlInvalidInputException("Missing customer Email");
             try 
             {
                 Dal.User.Add(new DO.User
                 {
-                    Name = bUser.Name,
-                    Address = bUser.Address,
+                    Name = bUser.Name ?? throw new BO.BlMissingInputException("The name is missing"),
+                    Address = bUser.Address ?? throw new BO.BlMissingInputException("The address is missing"),
                     Email = bUser.Email,
-                    userName = bUser.userName,
-                    password = bUser.password,
+                    userName = bUser.userName ?? throw new BO.BlMissingInputException("The user name is missing"),
+                    password = bUser.password ?? throw new BO.BlMissingInputException("The password is missing"),
                     status = (DO.userStatus)bUser.status
                 });
             }

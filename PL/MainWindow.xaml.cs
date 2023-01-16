@@ -32,31 +32,14 @@ namespace PL
         /// <param name="sender"></param>
         /// <param name="e"></param>
 
-        BO.Cart cart = new Cart
-        {
-            CustomerName = "",
-            CustomerAddress = "",
-            CustomerEmail = "",
-            Items = new List<OrderItem?>(),
-            TotalPrice = 0,
-        };
-
-      
         private void OrderTraking_Click(object sender, RoutedEventArgs e)
         {
             new OrderIDWindow1().ShowDialog();
         }
 
-
-        private void catalogBtn_Click(object sender, RoutedEventArgs e)
+        private void LogInBtn_Click(object sender, RoutedEventArgs e)
         {
-            
-            new CatalogWindow(cart).ShowDialog();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            new LogInWindow(cart).ShowDialog();
+            new LogInWindow().ShowDialog();
         }
 
     }

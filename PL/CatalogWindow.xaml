@@ -100,7 +100,7 @@
             <RowDefinition Height ="40"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row ="0" HorizontalAlignment="Center" Margin="0,5,0,389" Grid.RowSpan="2">
+        <Grid Grid.Row ="0" HorizontalAlignment="Left" Margin="85,10,0,384" Grid.RowSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="40"/>
             </Grid.RowDefinitions>
@@ -116,7 +116,7 @@
             <Label Name ="SofaLabel" Content="Sofas" Grid.Column="2" HorizontalAlignment="Center" MouseEnter="SofaLabel_MouseEnter"/>
             <Label Name ="ClosetLabel" Content="Closetss" Grid.Column="3" HorizontalAlignment="Center" MouseEnter="ClosetLabel_MouseEnter"/>
             <Label Name ="BedLabel" Content="Beds" Grid.Column="4" HorizontalAlignment="Center" MouseEnter="BedLabel_MouseEnter"/>
-            
+
         </Grid>
         <ScrollViewer Grid.Row ="1" Margin="0,10,0,0" BorderBrush="Gray">
             <ListView x:Name="CatalogListView"
@@ -135,6 +135,45 @@
         <Button x:Name="MyCart" Height="NaN" Width="NaN" Margin="10,2,735,0" BorderBrush="White" Click="MyCart_Click">
             <Button.Background>
                 <ImageBrush ImageSource="/סל קניות.png"/>
+            </Button.Background>
+        </Button>
+        <Menu HorizontalAlignment="Left" Height="38" Margin="591,7,0,0" VerticalAlignment="Top" Width="95" Background="Transparent" Grid.RowSpan="2" RenderTransformOrigin="0.585,2.04">
+            <MenuItem
+                Header="Group by"
+                FontSize="12"
+                FontFamily="Arial Black"
+                Foreground="Gray"
+                FontWeight="Bold"
+                FlowDirection="RightToLeft"/>
+            <MenuItem
+                x:Name="popularGroup"
+                Header="most popular"
+                FontSize="12"
+                FontFamily="Arial Black"
+                Foreground="Gray"
+                FontWeight="Bold"
+                Click="popularGroup_Click"/>
+            <MenuItem
+                x:Name="expensiveGroup"
+                Header="most expensive"
+                FontSize="12"
+                FontFamily="Arial Black"
+                Foreground="Gray"
+                FontWeight="Bold"
+                Click="expensiveGroup_Click"/>
+            <MenuItem
+                x:Name="cheapGroup"
+                Header="cheapiest"
+                FontSize="12"
+                FontFamily="Arial Black"
+                Foreground="Gray"
+                FontWeight="Bold"
+                Click="cheapGroup_Click"/>
+        </Menu>
+        <Button x:Name="clearBtn" Content="Clear" HorizontalAlignment="Left" Height="20" Margin="700,13,0,0" VerticalAlignment="Top" Width="35" Click="clearBtn_Click"/>
+        <Button x:Name="backBtn" HorizontalAlignment="Left" Height="26" Margin="750,10,0,0" VerticalAlignment="Top" Width="25" Click="backBtn_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="/חץ אחרוה.webp"/>
             </Button.Background>
         </Button>
     </Grid>
