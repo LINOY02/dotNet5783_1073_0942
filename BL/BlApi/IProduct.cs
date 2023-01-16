@@ -75,10 +75,28 @@ namespace BlApi
         /// <returns></returns>
         IEnumerable<ProductItem?> GetProductItemsByCategory(BO.Cart cart, BO.Category category);
 
+        /// <summary>
+        /// the func return the top 10 popular products
+        /// </summary>
+        /// <param name="cart"></param>
+        /// <returns></returns>
+        /// <exception cref="BlDoesNotExistException"></exception>
         IEnumerable<ProductItem?> MostPopular(BO.Cart cart);
 
+        /// <summary>
+        /// the func return the top 10 expensive products
+        /// </summary>
+        /// <param name="cart"></param>
+        /// <returns></returns>
+        /// <exception cref="BlDoesNotExistException"></exception>
         IEnumerable<ProductItem?> MostExpensive(BO.Cart cart);
 
+        /// <summary>
+        /// the func return the top 10 cheap products
+        /// </summary>
+        /// <param name="cart"></param>
+        /// <returns></returns>
+        /// <exception cref="BlDoesNotExistException"></exception>
         IEnumerable<ProductItem?> MostCheap(BO.Cart cart);
 
     }

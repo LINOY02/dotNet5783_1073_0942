@@ -27,7 +27,8 @@
                             </Storyboard>
                         </BeginStoryboard>
                     </EventTrigger.Actions>
-                </EventTrigger>            </Style.Triggers>
+                </EventTrigger>
+            </Style.Triggers>
             <Style.Setters>
                 <Setter Property="FontWeight" Value="Bold"/>
                 <Setter Property="FontFamily" Value="Arial Black"/>
@@ -137,14 +138,14 @@
                 <ImageBrush ImageSource="/סל קניות.png"/>
             </Button.Background>
         </Button>
-        <Menu HorizontalAlignment="Left" Height="38" Margin="591,7,0,0" VerticalAlignment="Top" Width="95" Background="Transparent" Grid.RowSpan="2" RenderTransformOrigin="0.585,2.04">
+        <Menu HorizontalAlignment="Left" Height="19" Margin="585,14,0,0" VerticalAlignment="Top" Width="95" Background="Transparent" RenderTransformOrigin="0.585,2.04">
             <MenuItem
                 Header="Group by"
                 FontSize="12"
                 FontFamily="Arial Black"
                 Foreground="Gray"
                 FontWeight="Bold"
-                FlowDirection="RightToLeft"/>
+                FlowDirection="LeftToRight">
             <MenuItem
                 x:Name="popularGroup"
                 Header="most popular"
@@ -152,6 +153,7 @@
                 FontFamily="Arial Black"
                 Foreground="Gray"
                 FontWeight="Bold"
+                Icon="."
                 Click="popularGroup_Click"/>
             <MenuItem
                 x:Name="expensiveGroup"
@@ -160,6 +162,7 @@
                 FontFamily="Arial Black"
                 Foreground="Gray"
                 FontWeight="Bold"
+                Icon="."
                 Click="expensiveGroup_Click"/>
             <MenuItem
                 x:Name="cheapGroup"
@@ -168,7 +171,9 @@
                 FontFamily="Arial Black"
                 Foreground="Gray"
                 FontWeight="Bold"
+                Icon="."
                 Click="cheapGroup_Click"/>
+              </MenuItem>
         </Menu>
         <Button x:Name="clearBtn" Content="Clear" HorizontalAlignment="Left" Height="20" Margin="700,13,0,0" VerticalAlignment="Top" Width="35" Click="clearBtn_Click"/>
         <Button x:Name="backBtn" HorizontalAlignment="Left" Height="26" Margin="750,10,0,0" VerticalAlignment="Top" Width="25" Click="backBtn_Click">

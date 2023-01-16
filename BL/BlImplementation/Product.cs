@@ -3,6 +3,7 @@ using DO;
 using System.Security.Cryptography.X509Certificates;
 using BO;
 using System.Linq;
+using BlApi;
 
 namespace BlImplementation
 {
@@ -263,12 +264,21 @@ namespace BlImplementation
             return productItem != null ? productItem.Amount : 0;
         }
 
+        /// <summary>
+        /// the func return the top 10 popular products
+        /// </summary>
+        /// <param name="cart"></param>
+        /// <returns></returns>
+        /// <exception cref="BlDoesNotExistException"></exception>
         public IEnumerable<ProductItem?> MostPopular(BO.Cart cart)
         {
+            //Grouping all ordered products by product ID
             var productList = from item in Dal.OrderItem.GetAll()
                               group item by item?.ProductID into groupPopular
                               select new {id = groupPopular.Key, Items = groupPopular};
 
+            //Sort the products in descending order according to the quantity ordered
+            //Take the first 10
             productList = productList.OrderByDescending(x => x.Items.Count()).Take(10);
 
             return from item in productList
@@ -285,8 +295,16 @@ namespace BlImplementation
                    };
         }
 
+        /// <summary>
+        /// the func return the top 10 expensive products
+        /// </summary>
+        /// <param name="cart"></param>
+        /// <returns></returns>
+        /// <exception cref="BlDoesNotExistException"></exception>
         public IEnumerable<ProductItem?> MostExpensive(BO.Cart cart)
         {
+            //Sort the products in descending order by price
+            //Take the first 10
             var productList = Dal.Product.GetAll().OrderByDescending(x => x?.Price).Take(10);
 
             return from DO.Product item in productList
@@ -302,8 +320,17 @@ namespace BlImplementation
                    };
         }
 
+        /// <summary>
+        /// the func return the top 10 cheap products
+        /// </summary>
+        /// <param name="cart"></param>
+        /// <returns></returns>
+        /// <exception cref="BlDoesNotExistException"></exception>
         public IEnumerable<ProductItem?> MostCheap(BO.Cart cart)
         {
+
+            //Sort the products in descending order by price
+            //Take the last 10
             var productList = Dal.Product.GetAll().OrderByDescending(x => x?.Price).TakeLast(10);
 
             return from DO.Product item in productList
