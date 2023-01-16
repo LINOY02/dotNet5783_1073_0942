@@ -7,7 +7,11 @@
         <local:ConvertImagePathToBitmap x:Key="ImagePathToBitmap"/>
         <local:ConvertBooleanToText x:Key="BooleanToText"/>
         <local:ConvertBooleanToColors x:Key="BooleanToColor"/>
-        <local:NotBooleanToVisibilityConverter  x:Key="NotBooleanToVisibility"/>
+        <local:NotBooleanToVisibilityConverter x:Key="NotBooleanToVisibility"/>
+        <local:ConvertTextToBoolean x:Key="TextToBoolean"/>
+        <local:ConvertTextToReadOnly x:Key="TextToReadOnly"/>
+        <local:ConvertBooleanToContent x:Key="BooleanToContent"/>
+        <local:ConvertTextUserToBoolean x:Key="TextUserToBoolean"/>
         <Style TargetType="Button">
             <Setter Property="Height" Value="35"/>
             <Setter Property="Width" Value="166"/>

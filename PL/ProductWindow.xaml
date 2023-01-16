@@ -7,8 +7,10 @@
         DataContext="{Binding Product, RelativeSource={RelativeSource self}}"
         mc:Ignorable="d"
         Title="ProductWindow" Height="450" Width="800">
-    <Grid Margin="0,-20,457,20">
 
+    <Grid Margin="0,-20,77,20">
+        <Label Content="MUABLES" HorizontalAlignment="Left" Margin="446,130,0,0" VerticalAlignment="Top" FontSize="30" FontWeight="Bold" FontFamily="Broadway" Height="52" Width="186"/>
+        <Label Content="Make You Feel At Home" HorizontalAlignment="Left" Margin="438,159,0,0" VerticalAlignment="Top" FontSize="17"/>
         <Grid x:Name="grid1"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="53,104,0,0" Height="200" Width="280">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
@@ -30,7 +32,8 @@
                 </ComboBox.ItemsPanel>
             </ComboBox>
             <Label x:Name="IDLabel" Grid.Column="0" Content="ID:" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-            <TextBox x:Name="IDTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="0" MaxLength="6" Text="{Binding ID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" PreviewKeyDown="IDTextBox_PreviewKeyDown"/>
+            <TextBox x:Name="IDTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="0" MaxLength="6" Text="{Binding ID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" 
+                     IsReadOnly="{Binding ElementName= Button, Path=DataContext, Converter={StaticResource TextToReadOnly}}" VerticalAlignment="Center" Width="120" PreviewKeyDown="IDTextBox_PreviewKeyDown"/>
             <Label x:Name="InStockLabel" Grid.Column="0" Content="In Stock:" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
             <TextBox x:Name="InStockTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="4" Text="{Binding InStock, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" PreviewKeyDown="InStockTextBox_PreviewKeyDown"/>
             <Label x:Name="NameLabel" Grid.Column="0" Content="Name:" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
@@ -38,8 +41,16 @@
             <Label x:Name="PriceLabel" Grid.Column="0" Content="Price:" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
             <TextBox x:Name="PriceTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="3" Text="{Binding Price, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" PreviewKeyDown="PriceTextBox_PreviewKeyDown"/>
         </Grid>
-
-        <Button x:Name="Button" Content="" HorizontalAlignment="Left" Height="33" Margin="235,357,0,0" VerticalAlignment="Top" Width="72" Click="Button_Click" FontWeight="Bold"/>
+        <Button x:Name="Button" Content="{Binding ElementName=IDTextBox, Path=Text, Converter={StaticResource BooleanToContent}}" HorizontalAlignment="Left" Height="33" Margin="235,357,0,0" VerticalAlignment="Top" Width="72" Click="Button_Click" FontWeight="Bold">
+            <Button.IsEnabled>
+                <MultiBinding Converter="{StaticResource TextToBoolean}">
+                    <Binding Path="Text" ElementName="IDTextBox"/>
+                    <Binding Path="Text" ElementName="InStockTextBox"/>
+                    <Binding Path="Text" ElementName="NameTextBox"/>
+                    <Binding Path="Text" ElementName="PriceTextBox"/>
+                </MultiBinding>
+            </Button.IsEnabled>
+        </Button>
         <Image Source="{Binding Path=picture, Converter={StaticResource ImagePathToBitmap}}" HorizontalAlignment="Left" Height="100" Margin="53,309,0,0" VerticalAlignment="Top" Width="100"/>
     </Grid>
 
