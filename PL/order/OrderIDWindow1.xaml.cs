@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -27,6 +28,7 @@ namespace PL
 
         {
             InitializeComponent();
+            number.Text = "0";
         }
         private static readonly IBl bl = BlApi.Factory.Get();
 
@@ -50,7 +52,11 @@ namespace PL
                 //new OrderTrackingWindow(id).ShowDialog();
                 Close();
             }
-            catch (BlDoesNotExistException ex)
+            catch (BO.BlDoesNotExistException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch(BO.BlInvalidInputException ex)
             {
                 MessageBox.Show(ex.Message);
             };

@@ -10,9 +10,12 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
+using System.Windows.Media.Media3D;
 using System.Windows.Shapes;
 using System.Windows.Xps.Serialization;
+using System.Xml.Linq;
 using BlApi;
 using BO;
 
@@ -30,8 +33,7 @@ namespace PL
         {
             InitializeComponent();
             CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Category));
-            CategorySelector.SelectedIndex = 5;
-            Button.Content = "Add"; 
+            CategorySelector.SelectedIndex = 5; 
         }
         /// <summary>
         /// constructor for the "update" option
@@ -40,14 +42,10 @@ namespace PL
         public ProductWindow(int ProductId )
         {
             InitializeComponent();
-            Button.Content = "Update";
             CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Category));
             Product = bl.Product.GetProduct(ProductId);
-            IDTextBox.IsReadOnly = true;
         }
         private static readonly IBl bl = BlApi.Factory.Get();
-
-
 
         public BO.Product Product
         {
@@ -67,47 +65,10 @@ namespace PL
         /// <param name="e"></param>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
-            int id , inStock ;
-            double p;
-            bool flag = false;
-            if ((!int.TryParse(IDTextBox.Text, out id)) || id < 100000) //Checking if there is an input and if the ID is right
-            {
-                //Error message
-                IDTextBox.BorderBrush = Brushes.Red;
-                IDLabel.Visibility = Visibility.Visible;
-                flag = true;
-            }
-            if (NameTextBox.Text == "") //Checking if there is an input
-            {
-                //Error message
-                NameTextBox.BorderBrush = Brushes.Red;
-                NameLabel.Visibility = Visibility.Visible;
-                flag = true;
-            }
             if (CategorySelector.SelectedIndex == 5) //Checking if there is an input
             {
                 //Error message
                 MessageBox.Show("Choose a Category");
-                CategoryLabel.Visibility = Visibility.Visible;
-                flag = true;
-            }
-            if ((!double.TryParse(PriceTextBox.Text, out p))) //Checking if there is an input and if the price is right
-            {
-                //Error message
-                PriceTextBox.BorderBrush = Brushes.Red;
-                PriceLabel.Visibility = Visibility.Visible;
-                flag = true;
-            }
-            if ((!int.TryParse(InStockTextBox.Text, out inStock))) //Checking if there is an input and if the num of the amount is right
-            {
-                //Error message
-                InStockTextBox.BorderBrush = Brushes.Red;
-                InStockLabel.Visibility = Visibility.Visible;
-                flag = true;
-            }
-            if (flag) //As long as there is an error, do not continue
-            {
                 return;
             }
             if (Button.Content.Equals("Add")) //when we choose to add a new product
@@ -116,11 +77,11 @@ namespace PL
                 {
                     bl.Product.AddProduct(new Product
                     {
-                        ID = id,
+                        ID = int.Parse(IDTextBox.Text),
                         Name = NameTextBox.Text,
                         Category = (Category)CategorySelector.SelectedItem,
-                        Price = p,
-                        InStock = inStock,
+                        Price = double.Parse(PriceTextBox.Text),
+                        InStock = int.Parse(InStockTextBox.Text),
                     });
                     Close();
                 }
@@ -215,8 +176,6 @@ namespace PL
 
         }
 
-        
-
         private void PriceTextBox_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             TextBox text = sender as TextBox;
@@ -236,65 +195,9 @@ namespace PL
             if (Char.IsDigit(c))
 
                 if (!(Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightAlt)))
-
                     return;
-
             e.Handled = true;
-
-
-
             return;
-
-        }
-        /// <summary>
-        /// Hiding an error message after correcting the input
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void IDTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            IDLabel.Visibility = Visibility.Hidden;
-            IDTextBox.BorderBrush = Brushes.DimGray;
-        }
-        /// <summary>
-        /// Hiding an error message after correcting the input
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void CategorySelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            CategoryLabel.Visibility = Visibility.Hidden;
-            CategorySelector.BorderBrush = Brushes.DimGray;
-        }
-        /// <summary>
-        /// Hiding an error message after correcting the input
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void NameTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            NameLabel.Visibility = Visibility.Hidden;
-            NameTextBox.BorderBrush = Brushes.DimGray;
-        }
-        /// <summary>
-        /// Hiding an error message after correcting the input
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void PriceTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            PriceLabel.Visibility = Visibility.Hidden;
-            PriceTextBox.BorderBrush = Brushes.DimGray;
-        }
-        /// <summary>
-        /// Hiding an error message after correcting the input
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void InStockTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            InStockLabel.Visibility = Visibility.Hidden;
-            InStockTextBox.BorderBrush = Brushes.DimGray;
         }
 
     }

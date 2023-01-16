@@ -41,7 +41,17 @@
                 <Label Grid.Column="0" Content="user Name:" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
                 <TextBox x:Name="userNameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="3" Text="{Binding userName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
             </Grid>
-            <Button x:Name="SignInBtn"  Content="Sign In" HorizontalAlignment="Center" Height="20" Margin="0,284,0,0" VerticalAlignment="Top" Width="60" Click="SignInBtn_Click"/>
+            <Button x:Name="SignInBtn"  Content="Sign In" HorizontalAlignment="Center" Height="20" Margin="0,284,0,0" VerticalAlignment="Top" Width="60" Click="SignInBtn_Click">
+                <Button.IsEnabled>
+                    <MultiBinding Converter="{StaticResource TextUserToBoolean}">
+                        <Binding Path="Text" ElementName="nameTextBox"/>
+                        <Binding Path="Text" ElementName="emailTextBox"/>
+                        <Binding Path="Text" ElementName="passowordTextBox"/>
+                        <Binding Path="Text" ElementName="addresTextBox"/>
+                        <Binding Path="Text" ElementName="userNameTextBox"/>
+                    </MultiBinding>
+                </Button.IsEnabled>
+                </Button>
         </Grid>
     </Grid>
 </Window>

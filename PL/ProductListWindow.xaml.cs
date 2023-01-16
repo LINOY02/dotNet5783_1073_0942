@@ -23,9 +23,6 @@ namespace PL
     /// </summary>
     public partial class ProductListWindow : Window
     {
-        private string groupName = "Category";
-        PropertyGroupDescription propertyGroupDescription;
-        public ICollectionView CollectionViewProductForList { set; get; }
         
         private ObservableCollection<BO.ProductForList> productForLists
         {
@@ -45,11 +42,6 @@ namespace PL
             //The options of the combobox are the categories of the product
             CategorySelector.ItemsSource = Enum.GetValues(typeof(Category));
             CategorySelector.SelectedIndex = 5;
-            CollectionViewProductForList = CollectionViewSource.GetDefaultView(productForLists);
-
-            propertyGroupDescription = new PropertyGroupDescription(groupName);
-            CollectionViewProductForList.GroupDescriptions.Add(propertyGroupDescription);
-            CollectionViewProductForList.GroupDescriptions.Clear();
         }
 
         private  static readonly IBl bl = BlApi.Factory.Get();
