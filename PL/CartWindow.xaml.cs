@@ -56,7 +56,7 @@ namespace PL
                     int id = bl.Cart.OrderCart(Cart);
                     MessageBox.Show("Are you sure you want to complate the order?");
                     Close();
-                    MessageBox.Show("Your order ID is: {id}");
+                    MessageBox.Show("Your order ID is" + id);
                 }
                 catch (BO.BlInvalidInputException ex)
                 {
