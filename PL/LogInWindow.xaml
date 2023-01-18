@@ -23,7 +23,14 @@
             <Label Grid.Column="0" Content="user Name:" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
             <TextBox x:Name="userNameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="0" Text="{Binding userName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
         </Grid>
-        <Button x:Name="logInBtn" Content="Log In" HorizontalAlignment="Left" Height="25" Margin="165,159,0,0" VerticalAlignment="Top" Width="65" Click="logInBtn_Click"/>
+        <Button x:Name="logInBtn" Content="Log In" HorizontalAlignment="Left" Height="25" Margin="165,159,0,0" VerticalAlignment="Top" Width="65" Click="logInBtn_Click">
+            <Button.IsEnabled>
+                <MultiBinding Converter="{StaticResource TextUserLogInToBoolean}">
+                    <Binding Path="Text" ElementName="userNameTextBox"/>
+                    <Binding Path="Text" ElementName="passwordTextBox"/>
+                </MultiBinding>
+            </Button.IsEnabled>
+        </Button>
         <TextBlock HorizontalAlignment="Left" Height="15" Margin="110,189,0,0" TextWrapping="Wrap" Text="don't have an account yet?" VerticalAlignment="Top" Width="120" FontSize="10"/>
         <Button x:Name="signInBtn" Content="Sign In" HorizontalAlignment="Left" Height="18" Margin="230,188,0,0" VerticalAlignment="Top" Width="40" BorderBrush="{x:Null}" FontSize="8" Foreground="#FFF40606" FontWeight="Bold" Click="signInBtn_Click"/>
     </Grid>

@@ -157,12 +157,31 @@ namespace PL
             throw new NotImplementedException();
         }
     }
-    class ConvertTextUserToBoolean : IMultiValueConverter //As long as one of the product details is empty, it will not be possible to update or add a new product
+    class ConvertTextUserToBoolean : IMultiValueConverter //As long as one of the details is empty, it will not be possible to sign in
     {
         public object Convert(object[] value, Type targetType, object parameter, CultureInfo culture)
         {
 
             while (value[0].ToString() == "" || value[1].ToString() == "" || value[2].ToString() == "" || value[3].ToString() == "" || value[4].ToString() == "")
+            {
+                return false;
+            }
+            return true;
+
+        }
+
+        public object[] ConvertBack(object value, Type[] targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    class ConvertTextUserLogInToBoolean : IMultiValueConverter //As long as one of the details is empty, it will not be possible to log in
+    {
+        public object Convert(object[] value, Type targetType, object parameter, CultureInfo culture)
+        {
+
+            while (value[0].ToString() == "" || value[1].ToString() == "")
             {
                 return false;
             }
