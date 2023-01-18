@@ -98,6 +98,11 @@ namespace PL
                 productForLists = new ObservableCollection<ProductForList>( bl.Product.GetListedProducts());//Show the entire catalog
             else//If a category is selected
                 productForLists = new ObservableCollection<ProductForList>( bl.Product.GetListedProductsByCategory( (Category)choise));//Show all products of the selected category
-        } 
+        }
+
+        private void backBtn_Click(object sender, RoutedEventArgs e)
+        {
+           Close();
+        }
     }
 }

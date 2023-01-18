@@ -24,6 +24,11 @@
 
                                                
             </ListView>
+            <Button x:Name="backBtn"  HorizontalAlignment="Left" Height="25" Margin="730,27,0,0" Grid.Row="1" VerticalAlignment="Top" Width="30" Click="backBtn_Click">
+                <Button.Background>
+                    <ImageBrush ImageSource="/חץ אחרוה.webp"/>
+                </Button.Background>
+            </Button>
         </Grid>
         <Grid Name="UpGrid" Height="auto" Grid.Row="0" Width="auto" Margin="-30,40,319,241" RenderTransformOrigin="0.46,0.493">
             <Grid.ColumnDefinitions>

@@ -25,6 +25,8 @@ namespace BlImplementation
                     var bOrderItem = cart.Items?.FirstOrDefault(x => x?.ProductID == productId);
                 if (bOrderItem != null) //Checking if the product is in the cart
                 {
+                    if (product.InStock < bOrderItem.Amount + 1) //Check if the product is out of stock
+                        throw new BO.BlOutOfStockException("There is not enough in the stock");
                     cart.Items?.Remove(bOrderItem);
                     bOrderItem.Amount++;
                     bOrderItem.TotalPrice += product.Price;
@@ -113,7 +115,7 @@ namespace BlImplementation
                 }));
 
                 //Temporary list of products after the new stock update
-                var products = from BO.OrderItem item in cart.Items
+                var products = from BO.OrderItem item in cart.Items!
                                let updateProduct = Dal.Product.GetById(item.ProductID)
                                select new DO.Product
                                {
@@ -147,36 +149,36 @@ namespace BlImplementation
             {
                 DO.Product? product = Dal?.Product.GetById(productId);
                 // check if the product in the cart
-                var cartP = cart.Items?.FirstOrDefault(x => x?.ProductID == productId);
-                if (cartP == null)
+                var cartProduct = cart.Items?.FirstOrDefault(x => x?.ProductID == productId);
+                if (cartProduct == null)
                     throw new BO.BlProductIsNotOrderedException("product not in the cart");
                 else
-                    cart.Items?.Remove(cartP);
+                    cart.Items?.Remove(cartProduct);
                 // In case the customer wants to increase the quantity 
-                if (amount > cartP.Amount)
+                if (amount == 0)
+                    cart.Items?.Remove(cartProduct);
+                if (amount > cartProduct.Amount)
                 {
-                    if (amount - cartP.Amount < 0)//Check if in stock
+                    if (amount - cartProduct.Amount > product?.InStock)//Check if in stock
                         throw new BO.BlOutOfStockException("There is not enough in the stock");
                     //adding the difference
-                    cartP.TotalPrice += (amount-cartP.Amount)*cartP.Price;
-                    cart.TotalPrice += (amount - cartP.Amount) * cartP.Price;
+                    cartProduct.TotalPrice += (amount- cartProduct.Amount)* cartProduct.Price;
+                    cart.TotalPrice += (amount - cartProduct.Amount) * cartProduct.Price;
                     //Update the new quantity
-                    cartP.Amount = amount;
-                    cart.Items?.Add(cartP);
+                    cartProduct.Amount = amount;
+                    cart.Items?.Add(cartProduct);
                 }
                 // In case the customer wants to reduce the quantity
-                if (amount < cartP.Amount)
+                if (amount < cartProduct.Amount)
                 {
                     //lowering the difference
-                    cartP.TotalPrice -= (cartP.Amount - amount) * cartP.Price;
-                    cart.TotalPrice -= (cartP.Amount - amount) * cartP.Price;
+                    cartProduct.TotalPrice -= (cartProduct.Amount - amount) * cartProduct.Price;
+                    cart.TotalPrice -= (cartProduct.Amount - amount) * cartProduct.Price;
                     //Update the new quantity
-                    cartP.Amount = amount;
-                    cart.Items?.Add(cartP);
+                    cartProduct.Amount = amount;
+                    cart.Items?.Add(cartProduct);
                 }
                 //In case the customer wants to remove the product from the cart
-                if (amount == 0)
-                    cart.Items?.Remove(cartP);
                 return cart;
             }
             catch (DO.DalDoesNotExistException exc)

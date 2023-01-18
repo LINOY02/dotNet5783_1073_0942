@@ -17,6 +17,11 @@
         </ListView>
         <Label Content="MUABLES" HorizontalAlignment="Left" Margin="480,148,0,0" VerticalAlignment="Top" FontSize="30" FontWeight="Bold" FontFamily="Broadway" Height="41" Width="171"/>
         <Label Content="Make You Feel At Home" HorizontalAlignment="Left" Margin="470,176,0,0" VerticalAlignment="Top" FontSize="17"/>
+        <Button x:Name="backBtn" HorizontalAlignment="Left" Height="30" Margin="705,39,0,0" VerticalAlignment="Top" Width="30" Click="backBtn_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="/חץ אחרוה.webp"/>
+            </Button.Background>
+        </Button>
 
     </Grid>
 </Window>

@@ -53,7 +53,7 @@
                     Height="130"
                     Margin="15,15,15,15"
                     VerticalAlignment="Center"
-                    Width="130" />
+                    Width="130"  />
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -80,11 +80,7 @@
                     Margin="5"
                     Text="{Binding Price,StringFormat=C, ConverterCulture=he-IL}"
                     FontSize="15" />
-                        <Button x:Name="addToCartBtn" Content="+" Grid.Column="3" BorderBrush="WhiteSmoke" Background="WhiteSmoke" Click="addToCartBtn_Click_1" FontWeight="Black" FontSize="16" HorizontalAlignment="Center"
-                        Visibility="{Binding InStock, NotifyOnValidationError=false, ValidatesOnExceptions=true, Converter={StaticResource NotBooleanToVisibility}}" />
-                        <TextBlock Text="{Binding Amount}" FontSize="15" Grid.Column="2" Visibility="{Binding InStock, NotifyOnValidationError=false, ValidatesOnExceptions=true, Converter={StaticResource NotBooleanToVisibility}}" HorizontalAlignment="Center" />
-                        <Button x:Name="delFromCartBtn" Content="-" Grid.Column="1" BorderBrush="WhiteSmoke" Background="WhiteSmoke" Click="delFromCartBtn_Click" FontWeight="Black" FontSize="16" HorizontalAlignment="Center"
-                                Visibility="{Binding InStock, NotifyOnValidationError=false, ValidatesOnExceptions=true, Converter={StaticResource NotBooleanToVisibility}}" />
+
                     </Grid>
                     <TextBlock
                     Margin="5"
@@ -125,7 +121,8 @@
                 RenderTransformOrigin="0.5,0.5"
                 ItemTemplate="{StaticResource CatalogDataTemplate}"
                 Height="312"
-                Width="716">
+                Width="716" MouseDoubleClick="CatalogListView_MouseDoubleClick"
+                      >
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel/>

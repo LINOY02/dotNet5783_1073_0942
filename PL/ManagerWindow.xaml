@@ -9,6 +9,20 @@
     <Grid>
         <Button x:Name="ProductsBtn" Content="Products" HorizontalAlignment="Left" Margin="165,272,0,0" VerticalAlignment="Top" Click="ProductsBtn_Click" Height="54" Width="115"/>
         <Button x:Name="OrdersBtn" Content="Orders" HorizontalAlignment="Left" Margin="525,275,0,0" VerticalAlignment="Top" Click="OrdersBtn_Click" Height="54" Width="115"/>
+        <Image HorizontalAlignment="Left" Height="88" Margin="635,144,0,0" VerticalAlignment="Top" Width="122" Source="/מיטה רקע.webp"/>
+        <Image HorizontalAlignment="Left" Height="104" Margin="635,20,0,0" VerticalAlignment="Top" Width="115" Source="/שידה רקע.webp"/>
+        <Image HorizontalAlignment="Left" Height="222" Margin="10,10,0,0" VerticalAlignment="Top" Width="235" Source="/ספה רקע.webp"/>
+        <Image HorizontalAlignment="Left" Height="206" Margin="400,26,0,0" VerticalAlignment="Top" Width="216" Source="/פינת אוכל רקע.webp"/>
+        <Image HorizontalAlignment="Left" Height="117" Margin="260,20,0,0" VerticalAlignment="Top" Width="115" Source="/כיסא רקע.webp" RenderTransformOrigin="0.522,0.767"/>
+        <Image HorizontalAlignment="Left" Height="103" Margin="266,148,0,0" VerticalAlignment="Top" Width="91" Source="/מדפים רקע.webp" RenderTransformOrigin="0.833,0.515"/>
+        <Button x:Name="backBtn" Height="37" Margin="736,369,30,0" VerticalAlignment="Top" Width="NaN" Click="backBtn_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="/חץ אחרוה.webp"/>
+            </Button.Background>
+            <Button.OpacityMask>
+                <ImageBrush ImageSource="/חץ אחרוה.webp"/>
+            </Button.OpacityMask>
+        </Button>
 
     </Grid>
 </Window>

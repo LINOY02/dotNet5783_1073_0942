@@ -61,49 +61,13 @@ namespace PL
         }
 
 
-
-        private void addToCartBtn_Click_1(object sender, RoutedEventArgs e)
-        {
-            productItem = (BO.ProductItem)((Button)sender).DataContext;
-            try
-            {
-                cart = bl.Cart.AddProductToCart(cart, productItem.ID);
-               // productItem.Amount++;
-                CatalogListView.ItemsSource = bl.Product.GetProductItems(cart);
-            }
-            catch (BO.BlDoesNotExistException exc)
-            {
-                MessageBox.Show(exc.Message);
-            }
-            catch (BO.BlOutOfStockException exc)
-            {
-                MessageBox.Show(exc.Message);
-            }
-        }
-
         private void MyCart_Click(object sender, RoutedEventArgs e)
         {
             new CartWindow(cart).ShowDialog();
             CatalogListView.ItemsSource = bl.Product.GetProductItems(cart);
         }
 
-        private void delFromCartBtn_Click(object sender, RoutedEventArgs e)
-        {
-            productItem = (BO.ProductItem)((Button)sender).DataContext;
-            try
-            {
-                cart = bl.Cart.UpdateCart(cart, productItem.ID, productItem.Amount-1);
-                CatalogListView.ItemsSource = bl.Product.GetProductItems(cart);
-            }
-            catch (BO.BlDoesNotExistException exc)
-            {
-                MessageBox.Show(exc.Message);
-            }
-            catch (BO.BlProductIsNotOrderedException exc)
-            {
-                MessageBox.Show(exc.Message);
-            }
-        }
+        
 
         private void TabelLabel_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -153,6 +117,12 @@ namespace PL
         private void backBtn_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void CatalogListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            BO.ProductItem prod = (BO.ProductItem)CatalogListView.SelectedItem;
+            new ShowProductWindow(prod , cart).ShowDialog();
         }
     }
     

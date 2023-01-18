@@ -33,5 +33,10 @@ namespace PL
         {
             new OrderListWindow().ShowDialog();
         }
+
+        private void backBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

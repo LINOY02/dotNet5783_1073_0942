@@ -57,5 +57,10 @@ namespace PL
                 MessageBox.Show(ex.Message);
             };
         }
+
+        private void backBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }
