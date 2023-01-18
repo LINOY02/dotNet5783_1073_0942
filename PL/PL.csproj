@@ -18,24 +18,28 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="GO BACK.png" />
+    <None Remove="background.webp" />
+    <None Remove="BedBackground.webp" />
+    <None Remove="chairBackGround.webp" />
+    <None Remove="foodBackground.webp" />
     <None Remove="home-button-emoji-512x485-ww1azru1.png" />
     <None Remove="IMG.100005.jpg" />
     <None Remove="IMG.100014.jpg" />
     <None Remove="IMG.100015.jpg" />
     <None Remove="IMG.100024.jpg" />
-    <None Remove="MAINwindow.jpeg" />
-    <None Remove="MAINwindow1.png" />
-    <None Remove="MAINwindow2.png" />
-    <None Remove="PAY.png" />
-    <None Remove="TRASH.png" />
-    <None Remove="כיסא רקע.webp" />
-    <None Remove="מדפים רקע.webp" />
-    <None Remove="מיטה רקע.webp" />
-    <None Remove="ספה רקע.webp" />
-    <None Remove="פינת אוכל רקע.webp" />
-    <None Remove="שולחן רקע.jpg" />
-    <None Remove="שידה רקע.webp" />
+    <None Remove="sofaBackground.webp" />
+    <None Remove="tabBackground.webp" />
+    <None Remove="אייקון פח.jpg" />
+    <None Remove="איש.png" />
+    <None Remove="הורדה.jpeg" />
+    <None Remove="חץ אחרוה.webp" />
+    <None Remove="חץ.png" />
+    <None Remove="סל קניות.png" />
+    <None Remove="פח.jpg" />
+    <None Remove="פח.png" />
+    <None Remove="תמונה1.png" />
+    <None Remove="תמונה2.png" />
+    <None Remove="תשלום.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -43,24 +47,28 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="GO BACK.png" />
+    <Resource Include="background.webp" />
+    <Resource Include="BedBackground.webp" />
+    <Resource Include="chairBackGround.webp" />
+    <Resource Include="foodBackground.webp" />
     <Resource Include="home-button-emoji-512x485-ww1azru1.png" />
     <Resource Include="IMG.100005.jpg" />
     <Resource Include="IMG.100014.jpg" />
     <Resource Include="IMG.100015.jpg" />
     <Resource Include="IMG.100024.jpg" />
-    <Resource Include="MAINwindow.jpeg" />
-    <Resource Include="MAINwindow1.png" />
-    <Resource Include="MAINwindow2.png" />
-    <Resource Include="PAY.png" />
-    <Resource Include="TRASH.png" />
-    <Resource Include="כיסא רקע.webp" />
-    <Resource Include="מדפים רקע.webp" />
-    <Resource Include="מיטה רקע.webp" />
-    <Resource Include="ספה רקע.webp" />
-    <Resource Include="פינת אוכל רקע.webp" />
-    <Resource Include="שולחן רקע.jpg" />
-    <Resource Include="שידה רקע.webp" />
+    <Resource Include="sofaBackground.webp" />
+    <Resource Include="tabBackground.webp" />
+    <Resource Include="אייקון פח.jpg" />
+    <Resource Include="איש.png" />
+    <Resource Include="הורדה.jpeg" />
+    <Resource Include="חץ אחרוה.webp" />
+    <Resource Include="חץ.png" />
+    <Resource Include="סל קניות.png" />
+    <Resource Include="פח.jpg" />
+    <Resource Include="פח.png" />
+    <Resource Include="תמונה1.png" />
+    <Resource Include="תמונה2.png" />
+    <Resource Include="תשלום.png" />
   </ItemGroup>
 
 </Project>
