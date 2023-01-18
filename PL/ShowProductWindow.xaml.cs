@@ -96,6 +96,7 @@ namespace PL
         {
             new CartWindow(cart).ShowDialog();
             productItem = bl.Product.GetDetailsItem(productItem.ID, cart);
+            Close();
         }
     }
 

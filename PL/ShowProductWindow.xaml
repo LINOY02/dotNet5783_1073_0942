@@ -37,7 +37,7 @@
         <Button x:Name="delFromCartBtn" Content="--" BorderBrush="White" Click="delFromCartBtn_Click" FontWeight="Bold" FontSize="20" HorizontalAlignment="Left"
                                 Visibility="{Binding InStock, NotifyOnValidationError=false, ValidatesOnExceptions=true, Converter={StaticResource NotBooleanToVisibility}}" Margin="213,188,0,193" Width="31" Height="NaN" Background="White" Foreground="#FF190C15" />
         <Image Source="{Binding picture, Converter={StaticResource ImagePathToBitmap}}" HorizontalAlignment="Left" Height="225" Margin="460,54,0,0" VerticalAlignment="Top" Width="240"/>
-        <TextBox x:Name="inStockTextBox"  HorizontalAlignment="Left" Height="38" Margin="486,291,0,0" Text="{Binding InStock, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true ,Converter={StaticResource BooleanToText}}" VerticalAlignment="Top" Width="190" BorderBrush="{x:Null}" FontSize="20" FontWeight="Bold" TextDecorations="Underline"/>
+        <Label x:Name="inStockLabel"  HorizontalAlignment="Left" Height="38" Margin="486,291,0,0" Content="{Binding InStock, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true ,Converter={StaticResource BooleanToText}}" VerticalAlignment="Top" Width="190" BorderBrush="{x:Null}" FontSize="20" FontWeight="Bold"/>
         <Button x:Name="backBtn" HorizontalAlignment="Left" BorderBrush="White" Height="30" Margin="715,374,0,0" VerticalAlignment="Top" Width="35" Click="backBtn_Click">
             <Button.Background>
                 <ImageBrush ImageSource="/חץ.png"/>
