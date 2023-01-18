@@ -7,7 +7,12 @@ namespace Dal;
 
 public class DalProduct : IProduct
 {
-    // Create
+    /// <summary>
+    /// add product
+    /// </summary>
+    /// <param name="product"></param>
+    /// <returns></returns>
+    /// <exception cref="DalAlreadyExistException"></exception>
     public int Add(Product product)
     {
         if (DataSource._products.Exists(x => x?.ID == product.ID))// the product is not exist in the list
@@ -17,15 +22,24 @@ public class DalProduct : IProduct
         return product.ID;
     }
 
-    // Request
+    /// <summary>
+    /// get product from the list by ID
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    /// <exception cref="DalDoesNotExistException"></exception>
     public Product GetById(int id)
     {
       return DataSource._products.Find(x => x?.ID == id) ?? throw new DalDoesNotExistException($"Product num {id} not exist in the list"); // return the requested prodect
 
     }
 
-    // Update
-
+    
+    /// <summary>
+    /// update product
+    /// </summary>
+    /// <param name="product"></param>
+    /// <exception cref="DalDoesNotExistException"></exception>
     public void Update(Product product)
     {
         if (!DataSource._products.Exists(x => x?.ID == product.ID))// check if the product isn't exist in the list
@@ -37,8 +51,12 @@ public class DalProduct : IProduct
         }
     }
 
-    // Delete
-
+    
+    /// <summary>
+    /// delete product
+    /// </summary>
+    /// <param name="id"></param>
+    /// <exception cref="DalDoesNotExistException"></exception>
     public void Delete(int id)
     {
         if (!DataSource._products.Exists(x => x?.ID == id))// check if the product isn't exist in the list
@@ -48,7 +66,11 @@ public class DalProduct : IProduct
 
     }
 
-    //A function that returns the array
+    /// <summary>
+    /// return all the product
+    /// </summary>
+    /// <param name="func"></param>
+    /// <returns></returns>
     public IEnumerable<Product?> GetAll(Func<Product?, bool>? func = null)
 
     {
@@ -57,9 +79,15 @@ public class DalProduct : IProduct
         return DataSource._products.Where(x => func(x)).Select(x => x);
     }
 
+    /// <summary>
+    /// return product by filter
+    /// </summary>
+    /// <param name="filter"></param>
+    /// <returns></returns>
+    /// <exception cref="DalDoesNotExistException"></exception>
     public Product GetItem(Func<Product?, bool>? filter )
     {
         
-        return DataSource._products.FirstOrDefault(x => filter(x)) ?? throw new DalDoesNotExistException("product under this condition is not exit"); 
+        return DataSource._products.FirstOrDefault(x => filter!(x)) ?? throw new DalDoesNotExistException("product under this condition is not exit"); 
     }
 }

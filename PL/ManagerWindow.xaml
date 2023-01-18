@@ -9,12 +9,12 @@
     <Grid>
         <Button x:Name="ProductsBtn" Content="Products" HorizontalAlignment="Left" Margin="165,272,0,0" VerticalAlignment="Top" Click="ProductsBtn_Click" Height="54" Width="115"/>
         <Button x:Name="OrdersBtn" Content="Orders" HorizontalAlignment="Left" Margin="525,275,0,0" VerticalAlignment="Top" Click="OrdersBtn_Click" Height="54" Width="115"/>
-        <Image HorizontalAlignment="Left" Height="88" Margin="635,144,0,0" VerticalAlignment="Top" Width="122" Source="/מיטה רקע.webp"/>
-        <Image HorizontalAlignment="Left" Height="104" Margin="635,20,0,0" VerticalAlignment="Top" Width="115" Source="/שידה רקע.webp"/>
-        <Image HorizontalAlignment="Left" Height="222" Margin="10,10,0,0" VerticalAlignment="Top" Width="235" Source="/ספה רקע.webp"/>
-        <Image HorizontalAlignment="Left" Height="206" Margin="400,26,0,0" VerticalAlignment="Top" Width="216" Source="/פינת אוכל רקע.webp"/>
-        <Image HorizontalAlignment="Left" Height="117" Margin="260,20,0,0" VerticalAlignment="Top" Width="115" Source="/כיסא רקע.webp" RenderTransformOrigin="0.522,0.767"/>
-        <Image HorizontalAlignment="Left" Height="103" Margin="266,148,0,0" VerticalAlignment="Top" Width="91" Source="/מדפים רקע.webp" RenderTransformOrigin="0.833,0.515"/>
+        <Image HorizontalAlignment="Left" Height="88" Margin="635,144,0,0" VerticalAlignment="Top" Width="122" Source="/BedBackground.webp"/>
+        <Image HorizontalAlignment="Left" Height="104" Margin="635,20,0,0" VerticalAlignment="Top" Width="115" Source="/tabBackground.webp"/>
+        <Image HorizontalAlignment="Left" Height="222" Margin="10,10,0,0" VerticalAlignment="Top" Width="235" Source="/sofaBackground.webp"/>
+        <Image HorizontalAlignment="Left" Height="206" Margin="400,26,0,0" VerticalAlignment="Top" Width="216" Source="/foodBackground.webp"/>
+        <Image HorizontalAlignment="Left" Height="117" Margin="260,20,0,0" VerticalAlignment="Top" Width="115" RenderTransformOrigin="0.522,0.767" Source="/chairBackGround.webp"/>
+        <Image HorizontalAlignment="Left" Height="103" Margin="266,148,0,0" VerticalAlignment="Top" Width="91" RenderTransformOrigin="0.833,0.515" Source="/background.webp"/>
         <Button x:Name="backBtn" BorderBrush="White" Height="27" Margin="716,370,34,0" VerticalAlignment="Top" Width="NaN" Click="backBtn_Click">
             <Button.Background>
                 <ImageBrush ImageSource="/home-button-emoji-512x485-ww1azru1.png"/>
