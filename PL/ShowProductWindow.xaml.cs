@@ -92,6 +92,11 @@ namespace PL
         {
             Close();
         }
+        private void MyCart_Click(object sender, RoutedEventArgs e)
+        {
+            new CartWindow(cart).ShowDialog();
+            productItem = bl.Product.GetDetailsItem(productItem.ID, cart);
+        }
     }
 
 }

@@ -75,16 +75,16 @@
                     <GridViewColumn x:Name="pictureColumn" Header=" " Width="80">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Image Margin="-6,-1,-6,-1" Height="40"  Source="{Binding Path = picture, Converter={StaticResource ImagePathToBitmap},Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                                <Image Margin="-6,-1,-6,-1" Height="40" Source="{Binding Path = picture, Converter={StaticResource ImagePathToBitmap},Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate> 
                     </GridViewColumn>
                     <GridViewColumn Header=" " Width="80">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Button x:Name="deleteBtn" Margin="-6,-1,-6,-1" Height="20" Width="20" Click="deleteBtn_Click">
+                                <Button x:Name="deleteBtn" Margin="-6,-1,-6,-1" BorderBrush="white" Height="35" Width="45" Click="deleteBtn_Click">
                                     <Button.Background>
-                                        <ImageBrush ImageSource="/אייקון פח.jpg"/>
+                                        <ImageBrush ImageSource="/פח.png"/>
                                     </Button.Background>
                                 </Button>
                             </DataTemplate>

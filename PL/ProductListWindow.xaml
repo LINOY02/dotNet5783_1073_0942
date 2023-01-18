@@ -8,37 +8,35 @@
         DataContext="{Binding RelativeSource={RelativeSource self}}"
         Title="ProductListWindow" Height="640" Width="800">
     <Grid>
-        <Grid Name="MainGrid" Margin="0,0,0,52">
+        <Grid Name="MainGrid" Margin="0,0,0,56">
             <Grid.RowDefinitions>
                 <RowDefinition Height="40*"/>
                 <RowDefinition Height="500*"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <ListView x:Name="ProductListView" ItemsSource="{Binding productForLists}" Margin="0,1,297,-41" Grid.Row="1" MouseDoubleClick="ProductListView_MouseDoubleClick" Grid.RowSpan="2"  >
+            <ListView x:Name="ProductListView" ItemsSource="{Binding productForLists}" Margin="0,13,297,-33" Grid.Row="1" MouseDoubleClick="ProductListView_MouseDoubleClick" Grid.RowSpan="2"  >
                 <ListView.View>
                     <GridView>
                         <GridViewColumn/>
                     </GridView>
                 </ListView.View>
-
-                                               
             </ListView>
-            <Button x:Name="backBtn"  HorizontalAlignment="Left" Height="25" Margin="730,27,0,0" Grid.Row="1" VerticalAlignment="Top" Width="30" Click="backBtn_Click">
+            <Button x:Name="backBtn" BorderBrush="White" HorizontalAlignment="Left" Height="25" Margin="736,473,0,0" Grid.Row="2" VerticalAlignment="Top" Width="30" Click="backBtn_Click" RenderTransformOrigin="0.545,0.748">
                 <Button.Background>
-                    <ImageBrush ImageSource="/חץ אחרוה.webp"/>
+                    <ImageBrush ImageSource="/חץ.png"/>
                 </Button.Background>
             </Button>
         </Grid>
-        <Grid Name="UpGrid" Height="auto" Grid.Row="0" Width="auto" Margin="-30,40,319,241" RenderTransformOrigin="0.46,0.493">
+        <Grid Name="UpGrid" Height="auto" Grid.Row="0" Width="auto" Margin="-10,40,299,241" RenderTransformOrigin="0.46,0.493">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions >
-            <Label Content="Category" Grid.Column="0" HorizontalAlignment="Left" Margin="45,0,0,0" VerticalAlignment="Top" Height="30" Width="80" FontSize="14" FontWeight="Bold" FontFamily="Arial Nova Cond"/>
-            <ComboBox x:Name="CategorySelector" HorizontalAlignment="Left" Margin="156,3,0,0" VerticalAlignment="Top" Width="200" SelectionChanged="CategorySelector_SelectionChanged_1" Height="20" Grid.ColumnSpan="2"/>
+            <Label Content="Category" Grid.Column="0" HorizontalAlignment="Left" Margin="45,-26,0,0" VerticalAlignment="Top" Height="30" Width="80" FontSize="14" FontWeight="Bold" FontFamily="Arial Nova Cond"/>
+            <ComboBox x:Name="CategorySelector" HorizontalAlignment="Left" Margin="156,-21,0,0" VerticalAlignment="Top" Width="200" SelectionChanged="CategorySelector_SelectionChanged_1" Height="20" Grid.ColumnSpan="2"/>
         </Grid>
-        <Button x:Name="AddProduct" Content="Add new Product" HorizontalAlignment="Right" BorderBrush="White" Margin="0,526,70,0" VerticalAlignment="Top" Click="AddProduct_Click" Height="85" FontSize="14"/>
+        <Button x:Name="AddProduct" Content="Add new Product" HorizontalAlignment="Right" BorderBrush="White" Margin="0,530,96,0" VerticalAlignment="Top" Click="AddProduct_Click" Height="42" FontSize="14"/>
         <Label Content="MUABLES" HorizontalAlignment="Left" Margin="548,174,0,0" VerticalAlignment="Top" FontSize="30" FontWeight="Bold" FontFamily="Broadway" Height="52" Width="186"/>
         <Label Content="Make You Feel At Home" HorizontalAlignment="Left" Margin="540,209,0,0" VerticalAlignment="Top" FontSize="17"/>
     </Grid>

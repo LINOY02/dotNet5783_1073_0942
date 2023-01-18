@@ -18,6 +18,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="home-button-emoji-512x485-ww1azru1.png" />
     <None Remove="IMG.100005.jpg" />
     <None Remove="IMG.100014.jpg" />
     <None Remove="IMG.100015.jpg" />
@@ -26,11 +27,14 @@
     <None Remove="איש.png" />
     <None Remove="הורדה.jpeg" />
     <None Remove="חץ אחרוה.webp" />
+    <None Remove="חץ.png" />
     <None Remove="כיסא רקע.webp" />
     <None Remove="מדפים רקע.webp" />
     <None Remove="מיטה רקע.webp" />
     <None Remove="סל קניות.png" />
     <None Remove="ספה רקע.webp" />
+    <None Remove="פח.jpg" />
+    <None Remove="פח.png" />
     <None Remove="פינת אוכל רקע.webp" />
     <None Remove="שולחן רקע.jpg" />
     <None Remove="שידה רקע.webp" />
@@ -44,6 +48,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="home-button-emoji-512x485-ww1azru1.png" />
     <Resource Include="IMG.100005.jpg" />
     <Resource Include="IMG.100014.jpg" />
     <Resource Include="IMG.100015.jpg" />
@@ -52,11 +57,14 @@
     <Resource Include="איש.png" />
     <Resource Include="הורדה.jpeg" />
     <Resource Include="חץ אחרוה.webp" />
+    <Resource Include="חץ.png" />
     <Resource Include="כיסא רקע.webp" />
     <Resource Include="מדפים רקע.webp" />
     <Resource Include="מיטה רקע.webp" />
     <Resource Include="סל קניות.png" />
     <Resource Include="ספה רקע.webp" />
+    <Resource Include="פח.jpg" />
+    <Resource Include="פח.png" />
     <Resource Include="פינת אוכל רקע.webp" />
     <Resource Include="שולחן רקע.jpg" />
     <Resource Include="שידה רקע.webp" />

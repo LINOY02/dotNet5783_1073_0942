@@ -15,12 +15,12 @@
         <Image HorizontalAlignment="Left" Height="206" Margin="400,26,0,0" VerticalAlignment="Top" Width="216" Source="/פינת אוכל רקע.webp"/>
         <Image HorizontalAlignment="Left" Height="117" Margin="260,20,0,0" VerticalAlignment="Top" Width="115" Source="/כיסא רקע.webp" RenderTransformOrigin="0.522,0.767"/>
         <Image HorizontalAlignment="Left" Height="103" Margin="266,148,0,0" VerticalAlignment="Top" Width="91" Source="/מדפים רקע.webp" RenderTransformOrigin="0.833,0.515"/>
-        <Button x:Name="backBtn" Height="37" Margin="736,369,30,0" VerticalAlignment="Top" Width="NaN" Click="backBtn_Click">
+        <Button x:Name="backBtn" BorderBrush="White" Height="27" Margin="716,370,34,0" VerticalAlignment="Top" Width="NaN" Click="backBtn_Click">
             <Button.Background>
-                <ImageBrush ImageSource="/חץ אחרוה.webp"/>
+                <ImageBrush ImageSource="/home-button-emoji-512x485-ww1azru1.png"/>
             </Button.Background>
             <Button.OpacityMask>
-                <ImageBrush ImageSource="/חץ אחרוה.webp"/>
+                <ImageBrush ImageSource="/חץ.png"/>
             </Button.OpacityMask>
         </Button>
 

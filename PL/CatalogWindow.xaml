@@ -143,7 +143,7 @@
                 Foreground="Gray"
                 FontWeight="Bold"
                 FlowDirection="LeftToRight">
-            <MenuItem
+                <MenuItem
                 x:Name="popularGroup"
                 Header="most popular"
                 FontSize="12"
@@ -152,7 +152,7 @@
                 FontWeight="Bold"
                 Icon="."
                 Click="popularGroup_Click"/>
-            <MenuItem
+                <MenuItem
                 x:Name="expensiveGroup"
                 Header="most expensive"
                 FontSize="12"
@@ -161,7 +161,7 @@
                 FontWeight="Bold"
                 Icon="."
                 Click="expensiveGroup_Click"/>
-            <MenuItem
+                <MenuItem
                 x:Name="cheapGroup"
                 Header="cheapiest"
                 FontSize="12"
@@ -170,12 +170,12 @@
                 FontWeight="Bold"
                 Icon="."
                 Click="cheapGroup_Click"/>
-              </MenuItem>
+            </MenuItem>
         </Menu>
-        <Button x:Name="clearBtn" Content="Clear" HorizontalAlignment="Left" Height="20" Margin="700,13,0,0" VerticalAlignment="Top" Width="35" Click="clearBtn_Click"/>
-        <Button x:Name="backBtn" HorizontalAlignment="Left" Height="26" Margin="750,10,0,0" VerticalAlignment="Top" Width="25" Click="backBtn_Click">
+        <Button x:Name="clearBtn" Content="ALL" HorizontalAlignment="Left" BorderBrush="White" Height="20" Margin="680,0,0,0" VerticalAlignment="Center" Width="35" Click="clearBtn_Click"/>
+        <Button x:Name="backBtn" HorizontalAlignment="Left" BorderBrush="White" Height="26" Margin="750,10,0,0" VerticalAlignment="Top" Width="25" Click="backBtn_Click">
             <Button.Background>
-                <ImageBrush ImageSource="/חץ אחרוה.webp"/>
+                <ImageBrush ImageSource="/חץ.png"/>
             </Button.Background>
         </Button>
     </Grid>

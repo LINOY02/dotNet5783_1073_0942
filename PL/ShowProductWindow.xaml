@@ -30,20 +30,25 @@
             <Label Grid.Column="0" Content="Price:" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
             <TextBox x:Name="priceTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="3" Text="{Binding Price, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
         </Grid>
-        <Button x:Name="addToCartBtn" Content="+" BorderBrush="WhiteSmoke" Background="#FF110000" Click="addToCartBtn_Click_1" FontWeight="Black" FontSize="16" HorizontalAlignment="Left"
-                        Visibility="{Binding InStock, NotifyOnValidationError=false, ValidatesOnExceptions=true, Converter={StaticResource NotBooleanToVisibility}}" Margin="302,222,0,192" Width="18" Foreground="White" Height="NaN" />
-        <TextBlock Text="{Binding Amount}" FontSize="24" Visibility="{Binding InStock, NotifyOnValidationError=false, ValidatesOnExceptions=true, Converter={StaticResource NotBooleanToVisibility}}" HorizontalAlignment="Left" Margin="246,207,0,170" RenderTransformOrigin="0.5,0.5" Width="38" Foreground="#FF090000" Background="White" FontFamily="Aharoni" FontWeight="Bold" >
+        <Button x:Name="addToCartBtn" Content="+" BorderBrush="White" Click="addToCartBtn_Click_1" FontWeight="Bold" FontSize="20" HorizontalAlignment="Left"
+                        Visibility="{Binding InStock, NotifyOnValidationError=false, ValidatesOnExceptions=true, Converter={StaticResource NotBooleanToVisibility}}" Margin="297,190,0,190" Width="36" Foreground="#FF1F0C0C" Height="NaN" />
+        <TextBlock Text="{Binding Amount}" FontSize="24" Visibility="{Binding InStock, NotifyOnValidationError=false, ValidatesOnExceptions=true, Converter={StaticResource NotBooleanToVisibility}}" HorizontalAlignment="Left" Margin="264,196,0,199" RenderTransformOrigin="0.5,0.5" Width="38" Foreground="#FF090000" Background="White" FontFamily="Aharoni" FontWeight="Bold" >
         </TextBlock>
-        <Button x:Name="delFromCartBtn" Content="-" BorderBrush="WhiteSmoke" Background="#FF090000" Click="delFromCartBtn_Click" FontWeight="Black" FontSize="16" HorizontalAlignment="Left"
-                                Visibility="{Binding InStock, NotifyOnValidationError=false, ValidatesOnExceptions=true, Converter={StaticResource NotBooleanToVisibility}}" Margin="190,215,0,192" Width="27" Foreground="White" Height="NaN" />
+        <Button x:Name="delFromCartBtn" Content="--" BorderBrush="White" Click="delFromCartBtn_Click" FontWeight="Bold" FontSize="20" HorizontalAlignment="Left"
+                                Visibility="{Binding InStock, NotifyOnValidationError=false, ValidatesOnExceptions=true, Converter={StaticResource NotBooleanToVisibility}}" Margin="213,188,0,193" Width="31" Height="NaN" Background="White" Foreground="#FF190C15" />
         <Image Source="{Binding picture, Converter={StaticResource ImagePathToBitmap}}" HorizontalAlignment="Left" Height="225" Margin="460,54,0,0" VerticalAlignment="Top" Width="240"/>
         <TextBox x:Name="inStockTextBox"  HorizontalAlignment="Center" Height="38" Margin="510,291,0,0" Text="{Binding InStock, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true ,Converter={StaticResource BooleanToText}}" VerticalAlignment="Top" Width="190" BorderBrush="{x:Null}" FontSize="30" FontWeight="Bold" TextDecorations="Underline"/>
-        <Button x:Name="backBtn" HorizontalAlignment="Left" Height="30" Margin="715,374,0,0" VerticalAlignment="Top" Width="35" Click="backBtn_Click">
+        <Button x:Name="backBtn" HorizontalAlignment="Left" BorderBrush="White" Height="30" Margin="715,374,0,0" VerticalAlignment="Top" Width="35" Click="backBtn_Click">
             <Button.Background>
-                <ImageBrush ImageSource="/חץ אחרוה.webp"/>
+                <ImageBrush ImageSource="/חץ.png"/>
             </Button.Background>
         </Button>
         <Label Content="MUABLES" HorizontalAlignment="Left" Margin="36,278,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="30" Height="47" Width="166" FontFamily="Broadway" Background="White"/>
         <Label Content="Make You Feel At Home" HorizontalAlignment="Left" Margin="27,313,0,0" VerticalAlignment="Top" FontSize="17" Height="40" Width="190" Background="White"/>
+        <Button x:Name="MyCart" HorizontalAlignment="Left" Margin="715,34,0,0" VerticalAlignment="Top" Height="40" Width="40"  BorderBrush="White" Click="MyCart_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="/סל קניות.png"/>
+            </Button.Background>
+        </Button>
     </Grid>
 </Window>

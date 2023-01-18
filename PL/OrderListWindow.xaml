@@ -8,20 +8,25 @@
         mc:Ignorable="d"
         Title="OrderListWindow" Height="450" Width="800">
     <Grid>
-        <ListView x:Name="OrderListView" ItemsSource="{Binding orderForLists}" MouseDoubleClick="OrderListView_MouseDoubleClick" Margin="0,0,497,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="81*"/>
+            <ColumnDefinition Width="719*"/>
+        </Grid.ColumnDefinitions>
+        <ListView x:Name="OrderListView" ItemsSource="{Binding orderForLists}" MouseDoubleClick="OrderListView_MouseDoubleClick" Margin="0,0,444,0" Grid.ColumnSpan="2">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <Label Content="MUABLES" HorizontalAlignment="Left" Margin="480,148,0,0" VerticalAlignment="Top" FontSize="30" FontWeight="Bold" FontFamily="Broadway" Height="41" Width="171"/>
-        <Label Content="Make You Feel At Home" HorizontalAlignment="Left" Margin="470,176,0,0" VerticalAlignment="Top" FontSize="17"/>
-        <Button x:Name="backBtn" HorizontalAlignment="Left" Height="30" Margin="705,39,0,0" VerticalAlignment="Top" Width="30" Click="backBtn_Click">
+        <Label Content="MUABLES" HorizontalAlignment="Left" Margin="399,148,0,0" VerticalAlignment="Top" FontSize="30" FontWeight="Bold" FontFamily="Broadway" Height="41" Width="171" Grid.Column="1"/>
+        <Label Content="Make You Feel At Home" HorizontalAlignment="Left" Margin="389,176,0,0" VerticalAlignment="Top" FontSize="17" Grid.Column="1"/>
+        <Button x:Name="backBtn" BorderBrush="White" HorizontalAlignment="Left" Height="37" Margin="647,367,0,0" VerticalAlignment="Top" Width="37" Click="backBtn_Click" Grid.Column="1">
             <Button.Background>
-                <ImageBrush ImageSource="/חץ אחרוה.webp"/>
+                <ImageBrush ImageSource="/חץ.png"/>
             </Button.Background>
         </Button>
+        <Label Content="Orders List" Grid.Column="0" HorizontalAlignment="Left" Margin="45,-2,0,0" VerticalAlignment="Top" Height="30" Width="90" FontSize="14" FontWeight="Bold" FontFamily="Arial Nova Cond" Grid.ColumnSpan="2"/>
 
     </Grid>
 </Window>
