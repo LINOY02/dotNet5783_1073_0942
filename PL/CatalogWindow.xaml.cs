@@ -35,24 +35,6 @@ namespace PL
         public static readonly DependencyProperty cartProperty =
             DependencyProperty.Register("cart", typeof(BO.Cart), typeof(Window), new PropertyMetadata(null));
 
-
-
-
-
-
-        public BO.ProductItem productItem
-        {
-            get { return (BO.ProductItem)GetValue(productItemProperty); }
-            set { SetValue(productItemProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for productItem.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty productItemProperty =
-            DependencyProperty.Register("productItem", typeof(BO.ProductItem), typeof(Window), new PropertyMetadata(null));
-
-        private ObservableCollection <BO.ProductItem> productItems = new ObservableCollection<BO.ProductItem>();    
-
-
         public CatalogWindow(BO.Cart cart1)
         {
             InitializeComponent();

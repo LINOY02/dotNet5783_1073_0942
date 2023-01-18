@@ -64,7 +64,18 @@ namespace PL
             {
                 MessageBox.Show(ex.Message);
             }
+            catch (BO.BlStatusNotUpdateException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             Close();
         }
+
+        private void backBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        
     }
 }

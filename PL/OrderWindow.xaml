@@ -26,7 +26,7 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Label Grid.Column="0" Content="Customer Adress:" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
-            <TextBlock x:Name="customerAdressTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="2" Text="{Binding CustomerAdress}" VerticalAlignment="Center"/>
+            <TextBlock x:Name="cutomerAdressTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="2" Text="{Binding CustomerAdress}" VerticalAlignment="Center"/>
             <Label Grid.Column="0" Content="Customer Email:" HorizontalAlignment="Left" Margin="2" Grid.Row="3" VerticalAlignment="Center"/>
             <TextBlock x:Name="customerEmailTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="3" Text="{Binding CustomerEmail}" VerticalAlignment="Center"/>
             <Label Grid.Column="0" Content="Customer Name:" HorizontalAlignment="Left" Margin="1" Grid.Row="1" VerticalAlignment="Center"/>
@@ -101,6 +101,11 @@
         </ListView>
         <Button x:Name="ShipUpdBtn" Content="Updae" HorizontalAlignment="Left" Height="20" Margin="305,269,0,0" VerticalAlignment="Top" Width="60" Click="ShipUpdBtn_Click"/>
         <Button x:Name="DeliverUpdBtn" Content="Update" HorizontalAlignment="Left" Margin="305,317,0,0" VerticalAlignment="Top" Width="60" Click="DeliverUpdBtn_Click" Height="20"/>
+        <Button x:Name="backBtn" BorderBrush="White" HorizontalAlignment="Left" Height="38" Margin="715,361,0,0" VerticalAlignment="Top" Width="42" Click="backBtn_Click" RenderTransformOrigin="0.545,0.748">
+            <Button.Background>
+                <ImageBrush ImageSource="/חץ.png"/>
+            </Button.Background>
+        </Button>
     </Grid>
 
 </Window>

@@ -40,6 +40,12 @@ namespace BO
         public BlStatusAlreadyUpdateException(string? message) : base(message) { }
     }
 
+    public class BlStatusNotUpdateException : Exception
+    {
+        public BlStatusNotUpdateException() { }
+        public BlStatusNotUpdateException(string? message) : base(message) { }
+    }
+
     public class BlMissingInputException : Exception
     {
         public BlMissingInputException() { }

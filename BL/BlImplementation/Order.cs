@@ -130,7 +130,10 @@ namespace BlImplementation
                     return this.GetOrder(id);
                 }
                 else
-                    throw new BO.BlStatusAlreadyUpdateException("The order is already deliverd");
+                    if (dOrder.ShipDate == null)
+                        throw new BO.BlStatusNotUpdateException("The order is not shipped yet");
+                    else
+                        throw new BO.BlStatusAlreadyUpdateException("The order is already deliverd");
             }
             catch (DO.DalDoesNotExistException exc)
             {

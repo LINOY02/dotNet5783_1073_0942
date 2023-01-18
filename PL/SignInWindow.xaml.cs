@@ -55,11 +55,11 @@ namespace PL
                 User = new BO.User
                 {
                     Name = nameTextBox.Text,
-                Address = addressTextBox.Text,
-                Email = emailTextBox.Text,
-                userName = userNameTextBox.Text,
-                password = passwordTextBox.Text,
-                status = (BO.userStatus)statusComboBox.SelectedItem
+                    Address = addressTextBox.Text,
+                    Email = emailTextBox.Text,
+                    userName = userNameTextBox.Text,
+                    password = passwordTextBox.Text,
+                    status = (BO.userStatus)statusComboBox.SelectedItem
                 };
                 bl.User.SignIn(User);
 
