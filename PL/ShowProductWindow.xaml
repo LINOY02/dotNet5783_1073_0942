@@ -40,7 +40,7 @@
         <Label x:Name="inStockLabel"  HorizontalAlignment="Left" Height="38" Margin="486,291,0,0" Content="{Binding InStock, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true ,Converter={StaticResource BooleanToText}}" VerticalAlignment="Top" Width="190" BorderBrush="{x:Null}" FontSize="20" FontWeight="Bold"/>
         <Button x:Name="backBtn" HorizontalAlignment="Left" BorderBrush="White" Height="30" Margin="715,374,0,0" VerticalAlignment="Top" Width="35" Click="backBtn_Click">
             <Button.Background>
-                <ImageBrush ImageSource="/חץ.png"/>
+                <ImageBrush ImageSource="/GO BACK.png"/>
             </Button.Background>
         </Button>
         <Label Content="MUABLES" HorizontalAlignment="Left" Margin="36,278,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="30" Height="47" Width="166" FontFamily="Broadway" Background="White"/>

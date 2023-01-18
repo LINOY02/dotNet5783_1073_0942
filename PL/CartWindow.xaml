@@ -84,7 +84,7 @@
                             <DataTemplate>
                                 <Button x:Name="deleteBtn" Margin="-6,-1,-6,-1" BorderBrush="white" Height="35" Width="45" Click="deleteBtn_Click">
                                     <Button.Background>
-                                        <ImageBrush ImageSource="/פח.png"/>
+                                        <ImageBrush ImageSource="/TRASH.png"/>
                                     </Button.Background>
                                 </Button>
                             </DataTemplate>
@@ -93,7 +93,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Image HorizontalAlignment="Left" Height="60" Margin="486,268,0,0" VerticalAlignment="Top" Width="136" Source="/תשלום.png"/>
+        <Image HorizontalAlignment="Left" Height="60" Margin="486,268,0,0" VerticalAlignment="Top" Width="136" Source="/PAY.png"/>
         <Label Content="MUABLES" HorizontalAlignment="Left" FontFamily="Broadway" Margin="101,268,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="30"/>
         <Label Content="Make You Feel At Home" HorizontalAlignment="Left" Margin="90,298,0,0" VerticalAlignment="Top" FontSize="17" Height="40" Width="190"/>
         <Button x:Name="confirmBtn" Content="Confirm order" HorizontalAlignment="Left" Margin="669,358,0,0" VerticalAlignment="Top" Width="103" Height="27" Click="confirmBtn_Click"/>

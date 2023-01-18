@@ -12,7 +12,7 @@
 
         </Grid.Background>
         <Button x:Name="OrderTraking" Content="Order Traking" BorderBrush="White" HorizontalAlignment="Left" Margin="310,74,0,0" VerticalAlignment="Top" Click="OrderTraking_Click" Width="117" Height="20"/>
-        <Image HorizontalAlignment="Center" Height="324" Margin="0,97,0,0" VerticalAlignment="Top" Width="798" Source="/תמונה1.png"/>
+        <Image HorizontalAlignment="Center" Height="324" Margin="0,97,0,0" VerticalAlignment="Top" Width="798" Source="/MAINwindow2.png"/>
         <Button x:Name="LogInBtn" Content="log in" HorizontalAlignment="Left" Margin="252,72,0,0" VerticalAlignment="Top" Width="53" BorderBrush="White" Height="22" FontSize="10" Click="LogInBtn_Click"/>
         <Label Content="MUABLES" HorizontalAlignment="Left" Margin="821,71,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="30" Height="47" Width="167" FontFamily="Broadway" Background="White"/>
         <Label Content="Make You Feel At Home" HorizontalAlignment="Left" Margin="809,114,0,0" VerticalAlignment="Top" FontSize="17" Height="40" Width="190" Background="White"/>
@@ -20,8 +20,8 @@
         <Image HorizontalAlignment="Left" Height="78" Margin="898,374,0,0" VerticalAlignment="Top" Width="78" Source="/IMG.100005.jpg"/>
         <Image HorizontalAlignment="Left" Height="154" Margin="545,342,0,0" VerticalAlignment="Top" Width="157" Source="/IMG.100015.jpg"/>
         <Image HorizontalAlignment="Left" Height="120" Margin="233,353,0,0" VerticalAlignment="Top" Width="119" Source="/IMG.100014.jpg"/>
-        <Image HorizontalAlignment="Left" Height="141" Margin="374,365,0,0" VerticalAlignment="Top" Width="142" Source="/תמונה2.png"/>
-        <Image HorizontalAlignment="Left" Height="125" Margin="733,349,0,0" VerticalAlignment="Top" Width="148" Source="/הורדה.jpeg"/>
+        <Image HorizontalAlignment="Left" Height="141" Margin="374,365,0,0" VerticalAlignment="Top" Width="142" Source="/MAINwindow1.png"/>
+        <Image HorizontalAlignment="Left" Height="125" Margin="733,349,0,0" VerticalAlignment="Top" Width="148" Source="/MAINwindow.jpeg"/>
 
     </Grid>
 </Window>

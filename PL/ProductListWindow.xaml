@@ -24,7 +24,7 @@
             </ListView>
             <Button x:Name="backBtn" BorderBrush="White" HorizontalAlignment="Left" Height="25" Margin="736,473,0,0" Grid.Row="2" VerticalAlignment="Top" Width="30" Click="backBtn_Click" RenderTransformOrigin="0.545,0.748">
                 <Button.Background>
-                    <ImageBrush ImageSource="/חץ.png"/>
+                    <ImageBrush ImageSource="/GO BACK.png"/>
                 </Button.Background>
             </Button>
         </Grid>
