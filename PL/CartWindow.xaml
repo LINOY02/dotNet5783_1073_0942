@@ -82,11 +82,7 @@
                     <GridViewColumn Header=" " Width="80">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Button x:Name="deleteBtn" Margin="-6,-1,-6,-1" BorderBrush="white" Height="35" Width="45" Click="deleteBtn_Click">
-                                    <Button.Background>
-                                        <ImageBrush ImageSource="/TRASH.png"/>
-                                    </Button.Background>
-                                </Button>
+                                <Button x:Name="deleteBtn" Content="--" Margin="-6,-1,-6,-1" BorderBrush="white" Height="35" Width="45" Click="deleteBtn_Click"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>

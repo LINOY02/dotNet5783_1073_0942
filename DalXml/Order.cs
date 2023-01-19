@@ -7,14 +7,15 @@ namespace Dal
 {
     internal class Order : IOrder
     {
-        string s_order = "order";
+        string s_order = "orders";
 
 
         public int Add(DO.Order item)
         {
             List<DO.Order?> Orders = XMLTools.LoadListFromXMLSerializer<DO.Order>(s_order);
-            item.ID = Config.GetNextOrderID(); //Initialize the ID number of the order
+            item.ID = Config.GetNextOrderId(); //Initialize the ID number of the order
             Orders.Add(item);
+            Config.SaveNextOrderID(item.ID + 1);
             XMLTools.SaveListToXMLSerializer(Orders, s_order);
             return item.ID;
         }

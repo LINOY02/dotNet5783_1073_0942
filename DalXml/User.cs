@@ -5,7 +5,7 @@ namespace Dal
 {
     internal class User : IUser
     {
-        string s_user = "user";
+        string s_user = "users";
         public void Add(DO.User user)
         {
             List<DO.User?> listUsers = XMLTools.LoadListFromXMLSerializer<DO.User>(s_user);

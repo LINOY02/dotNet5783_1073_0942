@@ -15,7 +15,7 @@ namespace BlImplementation
             return Dal.Order.GetAll().Select(order => new BO.OrderForList
             {
                 ID = (int)order?.ID!,
-                CustomerName = (string)order?.CustomerName!,
+                CustomerName = order?.CustomerName!,
                 Status = CheckStatus(order),
                 AmountOfItems = Dal.OrderItem.GetAll((DO.OrderItem? x) => { return x?.OrderID == order?.ID; }).Count(),
                 TotalPrice = Dal.OrderItem.GetAll((DO.OrderItem? x) => { return x?.OrderID == order?.ID; }).Sum(y => (double)y?.Price!* (int)y?.Amount!)

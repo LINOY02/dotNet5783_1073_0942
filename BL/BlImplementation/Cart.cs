@@ -92,7 +92,7 @@ namespace BlImplementation
             //Create a new order
             DO.Order newOrder = new DO.Order
             {
-                CustomerName = cart.CustomerAddress,
+                CustomerName = cart.CustomerName,
                 CustomerAdress = cart.CustomerAddress,
                 CustomerEmail = cart.CustomerEmail,
                 OrderDate = DateTime.Now,

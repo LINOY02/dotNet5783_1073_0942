@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfProduct xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Product>
+    <ID>100002</ID>
+    <Name>Jambo Table</Name>
+    <Price>7976</Price>
+    <Category>TABLE</Category>
+    <InStock>8</InStock>
+    <picture>\Pics\IMG.100002.jpg</picture>
+  </Product>
+  <Product>
+    <ID>100003</ID>
+    <Name>Troian Table</Name>
+    <Price>9878</Price>
+    <Category>TABLE</Category>
+    <InStock>19</InStock>
+    <picture>\Pics\IMG.100003.jpg</picture>
+  </Product>
+  <Product>
+    <ID>100004</ID>
+    <Name>Tai Table</Name>
+    <Price>8547</Price>
+    <Category>TABLE</Category>
+    <InStock>0</InStock>
+    <picture>\Pics\IMG.100004.jpg</picture>
+  </Product>
+  <Product>
+    <ID>100005</ID>
+    <Name>Loas Chair</Name>
+    <Price>1024</Price>
+    <Category>CHAIR</Category>
+    <InStock>72</InStock>
+    <picture>\Pics\IMG.100005.jpg</picture>
+  </Product>
+  <Product>
+    <ID>100006</ID>
+    <Name>Tiran Chair</Name>
+    <Price>1825</Price>
+    <Category>CHAIR</Category>
+    <InStock>6</InStock>
+    <picture>\Pics\IMG.100006.jpg</picture>
+  </Product>
+  <Product>
+    <ID>100007</ID>
+    <Name>Mai Chair</Name>
+    <Price>484</Price>
+    <Category>CHAIR</Category>
+    <InStock>147</InStock>
+    <picture>\Pics\IMG.100007.jpg</picture>
+  </Product>
+  <Product>
+    <ID>100008</ID>
+    <Name>Karamel Chair</Name>
+    <Price>1209</Price>
+    <Category>CHAIR</Category>
+    <InStock>47</InStock>
+    <picture>\Pics\IMG.100008.jpg</picture>
+  </Product>
+  <Product>
+    <ID>100009</ID>
+    <Name>Mango Chair</Name>
+    <Price>1214</Price>
+    <Category>CHAIR</Category>
+    <InStock>0</InStock>
+    <picture>\Pics\IMG.100009.jpg</picture>
+  </Product>
+  <Product>
+    <ID>100010</ID>
+    <Name>Madrid Closet</Name>
+    <Price>4121</Price>
+    <Category>CLOSET</Category>
+    <InStock>9</InStock>
+    <picture>\Pics\IMG.100010.jpg</picture>
+  </Product>
+  <Product>
+    <ID>100011</ID>
+    <Name>Brazil Closet</Name>
+    <Price>8834</Price>
+    <Category>CLOSET</Category>
+    <InStock>51</InStock>
+    <picture>\Pics\IMG.100011.jpg</picture>
+  </Product>
+  <Product>
+    <ID>100012</ID>
+    <Name>Nikol Closet</Name>
+    <Price>7848</Price>
+    <Category>CLOSET</Category>
+    <InStock>18</InStock>
+    <picture>\Pics\IMG.100012.jpg</picture>
+  </Product>
+  <Product>
+    <ID>100013</ID>
+    <Name>Pariz Closet</Name>
+    <Price>3825</Price>
+    <Category>CLOSET</Category>
+    <InStock>53</InStock>
+    <picture>\Pics\IMG.100013.jpg</picture>
+  </Product>
+  <Product>
+    <ID>100014</ID>
+    <Name>Miami Closet</Name>
+    <Price>7802</Price>
+    <Category>CLOSET</Category>
+    <InStock>0</InStock>
+    <picture>\Pics\IMG.100014.jpg</picture>
+  </Product>
+  <Product>
+    <ID>100015</ID>
+    <Name>Tom Sofa</Name>
+    <Price>9504</Price>
+    <Category>SOFA</Category>
+    <InStock>6</InStock>
+    <picture>\Pics\IMG.100015.jpg</picture>
+  </Product>
+  <Product>
+    <ID>100016</ID>
+    <Name>Bar Sofa</Name>
+    <Price>4841</Price>
+    <Category>SOFA</Category>
+    <InStock>33</InStock>
+    <picture>\Pics\IMG.100016.jpg</picture>
+  </Product>
+  <Product>
+    <ID>100017</ID>
+    <Name>Ben Sofa</Name>
+    <Price>7995</Price>
+    <Category>SOFA</Category>
+    <InStock>30</InStock>
+    <picture>\Pics\IMG.100017.jpg</picture>
+  </Product>
+  <Product>
+    <ID>100018</ID>
+    <Name>Guy Sofa</Name>
+    <Price>15455</Price>
+    <Category>SOFA</Category>
+    <InStock>6</InStock>
+    <picture>\Pics\IMG.100018.jpg</picture>
+  </Product>
+  <Product>
+    <ID>100019</ID>
+    <Name>Gad Sofa</Name>
+    <Price>8877</Price>
+    <Category>SOFA</Category>
+    <InStock>0</InStock>
+    <picture>\Pics\IMG.100019.jpg</picture>
+  </Product>
+  <Product>
+    <ID>100020</ID>
+    <Name>Diamond Bed</Name>
+    <Price>6473</Price>
+    <Category>BED</Category>
+    <InStock>43</InStock>
+    <picture>\Pics\IMG.100020.jpg</picture>
+  </Product>
+  <Product>
+    <ID>100021</ID>
+    <Name>Gold Bed</Name>
+    <Price>9810</Price>
+    <Category>BED</Category>
+    <InStock>64</InStock>
+    <picture>\Pics\IMG.100021.jpg</picture>
+  </Product>
+  <Product>
+    <ID>100022</ID>
+    <Name>Silver Bed</Name>
+    <Price>14981</Price>
+    <Category>BED</Category>
+    <InStock>9</InStock>
+    <picture>\Pics\IMG.100022.jpg</picture>
+  </Product>
+  <Product>
+    <ID>100023</ID>
+    <Name>Cristal Bed</Name>
+    <Price>17220</Price>
+    <Category>BED</Category>
+    <InStock>9</InStock>
+    <picture>\Pics\IMG.100023.jpg</picture>
+  </Product>
+  <Product>
+    <ID>100024</ID>
+    <Name>King Bed</Name>
+    <Price>9720</Price>
+    <Category>BED</Category>
+    <InStock>0</InStock>
+    <picture>\Pics\IMG.100024.jpg</picture>
+  </Product>
+  <Product>
+    <ID>100000</ID>
+    <Name>Rimani Table</Name>
+    <Price>10620</Price>
+    <InStock>27</InStock>
+    <Category>TABLE</Category>
+  </Product>
+  <Product>
+    <ID>100001</ID>
+    <Name>Mai Table</Name>
+    <Price>10582</Price>
+    <InStock>23</InStock>
+    <Category>TABLE</Category>
+  </Product>
+</ArrayOfProduct>

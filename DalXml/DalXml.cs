@@ -1,6 +1,6 @@
 ﻿using DalApi;
 
-namespace DalXml
+namespace Dal
 {
     sealed internal class DalXml : IDal
     {

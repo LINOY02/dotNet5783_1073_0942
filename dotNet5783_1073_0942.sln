@@ -31,7 +31,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PL", "PL\PL.csproj", "{7FD8
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "xml", "xml", "{36F42735-A895-4A98-A940-9504D2BD9452}"
 	ProjectSection(SolutionItems) = preProject
+		xml\configuration.xml = xml\configuration.xml
 		xml\dal-config.xml = xml\dal-config.xml
+		xml\orderItems.xml = xml\orderItems.xml
+		xml\orders.xml = xml\orders.xml
+		xml\products.xml = xml\products.xml
+		xml\users.xml = xml\users.xml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pics", "Pics", "{8FFFD992-0E6A-4840-98D9-5814786C908C}"
@@ -65,6 +70,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pics", "Pics", "{8FFFD992-0
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DalXml", "DalXml\DalXml.csproj", "{F5A98B53-A4E5-4082-8C0F-5BB7106AA2C2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backup xml files", "Backup xml files", "{92044D79-0D92-4E5B-93E3-57EF5461E80E}"
+	ProjectSection(SolutionItems) = preProject
+		orderBackUp.xml = orderBackUp.xml
+		orderItemBackUp.xml = orderItemBackUp.xml
+		productBackUp.xml = productBackUp.xml
+		userBackUp.xml = userBackUp.xml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

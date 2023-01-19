@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfUser xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<User>
+		<Name>Shira Revach</Name>
+		<Email>ShiraRevach@gmail.com</Email>
+		<Address>Ha-Arasim</Address>
+		<userName>Shira Revach0</userName>
+		<password>Shira Revach0</password>
+		<status>CUSTOMER</status>
+	</User>
+	<User>
+		<Name>Linoy Yaday</Name>
+		<Email>LinoyYaday@gmail.com</Email>
+		<Address>Dakar</Address>
+		<userName>Linoy Yaday1</userName>
+		<password>Linoy Yaday1</password>
+		<status>CUSTOMER</status>
+	</User>
+	<User>
+		<Name>Hadar Yaday</Name>
+		<Email>HadarYaday@gmail.com</Email>
+		<Address>Ha-Mitzpe</Address>
+		<userName>Hadar Yaday2</userName>
+		<password>Hadar Yaday2</password>
+		<status>CUSTOMER</status>
+	</User>
+	<User>
+		<Name>Shira Israeli</Name>
+		<Email>ShiraIsraeli@gmail.com</Email>
+		<Address>Rabi Hakiva</Address>
+		<userName>Shira Israeli3</userName>
+		<password>Shira Israeli3</password>
+		<status>CUSTOMER</status>
+	</User>
+	<User>
+		<Name>Linoy Biton</Name>
+		<Email>LinoyBiton@gmail.com</Email>
+		<Address>Rabi Hakiva</Address>
+		<userName>Linoy Biton4</userName>
+		<password>Linoy Biton4</password>
+		<status>CUSTOMER</status>
+	</User>
+	<User>
+		<Name>Tamar Yaday</Name>
+		<Email>TamarYaday@gmail.com</Email>
+		<Address>Ha-Macabim</Address>
+		<userName>Tamar Yaday5</userName>
+		<password>Tamar Yaday5</password>
+		<status>CUSTOMER</status>
+	</User>
+	<User>
+		<Name>Linoy Choen</Name>
+		<Email>LinoyChoen@gmail.com</Email>
+		<Address>Chazon Ish</Address>
+		<userName>Linoy Choen6</userName>
+		<password>Linoy Choen6</password>
+		<status>CUSTOMER</status>
+	</User>
+	<User>
+		<Name>Avi Yaday</Name>
+		<Email>AviYaday@gmail.com</Email>
+		<Address>Ha-Gefen</Address>
+		<userName>Avi Yaday7</userName>
+		<password>Avi Yaday7</password>
+		<status>CUSTOMER</status>
+	</User>
+	<User>
+		<Name>Shira Biton</Name>
+		<Email>ShiraBiton@gmail.com</Email>
+		<Address>Ha-Macabim</Address>
+		<userName>Shira Biton8</userName>
+		<password>Shira Biton8</password>
+		<status>CUSTOMER</status>
+	</User>
+	<User>
+		<Name>Avi Biton</Name>
+		<Email>AviBiton@gmail.com</Email>
+		<Address>Dakar</Address>
+		<userName>Avi Biton9</userName>
+		<password>Avi Biton9</password>
+		<status>CUSTOMER</status>
+	</User>
+	<User>
+		<Name>Shira Biton</Name>
+		<Email>ShiraBiton@gmail.com</Email>
+		<Address>Gordon</Address>
+		<userName>Shira Biton10</userName>
+		<password>Shira Biton10</password>
+		<status>CUSTOMER</status>
+	</User>
+	<User>
+		<Name>Tamar Gefner</Name>
+		<Email>TamarGefner@gmail.com</Email>
+		<Address>Chazon Ish</Address>
+		<userName>Tamar Gefner11</userName>
+		<password>Tamar Gefner11</password>
+		<status>CUSTOMER</status>
+	</User>
+	<User>
+		<Name>Rachel Levi</Name>
+		<Email>RachelLevi@gmail.com</Email>
+		<Address>Rabi Hakiva</Address>
+		<userName>Rachel Levi12</userName>
+		<password>Rachel Levi12</password>
+		<status>CUSTOMER</status>
+	</User>
+	<User>
+		<Name>Avi Revach</Name>
+		<Email>AviRevach@gmail.com</Email>
+		<Address>Gordon</Address>
+		<userName>Avi Revach13</userName>
+		<password>Avi Revach13</password>
+		<status>CUSTOMER</status>
+	</User>
+	<User>
+		<Name>Moshe Yaday</Name>
+		<Email>MosheYaday@gmail.com</Email>
+		<Address>Ha-Macabim</Address>
+		<userName>Moshe Yaday14</userName>
+		<password>Moshe Yaday14</password>
+		<status>CUSTOMER</status>
+	</User>
+	<User>
+		<Name>Shira Israeli</Name>
+		<Email>ShiraIsraeli@gmail.com</Email>
+		<Address>Dakar</Address>
+		<userName>Shira Israeli15</userName>
+		<password>Shira Israeli15</password>
+		<status>CUSTOMER</status>
+	</User>
+	<User>
+		<Name>Hadar Israeli</Name>
+		<Email>HadarIsraeli@gmail.com</Email>
+		<Address>Dakar</Address>
+		<userName>Hadar Israeli16</userName>
+		<password>Hadar Israeli16</password>
+		<status>CUSTOMER</status>
+	</User>
+	<User>
+		<Name>Avi Biton</Name>
+		<Email>AviBiton@gmail.com</Email>
+		<Address>Gordon</Address>
+		<userName>Avi Biton17</userName>
+		<password>Avi Biton17</password>
+		<status>CUSTOMER</status>
+	</User>
+	<User>
+		<Name>Tamar Choen</Name>
+		<Email>TamarChoen@gmail.com</Email>
+		<Address>Ha-Mitzpe</Address>
+		<userName>Tamar Choen18</userName>
+		<password>Tamar Choen18</password>
+		<status>CUSTOMER</status>
+	</User>
+	<User>
+		<Name>Moshe Israeli</Name>
+		<Email>MosheIsraeli@gmail.com</Email>
+		<Address>Dakar</Address>
+		<userName>Moshe Israeli19</userName>
+		<password>Moshe Israeli19</password>
+		<status>CUSTOMER</status>
+	</User>
+	<User>
+		<userName>tamar</userName>
+		<password>1234</password>
+		<status>MANAGER</status>
+	</User>
+	<User>
+		<userName>linoy</userName>
+		<password>4321</password>
+		<status>MANAGER</status>
+	</User>
+	<User>
+		<Name>Tamar Gefner</Name>
+		<Email>Tamar@gmail.com</Email>
+		<Address>israel</Address>
+		<userName>tg</userName>
+		<password>tg12</password>
+		<status>CUSTOMER</status>
+	</User>
+</ArrayOfUser>

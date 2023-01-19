@@ -1,11 +1,27 @@
 ﻿using DalApi;
 using DO;
+using System.Reflection.Metadata.Ecma335;
+using System.Xml.Linq;
 
 namespace Dal
 {
     internal class Product : IProduct
     {
-        string s_product = "products";
+        const string s_product = "products";
+
+        static DO.Product? createProductFromXElement(XElement prod)
+        {
+            return new DO.Product()
+            {
+                ID = prod.ToIntNullable("ID") ?? throw new FormatException("id"),
+                Name = (string?)prod.Element("Name"),
+                Price = prod.ToDoubleNullable("Price") ?? throw new FormatException("price"),
+                Category = prod.ToEnumNullable<DO.Category>("Category"),
+                InStock = prod.ToIntNullable("InStock") ?? throw new FormatException("in stock"),
+                picture = (string?)prod.Element("picture")
+            };
+        }
+        
 
         /// <summary>
         /// add product
@@ -15,14 +31,23 @@ namespace Dal
         /// <exception cref="DalAlreadyExistException"></exception>
         public int Add(DO.Product product)
         {
-            List<DO.Product?> listProds = XMLTools.LoadListFromXMLSerializer<DO.Product>(s_product);
-            
-            if (listProds.Exists(x => x?.ID == product.ID))// the product is not exist in the list
+            XElement productsRootElem = XMLTools.LoadListFromXMLElement(s_product);
+            XElement? prod = (from p in productsRootElem.Elements()
+                              where p.ToIntNullable("ID") == product.ID
+                              select p).FirstOrDefault();
+
+            if (prod != null)// check if the product is already exist in the list
                 throw new DalAlreadyExistException($"Product num {product.ID} already exist in the list");
-            else// check if the product is already exist in the list
-                listProds.Add(product);
-            
-            XMLTools.SaveListToXMLSerializer(listProds, s_product);
+            // the product is not exist in the list
+            XElement productElem = new XElement("Product",
+                                             new XElement("ID", product.ID),
+                                             new XElement("Name", product.Name),
+                                             new XElement("Price", product.Price),
+                                             new XElement("InStock", product.InStock),
+                                             new XElement("Category", product.Category)
+                                             );
+            productsRootElem.Add(productElem);
+            XMLTools.SaveListToXMLElement(productsRootElem, s_product);
             return product.ID;
         }
 
@@ -32,13 +57,15 @@ namespace Dal
         /// <param name="id"></param>
         public void Delete(int id)
         {
-            List<DO.Product?> listProds = XMLTools.LoadListFromXMLSerializer<DO.Product>(s_product);
+            XElement productsRootElem = XMLTools.LoadListFromXMLElement(s_product);
 
-            if (!listProds.Exists(x => x?.ID == id))// check if the product isn't exist in the list
-                throw new DalDoesNotExistException($"Product num  {id}  not exist in the list");
-            else //the product is exist in the list
-                listProds.Remove(GetById(id));
-            XMLTools.SaveListToXMLSerializer(listProds, s_product);
+            XElement? prod = (from p in productsRootElem.Elements()
+                              where p.ToIntNullable("ID") == id
+                              select p).FirstOrDefault() ?? throw new DalDoesNotExistException($"Product num  {id}  not exist in the list");// check if the product isn't exist in the list
+
+           //the product is exist in the list
+            prod.Remove();
+            XMLTools.SaveListToXMLElement(productsRootElem, s_product);
         }
 
         /// <summary>
@@ -48,11 +75,19 @@ namespace Dal
         /// <returns></returns>
         public IEnumerable<DO.Product?> GetAll(Func<DO.Product?, bool>? func = null)
         {
-            List<DO.Product?> listProds = XMLTools.LoadListFromXMLSerializer<DO.Product>(s_product);
+            XElement productsRootElem = XMLTools.LoadListFromXMLElement(s_product);
             if (func == null)
-                return listProds.Select(x => x);
-            return listProds.Where(x => func(x)).Select(x => x);
+            {
+                return from prod in productsRootElem.Elements()
+                       select createProductFromXElement(prod);
+            }
+            return from prod in productsRootElem.Elements()
+                   let doProd = createProductFromXElement(prod)
+                   where func(doProd)
+                   select (DO.Product?) doProd;
         }
+
+       
 
         /// <summary>
         /// get product from the list by ID
@@ -62,8 +97,11 @@ namespace Dal
         /// <exception cref="DalDoesNotExistException"></exception>
         public DO.Product GetById(int id)
         {
-            List<DO.Product?> listProds = XMLTools.LoadListFromXMLSerializer<DO.Product>(s_product);
-            return listProds.Find(x => x?.ID == id) ?? throw new DalDoesNotExistException($"Product num {id} not exist in the list"); // return the requested prodect
+            XElement productsRootElem = XMLTools.LoadListFromXMLElement(s_product);
+            return (from prod in productsRootElem.Elements()
+                    let doProd = createProductFromXElement(prod)
+                    where prod.ToIntNullable("ID") == id
+                    select doProd).FirstOrDefault() ?? throw new DalDoesNotExistException($"Product num {id} not exist in the list"); // return the requested prodect
         }
 
         /// <summary>
@@ -74,9 +112,12 @@ namespace Dal
         /// <exception cref="DalDoesNotExistException"></exception>
         public DO.Product GetItem(Func<DO.Product?, bool>? filter)
         {
-            List<DO.Product?> listProds = XMLTools.LoadListFromXMLSerializer<DO.Product>(s_product);
-            return listProds.FirstOrDefault(x => filter!(x)) ?? throw new DalDoesNotExistException("product under this condition is not exit");
-        }
+            XElement productsRootElem = XMLTools.LoadListFromXMLElement(s_product);
+            return (from prod in productsRootElem.Elements()
+                   let doProd = createProductFromXElement(prod)
+                   where filter(doProd) 
+                   select doProd).FirstOrDefault() ?? throw new DalDoesNotExistException("product under this condition is not exit");
+         }
 
         /// <summary>
         /// update product
@@ -85,15 +126,8 @@ namespace Dal
         /// <exception cref="DalDoesNotExistException"></exception>
         public void Update(DO.Product product)
         {
-            List<DO.Product?> listProds = XMLTools.LoadListFromXMLSerializer<DO.Product>(s_product);
-            if (!listProds.Exists(x => x?.ID == product.ID))// check if the product isn't exist in the list
-                throw new DalDoesNotExistException($"Product num {product.ID} not exist in the list");
-            else// the product is exist in the list
-            {
-                listProds.Remove(GetById(product.ID));
-                listProds.Add(product); //Overrunning the old object with the new 
-            }
-            XMLTools.SaveListToXMLSerializer(listProds, s_product);
+            Delete(product.ID);
+            Add(product);
         }
     }
 }

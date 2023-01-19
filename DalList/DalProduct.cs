@@ -15,9 +15,9 @@ public class DalProduct : IProduct
     /// <exception cref="DalAlreadyExistException"></exception>
     public int Add(Product product)
     {
-        if (DataSource._products.Exists(x => x?.ID == product.ID))// the product is not exist in the list
+        if (DataSource._products.Exists(x => x?.ID == product.ID))// check if the product is already exist in the list   
             throw new DalAlreadyExistException($"Product num {product.ID} already exist in the list");
-        else// check if the product is already exist in the list
+        else // the product is not exist in the list
             DataSource._products.Add(product);
         return product.ID;
     }

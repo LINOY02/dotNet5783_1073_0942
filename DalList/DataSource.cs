@@ -2,6 +2,7 @@
 using DO;
 namespace Dal;
 
+
 internal static class DataSource
 { 
 
@@ -17,14 +18,8 @@ internal static class DataSource
         internal const int s_startOrderItemNumber = 1000;
         private static int s_nextOrderItemNumber = s_startOrderItemNumber;
         internal static int NextOrderItemNumber { get => s_nextOrderItemNumber++; }
-    /*
-        internal static int numOfP = 0;
-        internal static int numOfO = 0;
-        internal static int numOfOI = 0;
-    */
-    
-
-
+   
+   
     //Class constructor
     static DataSource()
     {
