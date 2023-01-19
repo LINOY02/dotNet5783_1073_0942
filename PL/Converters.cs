@@ -142,7 +142,8 @@ namespace PL
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if(value.ToString() != "")
+            bool boolValue = (bool)value;
+            if (boolValue)
             {
                 return "Update";
             }

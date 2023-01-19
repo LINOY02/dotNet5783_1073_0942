@@ -198,4 +198,11 @@
     <InStock>23</InStock>
     <Category>TABLE</Category>
   </Product>
+  <Product>
+    <ID>100025</ID>
+    <Name>git chair</Name>
+    <Price>1200</Price>
+    <InStock>19</InStock>
+    <Category>CHAIR</Category>
+  </Product>
 </ArrayOfProduct>

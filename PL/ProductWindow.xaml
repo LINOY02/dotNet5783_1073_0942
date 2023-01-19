@@ -41,7 +41,7 @@
             <Label x:Name="PriceLabel" Grid.Column="0" Content="Price:" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
             <TextBox x:Name="PriceTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="3" Text="{Binding Price, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" PreviewKeyDown="PriceTextBox_PreviewKeyDown"/>
         </Grid>
-        <Button x:Name="Button" Content="{Binding ElementName=IDTextBox, Path=Text, Converter={StaticResource BooleanToContent}}" HorizontalAlignment="Left" Height="33" Margin="235,357,0,0" VerticalAlignment="Top" Width="72" Click="Button_Click" FontWeight="Bold">
+        <Button x:Name="Button" Content="{Binding ElementName=IDTextBox, Path=IsReadOnly, Converter={StaticResource BooleanToContent}}" HorizontalAlignment="Left" Height="33" Margin="235,357,0,0" VerticalAlignment="Top" Width="72" Click="Button_Click" FontWeight="Bold">
             <Button.IsEnabled>
                 <MultiBinding Converter="{StaticResource TextToBoolean}">
                     <Binding Path="Text" ElementName="IDTextBox"/>
