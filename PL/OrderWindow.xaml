@@ -9,6 +9,8 @@
         Title="OrderWindow" Height="450" Width="800">
 
     <Grid>
+        <Label Content="MUABLES" HorizontalAlignment="Left" Margin="535,268,0,0" VerticalAlignment="Top" FontSize="25" FontWeight="Bold" FontFamily="Broadway" Height="41" Width="155"/>
+        <Label Content="Make You Feel At Home" HorizontalAlignment="Left" Margin="525,294,0,0" VerticalAlignment="Top" FontSize="15"/>
         <Grid x:Name="grid1"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="61,69,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>

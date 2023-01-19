@@ -47,7 +47,7 @@
         <Label Content="Make You Feel At Home" HorizontalAlignment="Left" Margin="27,313,0,0" VerticalAlignment="Top" FontSize="17" Height="40" Width="190" Background="White"/>
         <Button x:Name="MyCart" HorizontalAlignment="Left" Margin="715,34,0,0" VerticalAlignment="Top" Height="40" Width="40"  BorderBrush="White" Click="MyCart_Click">
             <Button.Background>
-                <ImageBrush ImageSource="/סל קניות.png"/>
+                <ImageBrush ImageSource="/cart.png"/>
             </Button.Background>
         </Button>
     </Grid>

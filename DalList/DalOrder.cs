@@ -1,6 +1,6 @@
 ﻿using DO;
-namespace Dal;
 using DalApi;
+namespace Dal;
 
 internal class DalOrder : IOrder
 {

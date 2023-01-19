@@ -7,6 +7,8 @@
         mc:Ignorable="d"
         Title="ManagerWindow" Height="450" Width="800">
     <Grid>
+        <Label Content="MUABLES" HorizontalAlignment="Center" Margin="0,342,0,0" VerticalAlignment="Top" FontSize="30" FontWeight="Bold" FontFamily="Broadway" Height="41" Width="170"/>
+        <Label Content="Make You Feel At Home" HorizontalAlignment="Center" Margin="0,370,0,0" VerticalAlignment="Top" FontSize="17"/>
         <Button x:Name="ProductsBtn" Content="Products" HorizontalAlignment="Left" Margin="165,272,0,0" VerticalAlignment="Top" Click="ProductsBtn_Click" Height="54" Width="115"/>
         <Button x:Name="OrdersBtn" Content="Orders" HorizontalAlignment="Left" Margin="525,275,0,0" VerticalAlignment="Top" Click="OrdersBtn_Click" Height="54" Width="115"/>
         <Image HorizontalAlignment="Left" Height="88" Margin="635,144,0,0" VerticalAlignment="Top" Width="122" Source="/BedBackground.webp"/>
@@ -20,7 +22,7 @@
                 <ImageBrush ImageSource="/home-button-emoji-512x485-ww1azru1.png"/>
             </Button.Background>
             <Button.OpacityMask>
-                <ImageBrush ImageSource="/חץ.png"/>
+                <ImageBrush ImageSource="/GO BACK.png"/>
             </Button.OpacityMask>
         </Button>
 

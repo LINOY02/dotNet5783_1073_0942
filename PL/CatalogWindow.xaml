@@ -132,7 +132,7 @@
         </ScrollViewer>
         <Button x:Name="MyCart" Height="NaN" Width="NaN" Margin="10,2,735,0" BorderBrush="White" Click="MyCart_Click">
             <Button.Background>
-                <ImageBrush ImageSource="/סל קניות.png"/>
+                <ImageBrush ImageSource="/cart.png"/>
             </Button.Background>
         </Button>
         <Menu HorizontalAlignment="Left" Height="19" Margin="585,14,0,0" VerticalAlignment="Top" Width="95" Background="Transparent" RenderTransformOrigin="0.585,2.04">

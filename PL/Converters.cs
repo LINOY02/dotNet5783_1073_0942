@@ -121,6 +121,23 @@ namespace PL
             throw new NotImplementedException();
         }
     }
+    class ConvertTextToEnable : IValueConverter //When there is no input in order id
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+
+            while (value.ToString() == "")
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
     class ConvertBooleanToContent : IValueConverter //If we received an ID, that means we are in a product update mode and if the ID is empty, we are in the mode of adding a new product
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

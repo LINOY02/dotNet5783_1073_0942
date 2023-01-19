@@ -8,6 +8,13 @@
         DataContext="{Binding ShowOrder, RelativeSource={RelativeSource self}}"
         Title="ShowOrderWindow" Height="450" Width="800">
     <Grid>
+        <Label Content="MUABLES" HorizontalAlignment="Left" Margin="535,268,0,0" VerticalAlignment="Top" FontSize="25" FontWeight="Bold" FontFamily="Broadway" Height="41" Width="155"/>
+        <Label Content="Make You Feel At Home" HorizontalAlignment="Left" Margin="525,294,0,0" VerticalAlignment="Top" FontSize="15"/>
+        <Button x:Name="backBtn" BorderBrush="White" HorizontalAlignment="Left" Height="38" Margin="715,361,0,0" VerticalAlignment="Top" Width="42" Click="backBtn_Click" RenderTransformOrigin="0.545,0.748">
+            <Button.Background>
+                <ImageBrush ImageSource="/GO BACK.png"/>
+            </Button.Background>
+        </Button>
         <Grid x:Name="grid1"  HorizontalAlignment="Left" VerticalAlignment="Top" Margin="61,69,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>

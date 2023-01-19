@@ -41,6 +41,9 @@ namespace PL
             InitializeComponent();
             ShowOrder = bl.Order.GetOrder(id);
         }
-
+        private void backBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }
