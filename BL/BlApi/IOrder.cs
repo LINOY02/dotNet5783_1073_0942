@@ -39,6 +39,10 @@ namespace BlApi
         /// <returns></returns>
         public BO.OrderTracking TruckingOrder(int id);
 
-        
+        /// <summary>
+        /// fun that return the ID of the oldest order
+        /// </summary>
+        /// <returns></returns>
+        public int OrderOldest();
     }
 }
