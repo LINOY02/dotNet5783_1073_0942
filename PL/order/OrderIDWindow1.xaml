@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="OrderIDWindow1" Height="250" Width="200">
+        Title="OrderIDWindow1" Height="224" Width="200">
     <Grid>
-        <Label x:Name="OrderNumber1" Content="Enter an order ID:" HorizontalAlignment="Left" Margin="17,90,0,0" VerticalAlignment="Top" FontSize="10"/>
-        <TextBox x:Name="number" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="53" Margin="105,94,0,0" Height="18"/>
-        <Button Content="Show Order" HorizontalAlignment="Left" BorderBrush="White" Margin="102,182,0,0" VerticalAlignment="Top" IsEnabled="{Binding ElementName=number, Path=Text, Converter={StaticResource TextToEnable}}" Width="75" FontSize="10" Click="Button_Click" Height="23"/>
-        <Label Content="Check out your order" HorizontalAlignment="Center" Margin="0,44,0,0" VerticalAlignment="Top" FontWeight="Bold" Width="152" FontSize="14"/>
+        <Label x:Name="OrderNumber1" Content="Enter an order ID:" HorizontalAlignment="Left" Margin="17,66,0,0" VerticalAlignment="Top" FontSize="10"/>
+        <TextBox x:Name="number" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="53" Margin="105,72,0,0" Height="18"/>
+        <Button Content="Show Order" HorizontalAlignment="Left" BorderBrush="White" Margin="86,146,0,0" VerticalAlignment="Top" IsEnabled="{Binding ElementName=number, Path=Text, Converter={StaticResource TextToEnable}}" Width="75" FontSize="10" Click="Button_Click" Height="23"/>
+        <Label Content="Check out your order" HorizontalAlignment="Center" Margin="0,25,0,0" VerticalAlignment="Top" FontWeight="Bold" Width="152" FontSize="14"/>
 
     </Grid>
 </Window>

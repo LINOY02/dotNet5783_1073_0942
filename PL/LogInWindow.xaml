@@ -6,11 +6,11 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         DataContext="{Binding User , RelativeSource={RelativeSource self}}"
-        Title="LogInWindow" Height="300" Width="400">
+        Title="LogInWindow" Height="300" Width="270">
 
     <Grid>
         <Label Content="MUABLES" HorizontalAlignment="Center" Margin="0,31,0,0" VerticalAlignment="Top" FontSize="22" FontWeight="Bold" FontFamily="Broadway" Height="36" Width="131"/>
-        <Label Content="Make You Feel At Home" Margin="124,52,122,0" VerticalAlignment="Top" FontSize="13"/>
+        <Label Content="Make You Feel At Home" Margin="60,52,52,0" VerticalAlignment="Top" FontSize="13"/>
         <Grid x:Name="grid1"  HorizontalAlignment="Center" VerticalAlignment="Center">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
@@ -25,7 +25,7 @@
             <Label Grid.Column="0" Content="user Name:" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
             <TextBox x:Name="userNameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="NaN" Margin="3" Grid.Row="0" Text="{Binding userName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
         </Grid>
-        <Button x:Name="logInBtn" Content="Log In" BorderBrush="White" HorizontalAlignment="Left" Height="25" Margin="165,188,0,0" VerticalAlignment="Top" Width="65" Click="logInBtn_Click">
+        <Button x:Name="logInBtn" Content="Log In" BorderBrush="White" HorizontalAlignment="Center" Height="25" Margin="0,185,0,0" VerticalAlignment="Top" Width="65" Click="logInBtn_Click">
             <Button.IsEnabled>
                 <MultiBinding Converter="{StaticResource TextUserLogInToBoolean}">
                     <Binding Path="Text" ElementName="userNameTextBox"/>
@@ -33,7 +33,7 @@
                 </MultiBinding>
             </Button.IsEnabled>
         </Button>
-        <TextBlock HorizontalAlignment="Left" Height="15" Margin="115,225,0,0" TextWrapping="Wrap" Text="don't have an account yet?" VerticalAlignment="Top" Width="120" FontSize="10"/>
-        <Button x:Name="signInBtn" Content="Sign In" HorizontalAlignment="Left" Height="18" Margin="234,223,0,0" VerticalAlignment="Top" Width="40" BorderBrush="{x:Null}" FontSize="8" Foreground="#FFF40606" FontWeight="Bold" Click="signInBtn_Click"/>
+        <TextBlock HorizontalAlignment="Left" Height="15" Margin="55,225,0,0" TextWrapping="Wrap" Text="don't have an account yet?" VerticalAlignment="Top" Width="120" FontSize="10"/>
+        <Button x:Name="signInBtn" Content="Sign In" HorizontalAlignment="Left" Height="18" Margin="178,223,0,0" VerticalAlignment="Top" Width="40" BorderBrush="{x:Null}" FontSize="8" Foreground="#FFF40606" FontWeight="Bold" Click="signInBtn_Click"/>
     </Grid>
 </Window>

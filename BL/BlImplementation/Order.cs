@@ -183,9 +183,13 @@ namespace BlImplementation
                 throw new BO.BlDoesNotExistException(exc.Message);
             }
         }
-        
-       
-        //A private helper function that accepts an order and returns its order status
+
+
+        /// <summary>
+        /// A private helper function that accepts an order and returns its order status
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
         private BO.OrderStatus CheckStatus(DO.Order? item)
         {
             if (item?.OrderDate == null)
@@ -198,6 +202,25 @@ namespace BlImplementation
                     return BO.OrderStatus.Shipped;
                 else
                     return BO.OrderStatus.Delivered;
+        }
+
+        /// <summary>
+        /// fun that return the ID of the oldest order
+        /// </summary>
+        /// <returns></returns>
+        public int OrderOldest()
+        {
+            //all the orders that are only orderd 
+            var ordered = GetListedOrders().Where(x => x.Status == BO.OrderStatus.Ordered).Select(x => Dal.Order.GetById(x.ID));
+            var firstOrdered = ordered.OrderByDescending(x => x.OrderDate).Last(); //the oldest orderd
+            //all the orders that are only shipped
+            var shipped = GetListedOrders().Where(x => x.Status == BO.OrderStatus.Shipped).Select(x => Dal.Order.GetById(x.ID));
+            var firstshipped = ordered.OrderByDescending(x => x.ShipDate).Last(); //the oldest shipped
+            
+            if(firstOrdered.OrderDate < firstshipped.ShipDate)
+                return firstOrdered.ID;
+            else
+                return firstshipped.ID;
         }
     }
 }
