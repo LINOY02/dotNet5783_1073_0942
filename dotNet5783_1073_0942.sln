@@ -69,7 +69,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pics", "Pics", "{8FFFD992-0
 		Pics\IMG.FAILS.jpg = Pics\IMG.FAILS.jpg
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DalXml", "DalXml\DalXml.csproj", "{F5A98B53-A4E5-4082-8C0F-5BB7106AA2C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DalXml", "DalXml\DalXml.csproj", "{F5A98B53-A4E5-4082-8C0F-5BB7106AA2C2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backup xml files", "Backup xml files", "{92044D79-0D92-4E5B-93E3-57EF5461E80E}"
 	ProjectSection(SolutionItems) = preProject
@@ -78,6 +78,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backup xml files", "Backup 
 		productBackUp.xml = productBackUp.xml
 		userBackUp.xml = userBackUp.xml
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simulator", "Simulator\Simulator.csproj", "{ED9F18E1-18A0-40B1-BFF5-DFEF5F6F011F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -117,6 +119,10 @@ Global
 		{F5A98B53-A4E5-4082-8C0F-5BB7106AA2C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5A98B53-A4E5-4082-8C0F-5BB7106AA2C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5A98B53-A4E5-4082-8C0F-5BB7106AA2C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED9F18E1-18A0-40B1-BFF5-DFEF5F6F011F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED9F18E1-18A0-40B1-BFF5-DFEF5F6F011F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED9F18E1-18A0-40B1-BFF5-DFEF5F6F011F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED9F18E1-18A0-40B1-BFF5-DFEF5F6F011F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

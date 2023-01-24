@@ -210,17 +210,24 @@ namespace BlImplementation
         /// <returns></returns>
         public int OrderOldest()
         {
-            //all the orders that are only orderd 
-            var ordered = GetListedOrders().Where(x => x.Status == BO.OrderStatus.Ordered).Select(x => Dal.Order.GetById(x.ID));
-            var firstOrdered = ordered.OrderByDescending(x => x.OrderDate).Last(); //the oldest orderd
-            //all the orders that are only shipped
-            var shipped = GetListedOrders().Where(x => x.Status == BO.OrderStatus.Shipped).Select(x => Dal.Order.GetById(x.ID));
-            var firstshipped = ordered.OrderByDescending(x => x.ShipDate).Last(); //the oldest shipped
-            
-            if(firstOrdered.OrderDate < firstshipped.ShipDate)
-                return firstOrdered.ID;
-            else
-                return firstshipped.ID;
+            try
+            {
+                //all the orders that are only orderd 
+                var ordered = GetListedOrders().Where(x => x.Status == BO.OrderStatus.Ordered).Select(x => Dal.Order.GetById(x.ID));
+                var firstOrdered = ordered.OrderByDescending(x => x.OrderDate).Last(); //the oldest orderd
+                                                                                       //all the orders that are only shipped
+                var shipped = GetListedOrders().Where(x => x.Status == BO.OrderStatus.Shipped).Select(x => Dal.Order.GetById(x.ID));
+                var firstshipped = ordered.OrderByDescending(x => x.ShipDate).Last(); //the oldest shipped
+
+                if (firstOrdered.OrderDate < firstshipped.ShipDate)
+                    return firstOrdered.ID;
+                else
+                    return firstshipped.ID;
+            }
+            catch(DO.DalDoesNotExistException ex)
+            {
+                throw new BO.BlDoesNotExistException(ex.Message);
+            }
         }
     }
 }
