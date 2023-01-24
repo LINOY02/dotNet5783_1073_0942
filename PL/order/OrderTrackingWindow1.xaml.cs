@@ -42,5 +42,10 @@ namespace PL
         {
             new ShowOrderWindow(OrderT.ID).ShowDialog();
         }
+
+        private void backBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }
