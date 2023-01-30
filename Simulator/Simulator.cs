@@ -1,5 +1,5 @@
 ﻿using BlApi;
-
+using BO;
 namespace Simulator
 {
     public static class Simulator
@@ -12,9 +12,9 @@ namespace Simulator
         private static volatile bool activate;
 
 
-        public delegate void Report1(int orderId, DateTime? last, DateTime? now);
+        public delegate void Report1(int orderId, DateTime? last, DateTime? now, BO.OrderStatus status);
         public static Report1 report1;
-        public delegate void Report2(string mes);
+        public delegate void Report2();
         public static Report2 report2;
         public delegate void Report3(string mes);
         private static Report3 report3; 
@@ -37,17 +37,17 @@ namespace Simulator
                             DateTime? newTime = DateTime.Now + TimeSpan.FromSeconds(delay * 1000);
                             if (order.ShipDate == null)
                             {
-                                report1(orderId, order.OrderDate, newTime);
+                                report1(orderId, DateTime.Now, newTime, OrderStatus.Ordered);
                                 Thread.Sleep(delay * 1000);
                                 bl.Order.ShipOrder(orderId, newTime);
                             }
                             else
                             {
-                                report1(orderId, order.ShipDate, newTime);
+                                report1(orderId, DateTime.Now, newTime, OrderStatus.Shipped);
                                 Thread.Sleep(delay * 1000);
                                 bl.Order.DeliveredOrder(orderId, newTime);
                             }
-                            report2("The order processing has ended");
+                            report2();
                         }
                         catch (BO.BlDoesNotExistException ex)
                         {
@@ -55,7 +55,7 @@ namespace Simulator
                         }
                         Thread.Sleep(1000);
                     }
-                    report3("finished simulation");
+                    report3("The order update process has been successfully completed");
             }).Start();
         }
 
@@ -77,6 +77,21 @@ namespace Simulator
         public static void RegisterReport3(Report3 func)
         {
             report3 += func;
+        }
+
+        public static void UnRegisterReport1(Report1 func)
+        {
+            report1 -= func;
+        }
+
+        public static void UnRegisterReport2(Report2 func)
+        {
+            report2 -= func;
+        }
+
+        public static void UnRegisterReport3(Report3 func)
+        {
+            report3 -= func;
         }
     }
 

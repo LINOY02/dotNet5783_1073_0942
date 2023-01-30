@@ -41,6 +41,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "xml", "xml", "{36F42735-A89
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pics", "Pics", "{8FFFD992-0E6A-4840-98D9-5814786C908C}"
 	ProjectSection(SolutionItems) = preProject
+		Pics\delivered.png = Pics\delivered.png
 		Pics\IMG.100000.jpg = Pics\IMG.100000.jpg
 		Pictures\IMG.100001.jpg = Pictures\IMG.100001.jpg
 		IMG\IMG.100002.jpg = IMG\IMG.100002.jpg
@@ -67,6 +68,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pics", "Pics", "{8FFFD992-0
 		Pics\IMG.100023.jpg = Pics\IMG.100023.jpg
 		Pics\IMG.100024.jpg = Pics\IMG.100024.jpg
 		Pics\IMG.FAILS.jpg = Pics\IMG.FAILS.jpg
+		Pics\ORDER.png = Pics\ORDER.png
+		Pics\orderrr.png = Pics\orderrr.png
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DalXml", "DalXml\DalXml.csproj", "{F5A98B53-A4E5-4082-8C0F-5BB7106AA2C2}"
@@ -79,7 +82,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backup xml files", "Backup 
 		userBackUp.xml = userBackUp.xml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simulator", "Simulator\Simulator.csproj", "{ED9F18E1-18A0-40B1-BFF5-DFEF5F6F011F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simulator", "Simulator\Simulator.csproj", "{ED9F18E1-18A0-40B1-BFF5-DFEF5F6F011F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

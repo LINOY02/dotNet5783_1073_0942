@@ -42,5 +42,9 @@ namespace PL
             new LogInWindow().ShowDialog();
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            new SimulatorWindow().Show();
+        }
     }
 }

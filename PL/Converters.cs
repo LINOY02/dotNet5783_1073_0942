@@ -101,6 +101,27 @@ namespace PL
             throw new NotImplementedException();
         }
     }
+
+    class BooleanToColorConverter : IValueConverter //If the product isn't in stock, you will not be given the option of collecting a product into a shopping basket
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            bool boolValue = (bool)value;
+            if (boolValue)
+            {
+                return Colors.DeepPink;
+            }
+            else
+            {
+                return Colors.LightPink;
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
     class ConvertTextToReadOnly : IValueConverter //When we are in product update mode, the ID cannot be changed
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -138,6 +159,102 @@ namespace PL
             throw new NotImplementedException();
         }
     }
+
+    class ConvertEnumToImange : IValueConverter //the imange of the order at the simulator
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+
+            
+            if (value.ToString() == "Ordered")
+            {
+                string pictures = @"\Pics\IMG.orderrr.png";
+                string currentDir = Environment.CurrentDirectory[..^4];
+                string imageFullName = currentDir + pictures;
+                BitmapImage bitmapImage = new BitmapImage(new Uri(imageFullName));
+                return bitmapImage;
+            }
+            else
+            {
+                string pictures = @"\Pics\IMG.ORDER.png";
+                string currentDir = Environment.CurrentDirectory[..^4];
+                string imageFullName = currentDir + pictures;
+                BitmapImage bitmapImage = new BitmapImage(new Uri(imageFullName));
+                return bitmapImage;
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    class ConvertEnumToImangeAfter : IValueConverter //the imange of the order at the simulator
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+
+            if (value.ToString() == "Ordered")
+            {
+                string pictures = @"\Pics\IMG.ORDER.png";
+                string currentDir = Environment.CurrentDirectory[..^4];
+                string imageFullName = currentDir + pictures;
+                BitmapImage bitmapImage = new BitmapImage(new Uri(imageFullName));
+                return bitmapImage;
+            }
+            else
+            {
+                string pictures = @"\Pics\IMG.delivered.png";
+                string currentDir = Environment.CurrentDirectory[..^4];
+                string imageFullName = currentDir + pictures;
+                BitmapImage bitmapImage = new BitmapImage(new Uri(imageFullName));
+                return bitmapImage;
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+        class ConvertEnumToText : IValueConverter //the status of the order at the simulator
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+
+            if (value.ToString() == "Ordered")
+            {
+                return "Ordered";
+            }
+            return "Shipped";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    class ConvertEnumToTextAfter : IValueConverter //the status of the order at the simulator
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+
+            if (value.ToString() == "Ordered")
+            {
+                return "Shipped";
+            }
+            return "Delivered";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
     class ConvertBooleanToContent : IValueConverter //If we received an ID, that means we are in a product update mode and if the ID is empty, we are in the mode of adding a new product
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

@@ -22,6 +22,7 @@
         <Image HorizontalAlignment="Left" Height="120" Margin="233,353,0,0" VerticalAlignment="Top" Width="119" Source="/IMG.100014.jpg"/>
         <Image HorizontalAlignment="Left" Height="141" Margin="374,365,0,0" VerticalAlignment="Top" Width="142" Source="/MAINwindow1.png"/>
         <Image HorizontalAlignment="Left" Height="125" Margin="733,349,0,0" VerticalAlignment="Top" Width="148" Source="/MAINwindow.jpeg"/>
+        <Button Content="Simulator" Height="20" HorizontalAlignment="Left" Margin="431,73,0,0" VerticalAlignment="Top" Width="99" Click="Button_Click"/>
 
     </Grid>
 </Window>
