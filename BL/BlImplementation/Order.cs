@@ -214,15 +214,28 @@ namespace BlImplementation
             {
                 //all the orders that are only orderd 
                 var ordered = GetListedOrders().Where(x => x.Status == BO.OrderStatus.Ordered).Select(x => Dal.Order.GetById(x.ID));
-                var firstOrdered = ordered.OrderByDescending(x => x.OrderDate).Last(); //the oldest orderd
-                                                                                       //all the orders that are only shipped
                 var shipped = GetListedOrders().Where(x => x.Status == BO.OrderStatus.Shipped).Select(x => Dal.Order.GetById(x.ID));
-                var firstshipped = ordered.OrderByDescending(x => x.ShipDate).Last(); //the oldest shipped
-
-                if (firstOrdered.OrderDate < firstshipped.ShipDate)
-                    return firstOrdered.ID;
+                if (ordered.Count() != 0 && shipped.Count() != 0)
+                {
+                    var firstOrdered = ordered.OrderByDescending(x => x.OrderDate).First(); //the oldest orderd
+                    var firstshipped = shipped.OrderByDescending(x => x.ShipDate).First(); //the oldest shipped
+                    if (firstOrdered.OrderDate < firstshipped.ShipDate)
+                        return firstOrdered.ID;
+                    else
+                        return firstshipped.ID;
+                }
                 else
-                    return firstshipped.ID;
+                {
+                    if (ordered.Count() == 0 && shipped.Count() != 0)
+                    {
+                        return shipped.OrderByDescending(x => x.ShipDate).First().ID; //the oldest shipped
+                    }
+                    else if (shipped.Count() == 0 && ordered.Count() != 0)
+                        return ordered.OrderByDescending(x => x.OrderDate).First().ID;
+                    else
+                        return -1;
+
+                }
             }
             catch(DO.DalDoesNotExistException ex)
             {

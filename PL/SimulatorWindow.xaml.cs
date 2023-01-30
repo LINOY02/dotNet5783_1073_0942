@@ -1,6 +1,8 @@
-﻿using System;
+﻿using BO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -14,8 +16,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using BO;
-using Simulator;
+
 
 namespace PL
 {
@@ -82,7 +83,7 @@ namespace PL
 
         // Using a DependencyProperty as the backing store for timeText.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty timeTextProperty =
-            DependencyProperty.Register("timeText", typeof(string), typeof(SimulatorWindow), new PropertyMetadata(0));
+            DependencyProperty.Register("timeText", typeof(string), typeof(SimulatorWindow), new PropertyMetadata(null));
         #endregion
 
         public SimulatorWindow()
@@ -93,10 +94,10 @@ namespace PL
             BgW.ProgressChanged += BgW_ProgressChanged;
             BgW.RunWorkerCompleted += BgW_RunWorkerCompleted;
             BgW.WorkerReportsProgress = true;
+            BgW.WorkerSupportsCancellation = true;
             BgW.RunWorkerAsync();
             processed = false;
             timeText = "00:00:00";
-            orderId = 0;
             after = DateTime.Now;
             before = DateTime.Now;
             status = BO.OrderStatus.Ordered;
@@ -121,17 +122,83 @@ namespace PL
             DependencyProperty.Register("processed", typeof(bool), typeof(SimulatorWindow), new PropertyMetadata(false));
 
 
+
+        public Color statusColor
+        {
+            get { return (Color)GetValue(statusColorProperty); }
+            set { SetValue(statusColorProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for statusColor.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty statusColorProperty =
+            DependencyProperty.Register("statusColor", typeof(Color), typeof(Window), new PropertyMetadata(null));
+
+
+
         private void BgW_ProgressChanged(object? sender, ProgressChangedEventArgs e)
         {
             switch(e.ProgressPercentage)
             {
                 case 0:
-                string timeText = SW.Elapsed.ToString();
-                timeText = timeText.Substring(0, 8);
-                break;
+                    string TimeText = SW.Elapsed.ToString();
+                    timeText = TimeText.Substring(0, 8);
+                    break;
+                case 1:
+                    orderId = currId;
+                    before = currBefoer;
+                    after = currAfter;
+                    status = currStatus;
+                    UpdateStatus(status);
+                    //statusColor = Colors.Pink;
+                    break;
+                case 2:
+                    processed = currProcesed;
+                    statusColor = Colors.DeepPink;
+                    break;
+                case 3:
+                    MessageBox.Show(e.UserState.ToString());
+                    break;
 
             }
 
+        }
+
+
+
+        public string statusBefore
+        {
+            get { return (string)GetValue(statusBeforeProperty); }
+            set { SetValue(statusBeforeProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for statusText.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty statusBeforeProperty =
+            DependencyProperty.Register("statusBefore", typeof(string), typeof(Window), new PropertyMetadata(null));
+
+        public string statusAfter
+        {
+            get { return (string)GetValue(statusAfterProperty); }
+            set { SetValue(statusAfterProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for statusText.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty statusAfterProperty =
+            DependencyProperty.Register("statusAfter", typeof(string), typeof(Window), new PropertyMetadata(null));
+
+
+
+        private void UpdateStatus(OrderStatus status)
+        {
+            if(status == BO.OrderStatus.Ordered)
+            {
+                statusBefore = "Ordered";
+                statusAfter = "Shipped";
+            }
+            else
+            {
+                statusBefore = "Shipped";
+                statusAfter = "Delivered";
+            }
         }
 
         private void BgW_DoWork(object? sender, DoWorkEventArgs e)
@@ -139,14 +206,12 @@ namespace PL
             Simulator.Simulator.RegisterReport1(DoReport1);
             Simulator.Simulator.RegisterReport2(DoReport2);
             Simulator.Simulator.RegisterReport3(DoReport3);
-
             Simulator.Simulator.Activate();
             while (BgW.CancellationPending == false)
             {
-                Thread.Sleep(1000);
-                BgW.ReportProgress(10);
+                e.Cancel = true;
+                break;
             }
-
             while (IsTimeRun)
             {
                 BgW.ReportProgress(0);
@@ -166,22 +231,30 @@ namespace PL
             Close();
         }
 
+        int currId;
+        DateTime? currBefoer;
+        DateTime? currAfter;
+        BO.OrderStatus currStatus;
+        
         private void DoReport1(int Id, DateTime? last, DateTime? now, BO.OrderStatus Status)
         {
-            orderId = Id;
-            before = last;
-            after = now;
-            status = Status;
+            currId = Id;
+            currBefoer = last;
+            currAfter = now;
+            currStatus = Status;
+            BgW.ReportProgress(1);
         }
 
+        bool currProcesed;
         private void DoReport2()
         {
-            processed = true;
+            currProcesed = true;
+            BgW.ReportProgress(2);
         }
 
         private void DoReport3(string st)
         {
-            MessageBox.Show(st);
+            BgW.ReportProgress(3, st);
         }
     }
 }

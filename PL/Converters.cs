@@ -168,7 +168,7 @@ namespace PL
             
             if (value.ToString() == "Ordered")
             {
-                string pictures = @"\Pics\IMG.orderrr.png";
+                string pictures = @"\Pics\orderrr.png";
                 string currentDir = Environment.CurrentDirectory[..^4];
                 string imageFullName = currentDir + pictures;
                 BitmapImage bitmapImage = new BitmapImage(new Uri(imageFullName));
@@ -176,7 +176,7 @@ namespace PL
             }
             else
             {
-                string pictures = @"\Pics\IMG.ORDER.png";
+                string pictures = @"\Pics\ORDER.png";
                 string currentDir = Environment.CurrentDirectory[..^4];
                 string imageFullName = currentDir + pictures;
                 BitmapImage bitmapImage = new BitmapImage(new Uri(imageFullName));
@@ -197,7 +197,7 @@ namespace PL
 
             if (value.ToString() == "Ordered")
             {
-                string pictures = @"\Pics\IMG.ORDER.png";
+                string pictures = @"\Pics\ORDER.png";
                 string currentDir = Environment.CurrentDirectory[..^4];
                 string imageFullName = currentDir + pictures;
                 BitmapImage bitmapImage = new BitmapImage(new Uri(imageFullName));
@@ -205,7 +205,7 @@ namespace PL
             }
             else
             {
-                string pictures = @"\Pics\IMG.delivered.png";
+                string pictures = @"\Pics\delivered.png";
                 string currentDir = Environment.CurrentDirectory[..^4];
                 string imageFullName = currentDir + pictures;
                 BitmapImage bitmapImage = new BitmapImage(new Uri(imageFullName));
