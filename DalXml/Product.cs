@@ -73,18 +73,18 @@ namespace Dal
         /// </summary>
         /// <param name="func"></param>
         /// <returns></returns>
-        public IEnumerable<DO.Product?> GetAll(Func<DO.Product?, bool>? func = null)
+        public IEnumerable<DO.Product?> GetAll(Func<DO.Product?, bool>? filter = null)
         {
             XElement productsRootElem = XMLTools.LoadListFromXMLElement(s_product);
-            if (func == null)
+            if (filter == null)
             {
                 return from prod in productsRootElem.Elements()
                        select createProductFromXElement(prod);
             }
             return from prod in productsRootElem.Elements()
                    let doProd = createProductFromXElement(prod)
-                   where func(doProd)
-                   select (DO.Product?) doProd;
+                   where filter(doProd)
+                   select doProd;
         }
 
        
@@ -112,12 +112,16 @@ namespace Dal
         /// <exception cref="DalDoesNotExistException"></exception>
         public DO.Product GetItem(Func<DO.Product?, bool>? filter)
         {
-            XElement productsRootElem = XMLTools.LoadListFromXMLElement(s_product);
-            return (from prod in productsRootElem.Elements()
-                   let doProd = createProductFromXElement(prod)
-                   where filter(doProd) 
-                   select doProd).FirstOrDefault() ?? throw new DalDoesNotExistException("product under this condition is not exit");
-         }
+            if (filter != null)
+            {
+                XElement productsRootElem = XMLTools.LoadListFromXMLElement(s_product);
+                return (from prod in productsRootElem.Elements()
+                        let doProd = createProductFromXElement(prod)
+                        where filter(doProd)
+                        select doProd).FirstOrDefault() ?? throw new DalDoesNotExistException("product under this condition is not exit");
+            }
+            throw new DalDoesNotExistException("no filter was found");
+        }
 
         /// <summary>
         /// update product

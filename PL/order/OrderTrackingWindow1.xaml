@@ -35,13 +35,6 @@
 
             <DataGrid x:Name="trackingDataGrid" IsReadOnly="True" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Tracking}" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="3,0,-220,-139" Grid.Column="1" Grid.Row="2">
                 <DataGrid.Columns>
-                    <!--<DataGridTemplateColumn x:Name="item1Column" Header="Item 1" IsReadOnly="True" Width="SizeToHeader">-->
-                    <!--<DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <DatePicker SelectedDate="{Binding Item1, Mode=OneWay}"/>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>-->
                     <DataGridTextColumn x:Name="item1Column" Binding="{Binding Item1}"  IsReadOnly="True" Width="130" />
                     <DataGridTextColumn x:Name="item2Column" Binding="{Binding Item2}"  IsReadOnly="True" Width="200"/>
                 </DataGrid.Columns>

@@ -4,7 +4,11 @@ namespace Dal;
 
 internal class DalOrder : IOrder
 {
-    // Create
+    /// <summary>
+    /// add an order to the datasource
+    /// </summary>
+    /// <param name="order"></param>
+    /// <returns></returns>
     public int Add(Order order)
     {
         order.ID = DataSource.NextOrderNumber; //Initialize the ID number of the order
@@ -12,14 +16,23 @@ internal class DalOrder : IOrder
         return order.ID;
     }
 
-    // Request 
+    /// <summary>
+    /// get order by id
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    /// <exception cref="DalDoesNotExistException"></exception>
     public Order GetById(int id)
     {
       
             return DataSource._orders.Find(x => x?.ID == id) ?? throw new DalDoesNotExistException("Order num " + id + " not exist in the list");
     }
 
-    // Update
+    /// <summary>
+    /// update the order
+    /// </summary>
+    /// <param name="order"></param>
+    /// <exception cref="DalDoesNotExistException"></exception>
     public void Update(Order order)
     {
 
@@ -32,7 +45,11 @@ internal class DalOrder : IOrder
         }
     }
 
-    // Delete
+    /// <summary>
+    /// delete order from the data source
+    /// </summary>
+    /// <param name="id"></param>
+    /// <exception cref="DalDoesNotExistException"></exception>
     public void Delete(int id)
     {
         if (!DataSource._orders.Exists(x => x?.ID == id))// check if the order is already exist in the list
@@ -42,7 +59,11 @@ internal class DalOrder : IOrder
 
     }
 
-    //A function that returns the array
+    /// <summary>
+    /// A function that returns list of order by filter
+    /// </summary>
+    /// <param name="filter"></param>
+    /// <returns></returns>
     public IEnumerable<Order?> GetAll(Func<Order?, bool>? func = null)
     {
         if (func == null)
@@ -50,6 +71,11 @@ internal class DalOrder : IOrder
         return DataSource._orders.Where(x => func(x)).Select(x => x);
     }
 
+    /// <summary>
+    /// A function that returns an order by filter
+    /// </summary>
+    /// <param name="filter"></param>
+    /// <returns></returns>
     public Order GetItem(Func<Order?, bool>? filter)
     {
         return DataSource._orders.Find(x => filter!(x)) ?? throw new DalDoesNotExistException("order under this condition is not exist");
