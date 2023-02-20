@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
+﻿using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using BlApi;
 using BO;
 
@@ -22,20 +10,20 @@ namespace PL
     /// </summary>
     public partial class CatalogWindow : Window
     {
-        private static readonly IBl bl = BlApi.Factory.Get();
+        private static readonly IBl bl = Factory.Get();
 
 
-        public BO.Cart cart
+        public Cart cart
         {
-            get { return (BO.Cart)GetValue(cartProperty); }
+            get { return (Cart)GetValue(cartProperty); }
             set { SetValue(cartProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for cart.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty cartProperty =
-            DependencyProperty.Register("cart", typeof(BO.Cart), typeof(Window), new PropertyMetadata(null));
+            DependencyProperty.Register("cart", typeof(Cart), typeof(Window), new PropertyMetadata(null));
 
-        public CatalogWindow(BO.Cart cart1)
+        public CatalogWindow(Cart cart1)
         {
             InitializeComponent();
             CatalogListView.ItemsSource = bl.Product.GetProductItems(cart);
@@ -103,7 +91,7 @@ namespace PL
 
         private void CatalogListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            BO.ProductItem prod = (BO.ProductItem)CatalogListView.SelectedItem;
+            ProductItem prod = (ProductItem)CatalogListView.SelectedItem;
             new ShowProductWindow(prod , cart).ShowDialog();
         }
     }

@@ -1,19 +1,7 @@
 ﻿using BlApi;
 using BO;
-using DO;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+
 
 namespace PL
 {
@@ -24,17 +12,17 @@ namespace PL
     {
 
 
-        public BO.Order ShowOrder
+        public Order ShowOrder
         {
-            get { return (BO.Order)GetValue(ShowOrderProperty); }
+            get { return (Order)GetValue(ShowOrderProperty); }
             set { SetValue(ShowOrderProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ShowOrderProperty =
-            DependencyProperty.Register("ShowOrder", typeof(BO.Order), typeof(Window), new PropertyMetadata(null));
+            DependencyProperty.Register("ShowOrder", typeof(Order), typeof(Window), new PropertyMetadata(null));
 
-        private static readonly IBl bl = BlApi.Factory.Get();
+        private static readonly IBl bl = Factory.Get();
 
         public ShowOrderWindow(int id)
         {

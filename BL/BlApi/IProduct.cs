@@ -46,7 +46,7 @@ namespace BlApi
         /// The function receives product details from the user and updates the product in the data layer (for the manager)
         /// </summary>
         /// <param name="product"></param>
-        void UpdateProduct(BO.Product product);
+        void UpdateProduct(Product product);
         #endregion
 
 
@@ -66,14 +66,14 @@ namespace BlApi
         /// for each product: number, name, price and category
         /// </summary>
         /// <returns></List of ProductsForList>
-        IEnumerable<ProductItem?> GetProductItems(BO.Cart cart, Func<BO.ProductItem?, bool>? filter = null);
+        IEnumerable<ProductItem?> GetProductItems(Cart cart, Func<ProductItem?, bool>? filter = null);
 
         /// <summary>
         /// All productItems are shown according to the selected category
         /// </summary>
         /// <param name="category"></param>
         /// <returns></returns>
-        IEnumerable<ProductItem?> GetProductItemsByCategory(BO.Cart cart, BO.Category category);
+        IEnumerable<ProductItem?> GetProductItemsByCategory(Cart cart, Category category);
 
         /// <summary>
         /// the func return the top 10 popular products
@@ -81,7 +81,7 @@ namespace BlApi
         /// <param name="cart"></param>
         /// <returns></returns>
         /// <exception cref="BlDoesNotExistException"></exception>
-        IEnumerable<ProductItem?> MostPopular(BO.Cart cart);
+        IEnumerable<ProductItem?> MostPopular(Cart cart);
 
         /// <summary>
         /// the func return the top 10 expensive products
@@ -89,7 +89,7 @@ namespace BlApi
         /// <param name="cart"></param>
         /// <returns></returns>
         /// <exception cref="BlDoesNotExistException"></exception>
-        IEnumerable<ProductItem?> MostExpensive(BO.Cart cart);
+        IEnumerable<ProductItem?> MostExpensive(Cart cart);
 
         /// <summary>
         /// the func return the top 10 cheap products
@@ -97,7 +97,7 @@ namespace BlApi
         /// <param name="cart"></param>
         /// <returns></returns>
         /// <exception cref="BlDoesNotExistException"></exception>
-        IEnumerable<ProductItem?> MostCheap(BO.Cart cart);
+        IEnumerable<ProductItem?> MostCheap(Cart cart);
 
     }
 }

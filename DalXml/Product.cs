@@ -1,6 +1,5 @@
 ﻿using DalApi;
 using DO;
-using System.Reflection.Metadata.Ecma335;
 using System.Xml.Linq;
 
 namespace Dal
@@ -18,7 +17,7 @@ namespace Dal
                 Price = prod.ToDoubleNullable("Price") ?? throw new FormatException("price"),
                 Category = prod.ToEnumNullable<DO.Category>("Category"),
                 InStock = prod.ToIntNullable("InStock") ?? throw new FormatException("in stock"),
-                picture = (string?)prod.Element("picture")
+                picture = (string?)prod.Element("picture"),
             };
         }
         

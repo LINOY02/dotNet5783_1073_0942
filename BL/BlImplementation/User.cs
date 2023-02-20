@@ -1,18 +1,14 @@
 ﻿using BO;
 using DalApi;
 using DO;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace BlImplementation
 {
     internal class User : BlApi.IUser
     {
-        private static readonly IDal Dal = DalApi.Factory.Get()!;
+        private static readonly IDal Dal = Factory.Get()!;
 
         public BO.Cart GetCart(BO.User user)
         {
@@ -25,7 +21,14 @@ namespace BlImplementation
                 TotalPrice = 0,
             };
         }
-
+        /// <summary>
+        /// log in as an exsit user
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        /// <exception cref="BlInvalidInputException"></exception>
+        /// <exception cref="BlDoesNotExistException"></exception>
         public BO.User LogIn(string userName, string password)
         {
             DO.User user;
@@ -33,11 +36,11 @@ namespace BlImplementation
             {
                 user = Dal.User.GetByUserName(userName);
                 if (user.password != password)
-                    throw new BO.BlInvalidInputException("Worng Password");
+                    throw new BlInvalidInputException("Worng Password");
             }
-            catch (DO.DalDoesNotExistException ex)
+            catch (DalDoesNotExistException ex)
             {
-                throw new BO.BlDoesNotExistException(ex.Message);
+                throw new BlDoesNotExistException(ex.Message);
             }
             return new BO.User
             {
@@ -49,11 +52,17 @@ namespace BlImplementation
                 status =(BO.userStatus) user.status
             };
         }
-
+        /// <summary>
+        /// sign in as a new user
+        /// </summary>
+        /// <param name="bUser"></param>
+        /// <exception cref="BlInvalidInputException"></exception>
+        /// <exception cref="BlMissingInputException"></exception>
+        /// <exception cref="BlAlreadyExistException"></exception>
         public void SignIn(BO.User bUser)
         {
             if (!new EmailAddressAttribute().IsValid(bUser.Email))
-                throw new BO.BlInvalidInputException("Missing customer Email");
+                throw new BlInvalidInputException("Missing customer Email");
             try 
             {
                 Dal.User.Add(new DO.User
@@ -66,9 +75,9 @@ namespace BlImplementation
                     status = (DO.userStatus)bUser.status
                 });
             }
-            catch (DO.DalAlreadyExistException ex)
+            catch (DalAlreadyExistException ex)
             {
-                throw new BO.BlAlreadyExistException(ex.Message);
+                throw new BlAlreadyExistException(ex.Message);
             }
            
         }

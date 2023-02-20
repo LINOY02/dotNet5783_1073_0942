@@ -5,8 +5,8 @@ namespace BlTest
 {
     public class Program
     {
-        private IBl? Bl = BlApi.Factory.Get();
-        static BO.Cart cart = new BO.Cart()
+        private IBl? Bl = Factory.Get();
+        static Cart cart = new Cart()
         {
             CustomerAddress = "lustig",
             CustomerEmail = "shira@gmail.com", 
@@ -57,7 +57,7 @@ enter a number between 0 to 3:
 
             #region product
             //The function receives data for a new product
-            void createProduct(ref BO.Product product1)
+            void createProduct(ref Product product1)
             {
                 int id;
                 Console.WriteLine("enter the id of the product");
@@ -67,8 +67,8 @@ enter a number between 0 to 3:
                 Enum.TryParse(Console.ReadLine(), out Category);
                 string name;
                 Console.WriteLine("enter the name of the product");
-                name = Console.ReadLine();
-                int price;
+            name = Console.ReadLine()!;
+            int price;
                 Console.WriteLine("enter the price of the product");
                 int.TryParse(Console.ReadLine(), out price);
                 int inStock;
@@ -95,7 +95,7 @@ enter 'e' for delete the product
 
 Actions for the customer:
 enter 'f' for show a product by ID") ;
-                    BO.Product product1 = new BO.Product();
+                    Product product1 = new Product();
                     string? ch = Console.ReadLine();
                     switch (ch)
                     {
@@ -110,7 +110,7 @@ enter 'f' for show a product by ID") ;
                             Console.WriteLine(Bl?.Product.GetProduct(id));
                             break;
                         case "c":
-                            foreach (var p in Bl?.Product.GetListedProducts())
+                            foreach (var p in Bl?.Product.GetListedProducts()!)
                                 Console.WriteLine(p);
                             break;
                         case "d":
@@ -152,7 +152,7 @@ enter 'f' for show a product by ID") ;
 enter 'a' for add product to the cart
 enter 'b' for update the cart
 enter 'c' for order the cart");
-                    string ch = Console.ReadLine();
+                    string ch = Console.ReadLine()!;
                     switch (ch)
                     {
                         case "a":
@@ -206,14 +206,14 @@ enter 'e' for Order delivery date update");
                             Console.WriteLine(Bl?.Order.GetOrder(id));
                             break;
                         case "b":
-                            foreach (var o in Bl?.Order.GetListedOrders())
+                            foreach (var o in Bl?.Order.GetListedOrders()!)
                                 Console.WriteLine(o);
                             break;
                         case "c":
                             Console.WriteLine("Enter the id of the order for updating the ship date");
                             int id1;
                             int.TryParse(Console.ReadLine(), out id1);
-                           Console.WriteLine(Bl?.Order.ShipOrder(id1));
+                           Console.WriteLine(Bl?.Order.ShipOrder(id1, null));
                             break;
                         case "d":
                             Console.WriteLine("Enter the id of the order for trucking");
@@ -225,7 +225,7 @@ enter 'e' for Order delivery date update");
                             Console.WriteLine("Enter the id of the order for updating the delivery date");
                             int id3;
                             int.TryParse(Console.ReadLine(), out id3);
-                            Console.WriteLine(Bl?.Order.DeliveredOrder(id3));
+                            Console.WriteLine(Bl?.Order.DeliveredOrder(id3, null));
                         break;
                      default:
                             return;

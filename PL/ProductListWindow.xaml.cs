@@ -1,18 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using BlApi;
 using BO;
 
@@ -24,15 +14,15 @@ namespace PL
     public partial class ProductListWindow : Window
     {
         
-        private ObservableCollection<BO.ProductForList> productForLists
+        private ObservableCollection<ProductForList> productForLists
         {
-            get { return (ObservableCollection<BO.ProductForList>)GetValue(productForListsProperty); }
+            get { return (ObservableCollection<ProductForList>)GetValue(productForListsProperty); }
             set { SetValue(productForListsProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for productForLists.  This enables animation, styling, binding, etc...
         private static readonly DependencyProperty productForListsProperty =
-            DependencyProperty.Register("productForLists", typeof(ObservableCollection<BO.ProductForList>), typeof(ProductListWindow));
+            DependencyProperty.Register("productForLists", typeof(ObservableCollection<ProductForList>), typeof(ProductListWindow));
 
         public ProductListWindow()
         {
@@ -94,10 +84,10 @@ namespace PL
         private void CategorySelector_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
             var choise = CategorySelector.SelectedItem;//the selected category
-            if (choise.Equals(BO.Category.NONE))//If no category is selected
-                productForLists = new ObservableCollection<ProductForList>( bl.Product.GetListedProducts());//Show the entire catalog
+            if (choise.Equals(Category.NONE))//If no category is selected
+                productForLists = new ObservableCollection<ProductForList>( bl.Product?.GetListedProducts()!);//Show the entire catalog
             else//If a category is selected
-                productForLists = new ObservableCollection<ProductForList>( bl.Product.GetListedProductsByCategory( (Category)choise));//Show all products of the selected category
+                productForLists = new ObservableCollection<ProductForList>( bl.Product?.GetListedProductsByCategory((Category)choise)!);//Show all products of the selected category
         }
 
         private void backBtn_Click(object sender, RoutedEventArgs e)

@@ -49,14 +49,6 @@
     <picture>\Pics\IMG.100007.jpg</picture>
   </Product>
   <Product>
-    <ID>100008</ID>
-    <Name>Karamel Chair</Name>
-    <Price>1209</Price>
-    <Category>CHAIR</Category>
-    <InStock>47</InStock>
-    <picture>\Pics\IMG.100008.jpg</picture>
-  </Product>
-  <Product>
     <ID>100009</ID>
     <Name>Mango Chair</Name>
     <Price>1214</Price>
@@ -203,6 +195,20 @@
     <Name>git chair</Name>
     <Price>1200</Price>
     <InStock>19</InStock>
+    <Category>CHAIR</Category>
+  </Product>
+  <Product>
+    <ID>100008</ID>
+    <Name>Karamel Chair</Name>
+    <Price>1209</Price>
+    <InStock>470</InStock>
+    <Category>CHAIR</Category>
+  </Product>
+  <Product>
+    <ID>123445</ID>
+    <Name>bla</Name>
+    <Price>1200</Price>
+    <InStock>1</InStock>
     <Category>CHAIR</Category>
   </Product>
 </ArrayOfProduct>

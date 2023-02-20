@@ -1,21 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Emit;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Media.Media3D;
-using System.Windows.Shapes;
-using System.Windows.Xps.Serialization;
-using System.Xml.Linq;
 using BlApi;
 using BO;
 
@@ -32,7 +18,7 @@ namespace PL
         public ProductWindow()
         {
             InitializeComponent();
-            CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Category));
+            CategorySelector.ItemsSource = Enum.GetValues(typeof(Category));
             CategorySelector.SelectedIndex = 5; 
         }
         /// <summary>
@@ -42,20 +28,20 @@ namespace PL
         public ProductWindow(int ProductId )
         {
             InitializeComponent();
-            CategorySelector.ItemsSource = Enum.GetValues(typeof(BO.Category));
+            CategorySelector.ItemsSource = Enum.GetValues(typeof(Category));
             Product = bl.Product.GetProduct(ProductId);
         }
-        private static readonly IBl bl = BlApi.Factory.Get();
+        private static readonly IBl bl = Factory.Get();
 
-        public BO.Product Product
+        public Product Product
         {
-            get { return (BO.Product)GetValue(ProductProperty); }
+            get { return (Product)GetValue(ProductProperty); }
             set { SetValue(ProductProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for Product.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ProductProperty =
-            DependencyProperty.Register("Product", typeof(BO.Product), typeof(Window), new PropertyMetadata(null));
+            DependencyProperty.Register("Product", typeof(Product), typeof(Window), new PropertyMetadata(null));
 
 
         /// <summary>

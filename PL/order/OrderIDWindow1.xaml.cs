@@ -1,20 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
 using BlApi;
 using BO;
-using DO;
 
 
 namespace PL
@@ -30,16 +16,16 @@ namespace PL
             InitializeComponent();
             number.Text = "0";
         }
-        private static readonly IBl bl = BlApi.Factory.Get();
+        private static readonly IBl bl = Factory.Get();
 
-        public BO.Order Order
+        public Order Order
         {
-            get { return (BO.Order)GetValue(OrderProperty); }
+            get { return (Order)GetValue(OrderProperty); }
             set { SetValue(OrderProperty, value); }
         }
 
         public static readonly DependencyProperty OrderProperty =
-            DependencyProperty.Register("Order", typeof(BO.Order), typeof(Window), new PropertyMetadata(null));
+            DependencyProperty.Register("Order", typeof(Order), typeof(Window), new PropertyMetadata(null));
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -52,11 +38,11 @@ namespace PL
                 //new OrderTrackingWindow(id).ShowDialog();
                 Close();
             }
-            catch (BO.BlDoesNotExistException ex)
+            catch (BlDoesNotExistException ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            catch(BO.BlInvalidInputException ex)
+            catch(BlInvalidInputException ex)
             {
                 MessageBox.Show(ex.Message);
             };

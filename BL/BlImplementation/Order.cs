@@ -5,7 +5,7 @@ namespace BlImplementation
 {
     internal class Order : BlApi.IOrder
     {
-       private static readonly IDal Dal = DalApi.Factory.Get()!;
+       private static readonly IDal Dal = Factory.Get()!;
         /// <summary>
         /// Presenting all invitations to the manager
         /// </summary>
@@ -224,18 +224,16 @@ namespace BlImplementation
                     else
                         return firstshipped.ID;
                 }
-                else
-                {
-                    if (ordered.Count() == 0 && shipped.Count() != 0)
+                else if (ordered.Count() == 0 && shipped.Count() != 0)
                     {
                         return shipped.OrderByDescending(x => x.ShipDate).First().ID; //the oldest shipped
                     }
-                    else if (shipped.Count() == 0 && ordered.Count() != 0)
+                else if (shipped.Count() == 0 && ordered.Count() != 0)
                         return ordered.OrderByDescending(x => x.OrderDate).First().ID;
-                    else
+                else
                         return -1;
 
-                }
+                
             }
             catch(DO.DalDoesNotExistException ex)
             {

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 using System.Xml.Linq;
 
 namespace Dal
@@ -12,22 +8,22 @@ namespace Dal
         static string s_config = "configuration";
         internal static int GetNextOrderId()
         {
-            return (int)XMLTools.LoadListFromXMLElement(s_config).Element("NextOrderId");
+            return (int)XMLTools.LoadListFromXMLElement(s_config)?.Element("NextOrderId")!;
         }
         internal static void SaveNextOrderID(int orderNumber)
         {
             XElement root = XMLTools.LoadListFromXMLElement(s_config);
-            root.Element("NextOrderId").SetValue(orderNumber.ToString());
+            root.Element("NextOrderId")!.SetValue(orderNumber.ToString());
             XMLTools.SaveListToXMLElement(root, s_config);
         }
         internal static int GetOrderItemId()
         {
-            return (int)XMLTools.LoadListFromXMLElement(s_config).Element("NextOrderItemId");
+            return (int)XMLTools.LoadListFromXMLElement(s_config)?.Element("NextOrderItemId")!;
         }
         internal static void SaveNextOrderItemId(int orderItemNumber)
         {
             XElement root = XMLTools.LoadListFromXMLElement(s_config);
-            root.Element("NextOrderItemId").SetValue(orderItemNumber.ToString());
+            root.Element("NextOrderItemId")!.SetValue(orderItemNumber.ToString());
             XMLTools.SaveListToXMLElement(root, s_config);
         }
     }

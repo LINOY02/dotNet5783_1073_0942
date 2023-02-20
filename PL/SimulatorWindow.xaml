@@ -5,21 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="SimulatorWindow" Height="450" Width="800"
+        Title="SimulatorWindow" Height="450" Width="800" WindowStyle="None"
         DataContext="{Binding RelativeSource={RelativeSource self}}">
-    <Window.Resources>
-
-    </Window.Resources>
 
     <Grid>
-        <Button x:Name="StopTimerBtn" Content="Stop" HorizontalAlignment="Left" Margin="623,76,0,0" VerticalAlignment="Top" Click="StopTimerBtn_Click" Height="48" Width="96" FontSize="20"/>
+        <Button x:Name="StopTimerBtn" Content="Stop" HorizontalAlignment="Left" Margin="626,72,0,0" VerticalAlignment="Top" Click="StopTimerBtn_Click" Height="48" Width="96" FontSize="20"/>
         <TextBlock Text="{Binding timeText}" FontSize="25" Margin="636,28,33,344"/>
-        <TextBlock x:Name="IDOrder" Text="{Binding orderId}" Background="WhiteSmoke" HorizontalAlignment="Left" Margin="69,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="98" Height="30"/>
-        <Label Background="WhiteSmoke" Content="{Binding statusBefore}" HorizontalAlignment="Left" Margin="112,304,0,0" VerticalAlignment="Top" Width="121" RenderTransformOrigin="0.474,0.546" Height="30" Foreground="DeepPink"/>
-        <Label Background="WhiteSmoke" Content="{Binding statusAfter}" Foreground="{Binding statusColor}" HorizontalAlignment="center" Margin="559,304,0,0" VerticalAlignment="Top" Width="133" Height="38"/>
-        <Label Content="{Binding before}" Background="WhiteSmoke" HorizontalAlignment="Left" Height="27" Margin="112,350,0,0" VerticalAlignment="Top" Width="132"/>
-        <Label Content="{Binding after}" HorizontalAlignment="Left" Background="WhiteSmoke" Height="27" Margin="559,350,0,0" VerticalAlignment="Top" Width="133"/>
-        <Image Source="{Binding status, Converter={StaticResource EnumToImangeAfter}}" OpacityMask="{Binding processed, Converter={StaticResource BooleanToColorS}}" HorizontalAlignment="Left" Height="100" Margin="570,192,0,0" VerticalAlignment="Top" Width="100"/>
+        <TextBlock x:Name="IDOrder" Text="{Binding orderId}" Background="WhiteSmoke" FontSize="16" HorizontalAlignment="Left" Margin="342,134,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="98" Height="30" TextAlignment="Center"/>
+        <Label Background="WhiteSmoke" Content="{Binding statusBefore}" HorizontalAlignment="Left" Margin="112,304,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.474,0.546"  Width="133" Height="38" FontSize="16" FontWeight="Bold" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Label Background="WhiteSmoke" Content="{Binding statusAfter}" Margin="557,304,0,0" VerticalAlignment="Top" Width="133" Height="38" FontSize="16" FontWeight="Bold" HorizontalAlignment="Left" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Label Content="{Binding before}" Background="WhiteSmoke" HorizontalAlignment="Left" Height="27" Margin="112,350,0,0" VerticalAlignment="Top" Width="132" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Label Content="{Binding after}" HorizontalAlignment="Left" Background="WhiteSmoke" Height="27" Margin="557,350,0,0" VerticalAlignment="Top" Width="133" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Image Source="{Binding status, Converter={StaticResource EnumToImangeAfter}}" HorizontalAlignment="Left" Height="100" Margin="570,192,0,0" VerticalAlignment="Top" Width="100"/>
         <Image Source="{Binding status, Converter={StaticResource EnumToImange}}" HorizontalAlignment="Left" Height="100" Margin="126,188,0,0" VerticalAlignment="Top" Width="100"/>
+        <ProgressBar Value="{Binding progresBar}" HorizontalAlignment="Center" Height="31" Margin="0,217,0,0" VerticalAlignment="Top" Width="220" Background="WhiteSmoke" BorderBrush="White" Foreground="#FF0A43D9"/>
+        <Label Content="{Binding progres}" Margin="0,253,0,0" VerticalAlignment="Top" Width="104" Height="37" FontSize="14" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center"/>
+        <Label Content="MUABLES" HorizontalAlignment="Left" Margin="58,72,0,0" VerticalAlignment="Top" FontSize="30" FontWeight="Bold" FontFamily="Broadway" Height="52" Width="186"/>
+        <Label Content="Make You Feel At Home" HorizontalAlignment="Left" Margin="49,101,0,0" VerticalAlignment="Top" FontSize="17"/>
     </Grid>
 </Window>

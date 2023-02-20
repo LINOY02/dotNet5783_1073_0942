@@ -1,9 +1,6 @@
 ﻿using DalApi;
 using DO;
-using System.Security.Cryptography.X509Certificates;
 using BO;
-using System.Linq;
-using BlApi;
 
 namespace BlImplementation
 {
@@ -14,35 +11,35 @@ namespace BlImplementation
         /// the function add a bProduct
         /// </summary>
         /// <param name="bProduct"></param>
-        /// <exception cref="BO.BlInvalidInputException"></exception>
-        /// <exception cref="BO.BlAlreadyExistException"></exception>
+        /// <exception cref="BlInvalidInputException"></exception>
+        /// <exception cref="BlAlreadyExistException"></exception>
         public void AddProduct(BO.Product bProduct)
         {
             if (bProduct.ID < 100000) //check that the ID is valid
-                throw new BO.BlInvalidInputException("The id is invalid");
+                throw new BlInvalidInputException("The id is invalid");
             if (bProduct.Name == "") //check if the name is valid
-                throw new BO.BlInvalidInputException("The name is invalid");
+                throw new BlInvalidInputException("The name is invalid");
             if (bProduct.Price <= 0) //check that the Price is valid
-                throw new BO.BlInvalidInputException("The price is invalid");
+                throw new BlInvalidInputException("The price is invalid");
             if (bProduct.InStock < 0) //check that the amount is valid
-                throw new BO.BlInvalidInputException("The amount in stock is invalid");
+                throw new BlInvalidInputException("The amount in stock is invalid");
             if ((int)bProduct.Category! < 0 || (int)bProduct.Category > 5) //check that the Category is valid
-                throw new BO.BlInvalidInputException("The Category is invalid");
+                throw new BlInvalidInputException("The Category is invalid");
             try
             {   //add the product to the list in the DO
                 Dal.Product.Add(new DO.Product
                 {
-                    ID = bProduct?.ID ?? throw new BO.BlMissingInputException("The id is missing"),
-                    Name = bProduct.Name ?? throw new BO.BlMissingInputException("The name is missing"),
-                    Price = bProduct?.Price ?? throw new BO.BlMissingInputException("The price is missing"),
-                    InStock = bProduct?.InStock ?? throw new BO.BlMissingInputException("The amount is missing"),
+                    ID = bProduct?.ID ?? throw new BlMissingInputException("The id is missing"),
+                    Name = bProduct.Name ?? throw new BlMissingInputException("The name is missing"),
+                    Price = bProduct?.Price ?? throw new BlMissingInputException("The price is missing"),
+                    InStock = bProduct?.InStock ?? throw new BlMissingInputException("The amount is missing"),
                     Category = (DO.Category)bProduct.Category,
                     picture = bProduct.picture ?? @"\Pics\IMG.FAILS.jpg",
                 });
             }
-            catch (DO.DalAlreadyExistException ex)
+            catch (DalAlreadyExistException ex)
             {
-                throw new BO.BlAlreadyExistException(ex.Message);
+                throw new BlAlreadyExistException(ex.Message);
             }
         }
 
@@ -50,8 +47,8 @@ namespace BlImplementation
         /// the function delete a bProduct
         /// </summary>
         /// <param name="id"></param>
-        /// <exception cref="BO.BlDoesNotExistException"></exception>
-        /// <exception cref="BO.BlProductIsOrderedException"></exception>
+        /// <exception cref="BlDoesNotExistException"></exception>
+        /// <exception cref="BlProductIsOrderedException"></exception>
         public void DeleteProduct(int id)
         {
 
@@ -61,13 +58,13 @@ namespace BlImplementation
                 {   //delete the product from the DO
                     Dal.Product.Delete(id);
                 }
-                catch (DO.DalDoesNotExistException ex)
+                catch (DalDoesNotExistException ex)
                 {
-                    throw new BO.BlDoesNotExistException(ex.Message);
+                    throw new BlDoesNotExistException(ex.Message);
                 }
             }
             else
-                throw new BO.BlProductIsOrderedException("the product is ordered");
+                throw new BlProductIsOrderedException("the product is ordered");
         }
 
         /// <summary>
@@ -75,10 +72,10 @@ namespace BlImplementation
         /// for each bProduct: number, name, price and category
         /// </summary>
         /// <returns></List of ProductsForList>
-        public IEnumerable<BO.ProductForList?> GetListedProducts(Func<BO.ProductForList?, bool>? filter)
+        public IEnumerable<ProductForList?> GetListedProducts(Func<ProductForList?, bool>? filter)
         {
             var list = from DO.Product product1 in Dal.Product.GetAll()
-                       select new BO.ProductForList
+                       select new ProductForList
                        {
                            ID = product1.ID,
                            Name = product1.Name,
@@ -94,21 +91,21 @@ namespace BlImplementation
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns> details (for the manager)
-        /// <exception cref="BO.BlInvalidInputException"></exception>
-        /// <exception cref="BO.BlDoesNotExistException"></exception>
+        /// <exception cref="BlInvalidInputException"></exception>
+        /// <exception cref="BlDoesNotExistException"></exception>
         public BO.Product GetProduct(int id)
         {
             DO.Product dProduct;
             if (id < 100000) //check that the ID is valid
-                throw new BO.BlInvalidInputException("The id is invalid");
+                throw new BlInvalidInputException("The id is invalid");
             try
             {
                 //get the product from the Dal
                 dProduct = Dal.Product.GetById(id);
             }
-            catch (DO.DalDoesNotExistException ex)
+            catch (DalDoesNotExistException ex)
             {
-                throw new BO.BlDoesNotExistException(ex.Message);
+                throw new BlDoesNotExistException(ex.Message);
             }
             return new BO.Product
             {
@@ -128,29 +125,29 @@ namespace BlImplementation
         /// <param name="id"></param>
         /// <param name="cart"></param>
         /// <returns></returns>
-        /// <exception cref="BO.BlInvalidInputException"></exception>
-        /// <exception cref="BO.BlDoesNotExistException"></exception>
-        /// <exception cref="BO.BlProductIsNotOrderedException"></exception>
-        public BO.ProductItem GetDetailsItem(int id, BO.Cart cart)
+        /// <exception cref="BlInvalidInputException"></exception>
+        /// <exception cref="BlDoesNotExistException"></exception>
+        /// <exception cref="BlProductIsNotOrderedException"></exception>
+        public ProductItem GetDetailsItem(int id, BO.Cart cart)
         {
             DO.Product product1;
             if (id < 100000) //check that the ID is valid
-                throw new BO.BlInvalidInputException("The id is invalid");
+                throw new BlInvalidInputException("The id is invalid");
             try
             {
                 //get the product from the Dal
                 product1 = Dal.Product.GetById(id);
             }
-            catch (DO.DalDoesNotExistException ex)
+            catch (DalDoesNotExistException ex)
             {
-                throw new BO.BlDoesNotExistException(ex.Message);
+                throw new BlDoesNotExistException(ex.Message);
             }
             BO.OrderItem? OrderItem = cart.Items?.FirstOrDefault(x => x?.ProductID == id);
 
             if (OrderItem == null) //check if there are any items in the cart
-                throw new BO.BlProductIsNotOrderedException("the product is not in the cart");
+                throw new BlProductIsNotOrderedException("the product is not in the cart");
 
-            return new BO.ProductItem
+            return new ProductItem
             {
                 ID = id,
                 Name = product1.Name,
@@ -164,7 +161,7 @@ namespace BlImplementation
 
 
         //A private function that checks if the product is in stock
-        private bool checkInStock(DO.Product product1)
+        private static bool checkInStock(DO.Product product1)
         {
             if (product1.InStock == 0)
                 return false;
@@ -175,20 +172,20 @@ namespace BlImplementation
         /// The function receives bProduct details from the user and updates the bProduct in the data layer (for the manager)
         /// </summary>
         /// <param name="bProduct"></param>
-        /// <exception cref="BO.BlInvalidInputException"></exception>
-        /// <exception cref="BO.BlDoesNotExistException"></exception>
+        /// <exception cref="BlInvalidInputException"></exception>
+        /// <exception cref="BlDoesNotExistException"></exception>
         public void UpdateProduct(BO.Product bProduct)
         {
             if (bProduct.ID < 100000) //check that the ID is valid
-                throw new BO.BlInvalidInputException("The id is invalid");
+                throw new BlInvalidInputException("The id is invalid");
             if (bProduct.Name == "") //check if the name is valid
-                throw new BO.BlInvalidInputException("The name is invalid");
+                throw new BlInvalidInputException("The name is invalid");
             if (bProduct.Price <= 0) //check that the Price is valid
-                throw new BO.BlInvalidInputException("The price is invalid");
+                throw new BlInvalidInputException("The price is invalid");
             if (bProduct.InStock < 0) //check that the Amount is valid
-                throw new BO.BlInvalidInputException("The amount in stock is invalid");
+                throw new BlInvalidInputException("The amount in stock is invalid");
             if ((int)bProduct.Category! < 0 && (int)bProduct.Category > 5) //check that the Category is valid
-                throw new BO.BlInvalidInputException("The Category is invalid");
+                throw new BlInvalidInputException("The Category is invalid");
             try
             {
                 //update the product in the list
@@ -236,7 +233,7 @@ namespace BlImplementation
         public IEnumerable<ProductItem?> GetProductItems( BO.Cart cart, Func<ProductItem?, bool>? filter )
         {
             var list = from DO.Product product1 in Dal.Product.GetAll()
-                       select new BO.ProductItem
+                       select new ProductItem
                        {
                            ID = product1.ID,
                            Name = product1.Name,
@@ -283,7 +280,7 @@ namespace BlImplementation
 
             return from item in productList
                    let p= Dal.Product.GetById(item?.id ?? throw new BlDoesNotExistException("product doe not exist"))
-                   select new BO.ProductItem
+                   select new ProductItem
                    {
                        ID = p.ID,
                        Name = p.Name,
@@ -308,7 +305,7 @@ namespace BlImplementation
             var productList = Dal.Product.GetAll().OrderByDescending(x => x?.Price).Take(10);
 
             return from DO.Product item in productList
-                   select new BO.ProductItem
+                   select new ProductItem
                    {
                        ID = item.ID,
                        Name = item.Name,
@@ -316,7 +313,7 @@ namespace BlImplementation
                        Category = (BO.Category)item.Category!,
                        picture = item.picture,
                        Amount = AmountInCart(cart, item.ID),
-                       InStock=checkInStock(item)
+                       InStock= checkInStock(item)
                    };
         }
 
@@ -334,7 +331,7 @@ namespace BlImplementation
             var productList = Dal.Product.GetAll().OrderByDescending(x => x?.Price).TakeLast(10);
 
             return from DO.Product item in productList
-                   select new BO.ProductItem
+                   select new ProductItem
                    {
                        ID = item.ID,
                        Name = item.Name,

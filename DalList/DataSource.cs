@@ -11,16 +11,16 @@ internal static class DataSource
    // internal static class Config
     
         // A variable runs to class order 
-        internal const int s_startOrderNumber = 1000;
-        private static int s_nextOrderNumber = s_startOrderNumber;
-        internal static int NextOrderNumber { get => s_nextOrderNumber++; }
+    internal const int s_startOrderNumber = 1000;
+    private static int s_nextOrderNumber = s_startOrderNumber;
+    internal static int NextOrderNumber { get => s_nextOrderNumber++; }
         // A variable runs to class orderItems
-        internal const int s_startOrderItemNumber = 1000;
-        private static int s_nextOrderItemNumber = s_startOrderItemNumber;
-        internal static int NextOrderItemNumber { get => s_nextOrderItemNumber++; }
+    internal const int s_startOrderItemNumber = 1000;
+    private static int s_nextOrderItemNumber = s_startOrderItemNumber;
+    internal static int NextOrderItemNumber { get => s_nextOrderItemNumber++; }
    
    
-    //Class constructor
+    //constructor
     static DataSource()
     {
         s_Intialize();
@@ -35,9 +35,8 @@ internal static class DataSource
 
     internal static List<Order?> _orders = new List<Order?>();
     //Defining a list of orderitems 
-   
-    internal static List<OrderItem?> _orderItems = new List<OrderItem?>();
 
+    internal static List<OrderItem?> _orderItems = new List<OrderItem?>();
     //Defining a list of products 
 
     internal static List<User?> _users = new List<User?>();
@@ -50,7 +49,6 @@ internal static class DataSource
         createAndInitUsers();// fill the list with users
     }
 
-    internal static List<Product> Produc { get; }  = new List<Product> { new Product() };
     #region FILL PRODUCTS
     //An array for the names of products in the store by categories
     private static string[] table = new string[5] /*Tables*/ { "Rimani Table", "Mai Table", "Jambo Table", "Troian Table", "Tai Table" };
@@ -217,12 +215,12 @@ internal static class DataSource
             for (int j = 0; j < numOfProducts; j++)
             {
                 //Selecting an item randomly from the array of products
-                int x = s_rand.Next(25);
-                Product? p = _products[x];
+                int productIndex = s_rand.Next(25);
+                Product? p = _products[productIndex];
                 while (p?.InStock == 0)//Lottery product that is in stock
                 {
-                    x = s_rand.Next(9);
-                    p = _products[x];
+                    productIndex = s_rand.Next(9);
+                    p = _products[productIndex];
                 }
                 //Lottery of the amount of the item according to the range in the array
                 int amount = 100000;
@@ -266,6 +264,7 @@ internal static class DataSource
     }
     #endregion
 
+
     private static void createAndInitUsers()
     {
         for (int i = 0; i < _orders.Count(); i++)
@@ -281,20 +280,21 @@ internal static class DataSource
 
             });
         }
+        //manager
         _users.Add(new User
         {
             userName = "tamar",
             password ="1234",
             status = userStatus.MANAGER
         });
-        
+        //manager
         _users.Add(new User
         {
             userName = "linoy",
             password = "4321",
             status = userStatus.MANAGER
         });
-
+        //customer
         _users.Add(new User
         {
             Name = "Tamar Gefner",
