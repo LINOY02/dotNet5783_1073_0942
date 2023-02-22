@@ -9,8 +9,8 @@
     <Grid>
         <Label Content="MUABLES" HorizontalAlignment="Center" Margin="0,328,0,0" VerticalAlignment="Top" FontSize="30" FontWeight="Bold" FontFamily="Broadway" Height="41" Width="170"/>
         <Label Content="Make You Feel At Home" HorizontalAlignment="Center" Margin="0,358,0,0" VerticalAlignment="Top" FontSize="17"/>
-        <Button x:Name="ProductsBtn" Content="Products" HorizontalAlignment="Left" Margin="165,272,0,0" VerticalAlignment="Top" Click="ProductsBtn_Click" Height="54" Width="115"/>
-        <Button x:Name="OrdersBtn" Content="Orders" HorizontalAlignment="Left" Margin="525,275,0,0" VerticalAlignment="Top" Click="OrdersBtn_Click" Height="54" Width="115"/>
+        <Button x:Name="ProductsBtn" Content="View Products" FontSize="13" HorizontalAlignment="Left" Margin="165,272,0,0" VerticalAlignment="Top" Click="ProductsBtn_Click" Height="54" Width="115"/>
+        <Button x:Name="OrdersBtn" Content="View Orders" FontSize="13" HorizontalAlignment="Left" Margin="523,272,0,0" VerticalAlignment="Top" Click="OrdersBtn_Click" Height="54" Width="115"/>
         <Image HorizontalAlignment="Left" Height="88" Margin="635,144,0,0" VerticalAlignment="Top" Width="122" Source="/BedBackground.webp"/>
         <Image HorizontalAlignment="Left" Height="104" Margin="635,20,0,0" VerticalAlignment="Top" Width="115" Source="/tabBackground.webp"/>
         <Image HorizontalAlignment="Left" Height="222" Margin="10,10,0,0" VerticalAlignment="Top" Width="235" Source="/sofaBackground.webp"/>
@@ -22,5 +22,10 @@
                 <ImageBrush ImageSource="/home-button-emoji-512x485-ww1azru1.png"/>
             </Button.Background>
         </Button>
+        <TextBlock HorizontalAlignment="Left" Height="33" Margin="304,250,0,0" TextWrapping="Wrap" Text="HELLO MANAGER" VerticalAlignment="Top" Width="150">
+            <TextBlock.RenderTransform>
+                <ScaleTransform ScaleX="2" ScaleY="1"/>
+            </TextBlock.RenderTransform>
+        </TextBlock>
     </Grid>
 </Window>

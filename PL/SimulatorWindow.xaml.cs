@@ -18,7 +18,8 @@ namespace PL
         Stopwatch SW = new Stopwatch();
         Stopwatch progresBarSW = new Stopwatch();
         private bool IsTimeRun = true;
-        
+   
+        // property depenties
         #region properties
 
 
@@ -128,6 +129,10 @@ namespace PL
             DependencyProperty.Register("timeText", typeof(string), typeof(SimulatorWindow), new PropertyMetadata(null));
         #endregion
 
+
+        /// <summary>
+        /// the constractor add the function to the background worker and all the property to defult value
+        /// </summary>
         public SimulatorWindow()
         {
             InitializeComponent();
@@ -144,22 +149,57 @@ namespace PL
             status = OrderStatus.Ordered;
         }
 
-        private void BgW_RunWorkerCompleted(object? sender, RunWorkerCompletedEventArgs e)
+        /// <summary>
+        /// The DO WORK function of the background worker
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BgW_DoWork(object? sender, DoWorkEventArgs e)
         {
-            UnRegisterReport1(DoReport1);
-            UnRegisterReport2(DoReport2);
-            UnRegisterReport3(DoReport3);
-            if (!e.Cancelled)
-                MessageBox.Show("The order update process has been successfully completed");
-            Close();
+            //add all the reports to the simulator
+            RegisterReport1(DoReport1);
+            RegisterReport2(DoReport2);
+            RegisterReport3(DoReport3);
+            // activate the thread
+            Simulator.Simulator.Activate();
+
+            while (IsTimeRun)
+            {
+                // run the watch
+                BgW.ReportProgress(0, -1);
+
+                // run the progrresbar
+                int length = Delay;
+                for (int i = 1; i <= length; i++)
+                {
+                    // Perform a time consuming operation and report progress.
+                    Thread.Sleep(500);
+                    BgW.ReportProgress(0, i * 100 / length);
+                    Thread.Sleep(500);
+                }
+                Thread.Sleep(500);
+
+            }
+            e.Result = progresBarSW.ElapsedMilliseconds;
+
+            // turn the cancel flag in case the button stop is pressed
+            if (BgW.CancellationPending == true)
+            {
+                e.Cancel = true;
+            }
+
         }
 
-
+        /// <summary>
+        /// the progrres changed function
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BgW_ProgressChanged(object? sender, ProgressChangedEventArgs e)
         {
             switch (e.ProgressPercentage)
             {
-                case 0:
+                case 0:// the watch and the progrresbar
                     string TimeText = SW.Elapsed.ToString();
                     timeText = TimeText.Substring(0, 8);
                     if ((int?)e.UserState != -1)
@@ -169,14 +209,14 @@ namespace PL
                         progresBar = progress;
                     }
                     break;
-                case 1:
+                case 1:// update the window
                     orderId = currId;
                     before = currBefore.ToString()!;
                     after = currAfter?.ToString()!;
                     status = currStatus;
                     UpdateStatus(status);
                     break;
-                case 2:
+                case 2:// reset the progrresbar
                     Thread.Sleep(1000);
                     progresBar = 0;
                     IsTimeRun = true;
@@ -185,6 +225,28 @@ namespace PL
 
         }
 
+        /// <summary>
+        /// run worker complete function
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BgW_RunWorkerCompleted(object? sender, RunWorkerCompletedEventArgs e)
+        {
+            //remove all the reports from the simulator
+            UnRegisterReport1(DoReport1);
+            UnRegisterReport2(DoReport2);
+            UnRegisterReport3(DoReport3);
+            if (!e.Cancelled)// if all the orders were update
+                MessageBox.Show("The order update process has been successfully completed");
+            Close();
+        }
+
+
+        
+        /// <summary>
+        /// update the label of the status
+        /// </summary>
+        /// <param name="status"></param>
         private void UpdateStatus(OrderStatus status)
         {
             if(status == OrderStatus.Ordered)
@@ -199,45 +261,19 @@ namespace PL
             }
         }
 
-
-        private void BgW_DoWork(object? sender, DoWorkEventArgs e)
-        {
-            RegisterReport1(DoReport1);
-            RegisterReport2(DoReport2);
-            RegisterReport3(DoReport3);
-            Simulator.Simulator.Activate();
-            while (IsTimeRun)
-            {
-                BgW.ReportProgress(0, -1);
-                
-                int length = Delay;
-                for (int i = 1; i <= length; i++)
-                {
-                    // Perform a time consuming operation and report progress.
-                    Thread.Sleep(500);
-                    BgW.ReportProgress(0, i * 100 / length);
-                    Thread.Sleep(500);
-                }
-               Thread.Sleep(500);
-               
-            }
-            e.Result = progresBarSW.ElapsedMilliseconds;
-
-            if (BgW.CancellationPending == true)
-            {
-                e.Cancel = true;
-            }
-
-        }
-
+        /// <summary>
+        /// button that stop the thread
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void StopTimerBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (BgW.IsBusy)
+            if (BgW.IsBusy)// if the thread is run
             {
-                SW.Stop();
+                SW.Stop();// stop the watch
                 IsTimeRun = false;
-                BgW.CancelAsync();
-                StopActivate();
+                BgW.CancelAsync();//cancel the background worker
+                StopActivate();//stop the thread
                 Close();
             }
         }
@@ -247,6 +283,14 @@ namespace PL
         DateTime? currAfter;
         OrderStatus currStatus;
         static int Delay;
+        /// <summary>
+        /// func off report 1
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <param name="last"></param>
+        /// <param name="now"></param>
+        /// <param name="Status"></param>
+        /// <param name="delay"></param>
         private void DoReport1(int Id, DateTime? last, DateTime? now, OrderStatus Status, int delay)
         {
             currId = Id;
@@ -256,12 +300,19 @@ namespace PL
             Delay = delay;
             BgW.ReportProgress(1);
         }
-        
+
+        /// <summary>
+        /// func off report 2
+        /// </summary>
         private void DoReport2()
         {
             BgW.ReportProgress(2);
         }
 
+        /// <summary>
+        /// func off report 3
+        /// </summary>
+        /// <param name="st"></param>
         private void DoReport3(string st)
         {
             SW.Stop();

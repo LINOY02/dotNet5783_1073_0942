@@ -38,7 +38,7 @@
             <Label Grid.Column="0" Content="Customer Name:" HorizontalAlignment="Left" Margin="1" Grid.Row="1" VerticalAlignment="Center"/>
             <TextBlock x:Name="customerNameTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="1" Text="{Binding CustomerName}" VerticalAlignment="Center"/>
             <Label Grid.Column="0" Content="Delivery Date:" HorizontalAlignment="Left" Margin="3" Grid.Row="7" VerticalAlignment="Center"/>
-            <DatePicker x:Name="deliveryDateDatePicker" Grid.Column="1" IsEnabled="False" HorizontalAlignment="Center" Grid.Row="7" SelectedDate="{Binding DeliveryDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" />
+            <DatePicker x:Name="deliveryDateDatePicker" IsEnabled="False" HorizontalAlignment="Left" Grid.Row="6" SelectedDate="{Binding DeliveryDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Top" Grid.ColumnSpan="2" Margin="105,0,0,0" />
             <Label Grid.Column="0" Content="ID:" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
             <TextBlock x:Name="iDTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="0" Text="{Binding ID}" VerticalAlignment="Center"/>
             <Label Grid.Column="0" Content="Order Date:" HorizontalAlignment="Left" Margin="3" Grid.Row="5" VerticalAlignment="Center"/>
@@ -48,7 +48,7 @@
             <Label Grid.Column="0" Content="Status:" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
             <TextBlock x:Name="statusTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="4" Text="{Binding Status}" VerticalAlignment="Center"/>
             <Label Grid.Column="0" Content="Total Price:" HorizontalAlignment="Left" Margin="3" Grid.Row="8" VerticalAlignment="Center"/>
-            <TextBlock x:Name="totalPriceTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="8" Text="{Binding TotalPrice}" VerticalAlignment="Center"/>
+            <TextBlock x:Name="totalPriceTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="8" Text="{Binding TotalPrice ,StringFormat=C, ConverterCulture=he-IL}" VerticalAlignment="Center"/>
             <DatePicker Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="0" Margin="100,0,0,0" VerticalAlignment="Top" Width="45"/>
         </Grid>
         <ListView x:Name="itemsListView" ItemsSource="{Binding Items}" SelectionMode="Single" Margin="400,69,32,221">
