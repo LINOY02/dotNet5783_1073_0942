@@ -55,12 +55,16 @@ namespace PL
             }
         }
 
-    
-
+        /// <summary>
+        /// bottun that take you back to the previous window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BackBtn_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
+
 
         private void deleteBtn_Click(object sender, RoutedEventArgs e)
         {

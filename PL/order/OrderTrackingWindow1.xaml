@@ -40,7 +40,7 @@
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
-        <Button Content="Order detalis" HorizontalAlignment="Left" Margin="558,295,0,0" VerticalAlignment="Top" FontSize="14" Click="Button_Click"/>
+        <Button x:Name="OrderDetails" Content="Order details" HorizontalAlignment="Left" Margin="558,295,0,0" VerticalAlignment="Top" FontSize="14" Click="OrderDetails_Click"/>
         <Image HorizontalAlignment="Left" Height="100" Margin="587,178,0,0" VerticalAlignment="Top" Width="100" Source="/order/ORDER.png"/>
 
     </Grid>
