@@ -25,12 +25,21 @@ namespace PL
 
         public static readonly DependencyProperty OrderTTrackingProperty =
             DependencyProperty.Register("OrderT", typeof(OrderTracking), typeof(Window), new PropertyMetadata(null));
-
-        private void Button_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// show the Order's Details
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OrderDetails_Click(object sender, RoutedEventArgs e)
         {
             new ShowOrderWindow(OrderT.ID).ShowDialog();
         }
-
+        
+        /// <summary>
+        /// bottun that take you back to the previous window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void backBtn_Click(object sender, RoutedEventArgs e)
         {
             Close();
